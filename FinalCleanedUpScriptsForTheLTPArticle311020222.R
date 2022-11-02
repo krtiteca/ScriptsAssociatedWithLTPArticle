@@ -1,4 +1,10 @@
 ################ Document with the clean-up and calculations for figures of LTP article
+## Legend:
+# # Done and file was found 
+# (#) Done in other context, or consequence of other files
+#  #X Extra input
+#  #. Relevant files for this part
+  
 ################ Structure of this document
 
 ######## General functions 
