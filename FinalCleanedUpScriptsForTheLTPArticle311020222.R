@@ -193,14 +193,10 @@ EnricData18062019 <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGDa
 PureVersionAntonellaData18062019 <- AntonellaData18062019[AntonellaData18062019$cls == "I" | AntonellaData18062019$cls == "IV.7",]
 PureVersionEnricData18062019 <- EnricData18062019[EnricData18062019$cls == "I" | EnricData18062019$cls == "IV.7",]
 
-# CombinedDataWithAllClasses18062019 <- rbind(cbind(AntonellaData18062019, ScreenType = "in vivo"), cbind(EnricData18062019 , ScreenType = "in vitro"))
 CombinedDataWithPureClasses18062019 <- rbind(cbind(PureVersionAntonellaData18062019, ScreenType = "in vivo"), cbind(PureVersionEnricData18062019 , ScreenType = "in vitro"))
-
-# write.table(CombinedDataWithAllClasses18062019, file="./RData/Rest2/ACGData/FiguresByKT/CombinedDataWithAllClasses18062019.csv", sep="\t", row.names = TRUE, quote = FALSE)
 write.table(CombinedDataWithPureClasses18062019, file="./RData/Rest2/ACGData/FiguresByKT/CombinedDataWithPureClasses18062019.csv", sep="\t", row.names = TRUE, quote = FALSE)
 
-
-library("tidyr")
+library(tidyr)
 CombinedDataWithPureClasses180620192 <- unite(CombinedDataWithPureClasses18062019, "CompletelyUnique", c("protein","ionm","uid","mz","intensity"), sep = "_", remove = FALSE)
 
 CombinedDataWithPureClasses180620194 <- cbind(CombinedDataWithPureClasses180620192, LipidGroup = sapply(CombinedDataWithPureClasses180620192$CompletelyUnique, function(x){paste(CombinedDataWithPureClasses180620192[CombinedDataWithPureClasses180620192$CompletelyUnique == x, "uhgroup"], collapse = "; ")}))
@@ -249,12 +245,22 @@ SelectedColumnsAndNames2 <- SelectedColumnsAndNames[match(c("protein","domain","
 
 
 CombinedDataWithPureClasses180620197 <- CombinedDataWithPureClasses180620195[!as.logical(CombinedDataWithPureClasses180620195$set2),SelectedColumnsAndNames2[,1]]
+colnames(CombinedDataWithPureClasses180620197) <- SelectedColumnsAndNames2[,2]
 
 CombinedDataWithPureClasses180620198 <- CombinedDataWithPureClasses180620197[!is.na(CombinedDataWithPureClasses180620197$Lipid),]
 CombinedDataWithPureClasses1806201910 <- unique(CombinedDataWithPureClasses180620198)
 
+CombinedDataWithPureClasses1806201910$Lipid <- as.character(CombinedDataWithPureClasses1806201910$Lipid)
+CombinedDataWithPureClasses1806201910$Screen <- as.character(CombinedDataWithPureClasses1806201910$Screen)
+
+CombinedDataWithPureClasses1806201910$LipidAmbiguity <- as.character(CombinedDataWithPureClasses1806201910$LipidAmbiguity)
+
+
 CombinedDataWithPureClasses1806201911 <- CombinedDataWithPureClasses1806201910[!((CombinedDataWithPureClasses1806201910$LipidAmbiguity == "PG; BMP" | CombinedDataWithPureClasses1806201910$LipidAmbiguity == "BMP; PG") & CombinedDataWithPureClasses1806201910$IonMode == "neg" & is.na(CombinedDataWithPureClasses1806201910$CarbonsOfFattyAcidA)), ]
 CombinedDataWithPureClasses1806201913 <- CombinedDataWithPureClasses1806201911[!((CombinedDataWithPureClasses1806201911$LipidAmbiguity %in% c("PC-O; Lyso-PC", "Lyso-PC; PC-O", "Lyso-PE; PE-O")) & !is.na(CombinedDataWithPureClasses1806201911$CarbonsOfFattyAcidA)),]
+
+write.table(CombinedDataWithPureClasses1806201913, file="./RData/Rest2/ACGData/FiguresByKT/CleanConservativeDataWithoutFilters17072019.csv", sep="\t", row.names = FALSE, quote = FALSE)
+#! Where supplementary table X is derived from
 
 
 library(stringr)
@@ -263,7 +269,7 @@ CombinedDataWithPureClasses1806201914 <- cbind(CombinedDataWithPureClasses180620
   if(str_count(x, "\\)") == 0){c(x,NA,NA)
 
   }else{if(str_count(x, "\\)") == 1){
-    if(grepl(pattern = "(O-", x, fixed = TRUE)){paste0(strsplit(gsub("\\)","",x), "\\(O-|:")[[1]], c("-O","",""))} # gives NULL in the apply #!
+    if(grepl(pattern = "(O-", x, fixed = TRUE)){paste0(strsplit(gsub("\\)","",x), "\\(O-|:")[[1]], c("-O","",""))}
 
     else if(grepl(pattern = "(d*", x, fixed = TRUE)){paste0(c("d*","",""), strsplit(gsub("\\)","",x), "\\(d\\*|:")[[1]])}
     else if(grepl(pattern = "(t*", x, fixed = TRUE)){paste0(c("t*","",""), strsplit(gsub("\\)","",x), "\\(t\\*|:")[[1]])}
@@ -312,8 +318,18 @@ PureAntonella32b <- PureAntonella32[PureAntonella32$LTPProtein != "SEC14L1",]
 
 # Previous code results in: core MS-data that will be used everywhere: in cellulo = PureAntonella32b ; in vitro = PureEnric32
 
+
 ######## Supplementary material: quality tests
 #### Supplementary material: ECN test
+
+
+library(RColorBrewer)
+
+BlueColorRangeUnsaturations <- setNames(rev(paste0(colorRampPalette(brewer.pal(9,"Blues")[-(1:2)])(11), "52")), as.character(0:10))
+OrangeColorRangeUnsaturations <- setNames(rev(paste0(colorRampPalette(brewer.pal(9,"Oranges")[-1])(11), "52")), as.character(0:10))
+
+BlueColorRangeUnsaturationsOpaque <- setNames(rev(colorRampPalette(brewer.pal(9,"Blues")[-(1:2)])(11)), as.character(0:10))
+OrangeColorRangeUnsaturationsOpaque <- setNames(rev(colorRampPalette(brewer.pal(9,"Oranges")[-1])(11)), as.character(0:10))
 
 #. LipidomicsQualityControlECNTestsUnsaturationInfoColored21012022.pdf #
 pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/LipidomicsQualityControlECNTestsUnsaturationInfoColored21012022.pdf")
@@ -475,7 +491,19 @@ dev.off()
 #. Panel2CColorVsColorSidesFlippedOver09122021CleanedRightText10122021WithBiggerText.pdf (#)
 
 #. Panel2CColorVsColorSidesFlippedOver09122021.pdf #
+# InVivoDataSetslc 1195; InVitroDataSetslc 1196; ReorderedLTPsByManualSeriation 1448; ScreenColor /; LipidClassLiteratureDataSetslc2 /
 
+NovelAmountsSubclassLTPConnections2 <- cbind(InCellulo = c(NovelAmount = sum((InVivoDataSetslc[,ReorderedLTPsByManualSeriation] != 0) & (LipidClassLiteratureDataSetslc2[,ReorderedLTPsByManualSeriation])),
+                                                           TotalAmount = sum(InVivoDataSetslc[,ReorderedLTPsByManualSeriation] != 0)),
+                                             
+                                             InVitro = c(NovelAmount = sum((InVitroDataSetslc[,ReorderedLTPsByManualSeriation] != 0) & (LipidClassLiteratureDataSetslc2[,ReorderedLTPsByManualSeriation])),
+                                                         TotalAmount = sum(InVitroDataSetslc[,ReorderedLTPsByManualSeriation] != 0)))
+
+CompiledCharacteristicsOfNovelAmountsSubclassLTPConnections2 <- as.data.frame(do.call("cbind", list(Screen = c("in cellulo", "in vitro"), 
+                                                                                                    t(NovelAmountsSubclassLTPConnections2), 
+                                                                                                    
+                                                                                                    Percentage = round(NovelAmountsSubclassLTPConnections2["NovelAmount",]*100/NovelAmountsSubclassLTPConnections2["TotalAmount",]),
+                                                                                                    Color = ScreenColor[1:2,2])))
 
 SumIntensitiesEvenVsOdd <- cbind(c(sum(PureAntonella32b[PureAntonella32b$TotalCarbonChainLength %% 2 == 0,"Intensity"], na.rm = TRUE),
                                    sum(PureAntonella32b[PureAntonella32b$TotalCarbonChainLength %% 2 == 1,"Intensity"], na.rm = TRUE)),
