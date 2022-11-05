@@ -491,19 +491,25 @@ dev.off()
 #. Panel2CColorVsColorSidesFlippedOver09122021CleanedRightText10122021WithBiggerText.pdf (#)
 
 #. Panel2CColorVsColorSidesFlippedOver09122021.pdf #
-# InVivoDataSetslc 1195; InVitroDataSetslc 1196; ReorderedLTPsByManualSeriation 1448; ScreenColor /; LipidClassLiteratureDataSetslc2 /
+# InVivoDataSetslc 1195; InVitroDataSetslc 1196; ReorderedLTPsByManualSeriation 1448; LipidClassLiteratureDataSetslc 1258
 
-NovelAmountsSubclassLTPConnections2 <- cbind(InCellulo = c(NovelAmount = sum((InVivoDataSetslc[,ReorderedLTPsByManualSeriation] != 0) & (LipidClassLiteratureDataSetslc2[,ReorderedLTPsByManualSeriation])),
-                                                           TotalAmount = sum(InVivoDataSetslc[,ReorderedLTPsByManualSeriation] != 0)),
-                                             
-                                             InVitro = c(NovelAmount = sum((InVitroDataSetslc[,ReorderedLTPsByManualSeriation] != 0) & (LipidClassLiteratureDataSetslc2[,ReorderedLTPsByManualSeriation])),
-                                                         TotalAmount = sum(InVitroDataSetslc[,ReorderedLTPsByManualSeriation] != 0)))
 
-CompiledCharacteristicsOfNovelAmountsSubclassLTPConnections2 <- as.data.frame(do.call("cbind", list(Screen = c("in cellulo", "in vitro"), 
-                                                                                                    t(NovelAmountsSubclassLTPConnections2), 
-                                                                                                    
-                                                                                                    Percentage = round(NovelAmountsSubclassLTPConnections2["NovelAmount",]*100/NovelAmountsSubclassLTPConnections2["TotalAmount",]),
-                                                                                                    Color = ScreenColor[1:2,2])))
+ScreenColor <- cbind(c("InCellulo", "InVitro", "Cellular"), c("#9ECAE1", "#FDAE6B", "Grey"))
+
+# LipidClassLiteratureDataSetslc2 <- LipidClassLiteratureDataSetslc
+# LipidClassLiteratureDataSetslc2["PIPs","OSBPL2"] <- FALSE
+# 
+# NovelAmountsSubclassLTPConnections2 <- cbind(InCellulo = c(NovelAmount = sum((InVivoDataSetslc[,ReorderedLTPsByManualSeriation] != 0) & (LipidClassLiteratureDataSetslc2[,ReorderedLTPsByManualSeriation])),
+#                                                            TotalAmount = sum(InVivoDataSetslc[,ReorderedLTPsByManualSeriation] != 0)),
+#                                              
+#                                              InVitro = c(NovelAmount = sum((InVitroDataSetslc[,ReorderedLTPsByManualSeriation] != 0) & (LipidClassLiteratureDataSetslc2[,ReorderedLTPsByManualSeriation])),
+#                                                          TotalAmount = sum(InVitroDataSetslc[,ReorderedLTPsByManualSeriation] != 0)))
+# 
+# CompiledCharacteristicsOfNovelAmountsSubclassLTPConnections2 <- as.data.frame(do.call("cbind", list(Screen = c("in cellulo", "in vitro"), 
+#                                                                                                     t(NovelAmountsSubclassLTPConnections2), 
+#                                                                                                     
+#                                                                                                     Percentage = round(NovelAmountsSubclassLTPConnections2["NovelAmount",]*100/NovelAmountsSubclassLTPConnections2["TotalAmount",]),
+#                                                                                                     Color = ScreenColor[1:2,2])))
 
 SumIntensitiesEvenVsOdd <- cbind(c(sum(PureAntonella32b[PureAntonella32b$TotalCarbonChainLength %% 2 == 0,"Intensity"], na.rm = TRUE),
                                    sum(PureAntonella32b[PureAntonella32b$TotalCarbonChainLength %% 2 == 1,"Intensity"], na.rm = TRUE)),
@@ -517,7 +523,7 @@ rownames(SumIntensitiesEvenVsOdd) <- c("even", "odd")
 ProcentIntensitiesEvenVsOdd <- cbind(SumIntensitiesEvenVsOdd[,1]*100 / sum(SumIntensitiesEvenVsOdd[,1]), SumIntensitiesEvenVsOdd[,2]*100 / sum(SumIntensitiesEvenVsOdd[,2]))
 colnames(ProcentIntensitiesEvenVsOdd) <- c("in cellulo", "in vitro")
 
-ProcentIntensitiesEvenVsOdd <- rbind(ProcentIntensitiesEvenVsOdd, color = as.character(CompiledCharacteristicsOfNovelAmountsSubclassLTPConnections2$Color))
+ProcentIntensitiesEvenVsOdd <- rbind(ProcentIntensitiesEvenVsOdd, color = as.character(ScreenColor[1:2,2])) # Simplified to avoid jumping back-and-forth. # CompiledCharacteristicsOfNovelAmountsSubclassLTPConnections2$Color
 
 
 library(RColorBrewer)
@@ -574,6 +580,15 @@ OrangeHighlights <- structure(do.call("rbind", list(NA,0:10,NA)), dimnames = lis
 GreyHighlights <- structure(do.call("rbind", list(NA,NA,0:10)), dimnames = list(c("in vivo", "in vitro", "HEK293"), as.character(0:10)))
 
 
+library(circlize)
+col_funb <- colorRamp2(0:10, c("white", colorRampPalette(brewer.pal(9,"Blues")[-1])(10)))
+
+col_funo <- colorRamp2(0:10, c("white", colorRampPalette(brewer.pal(9,"Oranges")[-1])(10)))
+col_fung <- colorRamp2(0:10, c("white", colorRampPalette(brewer.pal(9,"Greys")[2:7])(10)))
+
+LegendColor <- col_fung
+
+
 pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/CirclesForTheLegendOfTheLipidomeGraph09102020.pdf",
     width = unit(23, "mm"), height = unit(8, "mm"))
 
@@ -596,7 +611,7 @@ dev.off()
 #. LipidsIntensityFrationsOfEven26012022WithLysolipidsCollapsed27012022CleanedUpVersionWithTwoColorSchemesOddAndNoReducedToEmpty1403202222binsc.pdf (#)
 
 #. LipidsIntensityFrationsOfEven26012022WithLysolipidsCollapsed27012022 #
-
+library(reshape2)
 
 CovertToHeatmapMatrixn <- function(InputDataStartMatrix, CompactionMatrixForTotal, HeadgroupOrder, CarbOrder, IonMode){
   reshapedstartofmatrix <- dcast(InputDataStartMatrix[InputDataStartMatrix$IonMode == IonMode,], LikelySubclass ~ TotalCarbonChainLength, value.var = "Intensity", fun.aggregate = sum)
@@ -626,10 +641,10 @@ Normalization1OfPureAntonella32$LikelySubclass <- as.character(Normalization1OfP
 Normalization1OfPureEnric32$LikelySubclass <- as.character(Normalization1OfPureEnric32$LikelySubclass)
 
 CompactionMatrixForTotaln <- cbind(unique(c(Normalization1OfPureAntonella32$LikelySubclass, Normalization1OfPureEnric32$LikelySubclass)), unique(c(Normalization1OfPureAntonella32$LikelySubclass, Normalization1OfPureEnric32$LikelySubclass)))
-CompactionMatrixForTotaln[c(2,8:14,16,17,19,21:23,29,30,31),2] <- c("PC", "HexCer", "HexCer", "Hex2Cer", "SM", "CerP", "SM", "SM", "Cer", "Cer", "PE", "Cer", "Cer", "Cer", "FA", "SHexCer", "LPE") # FAL --> FA was added
+CompactionMatrixForTotaln[c(2,8:14,17,18,19,21:23,29,30,31),2] <- c("PC", "HexCer", "HexCer", "Hex2Cer", "SM", "CerP", "SM", "SM", "PE", "Cer", "Cer", "Cer", "Cer", "Cer", "FA", "SHexCer", "LPE") # Adapted to new order after change of y-input.
 
 CompactionMatrixForTotaln2 <- CompactionMatrixForTotaln[CompactionMatrixForTotaln[,1] != "VA",]
-HeadgroupOrdern <- c("Cer", "CerP", "HexCer", "Hex2Cer", "SHexCer", "SM", "FA", "LPC", "LPE", "LPG", "DAG", "PA", "PC", "PE", "PI", "PS", "PG", "PG/BMP", "BMP", "TAG", "PGP", "CL") # FAL removed from after FA
+HeadgroupOrdern <- c("Cer", "CerP", "HexCer", "Hex2Cer", "SHexCer", "SM", "FA", "LPC", "LPE", "LPG", "DAG", "PA", "PC", "PE", "PI", "PS", "PG", "PG/BMP", "BMP", "TAG", "PGP", "CL") 
 
 HeatmapMatrixPosAntonellan <- CovertToHeatmapMatrixn(CompactionMatrixForTotal = CompactionMatrixForTotaln2,
                                                      HeadgroupOrder = HeadgroupOrdern,
@@ -694,7 +709,7 @@ EvenPercentagesForLipidsEmptycwl[TRUE] <- 100
 EvenPercentagesForLipidsAbsencescwl <- EvenPercentagesForLipidscwl
 EvenPercentagesForLipidsAbsencescwl <- is.na(EvenPercentagesForLipidsAbsencescwl)*100
 
-
+par(mar = c(5.1, 4.1, 4.1, 2.1))
 pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/LipidsIntensityFrationsOfEven26012022WithLysolipidsCollapsed27012022.pdf")
 
 barplot(t(EvenPercentagesForLipidsEmptycwl[rev(rownames(EvenPercentagesForLipidsEmptycwl)),2:1]), beside = TRUE, horiz = TRUE, las = 2, col = "white", border = "grey", xlim = c(0,1000), xaxt = "n") 
@@ -727,11 +742,20 @@ rownames(OverexpressionHEK2) <- 1:nrow(OverexpressionHEK2)
 OverexpressionHEK4 <- apply(OverexpressionHEK2, 2, function(x){gsub(",",".",x)})
 OverexpressionHEK5 <- cbind.data.frame(OverexpressionHEK4[,1], apply(OverexpressionHEK4[,-1], 2, function(x){as.numeric(x)}))
 
-
+OverexpressionHEK5[,1] <- as.character(OverexpressionHEK5[,1])
 DetailsOfOverexpressionHEKData2 <- OverexpressionHEK5[1:485,]
 
 DetailsOfOverexpressionHEK2Split <- cbind(do.call("rbind", strsplit(DetailsOfOverexpressionHEKData2[,1], split = "(?<=[a-zA-Z]|-)\\s*(?=[0-9])", perl = TRUE)), DetailsOfOverexpressionHEKData2[,-1])
 colnames(DetailsOfOverexpressionHEK2Split)[1:2] <- c("LipidClass", "CarbChainLengthAndUnsat")
+
+DetailsOfOverexpressionHEK2Split[,1] <- as.character(DetailsOfOverexpressionHEK2Split[,1])
+DetailsOfOverexpressionHEK2Split[,2] <- as.character(DetailsOfOverexpressionHEK2Split[,2])
+
+DetailsOfOverexpressionHEK2Split[DetailsOfOverexpressionHEK2Split[,2] == "Chol :", 2] <- "27:1"
+DetailsOfOverexpressionHEK2Split[DetailsOfOverexpressionHEK2Split[,1] == "GM", 2] <- gsub("3 ", "", DetailsOfOverexpressionHEK2Split[DetailsOfOverexpressionHEK2Split[,1] == "GM", 2])
+
+DetailsOfOverexpressionHEK2Split[DetailsOfOverexpressionHEK2Split[,1] == "GM", 1] <- "GM3"
+DetailsOfOverexpressionHEK2Split[grep(";2", DetailsOfOverexpressionHEK2Split[,2]),2] <- gsub(";2", "", DetailsOfOverexpressionHEK2Split[grep(";2", DetailsOfOverexpressionHEK2Split[,2]),2])
 
 DetailsOfOverexpressionHEK2Split2 <- cbind(DetailsOfOverexpressionHEK2Split[,1:2], ControlMeans = rowMeans(DetailsOfOverexpressionHEK2Split[,c(4,10,16)])) 
 #! Maybe provide documents from this point on, instead of originals?
@@ -747,6 +771,9 @@ DetailsOfOverexpressionHEK2Split2bl2WideVersion <- Col1ToRowNames(dcast(DetailsO
 
 # Historical intermediate parts removed
 DetailsOfOverexpressionHEK2Split2bl2WideVersion2 <- DetailsOfOverexpressionHEK2Split2bl2WideVersion
+
+DetailsOfOverexpressionHEK2Split2bl2WideVersion2[,setdiff(as.character(14:72), colnames(DetailsOfOverexpressionHEK2Split2bl2WideVersion2))] <- 0
+DetailsOfOverexpressionHEK2Split2bl2WideVersion2[setdiff(HeadgroupOrdern, rownames(DetailsOfOverexpressionHEK2Split2bl2WideVersion2)),] <- 0
 
 DetailsOfOverexpressionHEK2Split2bl2WideVersion2 <- DetailsOfOverexpressionHEK2Split2bl2WideVersion2[HeadgroupOrdern, as.character(14:72)]
 HeatmapMatrixPosBackgroundNormalizedtb <- MinMaxNormMatrixFunc(inputdata = DetailsOfOverexpressionHEK2Split2bl2WideVersion2)*9+1
@@ -919,8 +946,26 @@ HPTLCSpecificitiesPerScreen2 <- HPTLCSpecificitiesPerScreen
 colnames(HPTLCSpecificitiesPerScreen2[[1]]) <- paste0(colnames(HPTLCSpecificitiesPerScreen2[[1]]), "*")
 colnames(HPTLCSpecificitiesPerScreen2[[2]]) <- paste0(colnames(HPTLCSpecificitiesPerScreen2[[2]]), "*")
 
-
 #### MS-data: clean-up and formatting #!
+LTPProteins <- unique(c(unique(PureAntonella32b$LTPProtein), unique(PureEnric32$LTPProtein)))
+
+HeadgroupOrderlnl <- c("d*Cer", "dCer", "DHCer", "DHOH*Cer", "tCer", "d*CerP", "d*HexCer", "t*HexCer", "t*Hex2Cer", "d*SHexCer", "d*SM", "DHSM", "t*SM", "FA", "FAL", "LPC",
+                       "LPE", "LPE-O", "LPG", "DAG", "PA", "PC", "PC-O", "PE", "PE-O", "PI", "PS", "PG", "PG/BMP", "BMP", "TAG", "PGP", "CL", "VA")
+
+CovertToHeatmapMatrixlnl <- function(InputDataStartMatrixlnl, HeadgroupOrderlnl, LTPOrder, IonMode){ # CompactionMatrixForTotal, 
+  reshapedstartofmatrixlnl <- dcast(InputDataStartMatrixlnl[InputDataStartMatrixlnl$IonMode == IonMode,], LikelySubclass ~ LTPProtein, value.var = "Intensity", fun.aggregate = sum)
+  
+  reshapedstartofmatrixlnl2 <- reshapedstartofmatrixlnl[reshapedstartofmatrixlnl$LikelySubclass != "P40", colnames(reshapedstartofmatrixlnl) != "NaN"]
+  
+  
+  reshapedstartofmatrixlnl4 <- Col1ToRowNames(reshapedstartofmatrixlnl2)
+  reshapedstartofmatrixlnl4[,setdiff(LTPOrder, colnames(reshapedstartofmatrixlnl4))] <- 0
+  
+  reshapedstartofmatrixlnl4[setdiff(HeadgroupOrderlnl, rownames(reshapedstartofmatrixlnl4)),] <- 0
+  return(reshapedstartofmatrixlnl4[HeadgroupOrderlnl, LTPOrder])
+  
+}
+
 
 LTPMatrixPosInVivo <- CovertToHeatmapMatrixlnl(InputDataStartMatrixlnl = PureAntonella32b,
                                                HeadgroupOrderlnl = HeadgroupOrderlnl,
@@ -952,11 +997,29 @@ LTPMatrixPosInVivommn[is.infinite(as.matrix(LTPMatrixPosInVivommn))] <- 0
 LTPMatrixNegInVivommn <- MinMaxNormMatrixFunc(inputdata = LTPMatrixNegInVivo)*9+1
 LTPMatrixNegInVivommn[is.infinite(as.matrix(LTPMatrixNegInVivommn))] <- 0
 
+LTPMatrixPosInVitrommn <- MinMaxNormMatrixFunc(inputdata = LTPMatrixPosInVitro)*9+1
+LTPMatrixPosInVitrommn[is.infinite(as.matrix(LTPMatrixPosInVitrommn))] <- 0
+
+LTPMatrixNegInVitrommn <- MinMaxNormMatrixFunc(inputdata = LTPMatrixNegInVitro)*9+1 # Added in, because was missing.
+LTPMatrixNegInVitrommn[is.infinite(as.matrix(LTPMatrixNegInVitrommn))] <- 0 # Added in, because was missing.
 
 LTPMatrixTopInVivommn <- do.call("cbind", lapply(1:dim(LTPMatrixNegInVivommn)[2], function(x){pmax(LTPMatrixNegInVivommn[,x], LTPMatrixPosInVivommn[,x])}))
+LTPMatrixTopInVitrommn <- do.call("cbind", lapply(1:dim(LTPMatrixNegInVitrommn)[2], function(x){pmax(LTPMatrixNegInVitrommn[,x], LTPMatrixPosInVitrommn[,x])}))
+
+rownames(LTPMatrixTopInVivommn) <- rownames(LTPMatrixPosInVivommn)
+colnames(LTPMatrixTopInVivommn) <- colnames(LTPMatrixPosInVivommn)
+
+rownames(LTPMatrixTopInVitrommn) <- rownames(LTPMatrixPosInVitrommn)
+colnames(LTPMatrixTopInVitrommn) <- colnames(LTPMatrixPosInVitrommn)
 
 MeltedInVivoCombined <- rbind(melt(LTPMatrixTopInVivommn), melt(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))
+MeltedInVitroCombined <- rbind(melt(LTPMatrixTopInVitrommn), melt(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))
+
 CastInVivoCombined <- Col1ToRowNames(dcast(MeltedInVivoCombined, Var1 ~ Var2, value.var = "value"))
+CastInVitroCombined <- Col1ToRowNames(dcast(MeltedInVitroCombined, Var1 ~ Var2, value.var = "value"))
+
+CastInVivoCombined[is.na(CastInVivoCombined)] <- 0
+CastInVitroCombined[is.na(CastInVitroCombined)] <- 0
 
 # Make overview of LTP classes
 MainDomainsOfTheLTPs <- unique(rbind(PureAntonella32b[,1:2], PureEnric32[,1:2])) 
@@ -977,7 +1040,7 @@ MainDomainsOfTheLTPs5 <- as.data.frame(list(MainDomainsOfTheLTPs4,
 # Extraction of information from Uniprot
 
 BiocManager::install("UniprotR")
-library(UniprotR)
+library(UniprotR) # Version 1.2.4
 
 MainDomainsOfTheLTPs7 <- cbind(MainDomainsOfTheLTPs5, 
                                UniprotNames = c("Q86WG3", "Q7Z465", "P12271", "O76054", "Q9UDX3", "O43304", "B5MCN3", "P49638", "Q9BTX7", # "Q92503" removed
@@ -989,7 +1052,19 @@ MainDomainsOfTheLTPs7 <- cbind(MainDomainsOfTheLTPs5,
                                                 "Q9UJQ7", "Q9UKL6", "Q9Y365", "Q9Y5P4"))
 
 MainDomainsOfTheLTPs8 <- cbind(MainDomainsOfTheLTPs7, GetFamily_Domains(MainDomainsOfTheLTPs7$UniprotNames))
+# If issues with the GetFamily_Domains function: look at following commented out entries to work with same data.
 
+# Make sure that we have an exact saved RDS-image of this file in time to avoid issues with Uniprot
+# saveRDS(object = MainDomainsOfTheLTPs8, file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/BackUpOfMainDomainsOfTheLTPs8.rds")
+
+# Load saved RDS-image of this file (if needed, otherwise this can be skipped)
+# MainDomainsOfTheLTPs8FromTheStorage <- readRDS("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/BackUpOfMainDomainsOfTheLTPs8.rds")
+
+# Check that nothing went wrong during the conversion (if needed, otherwise this can be skipped)
+# identical(MainDomainsOfTheLTPs8FromTheStorage, MainDomainsOfTheLTPs8)
+
+# Reassign reloaded variable to the old one (if needed, otherwise this can be skipped) (watch out to certainly do previous step first)
+# MainDomainsOfTheLTPs8 <- MainDomainsOfTheLTPs8FromTheStorage
 
 MainDomainsOfTheLTPs8LongVersionDomains <- do.call("rbind", lapply(1:dim(MainDomainsOfTheLTPs8)[1], function(i){do.call("cbind", list(as.character(MainDomainsOfTheLTPs8$LTPProtein[i]), "Domain", matrix(unlist(strsplit(as.character(MainDomainsOfTheLTPs8[i,"Domain..FT."]), split = "\\; ")), ncol = 3, byrow = TRUE)))}))
 MainDomainsOfTheLTPs8LongVersionDomains2 <- cbind(MainDomainsOfTheLTPs8LongVersionDomains, do.call("rbind",strsplit(gsub("DOMAIN ", "", MainDomainsOfTheLTPs8LongVersionDomains[,3]), "\\.\\.")))
@@ -1056,27 +1131,6 @@ CastManyProteinDomainsLTPsDecreasinglyOrderDomainsPerMainDomain <- CastManyProte
 
 DomainsByRowColumnAssociations <- CastManyProteinDomainsLTPsDecreasinglyOrderDomainsPerMainDomain[as.character(MainDomainsOfTheLTPs4xx[,1]),c(11,4,6,13,14,9,5,2,3,1,10,8,7,12,15:17,23,21,18:20,22)]
 DomainsByRowColumnAssociationsReordered <- DomainsByRowColumnAssociations[,DomainTypes2[,2]]
-
-
-LTPProteins <- unique(c(unique(PureAntonella32b$LTPProtein), unique(PureEnric32$LTPProtein)))
-
-HeadgroupOrderlnl <- c("d*Cer", "dCer", "DHCer", "DHOH*Cer", "tCer", "d*CerP", "d*HexCer", "t*HexCer", "t*Hex2Cer", "d*SHexCer", "d*SM", "DHSM", "t*SM", "FA", "FAL", "LPC",
-                       "LPE", "LPE-O", "LPG", "DAG", "PA", "PC", "PC-O", "PE", "PE-O", "PI", "PS", "PG", "PG/BMP", "BMP", "TAG", "PGP", "CL", "VA")
-
-CovertToHeatmapMatrixlnl <- function(InputDataStartMatrixlnl, HeadgroupOrderlnl, LTPOrder, IonMode){ # CompactionMatrixForTotal, 
-  reshapedstartofmatrixlnl <- dcast(InputDataStartMatrixlnl[InputDataStartMatrixlnl$IonMode == IonMode,], LikelySubclass ~ LTPProtein, value.var = "Intensity", fun.aggregate = sum)
-  
-  reshapedstartofmatrixlnl2 <- reshapedstartofmatrixlnl[reshapedstartofmatrixlnl$LikelySubclass != "P40", colnames(reshapedstartofmatrixlnl) != "NaN"]
-
-  
-  reshapedstartofmatrixlnl4 <- Col1ToRowNames(reshapedstartofmatrixlnl2)
-  reshapedstartofmatrixlnl4[,setdiff(LTPOrder, colnames(reshapedstartofmatrixlnl4))] <- 0
-  
-  reshapedstartofmatrixlnl4[setdiff(HeadgroupOrderlnl, rownames(reshapedstartofmatrixlnl4)),] <- 0
-  return(reshapedstartofmatrixlnl4[HeadgroupOrderlnl, LTPOrder])
-  
-}
-
 
 
 LipidCompactionMatrixSphingolipids <- cbind(OriginalRow = rownames(LTPMatrixPosInVivo), NewRow = c(rep("Cer*",5), rownames(LTPMatrixPosInVivo)[6], rep("HexCer*",2), rownames(LTPMatrixPosInVivo)[9:10], rep("SM*",3), rownames(LTPMatrixPosInVivo)[14:34]))
@@ -1153,11 +1207,11 @@ CastInVitroCombinedslchdr <- as.matrix(Col1ToRowNames(dcast(MeltedInVitroCombine
 CastInVivoCombinedslchdr[is.infinite(CastInVivoCombinedslchdr)] <- 0
 CastInVitroCombinedslchdr[is.infinite(CastInVitroCombinedslchdr)] <- 0
 
-all(colnames(CastInVitroCombinedslchdr) %in% rownames(DomainsByRowColumnAssociationsReordered))
+all(colnames(CastInVitroCombinedslchdr) %in% rownames(DomainsByRowColumnAssociationsReordered)) # TRUE
 all(rownames(DomainsByRowColumnAssociationsReordered) %in% colnames(CastInVitroCombinedslchdr)) # FALSE
 
 rownames(DomainsByRowColumnAssociationsReordered)[!(rownames(DomainsByRowColumnAssociationsReordered) %in% colnames(CastInVitroCombinedslchdr))]
-# !!!! "OSBP"    "OSBPL1A" "OSBPL10" "OSBP2"   "OSBPL8"  "OSBPL11" "OSBPL7"  "OSBPL2"
+# Missing parts: "OSBP"    "OSBPL1A" "OSBPL10" "OSBP2"   "OSBPL8"  "OSBPL11" "OSBPL7"  "OSBPL2"
 
 
 CastInVitroCombinedslchdr2 <- cbind(CastInVitroCombinedslchdr, matrix(data = 0, 
@@ -1177,9 +1231,6 @@ c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))[!uniq
 MissingLipidEntriesInVitro <- c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))[!unique(c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))) %in% rownames(InVitroDataSetTotalslchdr)]
 # "Sterol" "PIPs"
 
-
-
-
 MeltedInVivoCombinedslc <- rbind(melt(LTPMatrixTopInVivommnslc), melt(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))
 MeltedInVitroCombinedslc <- rbind(melt(LTPMatrixTopInVitrommnslc), melt(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))
 
@@ -1194,9 +1245,6 @@ InVitroDataSetWithoutRedundantStarsslc <- InVitroDataSetTotalslc[-match(c("DAG*"
 
 InVivoDataSetslc <- InVivoDataSetWithoutRedundantStarsslc[c(1:12,14:19,29,20,25,21:23,26,13,24,28,27),]
 InVitroDataSetslc <- InVitroDataSetWithoutRedundantStarsslc[c(1:12,14:19,28,29,24,20:22,25,13,23,27,26),]
-
-
-
 
 InVivoDataSetslchdr <- InVivoDataSetTotalslchdr[c(1:12,14:19,29,20,25,21:23,26,13,24,28,27),]
 InVitroDataSetslchdr <- rbind(InVitroDataSetTotalslchdr, matrix(data = 0, 
@@ -1240,8 +1288,11 @@ LiteratureDataLTPsFurtherIntegrated26052020$InVitro <- as.numeric(gsub(",",".", 
 # 29.6% Literature consensus
 sum(LiteratureDataLTPsFurtherIntegrated26052020$LiteratureConsensus)/length(LiteratureDataLTPsFurtherIntegrated26052020$LiteratureConsensus) # 0.296
 
+# Import of literature hits overview
+ExpandedLiteratureHitsFromClassesOfLipidsWithoutRedundantStarsStored <- read.table(file="C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/ExpandedLiteratureHitsFromClassesOfLipidsWithoutRedundantStarsStored05112022.csv", sep = "\t")
+
 # Previous: LipidClassLiteratureDataSet2 <- !((InVivoDataSet == 0) & (InVitroDataSet == 0)) & (LipidClassLiteratureDataSet == 0) # Changed to unique entries avoid looping and avoid possible confusion
-LipidClassLiteratureDataSet2 <- !((InVivoDataSetWithoutRedundantStars == 0) & (InVitroDataSetWithoutRedundantStars == 0)) & (as.matrix(ExpandedLiteratureHitsFromClassesOfLipidsWithoutRedundantStars) == 0)
+LipidClassLiteratureDataSet2 <- !((InVivoDataSetWithoutRedundantStars == 0) & (InVitroDataSetWithoutRedundantStars == 0)) & (as.matrix(ExpandedLiteratureHitsFromClassesOfLipidsWithoutRedundantStarsStored) == 0)
 
 library(reshape2)
 LiteratureConsensusLinksWideVersion <- Col1ToRowNames(dcast(data = LiteratureDataLTPsFurtherIntegrated26052020, Lipid ~ Protein, value.var = "LiteratureConsensus",fun.aggregate = sum))
@@ -1262,7 +1313,7 @@ LipidClassLiteratureDataSetslc4hdr <- LipidClassLiteratureDataSetslc
 LipidClassLiteratureDataSetslc4hdr["PIPs","OSBPL2"] <- FALSE
 
 
-ORPDomains <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/ORPDomains270520202.txt", header = TRUE, sep = "\t", as.is = TRUE) #!
+ORPDomains <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/ORPDomains270520202.txt", header = TRUE, sep = "\t", as.is = TRUE)
 
 ORPDomains2 <- do.call("cbind", list(ORPDomains[,1:3], ORPDomains[,4:7]-2, FFAT = ifelse(as.logical(ORPDomains[,8]), ORPDomains[,5]-24, NA)))
 ORPDomains2[9,4] <- 148 # Longer version
@@ -3930,18 +3981,6 @@ dev.off()
 
 #### Fig.6c
 #. CERTAndSEC14L1LipidChangesHEK293WelchsTTest120820192.pdf #
-
-OverexpressionHEK <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/ExtractedDataHEK293FromKenji08082019.txt", header = TRUE, sep = "\t", as.is = TRUE)
-OverexpressionHEK2 <- OverexpressionHEK[-(1:2),]
-
-colnames(OverexpressionHEK2) <- paste(colnames(OverexpressionHEK), OverexpressionHEK[1,], OverexpressionHEK[2,], sep = "_")
-rownames(OverexpressionHEK2) <- 1:nrow(OverexpressionHEK2)
-
-OverexpressionHEK4 <- apply(OverexpressionHEK2, 2, function(x){gsub(",",".",x)})
-OverexpressionHEK5 <- cbind.data.frame(OverexpressionHEK4[,1], apply(OverexpressionHEK4[,-1], 2, function(x){as.numeric(x)}))
-
-OverexpressionHEK5[,1] <- as.character(OverexpressionHEK5[,1])
-
 
 min(OverexpressionHEK5[,2:ncol(OverexpressionHEK5)][OverexpressionHEK5[,2:ncol(OverexpressionHEK5)] != 0])
 # 0.000100165 --> 0.00001 should be fine as background (to avoid 0 issues in the calculations); corrected the x+1 in lines below 
