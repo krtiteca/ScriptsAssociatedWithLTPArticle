@@ -1237,11 +1237,23 @@ MeltedInVitroCombinedslc <- rbind(melt(LTPMatrixTopInVitrommnslc), melt(t(as.mat
 CastInVivoCombinedslc <- as.matrix(Col1ToRowNames(dcast(MeltedInVivoCombinedslc, Var1 ~ Var2, value.var = "value", fun.aggregate = function(x){max(x,na.rm = TRUE)})))
 CastInVitroCombinedslc <- as.matrix(Col1ToRowNames(dcast(MeltedInVitroCombinedslc, Var1 ~ Var2, value.var = "value", fun.aggregate = function(x){max(x,na.rm = TRUE)})))
 
+CastInVivoCombinedslc[is.infinite(CastInVivoCombinedslc)] <- 0
+CastInVitroCombinedslc[is.infinite(CastInVitroCombinedslc)] <- 0
+
 InVivoDataSetTotalslc <- as.matrix(CastInVivoCombinedslc[, rownames(DomainsByRowColumnAssociationsReordered)])
 InVitroDataSetTotalslc <- as.matrix(CastInVitroCombinedslc[, rownames(DomainsByRowColumnAssociationsReordered)])
 
 InVivoDataSetWithoutRedundantStarsslc <- InVivoDataSetTotalslc[-match(c("DAG*", "PC*", "PE*", "PG*", "PS*"), rownames(InVivoDataSetTotalslc)),]
 InVitroDataSetWithoutRedundantStarsslc <- InVitroDataSetTotalslc[-match(c("DAG*", "PC*", "PE*", "PG*", "PS"), rownames(InVitroDataSetTotalslc)),]
+
+rownames(InVivoDataSetWithoutRedundantStarsslc)[rownames(InVivoDataSetWithoutRedundantStarsslc) == "PIP*"] <- "PIPs"
+rownames(InVitroDataSetWithoutRedundantStarsslc)[rownames(InVitroDataSetWithoutRedundantStarsslc) == "PIP*"] <- "PIPs"
+
+rownames(InVivoDataSetWithoutRedundantStarsslc)[rownames(InVivoDataSetWithoutRedundantStarsslc) == "CH*"] <- "CH"
+rownames(InVitroDataSetWithoutRedundantStarsslc)[rownames(InVitroDataSetWithoutRedundantStarsslc) == "CH*"] <- "CH"
+
+# PS for in vivo already corrected before
+rownames(InVitroDataSetWithoutRedundantStarsslc)[rownames(InVitroDataSetWithoutRedundantStarsslc) == "PS*"] <- "PS"
 
 InVivoDataSetslc <- InVivoDataSetWithoutRedundantStarsslc[c(1:12,14:19,29,20,25,21:23,26,13,24,28,27),]
 InVitroDataSetslc <- InVitroDataSetWithoutRedundantStarsslc[c(1:12,14:19,28,29,24,20:22,25,13,23,27,26),]
@@ -1306,11 +1318,20 @@ LipidClassLiteratureDataSet <- as.matrix(LiteratureConsensusLinksWideVersion4)[c
 LipidClassLiteratureDataSetslc <- LipidClassLiteratureDataSet[c(1,6,7,9:11,14:36),]
 rownames(LipidClassLiteratureDataSetslc) <- rownames(InVivoDataSetslc)
 
-
-# Correction on original heatmap: literature data for OSBPL2-PIPs
+# Correction on original heatmap: literature data for OSBPL2-PIPs known now & PC-O and PE-O should not be seen as known only because PC and PE are known #!
+# Also immediately correct the rownames
 
 LipidClassLiteratureDataSetslc4hdr <- LipidClassLiteratureDataSetslc
+rownames(LipidClassLiteratureDataSetslc) <- rownames(InVivoDataSetslc4hdr)
+
 LipidClassLiteratureDataSetslc4hdr["PIPs","OSBPL2"] <- FALSE
+LipidClassLiteratureDataSetslc4hdr["PC-O","STARD2"] <- TRUE
+
+LipidClassLiteratureDataSetslc4hdr["PC-O","STARD10"] <- TRUE
+LipidClassLiteratureDataSetslc4hdr["PC-O","GM2A"] <- TRUE
+
+LipidClassLiteratureDataSetslc4hdr["PC-O","LCN1"] <- TRUE
+LipidClassLiteratureDataSetslc4hdr["PE-O","STARD10"] <- TRUE
 
 
 ORPDomains <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/ORPDomains270520202.txt", header = TRUE, sep = "\t", as.is = TRUE)
@@ -1507,13 +1528,13 @@ MainGroupsOfLipidsWithoutRedundantStars2[,"Group"] <- c(rep("SL", 13),rep("FA", 
 LegendName <- "Legend"
 LegendColor <- col_fung
 
-GraphNameslc <- "White circles with black borders for novelty (vs. consensus literature knowledge)(sphingolipids aggregated)"
 WidthAdaptor <- 160
-
 HeightAdaptor <- 160
+
 SplitByRowsVector <- factor(MainGroupsOfLipidsWithoutRedundantStars2[,"Group"], levels = unique(MainGroupsOfLipidsWithoutRedundantStars2[,"Group"]))
+SplitByColsVector <- factor(MainDomainsOfTheLTPs4xx[,2], levels = levels(MainDomainsOfTheLTPs4x[,2])[c(1:3, 9, 7, 4:6,8)])
 
-
+GraphNameslc <- "White circles with black borders for novelty (vs. consensus literature knowledge)(sphingolipids aggregated)"
 library(ComplexHeatmap)
 
 pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/HeatmapOfTheLTPLocationsWithoutLipidInformationWithoutDomainsAdded251120214hdrBlackTrianglesAddedlwd2.pdf",
@@ -1567,31 +1588,22 @@ Heatmap(InVivoDataSetslc4hdr[,ReorderedLTPsByManualSeriation], name = LegendName
         row_title = " ", row_title_gp = gpar(fontsize = 10))
 dev.off()
 
-# Previous figure: Basis for Figure 3a, with several stylistic updates in Adobe Illustrator and the inclusion of a legend, 
-# and conversion of CH to sterols because we have only certainty about sterol nature and not specifically cholesterol.
+# Previous figure: Basis for Figure 3a, with several stylistic updates in Adobe Illustrator and the inclusion of a legend.
+
 
 
 #### Protein-domain-based ordering of LTPs
 
-#. SupplementaryInformationOverviewSeriationOfProteinDomains010820222.pdf (#)
-#. HeatmapListDomainsReorderedTypesDomainsEnhanced3005202013.pdf #
+#. SupplementaryInformationOverviewSeriationOfProteinDomains061120222.pdf (#) #!
+#. HeatmapListDomainsReorderedTypesDomainsEnhanced06112022.pdf #
 
-
-libary(ComplexHeatmap)
-
-InVivoDataSet <- InVivoDataSetWithoutRedundantStars[c(1:19,21:28,32,29:31,33,20,34,35,36),]
-InVitroDataSet <- InVitroDataSetWithoutRedundantStars[c(1:19,21:28,32,29:31,33,20,34,35,36),]
-
+library(ComplexHeatmap)
 LegendName <- "Legend"
-LegendColor <- col_fung
 
-GraphName <- "White circles with black borders for novelty (vs. consensus literature knowledge)(lipids reordered)"
 WidthAdaptor <- 160
-
 HeightAdaptor <- 160
+
 SplitByColsVector <- factor(MainDomainsOfTheLTPs4xx[,2], levels = levels(MainDomainsOfTheLTPs4x[,2])[c(1:3, 9, 7, 4:6,8)])
-
-
 DomainsLTPsReorderedAfterSeriation <- colnames(DomainsByRowColumnAssociationsReordered5)[c(1:13,15,14,17,16,18:31)]
 
 ReorderedDomainsInputMatrix <- t(as.matrix(DomainsByRowColumnAssociationsReordered5[ReorderedLTPsByManualSeriation, DomainsLTPsReorderedAfterSeriation]))
@@ -1603,74 +1615,32 @@ ColFunctionForDomains <- colorRamp2(1:max(CastManyProteinDomainsLTPs, na.rm = TR
 DomainTypes5 <- cbind(TypeRegion = c(rep("Domain", 18), rep("Region", 9), rep("Motif", 4)),
                       RegionName = c("PRELI/MSF1", "CRAL_TRIO_N", "CRAL-TRIO", "GOLD", "BNIP2", "CRAL_TRIO_2", "GLTP", "IP_trans", "START", "PH", "ORD", "Ankyrin", "LBP_BPI_CETP", "lipocalin", "ML", "Thiolase", "adh_short","SCP2", "TMpd", "TMpd2", "CC1", "CC2", "CC3", "CC4", "Ser-rich", "Ala/Gly-rich", "Poly-Leu", "FFAT", "Signal peptide", "Nuclear localization signal", "PTS1"))
 
-DomainNovelties2 <- matrix(data = FALSE, nrow = dim(ReorderedDomainsInputMatrix)[1], ncol = dim(ReorderedDomainsInputMatrix)[2], dimnames = list(rownames(ReorderedDomainsInputMatrix), colnames(ReorderedDomainsInputMatrix)))
-DomainNovelties2["PTS1","SCP2D1"] <- TRUE
+pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/HeatmapListDomainsReorderedTypesDomainsEnhanced06112022.pdf",
+    width = unit(14, "mm"), height = unit(14, "mm"))
 
-HeatmapListDomainsReorderedTypes13 <- Heatmap(InVivoDataSet[,ReorderedLTPsByManualSeriation], name = LegendName, col = LegendColor, rect_gp = gpar(type = "none"), column_title = GraphName, 
-                                              width = unit(WidthAdaptor*dim(InVivoDataSet)[2]/min(dim(InVivoDataSet)), "mm"), height = unit(HeightAdaptor*dim(InVivoDataSet)[1]/min(dim(InVivoDataSet)), "mm"),
-                                              
-                                              
-                                              cell_fun = function(j, i, x, y, width, height, fill) {
-                                                
-                                                grid.polygon(x = unit(as.numeric(gsub("[a-zA-Z ]", "", x)) + c(-as.numeric(gsub("[a-zA-Z ]", "", width))/2, as.numeric(gsub("[a-zA-Z ]", "", width))/2, -as.numeric(gsub("[a-zA-Z ]", "", width))/2), "npc"), 
-                                                             y = unit(as.numeric(gsub("[a-zA-Z ]", "", y)) + c(-as.numeric(gsub("[a-zA-Z ]", "", height))/2, as.numeric(gsub("[a-zA-Z ]", "", height))/2, as.numeric(gsub("[a-zA-Z ]", "", height))/2), "npc"), 
-                                                             
-                                                             gp = gpar(fill = col_funb(InVivoDataSet[,ReorderedLTPsByManualSeriation][i, j]), 
-                                                                       col = NA))
-                                                
-                                                grid.polygon(x = unit(as.numeric(gsub("[a-zA-Z ]", "", x)) + c(-as.numeric(gsub("[a-zA-Z ]", "", width))/2, as.numeric(gsub("[a-zA-Z ]", "", width))/2, as.numeric(gsub("[a-zA-Z ]", "", width))/2), "npc"), 
-                                                             y = unit(as.numeric(gsub("[a-zA-Z ]", "", y)) + c(-as.numeric(gsub("[a-zA-Z ]", "", height))/2, as.numeric(gsub("[a-zA-Z ]", "", height))/2, -as.numeric(gsub("[a-zA-Z ]", "", height))/2), "npc"), 
-                                                             
-                                                             gp = gpar(fill = col_funo(InVitroDataSet[,ReorderedLTPsByManualSeriation][i, j]), 
-                                                                       col = NA))
-                                                
-                                                grid.rect(x = x, y = y, width = width, height = height, gp = gpar(col = "LightGrey", fill = NA, lwd = 1))
-                                                grid.circle(x = x, y = y, r = unit(WidthAdaptor*LipidClassLiteratureDataSet[,ReorderedLTPsByManualSeriation][i,j]/(4*min(dim(InVivoDataSet[,ReorderedLTPsByManualSeriation]))), "mm"), gp = gpar(fill = "White", col = "Black"))
-                                              
-                                                }, cluster_rows = FALSE, cluster_columns = FALSE, 
-                                              
-                                              
-                                              row_split = SplitByRowsVector, column_split = factor(SplitByColsVector[c(1:4,9:5,10:17,22,18,25,19,27,26,21,23,20,24,28:29,40,34:35,38,37,39,36,32,33,31,30,43:41)], levels = unique(SplitByColsVector[c(1:4,9:5,10:17,22,18,25,19,27,26,21,23,20,24,28:29,40,34:35,38,37,39,36,32,33,31,30,43:41)])),
-                                              cluster_row_slices = FALSE, cluster_column_slices = FALSE,
-                                              
-                                              row_title_gp = gpar(fontsize = 10)) %v%
-  
-  
-  Heatmap(matrix = t(as.matrix(MainDomainsOfTheLTPs5[match(ReorderedLTPsByManualSeriation, MainDomainsOfTheLTPs5[,1]),3:4])), col = c("white","#DEDEDE"), name = "Technology" ,cluster_rows = FALSE, cluster_columns = FALSE,
-          height = unit(8, "mm"), border = "grey", show_column_names = TRUE, column_labels = ReorderedLTPsByManualSeriation) %v%
-  
-  Heatmap(matrix = ReorderedDomainsInputMatrix, 
-          col = ColFunctionForDomains, name = "Domain Start" ,cluster_rows = FALSE, cluster_columns = FALSE, 
+Heatmap(matrix = ReorderedDomainsInputMatrix, 
+        col = ColFunctionForDomains, name = "Domain Start" ,cluster_rows = FALSE, cluster_columns = FALSE, 
+        
+        
+        width = unit(WidthAdaptor*dim(ReorderedDomainsInputMatrix)[2]/min(dim(ReorderedDomainsInputMatrix)), "mm"), height = unit(HeightAdaptor*dim(ReorderedDomainsInputMatrix)[1]/min(dim(ReorderedDomainsInputMatrix)), "mm"),
+        
+        border = "grey", show_column_names = TRUE, 
+        column_labels = colnames(ReorderedDomainsInputMatrix), na_col = "white",
+        
+        column_split = factor(SplitByColsVector[c(1:4,9:5,10:17,22,18,25,19,27,26,21,23,20,24,28:29,40,34:35,38,37,39,36,32,33,31,30,43:41)], levels = unique(SplitByColsVector[c(1:4,9:5,10:17,22,18,25,19,27,26,21,23,20,24,28:29,40,34:35,38,37,39,36,32,33,31,30,43:41)])),
+        row_split = factor(DomainTypes5[,1], levels = unique(DomainTypes5[,1])),
+        
+        cluster_row_slices = FALSE, row_title = " ",
+        cluster_column_slices = FALSE, column_title = " ",
+        
+        cell_fun = function(j, i, x, y, width, height, fill) {
+          grid.rect(x = x, y = y, width = width, height = height, gp = gpar(col = "LightGrey", fill = NA, lwd = 1))
           
-          height = unit(4*nrow(ReorderedDomainsInputMatrix), "mm"), 
-          
-          
-          border = "grey", show_column_names = TRUE, 
-          column_labels = colnames(ReorderedDomainsInputMatrix), na_col = "white",
-          
-          
-          row_split = factor(DomainTypes5[,1], levels = unique(DomainTypes5[,1])),
-          
-          cluster_row_slices = FALSE, row_title = " ",
-          cluster_column_slices = FALSE, column_title = " ",
-          
-          cell_fun = function(j, i, x, y, width, height, fill) {
-            grid.rect(x = x, y = y, width = width, height = height, gp = gpar(col = "LightGrey", fill = NA, lwd = 1))
-            
-            grid.circle(x = x, y = y, r = unit(WidthAdaptor*DomainNovelties2[i,j]/(4*min(dim(DomainNovelties2))), "mm"), gp = gpar(fill = "White", col = "Black"))
-          })
-
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/HeatmapListDomainsReorderedTypesDomainsEnhanced3005202013.pdf",
-    width = unit(14, "mm"), height = unit(23, "mm"))
-
-draw(HeatmapListDomainsReorderedTypes13, ht_gap = unit(0, "mm"))
-draw(HeatmapListDomainsReorderedTypes13, ht_gap = unit(0, "mm"), auto_adjust = FALSE)
-
+        })
 dev.off()
-# First figure above used for supplementary figure on protein domain based seriation: Further updated in Adobe Illustrator (before removal of domain novelties highlights). #!
 
-# Note that this figure also gives overview of connections between datasets and HPTLC and MS, and the domain seriation (based on earlier version before OSBPL2-PIPs and sterol naming corrections.) #!
-
+# Previous figure is the basis for supplementary file on seriation of LTPs based on domains/regions/motifs while taking domain starts also in account
+# Is only lightly further updated by adding a broader legend and a title.
 
 #### Fig.3b
 #. LinearBarplotsForNoveltiesLTPLipidClassPairsUpdatedVersionsAfterGroupMeetingCommentsPercentagesMovedAxisExtendedTextUpdated140320223b2.pdf 
@@ -1683,6 +1653,9 @@ dev.off()
 
 #. PITPFocussedPIPCPARemakeStripedVerticalLinesGraph140320223d.pdf (#)
 #. BarplotHeatmapPITransportersCondensedRowEntriesOnlyScreenColumnsAt5ProcentCutoffAndAnnotationRows12102021.pdf #
+
+
+library(reshape2)
 
 LTPLipidConnectionsDataSet <- rbind(PureAntonella32b, PureEnric32)
 LipidSpeciesLTPSpecificList <- setNames(lapply(unique(LTPLipidConnectionsDataSet[,"LikelySubclass"]),
@@ -1768,7 +1741,7 @@ NewRownamesPITransportersCondensedRowEntries <- unique(PITransportersComobilized
 
 library("plyr")
 
-CellularListPITransporters <- lapply(sapply(strsplit(sapply(strsplit(rownames(NewPITransLayers$Cellular), "_"), "[[", 2), "/"), "[[", 1), function(x){rbind(rownames(LipidSubclassesAddedToBackground170620214[[x]]), 
+CellularListPITransporters <- lapply(sapply(strsplit(sapply(strsplit(as.character(NewRownamesPITransporters), "_"), "[[", 2), "/"), "[[", 1), function(x){rbind(rownames(LipidSubclassesAddedToBackground170620214[[x]]), 
                                                                                                                                                             ZerosToNAsConverter(LipidSubclassesAddedToBackground170620214[[x]][,"Cellular"]))})
 
 CellularListPITransportersVectorsWithoutTheNAs <- lapply(1:length(CellularListPITransporters), function(x){as.data.frame(t(setNames(as.numeric(CellularListPITransporters[[x]][2,!is.na(CellularListPITransporters[[x]][2,])]),
@@ -1778,7 +1751,7 @@ CarbonChainColNames <- sort(unique(c(colnames(PITransportersComobilizedPatterns4
 PITransportersComobilizedPatterns4WithCellularAdded <- ZerosToNAsConverter(rbind.fill(PITransportersComobilizedPatterns4, do.call("cbind", list(LTP_Lipid = "cellular",
                                                                                                                                                 
                                                                                                                                                 LTPProtein = "cellular",
-                                                                                                                                                LikelySubclass = sapply(strsplit(sapply(strsplit(rownames(NewPITransLayers$Cellular), "_"), "[[", 2), "/"), "[[", 1),
+                                                                                                                                                LikelySubclass = sapply(strsplit(sapply(strsplit(as.character(NewRownamesPITransporters), "_"), "[[", 2), "/"), "[[", 1),
                                                                                                                                                 
                                                                                                                                                 Screen = "cellular",
                                                                                                                                                 do.call("rbind.fill", CellularListPITransportersVectorsWithoutTheNAs)))))[c("LTP_Lipid", "LTPProtein", "LikelySubclass", "Screen", CarbonChainColNames)]
@@ -1787,7 +1760,7 @@ PITransportersComobilizedPatterns4WithCellularAdded <- ZerosToNAsConverter(rbind
 PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries <- ZerosToNAsConverter(rbind.fill(PITransportersComobilizedPatterns4CondensedRowEntries, do.call("cbind", list(LTP_Lipid = "cellular",
                                                                                                                                                                                       
                                                                                                                                                                                       LTPProtein = "cellular",
-                                                                                                                                                                                      LikelySubclass = sapply(strsplit(sapply(strsplit(rownames(NewPITransLayers$Cellular), "_"), "[[", 2), "/"), "[[", 1),
+                                                                                                                                                                                      LikelySubclass = sapply(strsplit(sapply(strsplit(as.character(NewRownamesPITransporters), "_"), "[[", 2), "/"), "[[", 1),
                                                                                                                                                                                       
                                                                                                                                                                                       Screen = "cellular",
                                                                                                                                                                                       do.call("rbind.fill", CellularListPITransportersVectorsWithoutTheNAs)))))[c("LTP_Lipid", "LTPProtein", "LikelySubclass", "Screen", CarbonChainColNames)]
@@ -1882,6 +1855,9 @@ AnnotationDataframeWithLTPAnnotation <- rowAnnotation(df = TextDataframeWithLTPA
 CutOffPresenceProcent <- 5
 CSPIDCRE <- (colSums(NewPITransLayersCondensedRowEntries$InCellulo, na.rm = TRUE) > CutOffPresenceProcent)|(colSums(NewPITransLayersCondensedRowEntries$InVitro, na.rm = TRUE) > CutOffPresenceProcent)
 
+library(ComplexHeatmap)
+library(RColorBrewer)
+
 pdf(paste0("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/BarplotHeatmapPITransportersCondensedRowEntriesOnlyScreenColumnsAt", CutOffPresenceProcent,"ProcentCutoffAndAnnotationRows12102021.pdf"),
     width = unit(20, "mm"), height = unit(20, "mm"))
 
@@ -1957,6 +1933,7 @@ AggregatedInVitroMS4 <- aggregate(AggregatedInVitroMS2[, "NormInt"],
                                   FUN = function(x){max(x,na.rm=TRUE)})
 
 
+
 library(reshape2)
 
 HPTLCaggregated <- rbind(cbind(melt(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]])), ProteinDomain = NA, Screen = "in vivo", TotalCarbonChainLength = NA, TotalCarbonChainUnsaturations = NA),
@@ -1984,7 +1961,15 @@ AggregatedAllScreenDataNormalized2 <- aggregate(AggregatedAllScreenDataNormalize
                                                 by = AggregatedAllScreenDataNormalized[, c("LTPProtein", "ProteinDomain", "Screen", "TotalCarbonChainLength", "TotalCarbonChainUnsaturations", "LikelySubclass")], 
                                                 
                                                 FUN = function(x){max(x, na.rm=TRUE)})
+
+
 AggregatedAllScreenDataNormalized4 <- dcast(AggregatedAllScreenDataNormalized2, LTPProtein + ProteinDomain + TotalCarbonChainLength + TotalCarbonChainUnsaturations + LikelySubclass ~ Screen, value.var = "x")
+AggregatedAllScreenDataNormalized4[,1] <- factor(AggregatedAllScreenDataNormalized4[,1], levels = ReorderedLTPsByManualSeriation)
+
+AggregatedAllScreenDataNormalized4$LikelySubclass <- factor(AggregatedAllScreenDataNormalized4$LikelySubclass, levels = c("Cer*", "d*Cer", "dCer", "DHCer", "DHOH*Cer", "tCer", "d*CerP", "d*HexCer", "t*HexCer", "t*Hex2Cer", "d*SHexCer", "d*SM", "DHSM", "t*SM", "FA",       
+                                                                                                                          "FAL", "LPC", "LPE", "LPE-O", "LPG", "PA", "PC", "PC-O", "PE", "PE-O", "PI", "PIPs", "PS", "PGP", "PG", "PG/BMP", "BMP", "CL", "DAG", "TAG", "Sterol", "VA") )
+
+AggregatedAllScreenDataNormalized4$BandSize <- 1 
 
 
 HPTLCRowsInData <- which(AggregatedAllScreenDataNormalized4$TotalCarbonChainLength == 0)
@@ -2329,10 +2314,10 @@ LTPSubclassDistributionMSAndTLCInVitro <- table(table(UniqueMSConnectionsLTPsWit
 LTPSubclassDistributionMSAndTLCBothScreens <- merge(as.matrix(LTPSubclassDistributionMSAndTLCInCellulo), as.matrix(LTPSubclassDistributionMSAndTLCInVitro), by = 0, all = TRUE)
 colnames(LTPSubclassDistributionMSAndTLCBothScreens) <- c("subclasses bound", "in cellulo", "in vitro") # All subclass amounts present: ok
 
-LTPSubclassDistributionMSAndTLCBothScreens2 <- t(Row1ToRowNames(LTPSubclassDistributionMSAndTLCBothScreens))
+LTPSubclassDistributionMSAndTLCBothScreens2 <- t(Col1ToRowNames(LTPSubclassDistributionMSAndTLCBothScreens))
 LTPSubclassDistributionMSAndTLCBothScreens2[is.na(LTPSubclassDistributionMSAndTLCBothScreens2)] <- 0
 
-
+par(mar = c(5.1, 4.1, 4.1, 2.1))
 pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/LTPSubclassDistributionMSAndTLCBothScreensInBargraphPlot170120222021AmountToNumber18012022.pdf")
 
 barplot(LTPSubclassDistributionMSAndTLCBothScreens2, beside = TRUE, col = ColorMatrixTryOut["odd",], main = "For MS with HPTLC data", las = 1, xlab = "Number of lipid subclasses bound", ylab = "Number of LTPs") 
