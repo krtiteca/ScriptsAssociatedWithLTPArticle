@@ -2363,15 +2363,15 @@ frontsls <- do.call("rbind", lapply(strsplit(unlist(strsplit(sapply(strsplit(Spl
 frontsls2 <- cbind(do.call("rbind",strsplit(frontsls[,1],":")), frontsls[,2])
 
 slentriessplit <- cbind(frontsls2, do.call("rbind", lapply(strsplit(unlist(strsplit(SplitRownamesmatrix180244[,2],")")), "\\("), function(x){switch(length(x), "1" = c(x,""), "2" = x)})))
-library("dplyr")
+
 
 TypesOfLipidsKoeberlin <- rbind(do.call("cbind", list(SplitRownamesmatrix21179[,c(1,3,4,2)],rep("",179),rep("",179))),
                                 do.call("cbind", list(slentriessplit[,c(4,1,2)], rep("sl",65), slentriessplit[,c(3,5)])))
 
 TypesOfLipidsKoeberlin2 <- cbind(TypesOfLipidsKoeberlin, gsub("L", "Lyso", TypesOfLipidsKoeberlin[,1], fixed = T))
-TypesOfLipidsKoeberlin4 <- mutate(as.data.frame(TypesOfLipidsKoeberlin2), V8 = ifelse(grepl("e",TypesOfLipidsKoeberlin2[,4], fixed = T), paste0(TypesOfLipidsKoeberlin2[,7],"-O"),TypesOfLipidsKoeberlin2[,7]))
 
 
+TypesOfLipidsKoeberlin4 <- cbind.data.frame(TypesOfLipidsKoeberlin2, V8 = ifelse(grepl("e",TypesOfLipidsKoeberlin2[,4], fixed = T), paste0(TypesOfLipidsKoeberlin2[,7],"-O"),TypesOfLipidsKoeberlin2[,7]))
 TypesOfLipidsKoeberlin4x <- TypesOfLipidsKoeberlin4
 
 TypesOfLipidsKoeberlin4x[,8] <- gsub("SM", "d*SM", gsub("Lyso", "L", TypesOfLipidsKoeberlin4x[,8], fixed = T), fixed = T)
@@ -2407,23 +2407,23 @@ KoeberlinCorrelationsConsensusNames2LongReducedVersion <- KoeberlinCorrelationsC
 colnames(KoeberlinCorrelationsConsensusNames2LongReducedVersion) <- c("lipidA", "lipidB", "correlation")
 
 
-KoeberlinCorrelationsConsensusNames2LongReducedVersion2 <- mutate(KoeberlinCorrelationsConsensusNames2LongReducedVersion,
-                                                                  "HeadgroupA" = sapply(strsplit(as.character(KoeberlinCorrelationsConsensusNames2LongReducedVersion$lipidA), "\\("),"[[", 1),
+KoeberlinCorrelationsConsensusNames2LongReducedVersion2 <- data.frame(KoeberlinCorrelationsConsensusNames2LongReducedVersion,
+                                                                  "HeadgroupA" = as.character(sapply(strsplit(as.character(KoeberlinCorrelationsConsensusNames2LongReducedVersion$lipidA), "\\("),"[[", 1)),
                                                                   
-                                                                  "HeadgroupB" = sapply(strsplit(as.character(KoeberlinCorrelationsConsensusNames2LongReducedVersion$lipidB), "\\("),"[[", 1))
+                                                                  "HeadgroupB" = as.character(sapply(strsplit(as.character(KoeberlinCorrelationsConsensusNames2LongReducedVersion$lipidB), "\\("),"[[", 1)),
+                                                                  stringsAsFactors = FALSE)
 
-
-KoeberlinCorrelationsConsensusNames2LongReducedVersion2 <- mutate(KoeberlinCorrelationsConsensusNames2LongReducedVersion2,
-                                                                  "MatchingHeadgroup" = (KoeberlinCorrelationsConsensusNames2LongReducedVersion2$HeadgroupA == KoeberlinCorrelationsConsensusNames2LongReducedVersion2$HeadgroupB))
+KoeberlinCorrelationsConsensusNames2LongReducedVersion2 <- data.frame(KoeberlinCorrelationsConsensusNames2LongReducedVersion2,
+                                                                  "MatchingHeadgroup" = (KoeberlinCorrelationsConsensusNames2LongReducedVersion2$HeadgroupA == KoeberlinCorrelationsConsensusNames2LongReducedVersion2$HeadgroupB), stringsAsFactors = FALSE)
 
 ConversionMatrixForTotalKoeberlin_2 <- cbind(unique(KoeberlinCorrelationsConsensusNames2LongReducedVersion2$HeadgroupA), c("PC", "PC", "PC", "PC", "PE", "PE", "PE", "PE", "PG", "PG", "PG", "PS", "PS", "SM", "Cer", "Cer", "Cer", "Cer"))
-KoeberlinCorrelationsConsensusNames2LongReducedVersion4 <- mutate(KoeberlinCorrelationsConsensusNames2LongReducedVersion2, 
+KoeberlinCorrelationsConsensusNames2LongReducedVersion4 <- data.frame(KoeberlinCorrelationsConsensusNames2LongReducedVersion2, 
                                                                   
                                                                   "HeadgroupA2" = ConversionMatrixForTotalKoeberlin_2[match(KoeberlinCorrelationsConsensusNames2LongReducedVersion2$HeadgroupA, ConversionMatrixForTotalKoeberlin_2[,1]),2],
-                                                                  "HeadgroupB2" = ConversionMatrixForTotalKoeberlin_2[match(KoeberlinCorrelationsConsensusNames2LongReducedVersion2$HeadgroupB, ConversionMatrixForTotalKoeberlin_2[,1]),2])
+                                                                  "HeadgroupB2" = ConversionMatrixForTotalKoeberlin_2[match(KoeberlinCorrelationsConsensusNames2LongReducedVersion2$HeadgroupB, ConversionMatrixForTotalKoeberlin_2[,1]),2], stringsAsFactors = FALSE)
 
-KoeberlinCorrelationsConsensusNames2LongReducedVersion5 <- mutate(KoeberlinCorrelationsConsensusNames2LongReducedVersion4, "MatchingHeadgroup2" = (KoeberlinCorrelationsConsensusNames2LongReducedVersion4$HeadgroupA2 == KoeberlinCorrelationsConsensusNames2LongReducedVersion4$HeadgroupB2))
-KoeberlinCorrelationsConsensusNames2LongReducedVersion7 <- mutate(KoeberlinCorrelationsConsensusNames2LongReducedVersion5, "MatchingNumber" = (KoeberlinCorrelationsConsensusNames2LongReducedVersion5$MatchingHeadgroup + KoeberlinCorrelationsConsensusNames2LongReducedVersion5$MatchingHeadgroup2))
+KoeberlinCorrelationsConsensusNames2LongReducedVersion5 <- data.frame(KoeberlinCorrelationsConsensusNames2LongReducedVersion4, "MatchingHeadgroup2" = (KoeberlinCorrelationsConsensusNames2LongReducedVersion4$HeadgroupA2 == KoeberlinCorrelationsConsensusNames2LongReducedVersion4$HeadgroupB2), stringsAsFactors = FALSE)
+KoeberlinCorrelationsConsensusNames2LongReducedVersion7 <- data.frame(KoeberlinCorrelationsConsensusNames2LongReducedVersion5, "MatchingNumber" = (KoeberlinCorrelationsConsensusNames2LongReducedVersion5$MatchingHeadgroup + KoeberlinCorrelationsConsensusNames2LongReducedVersion5$MatchingHeadgroup2), stringsAsFactors = FALSE)
 
 AggregatedLTPLipidPairsAntonella_2 <- aggregate(PureAntonella32b$Intensity, by=list(PureAntonella32b$LTPProtein, PureAntonella32b$Lipid, PureAntonella32b$LikelySubclass, PureAntonella32b$TotalCarbonChainLength, PureAntonella32b$TotalCarbonChainUnsaturations), FUN=sum)
 AggregatedLTPLipidPairsEnric_2 <- aggregate(PureEnric32$Intensity, by=list(PureEnric32$LTPProtein, PureEnric32$Lipid, PureEnric32$LikelySubclass, PureEnric32$TotalCarbonChainLength, PureEnric32$TotalCarbonChainUnsaturations), FUN=sum)
@@ -2701,8 +2701,11 @@ LipidSubsetMMeans_2 <- do.call("cbind", list(LipidSubsetMMeans,
                                              "To" = gsub(pattern = "([A-Z](?![0-9]))", replacement = "\\11", x = LipidSubsetMMeans[,2], perl = TRUE)))
 
 
-library(tidyr)
-LipidSubsetMMeans_4 <- unite(LipidSubsetMMeans_2, "FromTo", c("From","To"), sep = "_", remove = FALSE)
+LipidSubsetMMeans_4 <- data.frame(LipidSubsetMMeans_2[,1:5], 
+                                  FromTo = paste(LipidSubsetMMeans_2[,"From"], LipidSubsetMMeans_2[,"To"], sep = "_"), 
+                                  
+                                  LipidSubsetMMeans_2[,6:7], 
+                                  stringsAsFactors = FALSE)
 
 HeadGroupConversionMatrix <- do.call("cbind", list("HeadGroup" = c("PC", "LPC", "PE", "LPE", "PG", "LPG", "PG/BMP", "BMP", "PS", "PI", "FA", "PA", "TAG", "DAG", "VE", "VA"),
                                                    "C" = c(8, 8, 5, 5, 6, 6, 6, 6, 6, 9, 0, 3, 3, 3, 26, 20),
