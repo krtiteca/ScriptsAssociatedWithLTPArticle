@@ -2794,7 +2794,7 @@ AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms <- cbind(AggregatedLTPLipidPai
 AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms[is.na(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms$HResidualFattyAcids), "HResidualFattyAcids"] <- 0
 
 
-# Correction for the da sphingolipids, because otherwise 2H to much subtracted #! Leave it or correct it?
+# Correction for the da sphingolipids, because otherwise 2H to much subtracted 
 AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms$HResidualFattyAcids <- ifelse(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms$Linkages == "da", AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms[, "HResidualFattyAcids"] + 2, AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms[, "HResidualFattyAcids"])
 
 AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms2 <- cbind(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms, do.call("rbind", lapply(strsplit(as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms$Linkages),""), 
@@ -2834,7 +2834,7 @@ AllPossibleChemicalCombinationsForLipidsOfLTPs2 <- do.call("cbind", list(AllPoss
                                                                          ChemicalPairs1 = apply(AllPossibleChemicalCombinationsForLipidsOfLTPs[,1:2], 1, function(x){paste0(x,collapse = "_")}),
                                                                          
                                                                          ChemicalPairs2 = apply(AllPossibleChemicalCombinationsForLipidsOfLTPs[,2:1], 1, function(x){paste0(x,collapse = "_")})))
-# Maybe separate the background calculations for the screens
+
 
 AllPossibleChemicalCombinationsForLipidsOfLTPsa <- t(combn(as.character(unique(DataSet[DataSet$Screen == "A",]$ChemicalFormulaWithOnes)),2))
 AllPossibleChemicalCombinationsForLipidsOfLTPse <- t(combn(as.character(unique(DataSet[DataSet$Screen == "E",]$ChemicalFormulaWithOnes)),2))
@@ -2866,8 +2866,8 @@ CooccurrenceOfChemicalPairsList <- lapply(list(ObservedPossibleChemicalCombinati
 # Write to do in Excel #! Entered earlier to avoid repetition and looping
 write.table(t(t(levels(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$LipidSubclass))), file="./RData/Rest2/ACGData/FiguresByKT/SubclassesForObservedLipids02102020.csv", sep="\t", row.names = FALSE, quote = FALSE)
 
-# Input again with the consensus subclasses and classes, BMP seen as a type of PG, as well as PG/BMP #! Entered earlier to avoid repetition and looping
-SubclassesMatchingToConsensusSubclassesAndClasses <- read.csv(file = "./RData/Rest2/ACGData/FiguresByKT/SubclassesForObservedLipidsConsensusSubclassesAndClasses02102020.txt", header = TRUE, sep = "\t", as.is = TRUE, quote = "")
+# Input again with the consensus subclasses and classes, BMP & PG/BMP seen as a type of PG #! Entered earlier to avoid repetition and looping
+SubclassesMatchingToConsensusSubclassesAndClasses <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/SubclassesForObservedLipidsConsensusSubclassesAndClasses02102020.txt", header = TRUE, sep = "\t", as.is = TRUE, quote = "")
 
 
 CooccurrenceOfChemicalPairsList2 <- list()
@@ -2926,12 +2926,6 @@ for(i in 2:4){
 }
 
 
-CooccurrenceOfChemicalPairsListExpandedWithAll <- CooccurrenceOfChemicalPairsList2[[1]]
-CooccurrenceOfChemicalPairsListExpandedWithAll$LipidPairMatchingType <- "All"
-
-CooccurrenceOfChemicalPairsListExpandedWithAll2 <- rbind(CooccurrenceOfChemicalPairsList2[[1]], CooccurrenceOfChemicalPairsListExpandedWithAll)
-
-
 
 CooccurrenceOfChemicalPairsList2[[1]] <- do.call("cbind", list(CooccurrenceOfChemicalPairsList2[[1]],
                                                                
@@ -2939,6 +2933,12 @@ CooccurrenceOfChemicalPairsList2[[1]] <- do.call("cbind", list(CooccurrenceOfChe
                                                                SubclassesMatchingToConsensusSubclassesAndClasses[match(CooccurrenceOfChemicalPairsList2[[1]]$Subclass2, SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3]))
 
 CooccurrenceOfChemicalPairsList2[[1]] <- cbind(CooccurrenceOfChemicalPairsList2[[1]], LipidPairMatchingType = (CooccurrenceOfChemicalPairsList2[[1]][,10] == CooccurrenceOfChemicalPairsList2[[1]][,12]) + (CooccurrenceOfChemicalPairsList2[[1]][,11] == CooccurrenceOfChemicalPairsList2[[1]][,13]))
+
+
+CooccurrenceOfChemicalPairsListExpandedWithAll <- CooccurrenceOfChemicalPairsList2[[1]]
+CooccurrenceOfChemicalPairsListExpandedWithAll$LipidPairMatchingType <- "All"
+
+CooccurrenceOfChemicalPairsListExpandedWithAll2 <- rbind(CooccurrenceOfChemicalPairsList2[[1]], CooccurrenceOfChemicalPairsListExpandedWithAll)
 
 
 
@@ -2950,7 +2950,7 @@ PossibleCooccurrenceOfChemicalPairs2$LipidPairMatchingType <- "All"
 PossibleCooccurrenceOfChemicalPairs2 <- rbind(PossibleCooccurrenceOfChemicalPairs, PossibleCooccurrenceOfChemicalPairs2)
 
 
-
+library(RColorBrewer)
 pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/Panel5BWithTailoredScriptAndMoreDetailedVisualizationNowIncludesAllTooWithBinSize001170220222NoSegmentStacking18032022.pdf")
 
 BinSize <- 0.01
