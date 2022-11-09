@@ -3046,8 +3046,8 @@ MaxY <- max(unlist(MaxList2TissuesColoc))
 MaxList2TissuesColoc <- list()
 
 
+
 for(SimilarityIndex in c("All", as.character(0:2))){
-  SimilarityIndex <- "2"
   
   x1a <- na.omit(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2[(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Screen"] == "A") & (CooccurrenceOfChemicalPairsListExpandedWithAll2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
   x1e <- na.omit(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2[(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Screen"] == "E") & (CooccurrenceOfChemicalPairsListExpandedWithAll2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
@@ -3286,7 +3286,10 @@ PossibleSubcellularLocalizationOverlapDatax <- do.call("rbind", list(cbind(Aggre
                                                                      do.call("cbind", list(AggregateMPOfMads0RTLMOC13xs2[as.logical(AggregateMPOfMads0RTLMOC13xs2[,"SubclassPairPresenceInCellulo"]), c("SubcellularColocalization", "Pairs")], PairType = "All", Screen = "In Cellulo")),
                                                                      do.call("cbind", list(AggregateMPOfMads0RTLMOC13xs2[as.logical(AggregateMPOfMads0RTLMOC13xs2[,"SubclassPairPresenceInVitro"]), c("SubcellularColocalization", "Pairs")], PairType = "All", Screen = "In Vitro"))))
 
+AllPairsInSubcellularData <- rbind(AggregateMPOfMads0RTLMOC11x[,c("PairType", "SubcellularColocalization", "Pairs")], cbind(PairType = "All", AggregateMPOfMads0RTLMOC11x[,c("SubcellularColocalization", "Pairs")]))
 
+
+library(RColorBrewer)
 pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/Panel5CWithTailoredScriptAndMoreDetailedVisualizationBinSize001NoSegmentStacking18032022.pdf")
 
 BinSize <- 0.01
@@ -3425,7 +3428,7 @@ KoeberlinCorrelationsConsensusNames2LongReducedVersion7g <- KoeberlinCorrelation
 KoeberlinCorrelationsConsensusNames2LongReducedVersion7g[,"MatchingNumber"] <- "All"
 
 KoeberlinCorrelationsConsensusNames2LongReducedVersion7combo <- rbind(KoeberlinCorrelationsConsensusNames2LongReducedVersion7g, KoeberlinCorrelationsConsensusNames2LongReducedVersion7) 
-
+library(beanplot)
 
 pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/OverlayOfTheViolinPlotsWithBeanlineMediansAttemptToScaleInInverseOrderNrd0CorrectionDone11092020RemakeWithAllIncludedAndOverplotting18032022.pdf")
 TestBeanForSpecial218032022 <- beanplot(as.numeric(CorrelationsMatrixae8_8combo[,"Correlation"]) ~ factor(CorrelationsMatrixae8_8combo[,"Screen"], levels = c("E","A")) * factor(CorrelationsMatrixae8_8combo[,"MatchLevel"], levels = c(as.character(2:0), "All")), ll = 0.04,
@@ -3550,7 +3553,7 @@ beanplot(as.numeric(as.character(SubcellularLocalizationOverlapOurDatax[,"Subcel
          border = FALSE,
          overalline = "median")
 
-AllPairsInSubcellularData <- rbind(AggregateMPOfMads0RTLMOC11x[,c("PairType", "SubcellularColocalization", "Pairs")], cbind(PairType = "All", AggregateMPOfMads0RTLMOC11x[,c("SubcellularColocalization", "Pairs")]))
+
 beanplot(as.numeric(as.character(AllPairsInSubcellularData[,"SubcellularColocalization"])) ~ factor(AllPairsInSubcellularData[,"PairType"], levels = c("Species", "Sub-Class", "Class", "All")),
          
          alpha = 0.5, wd = 0.14, 
@@ -3670,7 +3673,7 @@ beanplot(as.numeric(as.character(LipidSubsetMMeans_4Subset[,"Cooccurrence"])) ~ 
 
 beanplot(as.numeric(UnitBeanSubcellLoc[,"SubcellularColocalization"]) ~ factor(UnitBeanSubcellLoc[,"PairType"], levels = c("Species", "Sub-Class", "Class", "All")), ll = 0, #!
          
-         # bw = "nrd0", #alpha = 0.5, #!
+         
          col = c(NA,NA, NA,NA),
          
          axes=F, log = "",
@@ -3705,6 +3708,9 @@ write.table(structure(do.call("rbind", StatList2), dimnames = list(paste0(rep(c(
 
 #. FisherExactTestResultsStandardForTheCooccurrences09102020.csv # Not finally used version because not all-round applicable & least strict
 #. FisherExactTestResultsWithEqualizedBackgroundForTheCooccurrencesCorrected18082022.csv # Finally used version of comparisons: applicable to all & even more strict
+
+StatListForCooccurrences <- list()
+StatList2ForCooccurrences <- list()
 
 
 SimilarityIndex <- "All"
@@ -3900,8 +3906,6 @@ NewSphingoTransLayers <- list(InCellulo = EmptyLayer,
                               
                               Cellular = EmptyLayer)
 
-
-#! Maybe make more compact in for loop over a dataframe?
 
 for(j in which(OriginalRowsSphingoTrans[,3] == "in vivo")){
   for(i in which(paste0(NewRowsSphingoTrans[,1],NewRowsSphingoTrans[,2]) == paste0(OriginalRowsSphingoTrans[j,1],OriginalRowsSphingoTrans[j,2]))){
