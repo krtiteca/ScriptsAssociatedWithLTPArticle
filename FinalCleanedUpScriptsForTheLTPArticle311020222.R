@@ -187,14 +187,14 @@ MOCFunction <- function(VectorA, VectorB){sum(VectorA*VectorB)/sqrt(sum(VectorA^
 # Note: although SEC14L1 data might be present at different stages, all entries associated with these were removed from the final results as a conservative precaution, 
 # because of uncertainties about a potential experimental mix-up (in some cases) of CERT into the SEC14L1 entry (but not the inverse mix-up).
 
-AntonellaData18062019 <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/invivo_postproc_input_final_18062019.tsv", header = TRUE, sep = "\t", as.is = TRUE)
-EnricData18062019 <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/invitro_postproc_input_final_18062019.tsv", header = TRUE, sep = "\t", as.is = TRUE)
+AntonellaData18062019 <- read.csv(file = "./InputData/invivo_postproc_input_final_18062019.tsv", header = TRUE, sep = "\t", as.is = TRUE)
+EnricData18062019 <- read.csv(file = "./InputData/invitro_postproc_input_final_18062019.tsv", header = TRUE, sep = "\t", as.is = TRUE)
 
 PureVersionAntonellaData18062019 <- AntonellaData18062019[AntonellaData18062019$cls == "I" | AntonellaData18062019$cls == "IV.7",]
 PureVersionEnricData18062019 <- EnricData18062019[EnricData18062019$cls == "I" | EnricData18062019$cls == "IV.7",]
 
 CombinedDataWithPureClasses18062019 <- rbind(cbind(PureVersionAntonellaData18062019, ScreenType = "in vivo"), cbind(PureVersionEnricData18062019 , ScreenType = "in vitro"))
-write.table(CombinedDataWithPureClasses18062019, file="./RData/Rest2/ACGData/FiguresByKT/CombinedDataWithPureClasses18062019.csv", sep="\t", row.names = TRUE, quote = FALSE)
+write.table(CombinedDataWithPureClasses18062019, file="./Output/CombinedDataWithPureClasses18062019.csv", sep="\t", row.names = TRUE, quote = FALSE)
 
 library(tidyr)
 CombinedDataWithPureClasses180620192 <- unite(CombinedDataWithPureClasses18062019, "CompletelyUnique", c("protein","ionm","uid","mz","intensity"), sep = "_", remove = FALSE)
@@ -259,7 +259,7 @@ CombinedDataWithPureClasses1806201910$LipidAmbiguity <- as.character(CombinedDat
 CombinedDataWithPureClasses1806201911 <- CombinedDataWithPureClasses1806201910[!((CombinedDataWithPureClasses1806201910$LipidAmbiguity == "PG; BMP" | CombinedDataWithPureClasses1806201910$LipidAmbiguity == "BMP; PG") & CombinedDataWithPureClasses1806201910$IonMode == "neg" & is.na(CombinedDataWithPureClasses1806201910$CarbonsOfFattyAcidA)), ]
 CombinedDataWithPureClasses1806201913 <- CombinedDataWithPureClasses1806201911[!((CombinedDataWithPureClasses1806201911$LipidAmbiguity %in% c("PC-O; Lyso-PC", "Lyso-PC; PC-O", "Lyso-PE; PE-O")) & !is.na(CombinedDataWithPureClasses1806201911$CarbonsOfFattyAcidA)),]
 
-write.table(CombinedDataWithPureClasses1806201913, file="./RData/Rest2/ACGData/FiguresByKT/CleanConservativeDataWithoutFilters17072019.csv", sep="\t", row.names = FALSE, quote = FALSE)
+write.table(CombinedDataWithPureClasses1806201913, file="./Output/CleanConservativeDataWithoutFilters17072019.csv", sep="\t", row.names = FALSE, quote = FALSE)
 #! Where supplementary table X is derived from
 
 
@@ -332,7 +332,7 @@ BlueColorRangeUnsaturationsOpaque <- setNames(rev(colorRampPalette(brewer.pal(9,
 OrangeColorRangeUnsaturationsOpaque <- setNames(rev(colorRampPalette(brewer.pal(9,"Oranges")[-1])(11)), as.character(0:10))
 
 #. LipidomicsQualityControlECNTestsUnsaturationInfoColored21012022.pdf #
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/LipidomicsQualityControlECNTestsUnsaturationInfoColored21012022.pdf")
+pdf("./Output/LipidomicsQualityControlECNTestsUnsaturationInfoColored21012022.pdf")
 
 plot(PureAntonella32b$MeanOfRetentionTime, PureAntonella32b$TotalCarbonChainLength, main = "Quality control by ECN test: in cellulo", xlab = "Mean of retention time", ylab = "Total Carbon Chain Length", pch = 16, 
      col = BlueColorRangeUnsaturations[as.character(PureAntonella32b$TotalCarbonChainUnsaturations)])
@@ -389,7 +389,7 @@ rownames(MergedTablesForAdducts) <- c("in cellulo", "in vitro")
 AdductTabelScreensCombined <- table(table(paste(PureCombined32[,"LTPProtein"], PureCombined32[,"Lipid"], sep = "_")))
 
 
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/LipidomicsQualityControlLTPLipidSpeciesCombinationsDistributionOfAdductsForTheScreensIndependentlyInOneGraph11032022.pdf")
+pdf("./Output/LipidomicsQualityControlLTPLipidSpeciesCombinationsDistributionOfAdductsForTheScreensIndependentlyInOneGraph11032022.pdf")
 
 barplot(MergedTablesForAdducts, beside = TRUE, las = 2, col = ColorMatrixTryOut["odd",], main = "Number of LTP - lipid species as different adducts", las = 1, xlab = "Number of adducts observed", ylab = "Number of LTPs - lipid species")
 abline(h = seq(from = 50, to = 200, by = 50), col = "#FFFFFF33", lwd = 3.2)
@@ -410,7 +410,7 @@ dev.off()
 # Independent visualization of previous figures
 
 par()$mar # 5.1 4.1 4.1 2.1
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/ObservedNumberOfAdductsPerEachScreen15032022.pdf")
+pdf("./Output/ObservedNumberOfAdductsPerEachScreen15032022.pdf")
 
 
 par(mar = c(12.8, 4.1, 4.1, 2))
@@ -422,7 +422,7 @@ dev.off()
 par(mar = c(5.3, 4.1, 4.1, 2))
 
 # Combined visualization of lipid species as different adduct or in different screen
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/LipidomicsQualityControlLTPLipidSpeciesCombinationsDistribution20012022.pdf")
+pdf("./Output/LipidomicsQualityControlLTPLipidSpeciesCombinationsDistribution20012022.pdf")
 
 barplot(AdductTabelScreensCombined, col = "Grey", main = "Number of LTP - lipid species observations \n as different adduct or in different screen", las = 1, xlab = "Number of observations as adducts or in screens", ylab = "Number of LTPs - lipid species")
 abline(h = seq(from = 50, to = 350, by = 50), col = "#FFFFFF33", lwd = 3.2)
@@ -452,7 +452,7 @@ ColorVectora <- c("white", brewer.pal(9,"Blues"))
 ColorVectore <- c("white", brewer.pal(9,"Oranges"))
 
 
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/TemporaryNewBarplotsForLipidomeOverviewGraph26042020b.pdf")
+pdf("./Output/TemporaryNewBarplotsForLipidomeOverviewGraph26042020b.pdf")
 
 barplot(t(CarbDistribution2403220), main="", col=c(ColorVectora[8],ColorVectore[8]), beside= TRUE, las = 3, ylim = c(0,50000000))
 abline(h = 40000000)
@@ -527,7 +527,7 @@ ProcentIntensitiesEvenVsOdd <- rbind(ProcentIntensitiesEvenVsOdd, color = as.cha
 
 
 library(RColorBrewer)
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/Panel2CColorVsColorSidesFlippedOver09122021.pdf")
+pdf("./Output/Panel2CColorVsColorSidesFlippedOver09122021.pdf")
 
 ColorMatrixTryOut <- rbind(even = c('in cellulo' = colorRampPalette(brewer.pal(9,"Blues")[-1])(9)[7], 'in vitro' = colorRampPalette(brewer.pal(9,"Oranges")[-1])(9)[7]),
                            odd = c('in cellulo' = colorRampPalette(brewer.pal(9,"Blues")[-1])(9)[5], 'in vitro' = colorRampPalette(brewer.pal(9,"Oranges")[-1])(9)[5]))
@@ -589,7 +589,7 @@ col_fung <- colorRamp2(0:10, c("white", colorRampPalette(brewer.pal(9,"Greys")[2
 LegendColor <- col_fung
 
 
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/CirclesForTheLegendOfTheLipidomeGraph09102020.pdf",
+pdf("./Output/CirclesForTheLegendOfTheLipidomeGraph09102020.pdf",
     width = unit(23, "mm"), height = unit(8, "mm"))
 
 Heatmap(BlueHighlights, name = "LegendCircles", col = LegendColor, rect_gp = gpar(type = "none"),  
@@ -710,7 +710,7 @@ EvenPercentagesForLipidsAbsencescwl <- EvenPercentagesForLipidscwl
 EvenPercentagesForLipidsAbsencescwl <- is.na(EvenPercentagesForLipidsAbsencescwl)*100
 
 par(mar = c(5.1, 4.1, 4.1, 2.1))
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/LipidsIntensityFrationsOfEven26012022WithLysolipidsCollapsed27012022.pdf")
+pdf("./Output/LipidsIntensityFrationsOfEven26012022WithLysolipidsCollapsed27012022.pdf")
 
 barplot(t(EvenPercentagesForLipidsEmptycwl[rev(rownames(EvenPercentagesForLipidsEmptycwl)),2:1]), beside = TRUE, horiz = TRUE, las = 2, col = "white", border = "grey", xlim = c(0,1000), xaxt = "n") 
 barplot(t(EvenPercentagesForLipidsAbsencescwl[rev(rownames(EvenPercentagesForLipidsAbsencescwl)),2:1]), add = TRUE, beside = TRUE, horiz = TRUE, las = 2, col = "grey", border = "grey", xlim = c(0,1000), xaxt = "n", yaxt = "n") 
@@ -733,7 +733,7 @@ library(ComplexHeatmap)
 
 # Import and cleaning of shotgun lipidomics data for HEK293 cells used
 
-OverexpressionHEK <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/ExtractedDataHEK293FromKenji08082019.txt", header = TRUE, sep = "\t", as.is = TRUE)
+OverexpressionHEK <- read.csv(file = "./InputData/ExtractedDataHEK293FromKenji08082019.txt", header = TRUE, sep = "\t", as.is = TRUE)
 OverexpressionHEK2 <- OverexpressionHEK[-(1:2),]
 
 colnames(OverexpressionHEK2) <- paste(colnames(OverexpressionHEK), OverexpressionHEK[1,], OverexpressionHEK[2,], sep = "_")
@@ -823,7 +823,7 @@ LegendColor <- col_fung
 GraphName <- "Empty circles for in vivo"
 
 
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/CirclesToVisualizeLipidomeAndTheBackgroundEmptyCirclesForInVivoData150620205c2.pdf",
+pdf("./Output/CirclesToVisualizeLipidomeAndTheBackgroundEmptyCirclesForInVivoData150620205c2.pdf",
     width = unit(14, "mm"), height = unit(23, "mm"))
 
 Heatmap(TestMatrixa2, name = LegendName, col = LegendColor, rect_gp = gpar(type = "none"),  
@@ -848,13 +848,13 @@ dev.off()
 #. ComparisonOfUnsaturationPreferencesInCelluloVsInVitroVsCells140420222.pdf #
 
 # Import of the HEK293 shotgun lipidomics data
-LTPBackground1_2 <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/Rest/Rest/DataKenjiShotgunLipidomicsOfLTPExpressingCells20032019/tableauOutput_20181023B_version2.txt", header = TRUE, sep = "\t", as.is = TRUE)
+LTPBackground1_2 <- read.csv(file = "./InputData/tableauOutput_20181023B_version2.txt", header = TRUE, sep = "\t", as.is = TRUE)
 
 # Translate lipids manually outside R
-write.table(LTPBackground1_2, file="./RData/Rest2/ACGData/FiguresByKT/LTPBackground1_217062021.tsv", sep="\t", row.names = FALSE, col.names = TRUE, quote = FALSE)
+write.table(LTPBackground1_2, file="./Output/LTPBackground1_217062021.tsv", sep="\t", row.names = FALSE, col.names = TRUE, quote = FALSE)
 
 # Import again #! Maybe subset for the info and provide this?
-LipidSubclassesAddedToBackground17062021 <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/LipidSubclassesAddedToBackground17062021.txt", header = TRUE, sep = "\t", as.is = TRUE)
+LipidSubclassesAddedToBackground17062021 <- read.csv(file = "./InputData/LipidSubclassesAddedToBackground17062021.txt", header = TRUE, sep = "\t", as.is = TRUE)
 
 LipidSubclassesAddedToBackground170620212 <- cbind(AdaptedLipids = paste0(LipidSubclassesAddedToBackground17062021[,1], 
                                                                           "(", 
@@ -899,7 +899,7 @@ IntensitiesUnsatLevelsScreensComparisonNormBySum <- apply(IntensitiesUnsatLevels
 library(RColorBrewer)
 
 ListLipidUnsatComp2 <- setNames(list(IntensitiesUnsatLevelsScreensComparisonNormByMax, IntensitiesUnsatLevelsScreensComparisonNormBySum), nm = c("Percentual fraction intensities of max", "Percentual fraction intensities of total"))
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/ComparisonOfUnsaturationPreferencesInCelluloVsInVitroVsCells140420222.pdf")
+pdf("./Output/ComparisonOfUnsaturationPreferencesInCelluloVsInVitroVsCells140420222.pdf")
 
 for(x in names(ListLipidUnsatComp2)){
   y <- ListLipidUnsatComp2[[x]]
@@ -928,7 +928,7 @@ dev.off()
 
 #### HPTLC-data import as dataframe with factors in columns #!
 
-HPTLCDataInVivoAndInVitro <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/KnownHPTLCResultsScraped31032020.tsv", header = FALSE, sep = "\t", as.is = FALSE)
+HPTLCDataInVivoAndInVitro <- read.csv(file = "./InputData/KnownHPTLCResultsScraped31032020.tsv", header = FALSE, sep = "\t", as.is = FALSE)
 colnames(HPTLCDataInVivoAndInVitro) <- c("LTPProtein", "Lipid", "Screen")
 
 
@@ -1055,10 +1055,10 @@ MainDomainsOfTheLTPs8 <- cbind(MainDomainsOfTheLTPs7, GetFamily_Domains(MainDoma
 # If issues with the GetFamily_Domains function: look at following commented out entries to work with same data.
 
 # Make sure that we have an exact saved RDS-image of this file in time to avoid issues with Uniprot
-# saveRDS(object = MainDomainsOfTheLTPs8, file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/BackUpOfMainDomainsOfTheLTPs8.rds")
+# saveRDS(object = MainDomainsOfTheLTPs8, file = "./Output/BackUpOfMainDomainsOfTheLTPs8.rds")
 
 # Load saved RDS-image of this file (if needed, otherwise this can be skipped)
-# MainDomainsOfTheLTPs8FromTheStorage <- readRDS("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/BackUpOfMainDomainsOfTheLTPs8.rds")
+# MainDomainsOfTheLTPs8FromTheStorage <- readRDS("./InputData/BackUpOfMainDomainsOfTheLTPs8.rds")
 
 # Check that nothing went wrong during the conversion (if needed, otherwise this can be skipped)
 # identical(MainDomainsOfTheLTPs8FromTheStorage, MainDomainsOfTheLTPs8)
@@ -1292,7 +1292,7 @@ rownames(InVitroDataSetWithoutRedundantStars)[rownames(InVitroDataSetWithoutRedu
 rownames(InVitroDataSetWithoutRedundantStars)[rownames(InVitroDataSetWithoutRedundantStars) == "PS*"] <- "PS"
 
 # Literature coverage #!
-LiteratureDataLTPsFurtherIntegrated26052020 <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/LiteratureDataLTPsFurtherIntegrated26052020.txt", header = TRUE, sep = "\t", as.is = TRUE)
+LiteratureDataLTPsFurtherIntegrated26052020 <- read.csv(file = "./InputData/LiteratureDataLTPsFurtherIntegrated26052020.txt", header = TRUE, sep = "\t", as.is = TRUE)
 
 LiteratureDataLTPsFurtherIntegrated26052020$InVivo <- as.numeric(gsub(",",".", LiteratureDataLTPsFurtherIntegrated26052020$InVivo))
 LiteratureDataLTPsFurtherIntegrated26052020$InVitro <- as.numeric(gsub(",",".", LiteratureDataLTPsFurtherIntegrated26052020$InVitro))
@@ -1301,7 +1301,7 @@ LiteratureDataLTPsFurtherIntegrated26052020$InVitro <- as.numeric(gsub(",",".", 
 sum(LiteratureDataLTPsFurtherIntegrated26052020$LiteratureConsensus)/length(LiteratureDataLTPsFurtherIntegrated26052020$LiteratureConsensus) # 0.296
 
 # Import of literature hits overview
-ExpandedLiteratureHitsFromClassesOfLipidsWithoutRedundantStarsStored <- read.table(file="C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/ExpandedLiteratureHitsFromClassesOfLipidsWithoutRedundantStarsStored05112022.csv", sep = "\t")
+ExpandedLiteratureHitsFromClassesOfLipidsWithoutRedundantStarsStored <- read.table(file="./InputData/ExpandedLiteratureHitsFromClassesOfLipidsWithoutRedundantStarsStored05112022.csv", sep = "\t")
 
 # Previous: LipidClassLiteratureDataSet2 <- !((InVivoDataSet == 0) & (InVitroDataSet == 0)) & (LipidClassLiteratureDataSet == 0) # Changed to unique entries avoid looping and avoid possible confusion
 LipidClassLiteratureDataSet2 <- !((InVivoDataSetWithoutRedundantStars == 0) & (InVitroDataSetWithoutRedundantStars == 0)) & (as.matrix(ExpandedLiteratureHitsFromClassesOfLipidsWithoutRedundantStarsStored) == 0)
@@ -1334,7 +1334,7 @@ LipidClassLiteratureDataSetslc4hdr["PC-O","LCN1"] <- TRUE
 LipidClassLiteratureDataSetslc4hdr["PE-O","STARD10"] <- TRUE
 
 
-ORPDomains <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/ORPDomains270520202.txt", header = TRUE, sep = "\t", as.is = TRUE)
+ORPDomains <- read.csv(file = "./InputData/ORPDomains270520202.txt", header = TRUE, sep = "\t", as.is = TRUE)
 
 ORPDomains2 <- do.call("cbind", list(ORPDomains[,1:3], ORPDomains[,4:7]-2, FFAT = ifelse(as.logical(ORPDomains[,8]), ORPDomains[,5]-24, NA)))
 ORPDomains2[9,4] <- 148 # Longer version
@@ -1537,7 +1537,7 @@ SplitByColsVector <- factor(MainDomainsOfTheLTPs4xx[,2], levels = levels(MainDom
 GraphNameslc <- "White circles with black borders for novelty (vs. consensus literature knowledge)(sphingolipids aggregated)"
 library(ComplexHeatmap)
 
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/HeatmapOfTheLTPLocationsWithoutLipidInformationWithoutDomainsAdded251120214hdrBlackTrianglesAddedlwd2.pdf",
+pdf("./Output/HeatmapOfTheLTPLocationsWithoutLipidInformationWithoutDomainsAdded251120214hdrBlackTrianglesAddedlwd2.pdf",
     width = unit(20, "mm"), height = unit(20, "mm"))
 
 Heatmap(InVivoDataSetslc4hdr[,ReorderedLTPsByManualSeriation], name = LegendName, col = LegendColor, rect_gp = gpar(type = "none"), column_title = GraphNameslc, 
@@ -1615,7 +1615,7 @@ ColFunctionForDomains <- colorRamp2(1:max(CastManyProteinDomainsLTPs, na.rm = TR
 DomainTypes5 <- cbind(TypeRegion = c(rep("Domain", 18), rep("Region", 9), rep("Motif", 4)),
                       RegionName = c("PRELI/MSF1", "CRAL_TRIO_N", "CRAL-TRIO", "GOLD", "BNIP2", "CRAL_TRIO_2", "GLTP", "IP_trans", "START", "PH", "ORD", "Ankyrin", "LBP_BPI_CETP", "lipocalin", "ML", "Thiolase", "adh_short","SCP2", "TMpd", "TMpd2", "CC1", "CC2", "CC3", "CC4", "Ser-rich", "Ala/Gly-rich", "Poly-Leu", "FFAT", "Signal peptide", "Nuclear localization signal", "PTS1"))
 
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/HeatmapListDomainsReorderedTypesDomainsEnhanced06112022.pdf",
+pdf("./Output/HeatmapListDomainsReorderedTypesDomainsEnhanced06112022.pdf",
     width = unit(14, "mm"), height = unit(14, "mm"))
 
 Heatmap(matrix = ReorderedDomainsInputMatrix, 
@@ -1858,7 +1858,7 @@ CSPIDCRE <- (colSums(NewPITransLayersCondensedRowEntries$InCellulo, na.rm = TRUE
 library(ComplexHeatmap)
 library(RColorBrewer)
 
-pdf(paste0("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/BarplotHeatmapPITransportersCondensedRowEntriesOnlyScreenColumnsAt", CutOffPresenceProcent,"ProcentCutoffAndAnnotationRows12102021.pdf"),
+pdf(paste0("./Output/BarplotHeatmapPITransportersCondensedRowEntriesOnlyScreenColumnsAt", CutOffPresenceProcent,"ProcentCutoffAndAnnotationRows12102021.pdf"),
     width = unit(20, "mm"), height = unit(20, "mm"))
 
 Heatmap(NewPITransLayersCondensedRowEntries$InCellulo[,CSPIDCRE], name = LegendName, col = LegendColor, rect_gp = gpar(type = "none"), column_title = "", 
@@ -1993,7 +1993,7 @@ mode(InCelluloInVitroPresence) <- "numeric"
 
 # Input of lipid colors
 
-LipidColorsForCircos <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/LipidColorsUpdatesForCircos011120212.txt", header = TRUE, sep = "\t", as.is = TRUE)[,1:2]
+LipidColorsForCircos <- read.csv(file = "./InputData/LipidColorsUpdatesForCircos011120212.txt", header = TRUE, sep = "\t", as.is = TRUE)[,1:2]
 LipidColorsForCircos[,2] <- paste0("#", LipidColorsForCircos[,2])
 
 LipidColorsForCircos2 <- LipidColorsForCircos[,2]
@@ -2012,7 +2012,7 @@ all(unique(AggregatedAllScreenDataNormalized4[,5]) %in% names(LipidColorsForCirc
 # Actual circos visualization at species-level
 
 library(circlize)
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/CircosExtendedWithSpecies051120217WithTracksSwitchedDecreasedTextSize0412WhiteRingRemovedSmallerScreenTracksWithoutInnerHalfringByDiffHeight0ColorSchemeUpdatedWithoutSomeTLCEntriesWithBlackOutsides7b.pdf")
+pdf("./Output/CircosExtendedWithSpecies051120217WithTracksSwitchedDecreasedTextSize0412WhiteRingRemovedSmallerScreenTracksWithoutInnerHalfringByDiffHeight0ColorSchemeUpdatedWithoutSomeTLCEntriesWithBlackOutsides7b.pdf")
 
 circos.clear()
 circos.par(start.degree = -70, clock.wise = FALSE, cell.padding = c(0,0,0,0))
@@ -2159,7 +2159,7 @@ InCelluloInVitroPresence2hdr <- InCelluloInVitroPresence2
 
 
 # Updated version of sub-class - LTP connections circos with changed colors and removed white circles for TLC-reduced dataset, based on data that only has TLC if no other data there for the specific combo
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/CircosExtended031120215SterolChangedAndTracksSwappedDifferentTrackColorsLinkColorsUpdatedRemovalWhiteSectionsWithoutSomeTLCEntries24112021BlackOuterBlocks.pdf")
+pdf("./Output/CircosExtended031120215SterolChangedAndTracksSwappedDifferentTrackColorsLinkColorsUpdatedRemovalWhiteSectionsWithoutSomeTLCEntries24112021BlackOuterBlocks.pdf")
 
 circos.clear()
 circos.par(start.degree = -70, clock.wise = FALSE, cell.padding = c(0,0,0,0))
@@ -2318,7 +2318,7 @@ LTPSubclassDistributionMSAndTLCBothScreens2 <- t(Col1ToRowNames(LTPSubclassDistr
 LTPSubclassDistributionMSAndTLCBothScreens2[is.na(LTPSubclassDistributionMSAndTLCBothScreens2)] <- 0
 
 par(mar = c(5.1, 4.1, 4.1, 2.1))
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/LTPSubclassDistributionMSAndTLCBothScreensInBargraphPlot170120222021AmountToNumber18012022.pdf")
+pdf("./Output/LTPSubclassDistributionMSAndTLCBothScreensInBargraphPlot170120222021AmountToNumber18012022.pdf")
 
 barplot(LTPSubclassDistributionMSAndTLCBothScreens2, beside = TRUE, col = ColorMatrixTryOut["odd",], main = "For MS with HPTLC data", las = 1, xlab = "Number of lipid subclasses bound", ylab = "Number of LTPs") 
 abline(h = 1:max(LTPSubclassDistributionMSAndTLCBothScreens2), col = "#FFFFFF33", lwd = 3.2)
@@ -2348,7 +2348,7 @@ dev.off()
 #. (OverlayOfTheViolinPlotsWithBeanlineMediansAttemptToScaleInInverseOrderNrd0CorrectionDone11092020RemakeWithAllIncludedAndOverplottingWithReferenceUnity21032022.pdf # Not used version with Nrd0 and unity line.)
 
 
-KoeberlinCorrelations <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/Rest2/Rest2/Koeberlin_Snijder_Cell_2015_lipid_lipid_correlations.txt", header = TRUE, sep = "\t", as.is = TRUE)
+KoeberlinCorrelations <- read.csv(file = "./InputData/Koeberlin_Snijder_Cell_2015_lipid_lipid_correlations.txt", header = TRUE, sep = "\t", as.is = TRUE)
 
 KoeberlinCorrelations2 <- KoeberlinCorrelations[KoeberlinCorrelations[,1] != "SM C20:0", colnames(KoeberlinCorrelations) != "SM.C20.0"]
 rm(KoeberlinCorrelations)
@@ -2501,7 +2501,7 @@ CorrelationsMatrixae8_8 <- rbind(cbind(CorrelationsMatrixa8_7, "A"), cbind(Corre
 colnames(CorrelationsMatrixae8_8) <- c("From", "To", "Correlation", "From2", "To2", "From4", "To4", "MatchLevel", "Screen")
 
 library(RColorBrewer)
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/Panel5AWithTailoredScriptAndMoreDetailedVisualizationNowIncludesAllTooWithBinSize00117022022NoSegmentStacking18032022.pdf")
+pdf("./Output/Panel5AWithTailoredScriptAndMoreDetailedVisualizationNowIncludesAllTooWithBinSize00117022022NoSegmentStacking18032022.pdf")
 
 BinSize <- 0.01
 MaxList2 <- list()
@@ -2671,8 +2671,8 @@ dev.off()
 #. Panel5BWithTailoredScriptAndMoreDetailedVisualizationNowIncludesAllTooWithBinSize001170220222NoSegmentStacking18032022.pdf # (Basis for used version (without the Nrd0))
 #. Panel5BWithGreenUnityDistributionWithNrd0AndWd02322032022b # See after the 5C part. Not finally used version.
 
-Coexp_Mander_NoTreshold_Rework21022019 <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/Rest/Rest/Coexp_Mander_NoTreshold_Rework21022019.csv", header = TRUE, sep = ";", as.is = TRUE)
-Lipid_Classes_Sergio_Subsets_210220194 <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/Rest/Rest/Lipid_Classes_Sergio_Subsets_210220194.txt", header = TRUE, sep = "\t", as.is = TRUE)
+Coexp_Mander_NoTreshold_Rework21022019 <- read.csv(file = "./InputData/Coexp_Mander_NoTreshold_Rework21022019.csv", header = TRUE, sep = ";", as.is = TRUE)
+Lipid_Classes_Sergio_Subsets_210220194 <- read.csv(file = "./InputData/Lipid_Classes_Sergio_Subsets_210220194.txt", header = TRUE, sep = "\t", as.is = TRUE)
 
 # table(Lipid_Classes_Sergio_Subsets_210220194$SuperClass)
 # 1032 lipid-like molecules; 179 other molecules; 1 (224): wrong annotation: -hydroxyprednisolone"
@@ -2735,7 +2735,7 @@ AggregatedLTPLipidPairsCombined_8wvi <- cbind(AggregatedLTPLipidPairsCombined_7w
                                               LipidSpeciesAlternativeNomenclature = paste0(ConversionMatrixForLipidsForFullDataAlternativeKoeberlinNomenclaturewvi[match(AggregatedLTPLipidPairsCombined_7wvi$LipidSubclass, ConversionMatrixForLipidsForFullDataAlternativeKoeberlinNomenclaturewvi[,1]),2], 
                                                                                            
                                                                                            unlist(lapply(GetStuffBetweenBrackets(AggregatedLTPLipidPairsCombined_7wvi$LipidSpecies), function(x){if(length(x) != 0){mgsub::mgsub(x[length(x)], c("d", "DH", "t", "-OH", "\\*", "O-"), rep("",6))}else{"nn:nn"}}))))
-write.table(AggregatedLTPLipidPairsCombined_8wvi, file="./RData/Rest2/ACGData/FiguresByKT/LTPLipidConnectionsWithSphingolipidsIncludedAndNewestDataKevinTiteca24092020.csv", sep="\t", row.names = FALSE, quote = FALSE)
+write.table(AggregatedLTPLipidPairsCombined_8wvi, file="./Output/LTPLipidConnectionsWithSphingolipidsIncludedAndNewestDataKevinTiteca24092020.csv", sep="\t", row.names = FALSE, quote = FALSE)
 
 
 # Corrected version of PI Headgroup #!
@@ -2864,10 +2864,10 @@ CooccurrenceOfChemicalPairsList <- lapply(list(ObservedPossibleChemicalCombinati
 
 
 # Write to do in Excel #! Entered earlier to avoid repetition and looping
-write.table(t(t(levels(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$LipidSubclass))), file="./RData/Rest2/ACGData/FiguresByKT/SubclassesForObservedLipids02102020.csv", sep="\t", row.names = FALSE, quote = FALSE)
+write.table(t(t(levels(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$LipidSubclass))), file="./Output/SubclassesForObservedLipids02102020.csv", sep="\t", row.names = FALSE, quote = FALSE)
 
 # Input again with the consensus subclasses and classes, BMP & PG/BMP seen as a type of PG #! Entered earlier to avoid repetition and looping
-SubclassesMatchingToConsensusSubclassesAndClasses <- read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/SubclassesForObservedLipidsConsensusSubclassesAndClasses02102020.txt", header = TRUE, sep = "\t", as.is = TRUE, quote = "")
+SubclassesMatchingToConsensusSubclassesAndClasses <- read.csv(file = "./InputData/SubclassesForObservedLipidsConsensusSubclassesAndClasses02102020.txt", header = TRUE, sep = "\t", as.is = TRUE, quote = "")
 
 
 CooccurrenceOfChemicalPairsList2 <- list()
@@ -2951,7 +2951,7 @@ PossibleCooccurrenceOfChemicalPairs2 <- rbind(PossibleCooccurrenceOfChemicalPair
 
 
 library(RColorBrewer)
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/Panel5BWithTailoredScriptAndMoreDetailedVisualizationNowIncludesAllTooWithBinSize001170220222NoSegmentStacking18032022.pdf")
+pdf("./Output/Panel5BWithTailoredScriptAndMoreDetailedVisualizationNowIncludesAllTooWithBinSize001170220222NoSegmentStacking18032022.pdf")
 
 BinSize <- 0.01
 MaxList2TissuesColoc <- list()
@@ -3148,7 +3148,7 @@ dev.off()
 #. Panel5CWithTailoredScriptAndMoreDetailedVisualizationBinSize001NoSegmentStacking18032022.pdf # (Finally used version for inclusion in figure 5 based on this.)
 #. Panel5CWithGreenUnityDistributionAndBwWithNrd0Wd01422032022.pdf # (Not the basis of the final version.)
 
-MolPctOfMads <- Col1ToRowNames(read.csv(file = "C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/processed.molpct_generatedbyMads.csv", header = TRUE, sep = ",", as.is = TRUE))[,1:38] # Get rid of empty space at end columns
+MolPctOfMads <- Col1ToRowNames(read.csv(file = "./InputData/processed.molpct_generatedbyMads.csv", header = TRUE, sep = ",", as.is = TRUE))[,1:38] # Get rid of empty space at end columns
 ExperimentTypesOfMads <- sapply(strsplit(colnames(MolPctOfMads), "\\."), "[",1)
 
 
@@ -3161,7 +3161,7 @@ AggregateMPOfMads0[is.na(AggregateMPOfMads0)] <- 0
 AggregateMPOfMads0RTL <- setNames(split(AggregateMPOfMads0, row(AggregateMPOfMads0)), rownames(AggregateMPOfMads0))
 
 AggregateMPOfMads0RTLMOC <- do.call("cbind", setNames(lapply(AggregateMPOfMads0RTL, function(y){unlist(lapply(AggregateMPOfMads0RTL, function(x){MOCFunction(y, x)}))}), rownames(AggregateMPOfMads0)))
-write.table(AggregateMPOfMads0RTLMOC, file="./RData/Rest2/ACGData/FiguresByKT/AggregateMPOfMads0RTLMOC.tsv", sep="\t", row.names = TRUE, col.names = TRUE, quote = FALSE)
+write.table(AggregateMPOfMads0RTLMOC, file="./Output/AggregateMPOfMads0RTLMOC.tsv", sep="\t", row.names = TRUE, col.names = TRUE, quote = FALSE)
 
 MadsLipids <- do.call("rbind", strsplit(gsub(";2","", rownames(AggregateMPOfMads0RTLMOC)), " "))
 MadsLipids <- cbind(MadsLipids, do.call("rbind", strsplit(MadsLipids[,2], ":")))
@@ -3290,7 +3290,7 @@ AllPairsInSubcellularData <- rbind(AggregateMPOfMads0RTLMOC11x[,c("PairType", "S
 
 
 library(RColorBrewer)
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/Panel5CWithTailoredScriptAndMoreDetailedVisualizationBinSize001NoSegmentStacking18032022.pdf")
+pdf("./Output/Panel5CWithTailoredScriptAndMoreDetailedVisualizationBinSize001NoSegmentStacking18032022.pdf")
 
 BinSize <- 0.01
 MaxList2CellsColoc <- list()
@@ -3430,7 +3430,7 @@ KoeberlinCorrelationsConsensusNames2LongReducedVersion7g[,"MatchingNumber"] <- "
 KoeberlinCorrelationsConsensusNames2LongReducedVersion7combo <- rbind(KoeberlinCorrelationsConsensusNames2LongReducedVersion7g, KoeberlinCorrelationsConsensusNames2LongReducedVersion7) 
 library(beanplot)
 
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/OverlayOfTheViolinPlotsWithBeanlineMediansAttemptToScaleInInverseOrderNrd0CorrectionDone11092020RemakeWithAllIncludedAndOverplotting18032022.pdf")
+pdf("./Output/OverlayOfTheViolinPlotsWithBeanlineMediansAttemptToScaleInInverseOrderNrd0CorrectionDone11092020RemakeWithAllIncludedAndOverplotting18032022.pdf")
 TestBeanForSpecial218032022 <- beanplot(as.numeric(CorrelationsMatrixae8_8combo[,"Correlation"]) ~ factor(CorrelationsMatrixae8_8combo[,"Screen"], levels = c("E","A")) * factor(CorrelationsMatrixae8_8combo[,"MatchLevel"], levels = c(as.character(2:0), "All")), ll = 0.04,
                                         
                                         main = "Lipid hierarchy preference by correlation", side = "both", xlab="Correlation",
@@ -3475,7 +3475,7 @@ UnitBean <- do.call("rbind.data.frame", lapply(c(as.character(2:0),"All"), funct
 colnames(UnitBean) <- c("correlation", "MatchingNumber")
 
 
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/OverlayOfTheViolinPlotsWithBeanlineMediansAttemptToScaleInInverseOrderNrd0CorrectionDone11092020RemakeWithAllIncludedAndOverplottingWithReferenceUnity21032022.pdf")
+pdf("./Output/OverlayOfTheViolinPlotsWithBeanlineMediansAttemptToScaleInInverseOrderNrd0CorrectionDone11092020RemakeWithAllIncludedAndOverplottingWithReferenceUnity21032022.pdf")
 TestBeanForSpecial218032022 <- beanplot(as.numeric(CorrelationsMatrixae8_8combo[,"Correlation"]) ~ factor(CorrelationsMatrixae8_8combo[,"Screen"], levels = c("E","A")) * factor(CorrelationsMatrixae8_8combo[,"MatchLevel"], levels = c(as.character(2:0), "All")), ll = 0.04,
                                         
                                         main = "Lipid hierarchy preference by correlation", side = "both", xlab="Correlation",
@@ -3538,7 +3538,7 @@ rm(TestBeanForGeneral2standard18032022)
 UnitBeanSubcellLoc <- do.call("rbind.data.frame", lapply(c("Species", "Sub-Class", "Class", "All"), function(x){cbind.data.frame(as.numeric(seq(0,1, by = 0.01)), x)}))
 colnames(UnitBeanSubcellLoc) <- c("SubcellularColocalization", "PairType")
 
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/Panel5CWithGreenUnityDistributionAndBwWithNrd0Wd01422032022.pdf")
+pdf("./Output/Panel5CWithGreenUnityDistributionAndBwWithNrd0Wd01422032022.pdf")
 beanplot(as.numeric(as.character(SubcellularLocalizationOverlapOurDatax[,"SubcellularColocalization"])) ~ factor(SubcellularLocalizationOverlapOurDatax[,"Screen"], levels = c("In Vitro", "In Cellulo")) * factor(SubcellularLocalizationOverlapOurDatax[,"PairType"], levels = c("Species", "Sub-Class", "Class", "All")),
          
          main = "Co-transport: lipid hierarchy preference by co-occurrence in cells", side = "both", xlab="Sub-cellular co-occurrence", ll = 0.04, bw = "nrd0", wd = 0.14, # wd = 0.23,
@@ -3619,7 +3619,7 @@ dev.off()
 UnitBeanTissueLoc <- do.call("rbind.data.frame", lapply(c("Species", "Sub-Class", "Class", "All"), function(x){cbind.data.frame(as.numeric(seq(0,1, by = 0.01)), x)}))
 colnames(UnitBeanTissueLoc) <- c("Cooccurrence", "LipidPairMatchingType")
 
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/Panel5BWithGreenUnityDistributionWithNrd0AndWd02322032022b.pdf")
+pdf("./Output/Panel5BWithGreenUnityDistributionWithNrd0AndWd02322032022b.pdf")
 beanplot(as.numeric(as.character(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Cooccurrence"])) ~ factor(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Screen"], levels = c("E", "A")) * factor(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"LipidPairMatchingType"], levels = c(as.character(2:0), "All")), 
          
          main = "Co-transport: lipid hierarchy preference by co-occurrence in tissues", side = "both", xlab="Co-occurrence", ll = 0.04, wd = 0.23,
@@ -3701,10 +3701,10 @@ dev.off()
 #. FisherExactTestResultsWithEqualizedBackgroundCorrectedWithAll18082022.csv # Finally used version of comparisons: applicable to all & even more strict
 
 write.table(structure(do.call("rbind", StatList), dimnames = list(paste0(rep(c("A","E"),3), unlist(lapply(c("All",as.character(0:2)), function(x){rep(x, 2)}))), c("NoNeg", "NoPos", "YesNeg", "YesPos", "LowConf", "HighConf", "OddsRatio", "pValue"))),
-            file="./RData/Rest2/ACGData/FiguresByKT/FisherExactTestResultsStandardCorrectedWithAll18082022.csv", sep="\t", row.names = TRUE, quote = FALSE)
+            file="./Output/FisherExactTestResultsStandardCorrectedWithAll18082022.csv", sep="\t", row.names = TRUE, quote = FALSE)
 
 write.table(structure(do.call("rbind", StatList2), dimnames = list(paste0(rep(c("A","E"),3), unlist(lapply(c("All",as.character(0:2)), function(x){rep(x, 2)}))), c("NoNeg", "NoPos", "YesNeg", "YesPos", "LowConf", "HighConf", "OddsRatio", "pValue"))),
-            file="./RData/Rest2/ACGData/FiguresByKT/FisherExactTestResultsWithEqualizedBackgroundCorrectedWithAll18082022.csv", sep="\t", row.names = TRUE, quote = FALSE)
+            file="./Output/FisherExactTestResultsWithEqualizedBackgroundCorrectedWithAll18082022.csv", sep="\t", row.names = TRUE, quote = FALSE)
 
 #. FisherExactTestResultsStandardForTheCooccurrences09102020.csv # Not finally used version because not all-round applicable & least strict
 #. FisherExactTestResultsWithEqualizedBackgroundForTheCooccurrencesCorrected18082022.csv # Finally used version of comparisons: applicable to all & even more strict
@@ -3758,10 +3758,10 @@ StatList2ForCooccurrencesCorrected <- StatList2ForCooccurrences
 StatList2ForCooccurrencesCorrected[["AllAll"]] <- Stat2FullAllForCooccurrencesCorrectedVersion
 
 write.table(structure(do.call("rbind", StatListForCooccurrences[c("AllAll", "All", as.character(0:2))]), dimnames = list(paste0(rep(c("A","E"),5), unlist(lapply(c("AllAll", "All", as.character(0:2)), function(x){rep(x, 2)}))), c("NoNeg", "NoPos", "YesNeg", "YesPos", "LowConf", "HighConf", "OddsRatio", "pValue"))),
-            file="./RData/Rest2/ACGData/FiguresByKT/FisherExactTestResultsStandardForTheCooccurrences09102020.csv", sep="\t", row.names = TRUE, quote = FALSE)
+            file="./Output/FisherExactTestResultsStandardForTheCooccurrences09102020.csv", sep="\t", row.names = TRUE, quote = FALSE)
 
 write.table(structure(do.call("rbind", StatList2ForCooccurrencesCorrected[c("AllAll", "All", as.character(0:2))]), dimnames = list(paste0(rep(c("A","E"),5), unlist(lapply(c("AllAll", "All", as.character(0:2)), function(x){rep(x, 2)}))), c("NoNeg", "NoPos", "YesNeg", "YesPos", "LowConf", "HighConf", "OddsRatio", "pValue"))),
-            file="./RData/Rest2/ACGData/FiguresByKT/FisherExactTestResultsWithEqualizedBackgroundForTheCooccurrencesCorrected18082022.csv", sep="\t", row.names = TRUE, quote = FALSE)
+            file="./Output/FisherExactTestResultsWithEqualizedBackgroundForTheCooccurrencesCorrected18082022.csv", sep="\t", row.names = TRUE, quote = FALSE)
 
 # Subcellular Fisher Exact Tests # Finally used version of comparisons: only the median versions, for full reference (grey lines in graphs) and for what possible (colored lines in graphs) and not the others because applicable to all & even more strict, and double references used for comparible size in comparisons.
 # They are all named ...21022022.csv . #! Double-check the correct versions!
@@ -3833,7 +3833,7 @@ FisherTestsForSubcellularColocalizations <- list(FisherExactTestForSubcellularCo
 for(i in 1:length(FisherTestsForSubcellularColocalizations)){
   
   write.table(structure(do.call("rbind", FisherTestsForSubcellularColocalizations[[i]]), dimnames = list(paste0(rep(c("A","E"),4),rep(names(FisherTestsForSubcellularColocalizations[[i]]), each = 2)), colnames(FisherTestsForSubcellularColocalizations[[i]][[1]]))),
-              file= paste0("./RData/Rest2/ACGData/FiguresByKT/",names(FisherTestsForSubcellularColocalizations)[i],"21022022.csv"), quote = FALSE)
+              file= paste0("./Output/",names(FisherTestsForSubcellularColocalizations)[i],"21022022.csv"), quote = FALSE)
   
 }
 
@@ -3940,7 +3940,7 @@ AnnotationDataframeLeftLipidsLTPs2 <- rowAnnotation(df = TextDataframeLeftLipids
 # WidthAdaptor <- 160
 # HeightAdaptor <- 160
 
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/BarplotHeatmapTestSphingolipidTransporters06092021WithSidesAdded2CorrecteddSMZeroToNA.pdf",
+pdf("./Output/BarplotHeatmapTestSphingolipidTransporters06092021WithSidesAdded2CorrecteddSMZeroToNA.pdf",
     width = unit(20, "mm"), height = unit(25, "mm"))
 
 Heatmap(NewSphingoTransLayers$InCellulo, name = LegendName, col = LegendColor, rect_gp = gpar(type = "none"), column_title = "", 
@@ -3998,7 +3998,7 @@ colnames(StatHEKLogRatiosMelted2) <- c("Lipid", "CERTp.value", "CERTControlMeanE
 StatHEKLogRatiosMelted4 <- do.call("cbind", list(StatHEKLogRatiosMelted2, CERTPercentDifference = 100*10^(as.numeric(StatHEKLogRatiosMelted2[,4]) - as.numeric(StatHEKLogRatiosMelted2[,3]))-100, SEC14L1PercentDifference = 100*10^(as.numeric(StatHEKLogRatiosMelted2[,9]) - as.numeric(StatHEKLogRatiosMelted2[,8]))-100))  
 
 
-pdf("C:/Users/Kevin/Documents/RData/Rest2/ACGData/FiguresByKT/CERTAndSEC14L1LipidChangesHEK293WelchsTTest120820192.pdf")
+pdf("./Output/CERTAndSEC14L1LipidChangesHEK293WelchsTTest120820192.pdf")
 
 plot(as.numeric(StatHEKLogRatiosMelted4[,"CERTPercentDifference"]), -log10(as.numeric(StatHEKLogRatiosMelted4[,"CERTp.value"])), xlab = "Percent difference lipid abundance: protein vs. control", ylab = "-log10(p-value) [higher is better] (Welch's 2 sample t-test) ", pch = 16, col = "#FC4E07", main = "CERT (HEK293)", xlim = c(-100,550))
 abline(h = -log10(0.05), col = "lightgrey")
