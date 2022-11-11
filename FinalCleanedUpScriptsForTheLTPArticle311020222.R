@@ -2671,7 +2671,10 @@ dev.off()
 #. Panel5BWithTailoredScriptAndMoreDetailedVisualizationNowIncludesAllTooWithBinSize001170220222NoSegmentStacking18032022.pdf # (Basis for used version (without the Nrd0))
 #. Panel5BWithGreenUnityDistributionWithNrd0AndWd02322032022b # See after the 5C part. Not finally used version.
 
-Coexp_Mander_NoTreshold_Rework21022019 <- read.csv(file = "./InputData/Coexp_Mander_NoTreshold_Rework21022019.csv", header = TRUE, sep = ";", as.is = TRUE)
+# Original input for the Manders' overlap coefficient calculations on METASPACE. Has been processed according to what is described below and restored in a different format for use here (see further).
+# Coexp_Mander_NoTreshold_Rework21022019 <- read.csv(file = "./InputData/Coexp_Mander_NoTreshold_Rework21022019.csv", header = TRUE, sep = ";", as.is = TRUE)
+
+# Which entries are lipids and lipid-like molecules according to ClassyFire software (see SuperClass column)
 Lipid_Classes_Sergio_Subsets_210220194 <- read.csv(file = "./InputData/Lipid_Classes_Sergio_Subsets_210220194.txt", header = TRUE, sep = "\t", as.is = TRUE)
 
 # table(Lipid_Classes_Sergio_Subsets_210220194$SuperClass)
@@ -2683,8 +2686,17 @@ Lipid_Classes_Sergio_Subsets_210220194 <- read.csv(file = "./InputData/Lipid_Cla
 # Eliminate non-lipids from METASPACE subsetting
 SubsetOfLipidClassesSergio <- Lipid_Classes_Sergio_Subsets_210220194[Lipid_Classes_Sergio_Subsets_210220194$SuperClass != "Other",]
 
-Coexp_Mander_NoTreshold_Rework210220192 <- Coexp_Mander_NoTreshold_Rework21022019[,3:47]
-rownames(Coexp_Mander_NoTreshold_Rework210220192) <- paste(Coexp_Mander_NoTreshold_Rework21022019[,1], Coexp_Mander_NoTreshold_Rework21022019[,2], sep = "_")
+
+# Previous reprocessing of the Coexp_Mander_NoTreshold_Rework210220192 before storage in another format for use in this repository (see below)
+
+# Coexp_Mander_NoTreshold_Rework210220192 <- Coexp_Mander_NoTreshold_Rework21022019[,3:47]
+# rownames(Coexp_Mander_NoTreshold_Rework210220192) <- paste(Coexp_Mander_NoTreshold_Rework21022019[,1], Coexp_Mander_NoTreshold_Rework21022019[,2], sep = "_")
+
+# Save in smaller and easier to handle RDS format. GitHub issues with file size avoided in this way too.
+# saveRDS(object = Coexp_Mander_NoTreshold_Rework210220192, file = "./InputData/Coexp_Mander_NoTreshold_Rework210220192.rds") 
+
+# Read in new input-file in RDS-format for the Manders' overlap coefficient calculations of METASPACE.
+Coexp_Mander_NoTreshold_Rework210220192 <- readRDS("./InputData/Coexp_Mander_NoTreshold_Rework210220192.rds")
 
 MList <- lapply(1:dim(Coexp_Mander_NoTreshold_Rework210220192)[2],function(y){sapply(Coexp_Mander_NoTreshold_Rework210220192[,y],function(x){if(is.na(x)){NA}else{strsplit(GetStuffBetweenBrackets(x)[[1]], ",")[[1]][1]}})})
 MMatrix <- do.call("cbind", MList)
