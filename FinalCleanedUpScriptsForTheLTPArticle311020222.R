@@ -397,13 +397,13 @@ abline(h = seq(from = 50, to = 200, by = 50), col = "#FFFFFF33", lwd = 3.2)
 dev.off()
 # Previous: selected plot for inclusion in the figures
 
-# What percentages covered with multiple adducts per screen #! #X
+# What percentages covered with multiple adducts per screen
 100-((MergedTablesForAdducts[,1]*100)/rowSums(MergedTablesForAdducts, na.rm = TRUE))
 
 # in cellulo   in vitro 
 # 26.07004   44.62617 
 
-# What percentage covered with multiple adducts in both screens combined #! #X
+# What percentage covered with multiple adducts in both screens combined
 100-(AdductTabelScreensCombined[1]*100)/sum(AdductTabelScreensCombined, na.rm = TRUE) # 40.94488%
 
 
