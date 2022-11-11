@@ -1,0 +1,1 @@
+Where the output comes when you generate figures or write other files from the R scripts.
