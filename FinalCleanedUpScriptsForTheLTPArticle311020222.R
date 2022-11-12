@@ -7,8 +7,8 @@
 # Note 2: I am also still in the process of updating and double-checking some parts, and the input file for the figure
 # panel 5C is not included yet, because the level of abstraction that we will use is not fully clear yet.
 
-## Legend:
-# # Done and file was found 
+## Legend for figure files and some other parts:
+# # Done 
 # (#) Done in other context, or consequence of other files
 #  #X Extra input
 #  #. Relevant files for this part
@@ -45,7 +45,7 @@
 ######## Figure 5
 #### Panel 5A
 #### Panel 5B
-#### Panel 5C
+#### Panel 5C (Input file not included in InputData folder yet)
 #### (Alternatives for panels of figure 5)
 #### Supplementary material: results of Fisher exact tests
 
