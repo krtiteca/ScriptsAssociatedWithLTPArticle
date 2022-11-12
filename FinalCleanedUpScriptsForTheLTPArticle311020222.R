@@ -1,4 +1,12 @@
 ################ Document with the clean-up and calculations for figures of LTP article
+# Note 1: The current version of the script is a reduced version derived from larger scripts, 
+# and only contains the parts focusing on the main lines of code for the analysis and visualization, 
+# as well as some side graphs and side checks. Hence, it might contain some historic intermediate variable assignments 
+# that seem unneccessary but that I kept in to maintain consistency.
+
+# Note 2: I am also still in the process of updating and double-checking some parts, and the input file for the figure
+# panel 5C is not included yet, because the level of abstraction that we will use is not fully clear yet.
+
 ## Legend:
 # # Done and file was found 
 # (#) Done in other context, or consequence of other files
@@ -44,6 +52,7 @@
 ######## Figure 6
 #### Fig.6b
 #### Fig.6c
+
 
 
 ######## General functions
