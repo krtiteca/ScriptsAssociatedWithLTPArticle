@@ -260,7 +260,7 @@ CombinedDataWithPureClasses1806201911 <- CombinedDataWithPureClasses1806201910[!
 CombinedDataWithPureClasses1806201913 <- CombinedDataWithPureClasses1806201911[!((CombinedDataWithPureClasses1806201911$LipidAmbiguity %in% c("PC-O; Lyso-PC", "Lyso-PC; PC-O", "Lyso-PE; PE-O")) & !is.na(CombinedDataWithPureClasses1806201911$CarbonsOfFattyAcidA)),]
 
 write.table(CombinedDataWithPureClasses1806201913, file="./Output/CleanConservativeDataWithoutFilters17072019.csv", sep="\t", row.names = FALSE, quote = FALSE)
-#! Where supplementary table X is derived from
+#! Where supplementary table X is derived from (still to update the name of this table according to final article structure)
 
 
 library(stringr)
@@ -434,7 +434,7 @@ dev.off()
 #### Fig.2a barchart
 
 #. TemporaryNewBarplotsForLipidomeOverviewGraph26042020.pdf #
-#. Linear addition for things not in heatmaps some converted to percentages #!
+
 
 
 # Carb distribution
@@ -874,7 +874,7 @@ LipidSubclassesAddedToBackground170620212[,1] <- sapply(LipidSubclassesAddedToBa
 SpeciesOverviewLipidBodyConnections <- as.data.frame(cbind(do.call("rbind", strsplit(gsub("\\)", "", LipidSubclassesAddedToBackground170620212[4:422,1]), split = "\\(")), gsub(",", ".", LipidSubclassesAddedToBackground170620212[4:422,4])))
 colnames(SpeciesOverviewLipidBodyConnections) <- c("Head", "Body", "Amount")
 
-SpeciesOverviewLipidBodyConnections$Amount <- as.numeric(as.character(SpeciesOverviewLipidBodyConnections$Amount)) #! Added later as correction
+SpeciesOverviewLipidBodyConnections$Amount <- as.numeric(as.character(SpeciesOverviewLipidBodyConnections$Amount)) # Added later as correction
 
 
 IntensitiesOfObservedVsExpectedUnsatLipids <- setNames(Col1ToRowNames(merge(aggregate(PureAntonella32b$Intensity, by = list(PureAntonella32b$TotalCarbonChainUnsaturations), FUN = function(x){sum(x,na.rm=TRUE)}), 
@@ -926,13 +926,13 @@ dev.off()
 #. HeatmapOfTheLTPLocationsWithoutLipidInformationWithoutDomainsAdded251120214hdrBlackTrianglesAddedlwd2 #
 
 
-#### HPTLC-data import as dataframe with factors in columns #!
+#### HPTLC-data import as dataframe with factors in columns #! Will be further updated.
 
 HPTLCDataInVivoAndInVitro <- read.csv(file = "./InputData/KnownHPTLCResultsScraped31032020.tsv", header = FALSE, sep = "\t", as.is = FALSE)
 colnames(HPTLCDataInVivoAndInVitro) <- c("LTPProtein", "Lipid", "Screen")
 
 
-#### HPTLC-data: first clean-up and formatting #!
+#### HPTLC-data: first clean-up and formatting #! Will be further updated.
 
 HPTLCDataInVivoAndInVitrob <- HPTLCDataInVivoAndInVitro[HPTLCDataInVivoAndInVitro[,1] != "SEC14L1",] # Removed because of a potential experimental issue
 HPTLCDataInVivoAndInVitrob$LTPProtein <- factor(HPTLCDataInVivoAndInVitrob$LTPProtein, levels = levels(HPTLCDataInVivoAndInVitrob$LTPProtein)[levels(HPTLCDataInVivoAndInVitrob$LTPProtein) != "SEC14L1"])
@@ -946,7 +946,7 @@ HPTLCSpecificitiesPerScreen2 <- HPTLCSpecificitiesPerScreen
 colnames(HPTLCSpecificitiesPerScreen2[[1]]) <- paste0(colnames(HPTLCSpecificitiesPerScreen2[[1]]), "*")
 colnames(HPTLCSpecificitiesPerScreen2[[2]]) <- paste0(colnames(HPTLCSpecificitiesPerScreen2[[2]]), "*")
 
-#### MS-data: clean-up and formatting #!
+#### MS-data: clean-up and formatting
 LTPProteins <- unique(c(unique(PureAntonella32b$LTPProtein), unique(PureEnric32$LTPProtein)))
 
 HeadgroupOrderlnl <- c("d*Cer", "dCer", "DHCer", "DHOH*Cer", "tCer", "d*CerP", "d*HexCer", "t*HexCer", "t*Hex2Cer", "d*SHexCer", "d*SM", "DHSM", "t*SM", "FA", "FAL", "LPC",
@@ -1168,7 +1168,7 @@ colnames(LTPMatrixTopInVitrommnslc) <- colnames(LTPMatrixPosInVitrommnslc)
 rownames(LTPMatrixTopInVivommnslc) <- rownames(LTPMatrixPosInVivommnslc)
 colnames(LTPMatrixTopInVivommnslc) <- colnames(LTPMatrixPosInVivommnslc)
 
-#### HPTLC-data: further clean-up and formatting #!
+#### HPTLC-data: further clean-up and formatting #! Will be further updated.
 HPTLCSpecificitiesPerScreen2hdr <- HPTLCSpecificitiesPerScreen2
 
 colnames(HPTLCSpecificitiesPerScreen2hdr[[1]]) <- c("Cer*", "Sterol", "DAG", "PC", "PE", "PG", "PIPs", "PS")
@@ -1198,8 +1198,8 @@ HPTLCSpecificitiesPerScreen2hdrm4[[2]] <- HPTLCSpecificitiesPerScreen2hdrm2[[2]]
       (LTPMatrixTopInVitrommnslc[as.character(HPTLCSpecificitiesPerScreen2hdrm2[[2]][x,1]), as.character(HPTLCSpecificitiesPerScreen2hdrm2[[2]][x,2])] != 0))
 }),] # Only leaves PS_OSBPL9: makes sense.
 
-MeltedInVivoCombinedslchdr <- rbind(melt(LTPMatrixTopInVivommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[1]]) #!
-MeltedInVitroCombinedslchdr <- rbind(melt(LTPMatrixTopInVitrommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[2]]) #!
+MeltedInVivoCombinedslchdr <- rbind(melt(LTPMatrixTopInVivommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[1]])
+MeltedInVitroCombinedslchdr <- rbind(melt(LTPMatrixTopInVitrommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[2]])
 
 CastInVivoCombinedslchdr <- as.matrix(Col1ToRowNames(dcast(MeltedInVivoCombinedslchdr, Var1 ~ Var2, value.var = "value", fun.aggregate = function(x){max(x,na.rm = TRUE)})))
 CastInVitroCombinedslchdr <- as.matrix(Col1ToRowNames(dcast(MeltedInVitroCombinedslchdr, Var1 ~ Var2, value.var = "value", fun.aggregate = function(x){max(x,na.rm = TRUE)})))
@@ -1291,25 +1291,19 @@ rownames(InVitroDataSetWithoutRedundantStars)[rownames(InVitroDataSetWithoutRedu
 # PS for in vivo already corrected before
 rownames(InVitroDataSetWithoutRedundantStars)[rownames(InVitroDataSetWithoutRedundantStars) == "PS*"] <- "PS"
 
-# Literature coverage #!
-LiteratureDataLTPsFurtherIntegrated26052020 <- read.csv(file = "./InputData/LiteratureDataLTPsFurtherIntegrated26052020.txt", header = TRUE, sep = "\t", as.is = TRUE)
+# Literature coverage # Simplified version used with only the data that are relevant here
+LiteratureDataLTPsIntegratedSimplified <- read.csv(file = "./InputData/LiteratureDataLTPsIntegratedSimplified.txt", header = TRUE, sep = "\t", as.is = TRUE)
 
-LiteratureDataLTPsFurtherIntegrated26052020$InVivo <- as.numeric(gsub(",",".", LiteratureDataLTPsFurtherIntegrated26052020$InVivo))
-LiteratureDataLTPsFurtherIntegrated26052020$InVitro <- as.numeric(gsub(",",".", LiteratureDataLTPsFurtherIntegrated26052020$InVitro))
+LiteratureDataLTPsIntegratedSimplified$InVivo <- as.numeric(gsub(",",".", LiteratureDataLTPsIntegratedSimplified$InVivo))
+LiteratureDataLTPsIntegratedSimplified$InVitro <- as.numeric(gsub(",",".", LiteratureDataLTPsIntegratedSimplified$InVitro))
 
 # 29.6% Literature consensus
-sum(LiteratureDataLTPsFurtherIntegrated26052020$LiteratureConsensus)/length(LiteratureDataLTPsFurtherIntegrated26052020$LiteratureConsensus) # 0.296
-
-# Import of literature hits overview
-ExpandedLiteratureHitsFromClassesOfLipidsWithoutRedundantStarsStored <- read.table(file="./InputData/ExpandedLiteratureHitsFromClassesOfLipidsWithoutRedundantStarsStored05112022.csv", sep = "\t")
-
-# Previous: LipidClassLiteratureDataSet2 <- !((InVivoDataSet == 0) & (InVitroDataSet == 0)) & (LipidClassLiteratureDataSet == 0) # Changed to unique entries avoid looping and avoid possible confusion
-LipidClassLiteratureDataSet2 <- !((InVivoDataSetWithoutRedundantStars == 0) & (InVitroDataSetWithoutRedundantStars == 0)) & (as.matrix(ExpandedLiteratureHitsFromClassesOfLipidsWithoutRedundantStarsStored) == 0)
+sum(LiteratureDataLTPsIntegratedSimplified$LiteratureConsensus)/length(LiteratureDataLTPsIntegratedSimplified$LiteratureConsensus) # 0.296
 
 library(reshape2)
-LiteratureConsensusLinksWideVersion <- Col1ToRowNames(dcast(data = LiteratureDataLTPsFurtherIntegrated26052020, Lipid ~ Protein, value.var = "LiteratureConsensus",fun.aggregate = sum))
+LiteratureConsensusLinksWideVersion <- Col1ToRowNames(dcast(data = LiteratureDataLTPsIntegratedSimplified, Lipid ~ Protein, value.var = "LiteratureConsensus",fun.aggregate = sum))
 
-LiteratureConsensusLinksWideVersion2 <- LiteratureConsensusLinksWideVersion[rownames(LipidClassLiteratureDataSet2), colnames(LipidClassLiteratureDataSet2)]
+LiteratureConsensusLinksWideVersion2 <- LiteratureConsensusLinksWideVersion[rownames(InVivoDataSetWithoutRedundantStars), colnames(InVivoDataSetWithoutRedundantStars)] # Simplified steps before this here to not necessitate input of two literature files.
 LiteratureConsensusLinksWideVersion4 <- !((InVivoDataSetWithoutRedundantStars == 0) & (InVitroDataSetWithoutRedundantStars == 0)) & (LiteratureConsensusLinksWideVersion2 == 0) # InVivoDataSetWithoutRedundantStars instead of InVivoDataSet to avoid loop and same for in vitro data
 
 
@@ -1318,7 +1312,7 @@ LipidClassLiteratureDataSet <- as.matrix(LiteratureConsensusLinksWideVersion4)[c
 LipidClassLiteratureDataSetslc <- LipidClassLiteratureDataSet[c(1,6,7,9:11,14:36),]
 rownames(LipidClassLiteratureDataSetslc) <- rownames(InVivoDataSetslc)
 
-# Correction on original heatmap: literature data for OSBPL2-PIPs known now & PC-O and PE-O should not be seen as known only because PC and PE are known #!
+# Correction on original heatmap: literature data for OSBPL2-PIPs known now & PC-O and PE-O should not be seen as known only because PC and PE are known #! I will double-check this again, that certainly nothing is known yet in literature about the ethers.
 # Also immediately correct the rownames
 
 LipidClassLiteratureDataSetslc4hdr <- LipidClassLiteratureDataSetslc
@@ -1594,7 +1588,7 @@ dev.off()
 
 #### Protein-domain-based ordering of LTPs
 
-#. SupplementaryInformationOverviewSeriationOfProteinDomains061120222.pdf (#) #!
+#. SupplementaryInformationOverviewSeriationOfProteinDomains061120222.pdf (#)
 #. HeatmapListDomainsReorderedTypesDomainsEnhanced06112022.pdf #
 
 library(ComplexHeatmap)
@@ -1645,7 +1639,7 @@ dev.off()
 #### Fig.3b
 #. LinearBarplotsForNoveltiesLTPLipidClassPairsUpdatedVersionsAfterGroupMeetingCommentsPercentagesMovedAxisExtendedTextUpdated140320223b2.pdf 
 
-# Largely manual. Adobe Illustator was used for most of visualization. #!
+# Largely manual. Adobe Illustator was used for most of visualization. #! I will double-check at the end if all output is still aligned here (because this is not automatically updated).
 
 
 #### Fig.3c
@@ -2759,9 +2753,9 @@ HeadGroupConversionMatrixc[HeadGroupConversionMatrixc[,"HeadGroup"] == "PI","H"]
 HeadGroupConversionMatrix2 <- rbind(cbind(HeadGroupConversionMatrixc, "S" = rep(0,16)),
                                     
                                     do.call("cbind", list("HeadGroup" = c("PGP", "CL", "Cer", "CerP", "SM", "HexCer", "Hex2Cer", "SHexCer"),
-                                                          "C" = c(6,9,3,3,8,9,15,9), # Double check result here #!
+                                                          "C" = c(6,9,3,3,8,9,15,9), 
                                                           
-                                                          "H" = c(14,18,7,8,19,17,27,17), # Double check result here #!
+                                                          "H" = c(14,18,7,8,19,17,27,17),
                                                           "N" = c(0,0,1,1,2,1,1,1),
                                                           
                                                           "O" = c(11,13,2,5,5,7,12,10),
@@ -2783,7 +2777,7 @@ ConnectorPieceConversionMatrix2 <-cbind("Connector" = c("a", "e", "d", "h", "t",
 
 
 HTips2 <- do.call("cbind", list("HeadGroup" = HeadGroupConversionMatrix2[,1],
-                                "HAmount" = c(2,2,2,2,2,2,2,2,2,2,1,2,3,2,0,0,2,4,2,2,2,2,2,2))) # Similar to just counting the amount of linkages, so maybe replace #!
+                                "HAmount" = c(2,2,2,2,2,2,2,2,2,2,1,2,3,2,0,0,2,4,2,2,2,2,2,2))) # Similar to just counting the amount of linkages, which could be done as alternative if necessary.
 
 AggregatedLTPLipidPairsCombined_8wvi2 <- cbind(AggregatedLTPLipidPairsCombined_8wvi, do.call("rbind",strsplit(as.character(AggregatedLTPLipidPairsCombined_8wvi$LipidSpeciesAlternativeNomenclature), "\\_C|\\:")))
 AggregatedLTPLipidPairsCombined_8wvi2 <- cbind(AggregatedLTPLipidPairsCombined_8wvi2, do.call("rbind", strsplit(as.character(AggregatedLTPLipidPairsCombined_8wvi2[,6]),"\\_")))
@@ -3683,7 +3677,7 @@ beanplot(as.numeric(as.character(LipidSubsetMMeans_4Subset[,"Cooccurrence"])) ~ 
          what = c(FALSE, TRUE, TRUE, TRUE))
 
 
-beanplot(as.numeric(UnitBeanSubcellLoc[,"SubcellularColocalization"]) ~ factor(UnitBeanSubcellLoc[,"PairType"], levels = c("Species", "Sub-Class", "Class", "All")), ll = 0, #!
+beanplot(as.numeric(UnitBeanSubcellLoc[,"SubcellularColocalization"]) ~ factor(UnitBeanSubcellLoc[,"PairType"], levels = c("Species", "Sub-Class", "Class", "All")), ll = 0,
          
          
          col = c(NA,NA, NA,NA),
@@ -3776,7 +3770,7 @@ write.table(structure(do.call("rbind", StatList2ForCooccurrencesCorrected[c("All
             file="./Output/FisherExactTestResultsWithEqualizedBackgroundForTheCooccurrencesCorrected18082022.csv", sep="\t", row.names = TRUE, quote = FALSE)
 
 # Subcellular Fisher Exact Tests # Finally used version of comparisons: only the median versions, for full reference (grey lines in graphs) and for what possible (colored lines in graphs) and not the others because applicable to all & even more strict, and double references used for comparible size in comparisons.
-# They are all named ...21022022.csv . #! Double-check the correct versions!
+# They are all named ...21022022.csv . #! I will still double-check the correct versions to make 100% sure.
 
 StatListForSubcellularCooccurrences <- list()
 StatList2ForSubcellularCooccurrences <- list()
