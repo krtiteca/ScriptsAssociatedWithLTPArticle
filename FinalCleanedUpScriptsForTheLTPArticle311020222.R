@@ -190,6 +190,42 @@ GetStuffBetweenBrackets <- function(x){regmatches(x, gregexpr("(?<=\\().*?(?=\\)
 #### Function to calculate the Manders' Overlap Coefficient
 MOCFunction <- function(VectorA, VectorB){sum(VectorA*VectorB)/sqrt(sum(VectorA^2)*sum(VectorB^2))}
 
+#### Function to convert matrices from a wider version to a longer version (simple version of melt)
+# Not advised for dataframes (rownames are taken as numbers, and it forces everything into a factor for the value column)
+
+meltmatrix <- function(data){do.call("rbind", lapply(colnames(data), function(x){
+  data.frame(Var1 = factor(rownames(data), levels = rownames(data)), Var2 = x, value = as.vector(data[,x]))}))}
+
+
+#### Function to covert dataframes to a wider dataframe based on one column and with option to keep multiple columns intact & aggregate similar data
+
+# Has default inputs and more parameters that can be optimized including data type of output and rownames.
+# Takes original order without accounting for factor levels, but does not affect the levels in final dataframe.
+
+# inputdf = input dataframe; ColumnsLong = column names (character) to keep intact (can be multiple ones: character vector);
+# ColumnWide = column name (character) to widen (can only be one); ColumnValue = column name (character) to use for values as input to function to populate new columns;
+
+# AggregatingFunction = user-defined function to aggregate data that correspond to the same new dataframe cells (without definition it defaults to the length function);
+# FunctionOutputValueType = expected value type as output from the function (similar to how vapply works) (without definition it defaults to integer);
+
+# RowNamesColumnsLong = logical determining if rownames are textual aggregations of content of ColumnLong-defined columns (TRUE) (the default)
+# or if the rownames are just a number running from the first to the last row (1:nrow) (FALSE)
+
+widen <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE){
+  outputdf <- do.call("rbind.data.frame",
+                      
+                      lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))
+                      }else{unique(inputdf[, ColumnsLong])}],
+                      
+                      function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
+                                                                                 FUN = function(z){AggregatingFunction(z[,ColumnValue])},
+                                                                                 
+                                                                                 FUN.VALUE = FunctionOutputValueType,
+                                                                                 USE.NAMES = TRUE)))}))
+  
+  if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
+  return(outputdf)}
+
 ######## MS-data input 
 #### MS results: in cellulo and in vitro: clean-up of input data 
 
@@ -1021,8 +1057,8 @@ colnames(LTPMatrixTopInVivommn) <- colnames(LTPMatrixPosInVivommn)
 rownames(LTPMatrixTopInVitrommn) <- rownames(LTPMatrixPosInVitrommn)
 colnames(LTPMatrixTopInVitrommn) <- colnames(LTPMatrixPosInVitrommn)
 
-MeltedInVivoCombined <- rbind(melt(LTPMatrixTopInVivommn), melt(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))
-MeltedInVitroCombined <- rbind(melt(LTPMatrixTopInVitrommn), melt(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))
+MeltedInVivoCombined <- rbind(meltmatrix(LTPMatrixTopInVivommn), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))
+MeltedInVitroCombined <- rbind(meltmatrix(LTPMatrixTopInVitrommn), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))
 
 CastInVivoCombined <- Col1ToRowNames(dcast(MeltedInVivoCombined, Var1 ~ Var2, value.var = "value"))
 CastInVitroCombined <- Col1ToRowNames(dcast(MeltedInVitroCombined, Var1 ~ Var2, value.var = "value"))
@@ -1186,7 +1222,7 @@ colnames(HPTLCSpecificitiesPerScreen2hdr[[2]]) <- c("Cer*", "Sterol", "DAG", "PC
 
 library(reshape2)
 
-HPTLCSpecificitiesPerScreen2hdrm <- lapply(HPTLCSpecificitiesPerScreen2hdr, function(x){melt(t(as.matrix(5*x)))})
+HPTLCSpecificitiesPerScreen2hdrm <- lapply(HPTLCSpecificitiesPerScreen2hdr, function(x){meltmatrix(t(as.matrix(5*x)))})
 HPTLCSpecificitiesPerScreen2hdrm2 <- lapply(HPTLCSpecificitiesPerScreen2hdrm, function(x){x[x$value != 0,]})
 
 HPTLCSpecificitiesPerScreen2hdrm4 <- list()
@@ -1207,8 +1243,8 @@ HPTLCSpecificitiesPerScreen2hdrm4[[2]] <- HPTLCSpecificitiesPerScreen2hdrm2[[2]]
       (LTPMatrixTopInVitrommnslc[as.character(HPTLCSpecificitiesPerScreen2hdrm2[[2]][x,1]), as.character(HPTLCSpecificitiesPerScreen2hdrm2[[2]][x,2])] != 0))
 }),] # Only leaves PS_OSBPL9: makes sense.
 
-MeltedInVivoCombinedslchdr <- rbind(melt(LTPMatrixTopInVivommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[1]])
-MeltedInVitroCombinedslchdr <- rbind(melt(LTPMatrixTopInVitrommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[2]])
+MeltedInVivoCombinedslchdr <- rbind(meltmatrix(LTPMatrixTopInVivommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[1]])
+MeltedInVitroCombinedslchdr <- rbind(meltmatrix(LTPMatrixTopInVitrommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[2]])
 
 CastInVivoCombinedslchdr <- as.matrix(Col1ToRowNames(dcast(MeltedInVivoCombinedslchdr, Var1 ~ Var2, value.var = "value", fun.aggregate = function(x){max(x,na.rm = TRUE)})))
 CastInVitroCombinedslchdr <- as.matrix(Col1ToRowNames(dcast(MeltedInVitroCombinedslchdr, Var1 ~ Var2, value.var = "value", fun.aggregate = function(x){max(x,na.rm = TRUE)})))
@@ -1240,8 +1276,8 @@ c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))[!uniq
 MissingLipidEntriesInVitro <- c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))[!unique(c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))) %in% rownames(InVitroDataSetTotalslchdr)]
 # "Sterol" "PIPs"
 
-MeltedInVivoCombinedslc <- rbind(melt(LTPMatrixTopInVivommnslc), melt(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))
-MeltedInVitroCombinedslc <- rbind(melt(LTPMatrixTopInVitrommnslc), melt(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))
+MeltedInVivoCombinedslc <- rbind(meltmatrix(LTPMatrixTopInVivommnslc), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))
+MeltedInVitroCombinedslc <- rbind(meltmatrix(LTPMatrixTopInVitrommnslc), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))
 
 CastInVivoCombinedslc <- as.matrix(Col1ToRowNames(dcast(MeltedInVivoCombinedslc, Var1 ~ Var2, value.var = "value", fun.aggregate = function(x){max(x,na.rm = TRUE)})))
 CastInVitroCombinedslc <- as.matrix(Col1ToRowNames(dcast(MeltedInVitroCombinedslc, Var1 ~ Var2, value.var = "value", fun.aggregate = function(x){max(x,na.rm = TRUE)})))
@@ -1939,8 +1975,8 @@ AggregatedInVitroMS4 <- aggregate(AggregatedInVitroMS2[, "NormInt"],
 
 library(reshape2)
 
-HPTLCaggregated <- rbind(cbind(melt(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]])), ProteinDomain = NA, Screen = "in vivo", TotalCarbonChainLength = NA, TotalCarbonChainUnsaturations = NA),
-                         cbind(melt(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]])), ProteinDomain = NA, Screen = "in vitro", TotalCarbonChainLength = NA, TotalCarbonChainUnsaturations = NA))
+HPTLCaggregated <- rbind(cbind(meltmatrix(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]])), ProteinDomain = NA, Screen = "in vivo", TotalCarbonChainLength = NA, TotalCarbonChainUnsaturations = NA),
+                         cbind(meltmatrix(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]])), ProteinDomain = NA, Screen = "in vitro", TotalCarbonChainLength = NA, TotalCarbonChainUnsaturations = NA))
 
 HPTLCaggregated <- HPTLCaggregated[HPTLCaggregated[,"value"] != 0,]
 HPTLCaggregated[,2] <- gsub("\\*","", HPTLCaggregated[,2])
@@ -2404,7 +2440,7 @@ library(reshape2)
 KoeberlinCorrelationsConsensusNames2 <- KoeberlinCorrelationsConsensusNames
 KoeberlinCorrelationsConsensusNames2[upper.tri(KoeberlinCorrelationsConsensusNames2)] <- NA
 
-KoeberlinCorrelationsConsensusNames2Long <- melt(cbind(rownames(KoeberlinCorrelationsConsensusNames2), KoeberlinCorrelationsConsensusNames2))
+KoeberlinCorrelationsConsensusNames2Long <- meltmatrix(as.matrix(Col1ToRowNames(cbind(rownames(KoeberlinCorrelationsConsensusNames2), KoeberlinCorrelationsConsensusNames2))))
 KoeberlinCorrelationsConsensusNames2LongReducedVersion <- KoeberlinCorrelationsConsensusNames2Long[!is.na(KoeberlinCorrelationsConsensusNames2Long$value),]
 
 colnames(KoeberlinCorrelationsConsensusNames2LongReducedVersion) <- c("lipidA", "lipidB", "correlation")
@@ -4001,7 +4037,7 @@ OverexpressionHEKLogRatiosMatrix <- log10(OverexpressionHEKRatiosMatrixAll)
 OverexpressionHEKLogRatiosGeneral2 <- t(OverexpressionHEKLogRatiosMatrix[c("Cer", "CerP", "SM", "HexCer", "SHexCer", "diHexCer", "GM3", "DAG", "PA", "PA O-", "PC", "PC O-", "PE", "PE O-", "PS", "PI", "PI O-", "PG", "CL", "LPA", "LPC", "LPC O-", "LPE", "LPE O-", "LPS", "LPS O-", "LPI", "LPI O-", "LPG", "LPG O-", "CE", "Chol :"),c(1,4,7,2,5,8,3,6,9)])
 library("reshape2")
 
-OverexpressionHEKLogRatiosMelted <- melt(OverexpressionHEKLogRatiosGeneral2)
+OverexpressionHEKLogRatiosMelted <- meltmatrix(OverexpressionHEKLogRatiosGeneral2)
 colnames(OverexpressionHEKLogRatiosMelted) <- c("Sample", "Lipid", "Ratio")
 
 
