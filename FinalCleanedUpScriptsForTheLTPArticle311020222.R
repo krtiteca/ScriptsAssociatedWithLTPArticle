@@ -202,11 +202,14 @@ meltmatrix <- function(data){do.call("rbind", lapply(colnames(data), function(x)
 # Has default inputs and more parameters that can be optimized including data type of output and rownames.
 # Takes original order without accounting for factor levels, but does not affect the levels in final dataframe.
 
-# inputdf = input dataframe; ColumnsLong = column names (character) to keep intact (can be multiple ones: character vector);
-# ColumnWide = column name (character) to widen (can only be one); ColumnValue = column name (character) to use for values as input to function to populate new columns;
+# inputdf = input dataframe; ColumnsLong = column names (character) to keep intact (can be multiple ones: character vector)
+# ColumnWide = column name (character) to widen (can only be one)
 
-# AggregatingFunction = user-defined function to aggregate data that correspond to the same new dataframe cells (without definition it defaults to the length function);
-# FunctionOutputValueType = expected value type as output from the function (similar to how vapply works) (without definition it defaults to integer);
+# Does not drop columns from a factor-column: uses all levels from it, even if they have no value associated
+# ColumnValue = column name (character) to use for values as input to function to populate new columns; depending on input and aggregation function might create 0s where NAs expected.
+
+# AggregatingFunction = user-defined function to aggregate data that correspond to the same new dataframe cells (without definition it defaults to the length function)
+# FunctionOutputValueType = expected value type as output from the function (similar to how vapply works) (without definition it defaults to integer)
 
 # RowNamesColumnsLong = logical determining if rownames are textual aggregations of content of ColumnLong-defined columns (TRUE) (the default)
 # or if the rownames are just a number running from the first to the last row (1:nrow) (FALSE)
@@ -811,8 +814,8 @@ DetailsOfOverexpressionHEK2Split2bl <- cbind(DetailsOfOverexpressionHEK2Split2, 
 DetailsOfOverexpressionHEK2Split2bl2 <- cbind(DetailsOfOverexpressionHEK2Split2bl, do.call("rbind", strsplit(x = DetailsOfOverexpressionHEK2Split2bl$CarbChainLengthAndUnsat, split = ":")))
 colnames(DetailsOfOverexpressionHEK2Split2bl2)[4:6] <- c("Headgroup", "ChainLength", "Unsaturation")
 
-library("reshape2")
-DetailsOfOverexpressionHEK2Split2bl2WideVersion <- Col1ToRowNames(dcast(DetailsOfOverexpressionHEK2Split2bl2, Headgroup ~ ChainLength, value.var = "ControlMeans", fun.aggregate = sum))
+# Updated to widen version with different rownames order, but otherwise identical
+DetailsOfOverexpressionHEK2Split2bl2WideVersion <- Col1ToRowNames(widen(inputdf = DetailsOfOverexpressionHEK2Split2bl2, ColumnsLong = "Headgroup", ColumnWide = "ChainLength", ColumnValue = "ControlMeans", AggregatingFunction = sum, FunctionOutputValueType = double(1)))
 
 # Historical intermediate parts removed
 DetailsOfOverexpressionHEK2Split2bl2WideVersion2 <- DetailsOfOverexpressionHEK2Split2bl2WideVersion
