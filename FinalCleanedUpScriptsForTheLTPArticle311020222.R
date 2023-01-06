@@ -218,7 +218,22 @@ widen <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunc
   outputdf <- do.call("rbind.data.frame",
                       
                       lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))
-                      }else{unique(inputdf[, ColumnsLong])}],
+                      }else{as.character(unique(inputdf[, ColumnsLong]))}], # leaves out factor levels and orders it according to occurrence
+                      
+                      function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
+                                                                                 FUN = function(z){AggregatingFunction(z[,ColumnValue])},
+                                                                                 
+                                                                                 FUN.VALUE = FunctionOutputValueType,
+                                                                                 USE.NAMES = TRUE)))}))
+  
+  if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
+  return(outputdf)}
+
+widen2 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE, SortRows = TRUE){
+  outputdf <- do.call("rbind.data.frame",
+                      
+                      lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){if(SortRows){sort(do.call(paste, c(unique(inputdf[, ColumnsLong]), sep=".")))}else{do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))}
+                      }else{if(SortRows){sort(as.character(unique(inputdf[, ColumnsLong])))}else{as.character(unique(inputdf[, ColumnsLong]))}}], # both have option to be sorted or be in in order they original occur
                       
                       function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
                                                                                  FUN = function(z){AggregatingFunction(z[,ColumnValue])},
@@ -815,7 +830,7 @@ DetailsOfOverexpressionHEK2Split2bl2 <- cbind(DetailsOfOverexpressionHEK2Split2b
 colnames(DetailsOfOverexpressionHEK2Split2bl2)[4:6] <- c("Headgroup", "ChainLength", "Unsaturation")
 
 # Updated to widen version with different rownames order, but otherwise identical
-DetailsOfOverexpressionHEK2Split2bl2WideVersion <- Col1ToRowNames(widen(inputdf = DetailsOfOverexpressionHEK2Split2bl2, ColumnsLong = "Headgroup", ColumnWide = "ChainLength", ColumnValue = "ControlMeans", AggregatingFunction = sum, FunctionOutputValueType = double(1)))
+DetailsOfOverexpressionHEK2Split2bl2WideVersion <- Col1ToRowNames(widen2(inputdf = DetailsOfOverexpressionHEK2Split2bl2, ColumnsLong = "Headgroup", ColumnWide = "ChainLength", ColumnValue = "ControlMeans", AggregatingFunction = sum, FunctionOutputValueType = double(1)))
 
 # Historical intermediate parts removed
 DetailsOfOverexpressionHEK2Split2bl2WideVersion2 <- DetailsOfOverexpressionHEK2Split2bl2WideVersion
