@@ -214,6 +214,15 @@ meltmatrix <- function(data){do.call("rbind", lapply(colnames(data), function(x)
 # RowNamesColumnsLong = logical determining if rownames are textual aggregations of content of ColumnLong-defined columns (TRUE) (the default)
 # or if the rownames are just a number running from the first to the last row (1:nrow) (FALSE)
 
+# SortRows = logical determining if the rows need to be sorted alphabethically (TRUE) (the default)
+# or if the original order of the rows needs to be maintained as they occur in the input data (FALSE).
+
+# DropUnusedRowsLevels = logical indicating if unused levels of the column indicated by ColumnLong need to be dropped (TRUE) (the default)
+# if ColumnLong only defines one column and if that column is a factor, then DropUnusedRowsLevels = FALSE will allow to include all levels, 
+
+# and if SortRows is TRUE the levels will be sorted, but if SortRows is FALSE the original order of the levels will be used.
+
+
 widen <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE){
   outputdf <- do.call("rbind.data.frame",
                       
@@ -240,6 +249,36 @@ widen2 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFun
                                                                                  
                                                                                  FUN.VALUE = FunctionOutputValueType,
                                                                                  USE.NAMES = TRUE)))}))
+  
+  if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
+  return(outputdf)}
+
+widen4 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE, SortRows = TRUE, DropUnusedRowsLevels = TRUE){
+  if((length(ColumnsLong) == 1) && is.factor(inputdf[,ColumnsLong]) && (DropUnusedRowsLevels == FALSE)){
+    
+    outputdf <- do.call("rbind.data.frame",
+                        lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = FALSE)[if(SortRows){sort(levels(inputdf[, ColumnsLong]))}else{levels(inputdf[, ColumnsLong])}],
+                               
+                               function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
+                                                                                          FUN = function(z){AggregatingFunction(z[,ColumnValue])},
+                                                                                          
+                                                                                          FUN.VALUE = FunctionOutputValueType,
+                                                                                          USE.NAMES = TRUE)))}))
+    
+    outputdf[,ColumnsLong] <- rownames(outputdf)
+  }else{
+    
+    
+    outputdf <- do.call("rbind.data.frame",
+                        
+                        lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){if(SortRows){sort(do.call(paste, c(unique(inputdf[, ColumnsLong]), sep=".")))}else{do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))}
+                        }else{if(SortRows){sort(as.character(unique(inputdf[, ColumnsLong])))}else{as.character(unique(inputdf[, ColumnsLong]))}}], # both have option to be sorted or be in in order they original occur
+                        
+                        function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
+                                                                                   FUN = function(z){AggregatingFunction(z[,ColumnValue])},
+                                                                                   
+                                                                                   FUN.VALUE = FunctionOutputValueType,
+                                                                                   USE.NAMES = TRUE)))}))}
   
   if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
   return(outputdf)}
@@ -830,7 +869,7 @@ DetailsOfOverexpressionHEK2Split2bl2 <- cbind(DetailsOfOverexpressionHEK2Split2b
 colnames(DetailsOfOverexpressionHEK2Split2bl2)[4:6] <- c("Headgroup", "ChainLength", "Unsaturation")
 
 # Updated to widen version with different rownames order, but otherwise identical
-DetailsOfOverexpressionHEK2Split2bl2WideVersion <- Col1ToRowNames(widen2(inputdf = DetailsOfOverexpressionHEK2Split2bl2, ColumnsLong = "Headgroup", ColumnWide = "ChainLength", ColumnValue = "ControlMeans", AggregatingFunction = sum, FunctionOutputValueType = double(1)))
+DetailsOfOverexpressionHEK2Split2bl2WideVersion <- Col1ToRowNames(widen4(inputdf = DetailsOfOverexpressionHEK2Split2bl2, ColumnsLong = "Headgroup", ColumnWide = "ChainLength", ColumnValue = "ControlMeans", AggregatingFunction = sum, FunctionOutputValueType = double(1)))
 
 # Historical intermediate parts removed
 DetailsOfOverexpressionHEK2Split2bl2WideVersion2 <- DetailsOfOverexpressionHEK2Split2bl2WideVersion
@@ -1000,10 +1039,10 @@ colnames(HPTLCDataInVivoAndInVitro) <- c("LTPProtein", "Lipid", "Screen")
 HPTLCDataInVivoAndInVitrob <- HPTLCDataInVivoAndInVitro[HPTLCDataInVivoAndInVitro[,1] != "SEC14L1",] # Removed because of a potential experimental issue
 HPTLCDataInVivoAndInVitrob$LTPProtein <- factor(HPTLCDataInVivoAndInVitrob$LTPProtein, levels = levels(HPTLCDataInVivoAndInVitrob$LTPProtein)[levels(HPTLCDataInVivoAndInVitrob$LTPProtein) != "SEC14L1"])
 
+# Updated with widen4 function
+HPTLCSpecificitiesPerScreen <- lapply(c("A","E"), function(x){Col1ToRowNames(widen4(inputdf = HPTLCDataInVivoAndInVitrob[HPTLCDataInVivoAndInVitrob[,"Screen"] == x,], ColumnsLong = "LTPProtein", ColumnWide = "Lipid", ColumnValue = "Screen", AggregatingFunction = length, DropUnusedRowsLevels = FALSE))})
 
-HPTLCSpecificitiesPerScreen <- lapply(c("A","E"), function(x){Col1ToRowNames(dcast(HPTLCDataInVivoAndInVitrob[HPTLCDataInVivoAndInVitrob[,"Screen"] == x,], LTPProtein ~ Lipid, drop = FALSE, fun.aggregate = length)) })
 
-library(reshape2)
 HPTLCSpecificitiesPerScreen2 <- HPTLCSpecificitiesPerScreen
 
 colnames(HPTLCSpecificitiesPerScreen2[[1]]) <- paste0(colnames(HPTLCSpecificitiesPerScreen2[[1]]), "*")
@@ -1078,11 +1117,8 @@ colnames(LTPMatrixTopInVitrommn) <- colnames(LTPMatrixPosInVitrommn)
 MeltedInVivoCombined <- rbind(meltmatrix(LTPMatrixTopInVivommn), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))
 MeltedInVitroCombined <- rbind(meltmatrix(LTPMatrixTopInVitrommn), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))
 
-CastInVivoCombined <- Col1ToRowNames(dcast(MeltedInVivoCombined, Var1 ~ Var2, value.var = "value"))
-CastInVitroCombined <- Col1ToRowNames(dcast(MeltedInVitroCombined, Var1 ~ Var2, value.var = "value"))
-
-CastInVivoCombined[is.na(CastInVivoCombined)] <- 0
-CastInVitroCombined[is.na(CastInVitroCombined)] <- 0
+CastInVivoCombined <- Col1ToRowNames(widen4(inputdf = MeltedInVivoCombined, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = sum, FunctionOutputValueType = double(1), SortRows = FALSE))
+CastInVitroCombined <- Col1ToRowNames(widen4(inputdf = MeltedInVitroCombined, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = sum, FunctionOutputValueType = double(1), SortRows = FALSE))
 
 # Make overview of LTP classes
 MainDomainsOfTheLTPs <- unique(rbind(PureAntonella32b[,1:2], PureEnric32[,1:2])) 
