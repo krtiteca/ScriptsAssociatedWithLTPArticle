@@ -1318,11 +1318,11 @@ MissingLipidEntriesInVitro <- c(rownames(InVivoDataSetTotalslchdr), rownames(InV
 MeltedInVivoCombinedslc <- rbind(meltmatrix(LTPMatrixTopInVivommnslc), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))
 MeltedInVitroCombinedslc <- rbind(meltmatrix(LTPMatrixTopInVitrommnslc), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))
 
-CastInVivoCombinedslc <- as.matrix(Col1ToRowNames(dcast(MeltedInVivoCombinedslc, Var1 ~ Var2, value.var = "value", fun.aggregate = function(x){max(x,na.rm = TRUE)})))
-CastInVitroCombinedslc <- as.matrix(Col1ToRowNames(dcast(MeltedInVitroCombinedslc, Var1 ~ Var2, value.var = "value", fun.aggregate = function(x){max(x,na.rm = TRUE)})))
+# Again reduction in script size by use of widen4 and internally defined function to handle infinites.
+# Should also handle possible warnings for introduction of infinites.
 
-CastInVivoCombinedslc[is.infinite(CastInVivoCombinedslc)] <- 0
-CastInVitroCombinedslc[is.infinite(CastInVitroCombinedslc)] <- 0
+CastInVivoCombinedslc <- as.matrix(Col1ToRowNames(widen4(inputdf = MeltedInVivoCombinedslc, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = function(x){if(length(x)>0){max(x,na.rm = TRUE)}else{0}}, FunctionOutputValueType = double(1), SortRows = FALSE)))
+CastInVitroCombinedslc <- as.matrix(Col1ToRowNames(widen4(inputdf = MeltedInVitroCombinedslc, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = function(x){if(length(x)>0){max(x,na.rm = TRUE)}else{0}}, FunctionOutputValueType = double(1), SortRows = FALSE)))
 
 InVivoDataSetTotalslc <- as.matrix(CastInVivoCombinedslc[, rownames(DomainsByRowColumnAssociationsReordered)])
 InVitroDataSetTotalslc <- as.matrix(CastInVitroCombinedslc[, rownames(DomainsByRowColumnAssociationsReordered)])
