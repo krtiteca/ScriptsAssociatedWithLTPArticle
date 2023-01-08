@@ -1040,7 +1040,7 @@ HPTLCDataInVivoAndInVitrob <- HPTLCDataInVivoAndInVitro[HPTLCDataInVivoAndInVitr
 HPTLCDataInVivoAndInVitrob$LTPProtein <- factor(HPTLCDataInVivoAndInVitrob$LTPProtein, levels = levels(HPTLCDataInVivoAndInVitrob$LTPProtein)[levels(HPTLCDataInVivoAndInVitrob$LTPProtein) != "SEC14L1"])
 
 # Updated with widen4 function
-HPTLCSpecificitiesPerScreen <- lapply(c("A","E"), function(x){Col1ToRowNames(widen4(inputdf = HPTLCDataInVivoAndInVitrob[HPTLCDataInVivoAndInVitrob[,"Screen"] == x,], ColumnsLong = "LTPProtein", ColumnWide = "Lipid", ColumnValue = "Screen", AggregatingFunction = length, DropUnusedRowsLevels = FALSE))})
+HPTLCSpecificitiesPerScreen <- lapply(c("A","E"), function(x){Col1ToRowNames(widen4(inputdf = HPTLCDataInVivoAndInVitrob[HPTLCDataInVivoAndInVitrob[,"Screen"] == x,], ColumnsLong = "LTPProtein", ColumnWide = "Lipid", ColumnValue = "Screen", AggregatingFunction = length, DropUnusedRowsLevels = FALSE, FunctionOutputValueType = integer(1)))})
 
 
 HPTLCSpecificitiesPerScreen2 <- HPTLCSpecificitiesPerScreen
@@ -1192,14 +1192,14 @@ SequenceAndDomainHighlightsLTPs[,4] <- as.numeric(as.character(SequenceAndDomain
 SequenceAndDomainHighlightsLTPs2 <- SequenceAndDomainHighlightsLTPs[!is.na(SequenceAndDomainHighlightsLTPs$StartRegion),]
 library(reshape2)
 
-CastProteinDomainsOfLTPs <- Col1ToRowNames(dcast(SequenceAndDomainHighlightsLTPs2, LTPProtein ~ RegionName, value.var = "StartRegion"))
+CastProteinDomainsOfLTPs <- ZerosToNAsConverter(Col1ToRowNames(widen4(inputdf = SequenceAndDomainHighlightsLTPs2, ColumnsLong = "LTPProtein", ColumnWide = "RegionName", ColumnValue = "StartRegion", AggregatingFunction = sum, FunctionOutputValueType = double(1))))
 CastProteinDomainsOfLTPs2 <- CastProteinDomainsOfLTPs
 
 CastProteinDomainsOfLTPs2[setdiff(MainDomainsOfTheLTPs4[,"LTPProtein"], rownames(CastProteinDomainsOfLTPs2)),] <- NA
 CastProteinDomainsOfLTPs4 <- CastProteinDomainsOfLTPs2[MainDomainsOfTheLTPs4[,"LTPProtein"],]
 
 
-CastMainProteinDomainsLTPs <- Col1ToRowNames(dcast(as.data.frame(MainDomainsOfTheLTPs4), LTPProtein ~ MainDomain, fun.aggregate = length))[MainDomainsOfTheLTPs4[,"LTPProtein"],]
+CastMainProteinDomainsLTPs <- Col1ToRowNames(widen4(inputdf = as.data.frame(MainDomainsOfTheLTPs4), ColumnsLong = "LTPProtein", ColumnWide = "MainDomain", ColumnValue = "MainDomain", AggregatingFunction = length, FunctionOutputValueType = integer(1), SortRows = FALSE))[MainDomainsOfTheLTPs4[,"LTPProtein"],]
 
 CastMainProteinDomainsLTPswnas <- CastMainProteinDomainsLTPs
 CastMainProteinDomainsLTPswnas[CastMainProteinDomainsLTPswnas == 0] <- NA
