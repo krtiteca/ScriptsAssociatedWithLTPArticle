@@ -1300,29 +1300,14 @@ HPTLCSpecificitiesPerScreen2hdrm4[[2]] <- HPTLCSpecificitiesPerScreen2hdrm2[[2]]
 MeltedInVivoCombinedslchdr <- rbind(meltmatrix(LTPMatrixTopInVivommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[1]])
 MeltedInVitroCombinedslchdr <- rbind(meltmatrix(LTPMatrixTopInVitrommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[2]])
 
-CastInVivoCombinedslchdr <- as.matrix(Col1ToRowNames(dcast(MeltedInVivoCombinedslchdr, Var1 ~ Var2, value.var = "value", fun.aggregate = function(x){max(x,na.rm = TRUE)})))
-CastInVitroCombinedslchdr <- as.matrix(Col1ToRowNames(dcast(MeltedInVitroCombinedslchdr, Var1 ~ Var2, value.var = "value", fun.aggregate = function(x){max(x,na.rm = TRUE)})))
+CastInVivoCombinedslchdr <- as.matrix(Col1ToRowNames(widen4(inputdf = MeltedInVivoCombinedslchdr, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = function(x){if(length(x)>0){max(x,na.rm = TRUE)}else{0}}, FunctionOutputValueType = double(1), SortRows = FALSE)))
+CastInVitroCombinedslchdr <- as.matrix(Col1ToRowNames(widen4(inputdf = MeltedInVitroCombinedslchdr, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = function(x){if(length(x)>0){max(x,na.rm = TRUE)}else{0}}, FunctionOutputValueType = double(1), SortRows = FALSE)))
 
-CastInVivoCombinedslchdr[is.infinite(CastInVivoCombinedslchdr)] <- 0
-CastInVitroCombinedslchdr[is.infinite(CastInVitroCombinedslchdr)] <- 0
+# Internal conversions simplified/eliminated by introduction of more advanced widen4 function instead of the original script snippet, and thus no missing colnames anymore
 
-all(colnames(CastInVitroCombinedslchdr) %in% rownames(DomainsByRowColumnAssociationsReordered)) # TRUE
-all(rownames(DomainsByRowColumnAssociationsReordered) %in% colnames(CastInVitroCombinedslchdr)) # FALSE
-
-rownames(DomainsByRowColumnAssociationsReordered)[!(rownames(DomainsByRowColumnAssociationsReordered) %in% colnames(CastInVitroCombinedslchdr))]
-# Missing parts: "OSBP"    "OSBPL1A" "OSBPL10" "OSBP2"   "OSBPL8"  "OSBPL11" "OSBPL7"  "OSBPL2"
-
-
-CastInVitroCombinedslchdr2 <- cbind(CastInVitroCombinedslchdr, matrix(data = 0, 
-                                                                      
-                                                                      nrow = nrow(CastInVitroCombinedslchdr),
-                                                                      ncol = length(rownames(DomainsByRowColumnAssociationsReordered)[!(rownames(DomainsByRowColumnAssociationsReordered) %in% colnames(CastInVitroCombinedslchdr))]),
-                                                                      
-                                                                      dimnames = list(rownames(CastInVitroCombinedslchdr),
-                                                                                      rownames(DomainsByRowColumnAssociationsReordered)[!(rownames(DomainsByRowColumnAssociationsReordered) %in% colnames(CastInVitroCombinedslchdr))])))
 
 InVivoDataSetTotalslchdr <- as.matrix(CastInVivoCombinedslchdr[, rownames(DomainsByRowColumnAssociationsReordered)])
-InVitroDataSetTotalslchdr <- as.matrix(CastInVitroCombinedslchdr2[, rownames(DomainsByRowColumnAssociationsReordered)]) 
+InVitroDataSetTotalslchdr <- as.matrix(CastInVitroCombinedslchdr[, rownames(DomainsByRowColumnAssociationsReordered)]) 
 
 c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))[!unique(c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))) %in% rownames(InVivoDataSetTotalslchdr)]
 # character(0)
