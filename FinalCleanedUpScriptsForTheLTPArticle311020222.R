@@ -203,7 +203,7 @@ RbindMultipleDataframesFillNonmatches <- function(dflist, FillerValue = NA){
   do.call(rbind.data.frame,
           
           lapply(dflist,
-                 function(x){do.call("cbind.data.frame", c(x, sapply(setdiff(unique(unlist(lapply(dflist, names))), names(x)), function(y){FillerValue})))}))}
+                 function(x){do.call("cbind.data.frame", c(x, sapply(setdiff(unique(unlist(lapply(dflist, names))), names(x)), function(y){FillerValue}), stringAsFactors = FALSE))}))}
 
 
 #### Function to covert dataframes to a wider dataframe based on one column and with option to keep multiple columns intact & aggregate similar data
@@ -1816,187 +1816,190 @@ LipidSubclassesAddedToBackground170620214 <- setNames(lapply(unique(LipidSubclas
 
 LTPLipidConnectionsDataSubset <- cbind(LTPLipidConnectionsDataSet[,c("LTPProtein", "LikelySubclass", "Screen", "Intensity")], CarbonChain = paste(LTPLipidConnectionsDataSet[,"TotalCarbonChainLength"],LTPLipidConnectionsDataSet[,"TotalCarbonChainUnsaturations"], sep = ":"))
 
-library(reshape2)
-LTPLipidConnectionsDataAggregated <- dcast(LTPLipidConnectionsDataSubset, LTPProtein + LikelySubclass + Screen ~ CarbonChain, value.var="Intensity", fun.aggregate = function(x){sum(x, na.rm = TRUE)})
+# Change to widen5 changes the order of the rows, so I set up a new series of variables here with x at the end. PC come e.g. below PC-O.
+LTPLipidConnectionsDataAggregatedx <- widen5(inputdf = LTPLipidConnectionsDataSubset, ColumnsLong = c("LTPProtein", "LikelySubclass", "Screen"), ColumnWide = "CarbonChain", ColumnValue = "Intensity", AggregatingFunction = function(x){sum(x, na.rm = TRUE)}, RowNamesColumnsLong = FALSE)
 
-PITransportersComobilizedPatterns <- LTPLipidConnectionsDataAggregated[LTPLipidConnectionsDataAggregated[, "LTPProtein"] %in% unique(LTPLipidConnectionsDataAggregated[LTPLipidConnectionsDataAggregated$LikelySubclass == "PI", "LTPProtein"])[c(1,2,6,3,4,5)],]
-PITransportersComobilizedPatterns2 <- cbind(PITransportersComobilizedPatterns[,1:3], PITransportersComobilizedPatterns[,4:100][,colSums(PITransportersComobilizedPatterns[,4:100]) != 0])
+PITransportersComobilizedPatternsx <- LTPLipidConnectionsDataAggregatedx[LTPLipidConnectionsDataAggregatedx[, "LTPProtein"] %in% unique(LTPLipidConnectionsDataAggregatedx[LTPLipidConnectionsDataAggregatedx$LikelySubclass == "PI", "LTPProtein"])[c(1,2,6,3,4,5)],]
+PITransportersComobilizedPatterns2x <- cbind(PITransportersComobilizedPatternsx[,1:3], PITransportersComobilizedPatternsx[,4:100][,colSums(PITransportersComobilizedPatternsx[,4:100]) != 0])
 
-PITransportersComobilizedPatterns4 <- PITransportersComobilizedPatterns2
-PITransportersComobilizedPatterns4[,-(1:3)] <- PITransportersComobilizedPatterns4[,-(1:3)]*100/do.call(pmax, PITransportersComobilizedPatterns4[,-(1:3)])
+PITransportersComobilizedPatterns4x <- PITransportersComobilizedPatterns2x
+PITransportersComobilizedPatterns4x[,-(1:3)] <- PITransportersComobilizedPatterns4x[,-(1:3)]*100/do.call(pmax, PITransportersComobilizedPatterns4x[,-(1:3)])
 
-PITransportersComobilizedPatterns4 <- cbind(LTP_Lipid = paste(PITransportersComobilizedPatterns4[,1], PITransportersComobilizedPatterns4[,2], sep = "_"), PITransportersComobilizedPatterns4)
-NewRownamesPITransporters <- unique(PITransportersComobilizedPatterns4$LTP_Lipid)
+PITransportersComobilizedPatterns4x <- cbind(LTP_Lipid = paste(PITransportersComobilizedPatterns4x[,1], PITransportersComobilizedPatterns4x[,2], sep = "_"), PITransportersComobilizedPatterns4x)
+NewRownamesPITransportersx <- unique(PITransportersComobilizedPatterns4x$LTP_Lipid)
 
 GroupingListPITransporters <- list(list(22, 21, 4 , c(1:3,5), 10, c(6:9), 13, 12, 11, 18, 15, 14, c(16:17), 20, 19),
                                    list(NA, NA, NA, c("BPI", NA, "in vivo"), NA, c("GM2A", NA, "in vivo"), NA, NA, NA, NA, NA, NA, c("PITPNB", "PG/BMP", "in vitro"), NA, NA))
 
-PITransportersComobilizedPatterns2CondensedRowEntries <- as.matrix(do.call("rbind", lapply(1:length(GroupingListPITransporters[[1]]), function(x){
+PITransportersComobilizedPatterns2CondensedRowEntriesx <- as.matrix(do.call("rbind", lapply(1:length(GroupingListPITransporters[[1]]), function(x){
   if(length(GroupingListPITransporters[[1]][[x]]) == 1){
     
-    PITransportersComobilizedPatterns2[GroupingListPITransporters[[1]][[x]],]
+    PITransportersComobilizedPatterns2x[GroupingListPITransporters[[1]][[x]],]
   }else{
     
-    c(GroupingListPITransporters[[2]][[x]], colSums(PITransportersComobilizedPatterns2[GroupingListPITransporters[[1]][[x]],-(1:3)]))
+    c(GroupingListPITransporters[[2]][[x]], colSums(PITransportersComobilizedPatterns2x[GroupingListPITransporters[[1]][[x]],-(1:3)]))
     
     
   }
 })))
 
-PITransportersComobilizedPatterns2CondensedRowEntries[4,2] <- "Other"
-PITransportersComobilizedPatterns2CondensedRowEntries[6,2] <- "Other"
+PITransportersComobilizedPatterns2CondensedRowEntriesx[4,2] <- "Other"
+PITransportersComobilizedPatterns2CondensedRowEntriesx[6,2] <- "Other"
 
-PITransportersComobilizedPatterns2CondensedRowEntriesNumericSubsetData <- PITransportersComobilizedPatterns2CondensedRowEntries[,-(1:3)]
-mode(PITransportersComobilizedPatterns2CondensedRowEntriesNumericSubsetData) <- "numeric" 
+PITransportersComobilizedPatterns2CondensedRowEntriesNumericSubsetDatax <- PITransportersComobilizedPatterns2CondensedRowEntriesx[,-(1:3)]
+mode(PITransportersComobilizedPatterns2CondensedRowEntriesNumericSubsetDatax) <- "numeric" 
 
-PITransportersComobilizedPatterns4CondensedRowEntries <- cbind(PITransportersComobilizedPatterns2CondensedRowEntries[,1:3], as.data.frame(PITransportersComobilizedPatterns2CondensedRowEntriesNumericSubsetData))
-PITransportersComobilizedPatterns4CondensedRowEntries[,-(1:3)] <- PITransportersComobilizedPatterns4CondensedRowEntries[,-(1:3)]*100/do.call(pmax, PITransportersComobilizedPatterns4CondensedRowEntries[,-(1:3)])
+PITransportersComobilizedPatterns4CondensedRowEntriesx <- cbind(PITransportersComobilizedPatterns2CondensedRowEntriesx[,1:3], as.data.frame(PITransportersComobilizedPatterns2CondensedRowEntriesNumericSubsetDatax))
+PITransportersComobilizedPatterns4CondensedRowEntriesx[,-(1:3)] <- PITransportersComobilizedPatterns4CondensedRowEntriesx[,-(1:3)]*100/do.call(pmax, PITransportersComobilizedPatterns4CondensedRowEntriesx[,-(1:3)])
 
-PITransportersComobilizedPatterns4CondensedRowEntries <- cbind(LTP_Lipid = paste(PITransportersComobilizedPatterns4CondensedRowEntries[,1], PITransportersComobilizedPatterns4CondensedRowEntries[,2], sep = "_"), PITransportersComobilizedPatterns4CondensedRowEntries)
-NewRownamesPITransportersCondensedRowEntries <- unique(PITransportersComobilizedPatterns4CondensedRowEntries$LTP_Lipid)
+PITransportersComobilizedPatterns4CondensedRowEntriesx <- cbind(LTP_Lipid = paste(PITransportersComobilizedPatterns4CondensedRowEntriesx[,1], PITransportersComobilizedPatterns4CondensedRowEntriesx[,2], sep = "_"), PITransportersComobilizedPatterns4CondensedRowEntriesx)
+NewRownamesPITransportersCondensedRowEntriesx <- unique(PITransportersComobilizedPatterns4CondensedRowEntriesx$LTP_Lipid)
 
+CellularListPITransportersx <- lapply(sapply(strsplit(sapply(strsplit(as.character(NewRownamesPITransportersx), "_"), "[[", 2), "/"), "[[", 1), function(x){rbind(rownames(LipidSubclassesAddedToBackground170620214[[x]]), 
+                                                                                                                                                                  ZerosToNAsConverter(LipidSubclassesAddedToBackground170620214[[x]][,"Cellular"]))})
 
-library("plyr")
-
-CellularListPITransporters <- lapply(sapply(strsplit(sapply(strsplit(as.character(NewRownamesPITransporters), "_"), "[[", 2), "/"), "[[", 1), function(x){rbind(rownames(LipidSubclassesAddedToBackground170620214[[x]]), 
-                                                                                                                                                            ZerosToNAsConverter(LipidSubclassesAddedToBackground170620214[[x]][,"Cellular"]))})
-
-CellularListPITransportersVectorsWithoutTheNAs <- lapply(1:length(CellularListPITransporters), function(x){as.data.frame(t(setNames(as.numeric(CellularListPITransporters[[x]][2,!is.na(CellularListPITransporters[[x]][2,])]),
-                                                                                                                                    gsub("O-","",sapply(strsplit(gsub(")","",CellularListPITransporters[[x]][1,!is.na(CellularListPITransporters[[x]][2,])]), "\\("), "[[", 2)))))})
-
-CarbonChainColNames <- sort(unique(c(colnames(PITransportersComobilizedPatterns4)[-(1:4)], unlist(lapply(CellularListPITransportersVectorsWithoutTheNAs, names)))))[c(1:54,56:60,55)]
-PITransportersComobilizedPatterns4WithCellularAdded <- ZerosToNAsConverter(rbind.fill(PITransportersComobilizedPatterns4, do.call("cbind", list(LTP_Lipid = "cellular",
-                                                                                                                                                
-                                                                                                                                                LTPProtein = "cellular",
-                                                                                                                                                LikelySubclass = sapply(strsplit(sapply(strsplit(as.character(NewRownamesPITransporters), "_"), "[[", 2), "/"), "[[", 1),
-                                                                                                                                                
-                                                                                                                                                Screen = "cellular",
-                                                                                                                                                do.call("rbind.fill", CellularListPITransportersVectorsWithoutTheNAs)))))[c("LTP_Lipid", "LTPProtein", "LikelySubclass", "Screen", CarbonChainColNames)]
+CellularListPITransportersVectorsWithoutTheNAsx <- lapply(1:length(CellularListPITransportersx), function(x){as.data.frame(t(setNames(as.numeric(CellularListPITransportersx[[x]][2,!is.na(CellularListPITransportersx[[x]][2,])]),
+                                                                                                                                      gsub("O-","",sapply(strsplit(gsub(")","",CellularListPITransportersx[[x]][1,!is.na(CellularListPITransportersx[[x]][2,])]), "\\("), "[[", 2)))))})
 
 
-PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries <- ZerosToNAsConverter(rbind.fill(PITransportersComobilizedPatterns4CondensedRowEntries, do.call("cbind", list(LTP_Lipid = "cellular",
-                                                                                                                                                                                      
-                                                                                                                                                                                      LTPProtein = "cellular",
-                                                                                                                                                                                      LikelySubclass = sapply(strsplit(sapply(strsplit(as.character(NewRownamesPITransporters), "_"), "[[", 2), "/"), "[[", 1),
-                                                                                                                                                                                      
-                                                                                                                                                                                      Screen = "cellular",
-                                                                                                                                                                                      do.call("rbind.fill", CellularListPITransportersVectorsWithoutTheNAs)))))[c("LTP_Lipid", "LTPProtein", "LikelySubclass", "Screen", CarbonChainColNames)]
+CarbonChainColNamesx <- sort(unique(c(colnames(PITransportersComobilizedPatterns4x)[-(1:4)], unlist(lapply(CellularListPITransportersVectorsWithoutTheNAsx, names)))))[c(1:54,56:60,55)]
 
-PITransportersComobilizedPatterns4WithCellularAdded2 <- unique(PITransportersComobilizedPatterns4WithCellularAdded)
-PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2 <- unique(PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries)
+# Implemented consequences of earlier widen as well as introduced RbindMultipleDataframesFillNonmatches-Function to reduce package dependency
+PITransportersComobilizedPatterns4WithCellularAddedx <- ZerosToNAsConverter(RbindMultipleDataframesFillNonmatches(list(PITransportersComobilizedPatterns4x, do.call("cbind", list(LTP_Lipid = "cellular",
+                                                                                                                                                                                  
+                                                                                                                                                                                  LTPProtein = "cellular",
+                                                                                                                                                                                  LikelySubclass = sapply(strsplit(sapply(strsplit(as.character(NewRownamesPITransportersx), "_"), "[[", 2), "/"), "[[", 1),
+                                                                                                                                                                                  
+                                                                                                                                                                                  Screen = "cellular",
+                                                                                                                                                                                  RbindMultipleDataframesFillNonmatches(CellularListPITransportersVectorsWithoutTheNAsx))))))[c("LTP_Lipid", "LTPProtein", "LikelySubclass", "Screen", CarbonChainColNamesx)]
 
+# Implemented consequences of earlier widen as well as introduced RbindMultipleDataframesFillNonmatches-Function to reduce package dependency
+PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntriesxx <- ZerosToNAsConverter(RbindMultipleDataframesFillNonmatches(list(PITransportersComobilizedPatterns4CondensedRowEntriesx, do.call("cbind", list(LTP_Lipid = "cellular",
+                                                                                                                                                                                                                         
+                                                                                                                                                                                                                         LTPProtein = "cellular",
+                                                                                                                                                                                                                         LikelySubclass = sapply(strsplit(sapply(strsplit(as.character(NewRownamesPITransportersx), "_"), "[[", 2), "/"), "[[", 1),
+                                                                                                                                                                                                                         
+                                                                                                                                                                                                                         Screen = "cellular",
+                                                                                                                                                                                                                         RbindMultipleDataframesFillNonmatches(CellularListPITransportersVectorsWithoutTheNAsx))))))[c("LTP_Lipid", "LTPProtein", "LikelySubclass", "Screen", CarbonChainColNamesx)]
 
-EmptyLayerPITransporters <- matrix(NA, 
-                                   
-                                   nrow = length(NewRownamesPITransporters), 
-                                   ncol = length(CarbonChainColNames), 
-                                   
-                                   dimnames = list(NewRownamesPITransporters,
-                                                   CarbonChainColNames))
+rownames(PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntriesxx) <- 1:dim(PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntriesxx)[1]
+PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntriesx <- PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntriesxx
 
-NewPITransLayers <- list(InCellulo = EmptyLayerPITransporters,
-                         InVitro = EmptyLayerPITransporters,
-                         
-                         Cellular = EmptyLayerPITransporters)
-
-
-
-EmptyLayerPITransportersCondensedRowEntries <- matrix(NA, 
-                                                      
-                                                      nrow = length(NewRownamesPITransportersCondensedRowEntries), 
-                                                      ncol = length(CarbonChainColNames), 
-                                                      
-                                                      dimnames = list(NewRownamesPITransportersCondensedRowEntries,
-                                                                      CarbonChainColNames))
-
-NewPITransLayersCondensedRowEntries <- list(InCellulo = EmptyLayerPITransportersCondensedRowEntries,
-                                            InVitro = EmptyLayerPITransportersCondensedRowEntries,
-                                            
-                                            Cellular = EmptyLayerPITransportersCondensedRowEntries)
+PITransportersComobilizedPatterns4WithCellularAdded2x <- unique(PITransportersComobilizedPatterns4WithCellularAddedx)
+PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2x <- unique(PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntriesx)
 
 
-for(i in rownames(NewPITransLayers$InCellulo)){
-  if(any((PITransportersComobilizedPatterns4WithCellularAdded2$Screen == "in vivo") & (PITransportersComobilizedPatterns4WithCellularAdded2$LTP_Lipid == i))){
+EmptyLayerPITransportersx <- matrix(NA, 
+                                    
+                                    nrow = length(NewRownamesPITransportersx), 
+                                    ncol = length(CarbonChainColNamesx), 
+                                    
+                                    dimnames = list(NewRownamesPITransportersx,
+                                                    CarbonChainColNamesx))
+
+NewPITransLayersx <- list(InCellulo = EmptyLayerPITransportersx,
+                          InVitro = EmptyLayerPITransportersx,
+                          
+                          Cellular = EmptyLayerPITransportersx)
+
+
+
+EmptyLayerPITransportersCondensedRowEntriesx <- matrix(NA, 
+                                                       
+                                                       nrow = length(NewRownamesPITransportersCondensedRowEntriesx), 
+                                                       ncol = length(CarbonChainColNamesx), 
+                                                       
+                                                       dimnames = list(NewRownamesPITransportersCondensedRowEntriesx,
+                                                                       CarbonChainColNamesx))
+
+NewPITransLayersCondensedRowEntriesx <- list(InCellulo = EmptyLayerPITransportersCondensedRowEntriesx,
+                                             InVitro = EmptyLayerPITransportersCondensedRowEntriesx,
+                                             
+                                             Cellular = EmptyLayerPITransportersCondensedRowEntriesx)
+
+
+for(i in rownames(NewPITransLayersx$InCellulox)){
+  if(any((PITransportersComobilizedPatterns4WithCellularAdded2x$Screen == "in vivo") & (PITransportersComobilizedPatterns4WithCellularAdded2x$LTP_Lipid == i))){
     
-    NewPITransLayers$InCellulo[i,] <- as.numeric(ZerosToNAsConverter(PITransportersComobilizedPatterns4WithCellularAdded2[(PITransportersComobilizedPatterns4WithCellularAdded2$Screen == "in vivo") & (PITransportersComobilizedPatterns4WithCellularAdded2$LTP_Lipid == i),-(1:4)]))
+    NewPITransLayersx$InCellulo[i,] <- as.numeric(ZerosToNAsConverter(PITransportersComobilizedPatterns4WithCellularAdded2x[(PITransportersComobilizedPatterns4WithCellularAdded2x$Screen == "in vivo") & (PITransportersComobilizedPatterns4WithCellularAdded2x$LTP_Lipid == i),-(1:4)]))
   }}
 
-for(i in rownames(NewPITransLayers$InVitro)){
-  if(any((PITransportersComobilizedPatterns4WithCellularAdded2$Screen == "in vitro") & (PITransportersComobilizedPatterns4WithCellularAdded2$LTP_Lipid == i))){
+for(i in rownames(NewPITransLayersx$InVitro)){
+  if(any((PITransportersComobilizedPatterns4WithCellularAdded2x$Screen == "in vitro") & (PITransportersComobilizedPatterns4WithCellularAdded2x$LTP_Lipid == i))){
     
-    NewPITransLayers$InVitro[i,] <- as.numeric(ZerosToNAsConverter(PITransportersComobilizedPatterns4WithCellularAdded2[(PITransportersComobilizedPatterns4WithCellularAdded2$Screen == "in vitro") & (PITransportersComobilizedPatterns4WithCellularAdded2$LTP_Lipid == i),-(1:4)]))
+    NewPITransLayersx$InVitro[i,] <- as.numeric(ZerosToNAsConverter(PITransportersComobilizedPatterns4WithCellularAdded2x[(PITransportersComobilizedPatterns4WithCellularAdded2x$Screen == "in vitro") & (PITransportersComobilizedPatterns4WithCellularAdded2x$LTP_Lipid == i),-(1:4)]))
   }}
 
-for(i in rownames(NewPITransLayers$Cellular)){
-  NewPITransLayers$Cellular[i,] <- as.numeric(ZerosToNAsConverter(PITransportersComobilizedPatterns4WithCellularAdded2[(PITransportersComobilizedPatterns4WithCellularAdded2$Screen == "cellular") & (PITransportersComobilizedPatterns4WithCellularAdded2$LikelySubclass == strsplit(strsplit(i,"_")[[1]][2],"/")[[1]][1]),-(1:4)]))
+for(i in rownames(NewPITransLayersx$Cellular)){
+  NewPITransLayersx$Cellular[i,] <- as.numeric(ZerosToNAsConverter(PITransportersComobilizedPatterns4WithCellularAdded2x[(PITransportersComobilizedPatterns4WithCellularAdded2x$Screen == "cellular") & (PITransportersComobilizedPatterns4WithCellularAdded2x$LikelySubclass == strsplit(strsplit(i,"_")[[1]][2],"/")[[1]][1]),-(1:4)]))
   
 }
 
 
-for(i in rownames(NewPITransLayersCondensedRowEntries$InCellulo)){
-  if(any((PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2$Screen == "in vivo") & (PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2$LTP_Lipid == i))){
+for(i in rownames(NewPITransLayersCondensedRowEntriesx$InCellulo)){
+  if(any((PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2x$Screen == "in vivo") & (PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2x$LTP_Lipid == i))){
     
-    NewPITransLayersCondensedRowEntries$InCellulo[i,] <- as.numeric(ZerosToNAsConverter(PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2[(PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2$Screen == "in vivo") & (PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2$LTP_Lipid == i),-(1:4)]))
+    NewPITransLayersCondensedRowEntriesx$InCellulo[i,] <- as.numeric(ZerosToNAsConverter(PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2x[(PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2x$Screen == "in vivo") & (PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2x$LTP_Lipid == i),-(1:4)]))
   }}
 
-for(i in rownames(NewPITransLayersCondensedRowEntries$InVitro)){
-  if(any((PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2$Screen == "in vitro") & (PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2$LTP_Lipid == i))){
+for(i in rownames(NewPITransLayersCondensedRowEntriesx$InVitro)){
+  if(any((PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2x$Screen == "in vitro") & (PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2x$LTP_Lipid == i))){
     
-    NewPITransLayersCondensedRowEntries$InVitro[i,] <- as.numeric(ZerosToNAsConverter(PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2[(PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2$Screen == "in vitro") & (PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2$LTP_Lipid == i),-(1:4)]))
+    NewPITransLayersCondensedRowEntriesx$InVitro[i,] <- as.numeric(ZerosToNAsConverter(PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2x[(PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2x$Screen == "in vitro") & (PITransportersComobilizedPatterns4WithCellularAddedCondensedRowEntries2x$LTP_Lipid == i),-(1:4)]))
   }}
 
-GroupingListPITransportersAtLaterStage <- list(20, 19, 4 , c(1:3,5), 10, c(6:9), 12, 11, 16, 13, c(14:15), 18, 17)
-NewPITransLayersCondensedRowEntries$Cellular <- do.call("rbind", lapply(GroupingListPITransportersAtLaterStage, function(x){
+GroupingListPITransportersAtLaterStagex <- list(20, 19, 4 , c(1:3,5), 10, c(6:9), 12, 11, 16, 13, c(14:15), 18, 17)
+NewPITransLayersCondensedRowEntriesx$Cellular <- do.call("rbind", lapply(GroupingListPITransportersAtLaterStagex, function(x){
   
   if(length(unlist(x)) == 1){
-    NewPITransLayers$Cellular[unlist(x),]
+    NewPITransLayersx$Cellular[unlist(x),]
     
   }else{
-    colSums(NewPITransLayers[["Cellular"]][unlist(x),], na.rm = TRUE)*100/max(colSums(NewPITransLayers[["Cellular"]][unlist(x),], na.rm = TRUE))
+    colSums(NewPITransLayersx[["Cellular"]][unlist(x),], na.rm = TRUE)*100/max(colSums(NewPITransLayersx[["Cellular"]][unlist(x),], na.rm = TRUE))
     
   }
 }))
 
-rownames(NewPITransLayersCondensedRowEntries$Cellular) <- rownames(NewPITransLayersCondensedRowEntries$InCellulo)
-NewPITransLayersCondensedRowEntries$Cellular <- ZerosToNAsConverter(NewPITransLayersCondensedRowEntries$Cellular)
-  
+rownames(NewPITransLayersCondensedRowEntriesx$Cellular) <- rownames(NewPITransLayersCondensedRowEntriesx$InCellulo)
+NewPITransLayersCondensedRowEntriesx$Cellular <- ZerosToNAsConverter(NewPITransLayersCondensedRowEntriesx$Cellular)
+
+library(RColorBrewer)
+library(ComplexHeatmap)
+
 LegendName <- "Legend"
 LegendColor <- col_fung
 
 WidthAdaptor <- 160
 HeightAdaptor <- 160
 
-TextDataframeWithLTPAnnotation <- data.frame(LTP = factor(sapply(strsplit(rownames(NewPITransLayersCondensedRowEntries$InCellulo), "_"), "[[", 1), levels = unique(sapply(strsplit(rownames(NewPITransLayersCondensedRowEntries$InCellulo), "_"), "[[", 1))))
-AnnotationDataframeWithLTPAnnotation <- rowAnnotation(df = TextDataframeWithLTPAnnotation, col = list(LTP = c("SEC14L2" = "#7E549F", "BPI" = "#FB836F", "GM2A" = "#C1549C", "PITPNA" = "#FFCB3E", "PITPNB" = "#E0B01C", "PITPNC1" = "#A47C00")))
+TextDataframeWithLTPAnnotationx <- data.frame(LTP = factor(sapply(strsplit(rownames(NewPITransLayersCondensedRowEntriesx$InCellulo), "_"), "[[", 1), levels = unique(sapply(strsplit(rownames(NewPITransLayersCondensedRowEntriesx$InCellulo), "_"), "[[", 1))))
+AnnotationDataframeWithLTPAnnotationx <- rowAnnotation(df = TextDataframeWithLTPAnnotationx, col = list(LTP = c("SEC14L2" = "#7E549F", "BPI" = "#FB836F", "GM2A" = "#C1549C", "PITPNA" = "#FFCB3E", "PITPNB" = "#E0B01C", "PITPNC1" = "#A47C00")))
 
 CutOffPresenceProcent <- 5
-CSPIDCRE <- (colSums(NewPITransLayersCondensedRowEntries$InCellulo, na.rm = TRUE) > CutOffPresenceProcent)|(colSums(NewPITransLayersCondensedRowEntries$InVitro, na.rm = TRUE) > CutOffPresenceProcent)
-
-library(ComplexHeatmap)
-library(RColorBrewer)
+CSPIDCREx <- (colSums(NewPITransLayersCondensedRowEntriesx$InCellulo, na.rm = TRUE) > CutOffPresenceProcent)|(colSums(NewPITransLayersCondensedRowEntriesx$InVitro, na.rm = TRUE) > CutOffPresenceProcent)
 
 pdf(paste0("./Output/BarplotHeatmapPITransportersCondensedRowEntriesOnlyScreenColumnsAt", CutOffPresenceProcent,"ProcentCutoffAndAnnotationRows12102021.pdf"),
     width = unit(20, "mm"), height = unit(20, "mm"))
 
-Heatmap(NewPITransLayersCondensedRowEntries$InCellulo[,CSPIDCRE], name = LegendName, col = LegendColor, rect_gp = gpar(type = "none"), column_title = "", 
-        width = unit(WidthAdaptor*dim(NewPITransLayersCondensedRowEntries$InCellulo[,CSPIDCRE])[2]/min(dim(NewPITransLayersCondensedRowEntries$InCellulo[,CSPIDCRE])), "mm"), height = unit(HeightAdaptor*dim(NewPITransLayersCondensedRowEntries$InCellulo[,CSPIDCRE])[1]/min(dim(NewPITransLayersCondensedRowEntries$InCellulo[,CSPIDCRE])), "mm"),
+Heatmap(NewPITransLayersCondensedRowEntriesx$InCellulo[,CSPIDCRE], name = LegendName, col = LegendColor, rect_gp = gpar(type = "none"), column_title = "", 
+        width = unit(WidthAdaptor*dim(NewPITransLayersCondensedRowEntriesx$InCellulo[,CSPIDCREx])[2]/min(dim(NewPITransLayersCondensedRowEntriesx$InCellulo[,CSPIDCREx])), "mm"), height = unit(HeightAdaptor*dim(NewPITransLayersCondensedRowEntriesx$InCellulo[,CSPIDCREx])[1]/min(dim(NewPITransLayersCondensedRowEntriesx$InCellulo[,CSPIDCREx])), "mm"),
         
         
         cell_fun = function(j, i, x, y, width, height, fill) {
           
-          grid.rect(x = x, y = y-0.5*height, width = width, height = NewPITransLayersCondensedRowEntries$InCellulo[,CSPIDCRE][i,j]/100*height, gp = gpar(col = NA, fill = brewer.pal(9,"Blues")[5], lwd = 1), just = c("center","bottom"))
-          grid.rect(x = x, y = y-0.5*height, width = 0.5*width, height = NewPITransLayersCondensedRowEntries$InVitro[,CSPIDCRE][i,j]/100*height, gp = gpar(col = NA, fill = brewer.pal(9,"Oranges")[5], lwd = 1), just = c("center","bottom"))
+          grid.rect(x = x, y = y-0.5*height, width = width, height = NewPITransLayersCondensedRowEntriesx$InCellulo[,CSPIDCREx][i,j]/100*height, gp = gpar(col = NA, fill = brewer.pal(9,"Blues")[5], lwd = 1), just = c("center","bottom"))
+          grid.rect(x = x, y = y-0.5*height, width = 0.5*width, height = NewPITransLayersCondensedRowEntriesx$InVitro[,CSPIDCREx][i,j]/100*height, gp = gpar(col = NA, fill = brewer.pal(9,"Oranges")[5], lwd = 1), just = c("center","bottom"))
           
-          grid.rect(x = x, y = y-0.5*height, width = width, height = NewPITransLayersCondensedRowEntries$Cellular[,CSPIDCRE][i,j]/100*height, gp = gpar(col = "LightGrey", fill = NA, lwd = 2), just = c("center","bottom"))
+          grid.rect(x = x, y = y-0.5*height, width = width, height = NewPITransLayersCondensedRowEntriesx$Cellular[,CSPIDCREx][i,j]/100*height, gp = gpar(col = "LightGrey", fill = NA, lwd = 2), just = c("center","bottom"))
         }, cluster_rows = FALSE, cluster_columns = FALSE, 
         
-
+        
         cluster_row_slices = FALSE, cluster_column_slices = FALSE,
         
         row_title = " ", row_title_gp = gpar(fontsize = 10),
-        left_annotation = AnnotationDataframeWithLTPAnnotation,
+        left_annotation = AnnotationDataframeWithLTPAnnotationx,
         
-        row_labels = sapply(strsplit(rownames(NewPITransLayersCondensedRowEntries$InCellulo), "_"), "[[", 2),
+        row_labels = sapply(strsplit(rownames(NewPITransLayersCondensedRowEntriesx$InCellulo), "_"), "[[", 2),
         row_split = c(rep("A", 2), rep("B",2), rep("C",2), rep("D",2), rep("E",3), rep("F",2))
         
 )
