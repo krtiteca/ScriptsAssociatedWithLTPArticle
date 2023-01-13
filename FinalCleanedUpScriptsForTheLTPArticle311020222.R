@@ -2081,16 +2081,28 @@ AggregatedAllScreenDataNormalized2 <- aggregate(AggregatedAllScreenDataNormalize
                                                 by = AggregatedAllScreenDataNormalized[, c("LTPProtein", "ProteinDomain", "Screen", "TotalCarbonChainLength", "TotalCarbonChainUnsaturations", "LikelySubclass")], 
                                                 
                                                 FUN = function(x){max(x, na.rm=TRUE)})
+# widen5 gives slightly different orders below of rows and columns: were different indicated with x or xx added, until variable are similar again.
+
+AggregatedAllScreenDataNormalized4x <- widen5(inputdf = AggregatedAllScreenDataNormalized2, ColumnsLong = c("LTPProtein", "ProteinDomain", "TotalCarbonChainLength", "TotalCarbonChainUnsaturations", "LikelySubclass"), ColumnWide = "Screen", ColumnValue = "x", AggregatingFunction = sum, FunctionOutputValueType = double(1), RowNamesColumnsLong = FALSE)
+AggregatedAllScreenDataNormalized4x[,1] <- factor(AggregatedAllScreenDataNormalized4x[,1], levels = ReorderedLTPsByManualSeriation)
+
+AggregatedAllScreenDataNormalized4x$LikelySubclass <- factor(AggregatedAllScreenDataNormalized4x$LikelySubclass, levels = c("Cer*", "d*Cer", "dCer", "DHCer", "DHOH*Cer", "tCer", "d*CerP", "d*HexCer", "t*HexCer", "t*Hex2Cer", "d*SHexCer", "d*SM", "DHSM", "t*SM", "FA",       
+                                                                                                                            "FAL", "LPC", "LPE", "LPE-O", "LPG", "PA", "PC", "PC-O", "PE", "PE-O", "PI", "PIPs", "PS", "PGP", "PG", "PG/BMP", "BMP", "CL", "DAG", "TAG", "Sterol", "VA") )
+
+AggregatedAllScreenDataNormalized4x$BandSize <- 1 
 
 
-AggregatedAllScreenDataNormalized4 <- dcast(AggregatedAllScreenDataNormalized2, LTPProtein + ProteinDomain + TotalCarbonChainLength + TotalCarbonChainUnsaturations + LikelySubclass ~ Screen, value.var = "x")
-AggregatedAllScreenDataNormalized4[,1] <- factor(AggregatedAllScreenDataNormalized4[,1], levels = ReorderedLTPsByManualSeriation)
+# Descrepancy in row sorting with row with unsaturations at 10 before 8 --> corrected
+x <- AggregatedAllScreenDataNormalized4x[579,] 
 
-AggregatedAllScreenDataNormalized4$LikelySubclass <- factor(AggregatedAllScreenDataNormalized4$LikelySubclass, levels = c("Cer*", "d*Cer", "dCer", "DHCer", "DHOH*Cer", "tCer", "d*CerP", "d*HexCer", "t*HexCer", "t*Hex2Cer", "d*SHexCer", "d*SM", "DHSM", "t*SM", "FA",       
-                                                                                                                          "FAL", "LPC", "LPE", "LPE-O", "LPG", "PA", "PC", "PC-O", "PE", "PE-O", "PI", "PIPs", "PS", "PGP", "PG", "PG/BMP", "BMP", "CL", "DAG", "TAG", "Sterol", "VA") )
+AggregatedAllScreenDataNormalized4x[579,] <- AggregatedAllScreenDataNormalized4x[580,]
+AggregatedAllScreenDataNormalized4x[580,] <- x
 
-AggregatedAllScreenDataNormalized4$BandSize <- 1 
+# Other differences changed to original order in xx version: in vivo after in vitro column, and for OSBPL2 PIPs after Sterol, so all is the same as original
+AggregatedAllScreenDataNormalized4xx <- AggregatedAllScreenDataNormalized4x[c(1:213,215,214,216:nrow(AggregatedAllScreenDataNormalized4x)),c(1:5,7,6,8)]
 
+rownames(AggregatedAllScreenDataNormalized4xx) <- 1:dim(AggregatedAllScreenDataNormalized4xx)[1]
+AggregatedAllScreenDataNormalized4 <- AggregatedAllScreenDataNormalized4xx
 
 HPTLCRowsInData <- which(AggregatedAllScreenDataNormalized4$TotalCarbonChainLength == 0)
 AggregatedAllScreenDataNormalized4ifh <- AggregatedAllScreenDataNormalized4
@@ -2104,8 +2116,8 @@ HPTLCRowsInDataNAsToBeIntroduced <- do.call("cbind", list(AggregatedAllScreenDat
 AggregatedAllScreenDataNormalized4ifh[HPTLCRowsInDataNAsToBeIntroduced[HPTLCRowsInDataNAsToBeIntroduced[,"InVitroRemovalData"],"RowToBeEvaluated"], "in vitro"] <- NA
 AggregatedAllScreenDataNormalized4ifh[HPTLCRowsInDataNAsToBeIntroduced[HPTLCRowsInDataNAsToBeIntroduced[,"InVivoRemovalData"],"RowToBeEvaluated"], "in vivo"] <- NA
 
-AggregatedAllScreenDataNormalized4hdr <- AggregatedAllScreenDataNormalized4ifh[!(is.na(AggregatedAllScreenDataNormalized4ifh[,"in vivo"]) & is.na(AggregatedAllScreenDataNormalized4ifh[,"in vitro"])),]
-
+# Has the corrected extra 2 entries for OSBPL9-PS and STARD10-PE: adapted to x version
+AggregatedAllScreenDataNormalized4hdrx <- AggregatedAllScreenDataNormalized4ifh[!(is.na(AggregatedAllScreenDataNormalized4ifh[,"in vivo"]) & is.na(AggregatedAllScreenDataNormalized4ifh[,"in vitro"])),]
 
 InCelluloInVitroPresence <- (InVivoDataSetslc != 0)|(InVitroDataSetslc != 0)
 mode(InCelluloInVitroPresence) <- "numeric"
@@ -2137,17 +2149,17 @@ pdf("./Output/CircosExtendedWithSpecies051120217WithTracksSwitchedDecreasedTextS
 circos.clear()
 circos.par(start.degree = -70, clock.wise = FALSE, cell.padding = c(0,0,0,0))
 
-testchord2 <- chordDiagram(AggregatedAllScreenDataNormalized4hdr[,c(5,1,8)], annotationTrack = NULL, grid.col = LipidColorsForCircos4b, directional = -1, diffHeight = mm_h(0),
-                           preAllocateTracks = list(list(track.height = 0.005),
-                                                    
-                                                    list(track.height = 0.16),
-                                                    list(track.height = 0.05)),
-                           
-                           order = c(c("Cer*", "d*Cer", "dCer", "DHCer", "DHOH*Cer", "tCer", "d*CerP", "d*HexCer", "t*HexCer", "t*Hex2Cer", "d*SHexCer", "d*SM", "DHSM", "t*SM",
-                                       "FA", "FAL", "LPC", "LPE", "LPE-O", "LPG", "PA", "PC", "PC-O", "PE", "PE-O", "PI", "PIPs", "PS", "PGP", "PG", "PG/BMP", "BMP", 
-                                       
-                                       "CL", "DAG", "TAG", "Sterol", "VA"),
-                                     ReorderedLTPsByManualSeriation))
+testchord2x <- chordDiagram(AggregatedAllScreenDataNormalized4hdrx[,c(5,1,8)], annotationTrack = NULL, grid.col = LipidColorsForCircos4b, directional = -1, diffHeight = mm_h(0),
+                            preAllocateTracks = list(list(track.height = 0.005),
+                                                     
+                                                     list(track.height = 0.16),
+                                                     list(track.height = 0.05)),
+                            
+                            order = c(c("Cer*", "d*Cer", "dCer", "DHCer", "DHOH*Cer", "tCer", "d*CerP", "d*HexCer", "t*HexCer", "t*Hex2Cer", "d*SHexCer", "d*SM", "DHSM", "t*SM",
+                                        "FA", "FAL", "LPC", "LPE", "LPE-O", "LPG", "PA", "PC", "PC-O", "PE", "PE-O", "PI", "PIPs", "PS", "PGP", "PG", "PG/BMP", "BMP", 
+                                        
+                                        "CL", "DAG", "TAG", "Sterol", "VA"),
+                                      ReorderedLTPsByManualSeriation))
 
 circos.track(track.index = 2, panel.fun = function(x, y) {
   circos.text(CELL_META$xcenter, CELL_META$ylim[1], CELL_META$sector.index, 
@@ -2167,95 +2179,92 @@ ylim <- c(0, 1)
 y1 <- ylim[1]
 y2 <- ylim[2]
 
-cdmresaddedvalues <- cbind(testchord2, AggregatedAllScreenDataNormalized4hdr)
-colnames(cdmresaddedvalues)[colnames(cdmresaddedvalues) == "in vivo"] <- "in cellulo"
+cdmresaddedvaluesx <- cbind(testchord2x, AggregatedAllScreenDataNormalized4hdrx)
+colnames(cdmresaddedvaluesx)[colnames(cdmresaddedvaluesx) == "in vivo"] <- "in cellulo"
 
-
-i <- 10
-
-for(i in seq_len(nrow(cdmresaddedvalues))) {
-  if(cdmresaddedvalues$value1[i] > 0) {
+for(i in seq_len(nrow(cdmresaddedvaluesx))) {
+  if(cdmresaddedvaluesx$value1[i] > 0) {
     
-    circos.rect(cdmresaddedvalues[i, "x1"], y1, cdmresaddedvalues[i, "x1"] - abs(cdmresaddedvalues[i, "value1"]), y1 + (y2-y1)*0.45, 
+    circos.rect(cdmresaddedvaluesx[i, "x1"], y1, cdmresaddedvaluesx[i, "x1"] - abs(cdmresaddedvaluesx[i, "value1"]), y1 + (y2-y1)*0.45, 
                 col = "#ededed", 
                 
                 border = "#ededed",
-                sector.index = cdmresaddedvalues$rn[i], track.index = 3)
+                sector.index = cdmresaddedvaluesx$rn[i], track.index = 3)
     
-    circos.rect(cdmresaddedvalues[i, "x1"], y1 + (y2-y1)*0.55, cdmresaddedvalues[i, "x1"] - abs(cdmresaddedvalues[i, "value1"]), y2, 
+    circos.rect(cdmresaddedvaluesx[i, "x1"], y1 + (y2-y1)*0.55, cdmresaddedvaluesx[i, "x1"] - abs(cdmresaddedvaluesx[i, "value1"]), y2, 
                 col = "#ededed", 
                 
                 border = "#ededed",
-                sector.index = cdmresaddedvalues$rn[i], track.index = 3)
+                sector.index = cdmresaddedvaluesx$rn[i], track.index = 3)
     
-    circos.rect(cdmresaddedvalues[i, "x2"], y1, cdmresaddedvalues[i, "x2"] - abs(cdmresaddedvalues[i, "value1"]), y1 + (y2-y1)*0.45, 
+    circos.rect(cdmresaddedvaluesx[i, "x2"], y1, cdmresaddedvaluesx[i, "x2"] - abs(cdmresaddedvaluesx[i, "value1"]), y1 + (y2-y1)*0.45, 
                 col = "#ededed", 
                 
                 border = "#ededed",
-                sector.index = cdmresaddedvalues$cn[i], track.index = 3)
+                sector.index = cdmresaddedvaluesx$cn[i], track.index = 3)
     
-    circos.rect(cdmresaddedvalues[i, "x2"], y1 + (y2-y1)*0.55, cdmresaddedvalues[i, "x2"] - abs(cdmresaddedvalues[i, "value1"]), y2, 
+    circos.rect(cdmresaddedvaluesx[i, "x2"], y1 + (y2-y1)*0.55, cdmresaddedvaluesx[i, "x2"] - abs(cdmresaddedvaluesx[i, "value1"]), y2, 
                 col = "#ededed", 
                 
                 border = "#ededed",
-                sector.index = cdmresaddedvalues$cn[i], track.index = 3)
+                sector.index = cdmresaddedvaluesx$cn[i], track.index = 3)
     
-    circos.rect(cdmresaddedvalues[i, "x1"], y1, cdmresaddedvalues[i, "x1"] - abs(cdmresaddedvalues[i, "value1"]), y1 + (y2-y1)*0.45, 
-                col = col_funo(cdmresaddedvalues[i, "in vitro"]), 
+    circos.rect(cdmresaddedvaluesx[i, "x1"], y1, cdmresaddedvaluesx[i, "x1"] - abs(cdmresaddedvaluesx[i, "value1"]), y1 + (y2-y1)*0.45, 
+                col = col_funo(cdmresaddedvaluesx[i, "in vitro"]), 
                 
-                border = col_funo(cdmresaddedvalues[i, "in vitro"]),
-                sector.index = cdmresaddedvalues$rn[i], track.index = 3)
+                border = col_funo(cdmresaddedvaluesx[i, "in vitro"]),
+                sector.index = cdmresaddedvaluesx$rn[i], track.index = 3)
     
-    circos.rect(cdmresaddedvalues[i, "x1"], y1 + (y2-y1)*0.55, cdmresaddedvalues[i, "x1"] - abs(cdmresaddedvalues[i, "value1"]), y2, 
-                col = col_funb(cdmresaddedvalues[i, "in cellulo"]), 
+    circos.rect(cdmresaddedvaluesx[i, "x1"], y1 + (y2-y1)*0.55, cdmresaddedvaluesx[i, "x1"] - abs(cdmresaddedvaluesx[i, "value1"]), y2, 
+                col = col_funb(cdmresaddedvaluesx[i, "in cellulo"]), 
                 
-                border = col_funb(cdmresaddedvalues[i, "in cellulo"]),
-                sector.index = cdmresaddedvalues$rn[i], track.index = 3)
+                border = col_funb(cdmresaddedvaluesx[i, "in cellulo"]),
+                sector.index = cdmresaddedvaluesx$rn[i], track.index = 3)
     
-    circos.rect(cdmresaddedvalues[i, "x2"], y1, cdmresaddedvalues[i, "x2"] - abs(cdmresaddedvalues[i, "value1"]), y1 + (y2-y1)*0.45, 
-                col = col_funo(cdmresaddedvalues[i, "in vitro"]), 
+    circos.rect(cdmresaddedvaluesx[i, "x2"], y1, cdmresaddedvaluesx[i, "x2"] - abs(cdmresaddedvaluesx[i, "value1"]), y1 + (y2-y1)*0.45, 
+                col = col_funo(cdmresaddedvaluesx[i, "in vitro"]), 
                 
-                border = col_funo(cdmresaddedvalues[i, "in vitro"]),
-                sector.index = cdmresaddedvalues$cn[i], track.index = 3)
+                border = col_funo(cdmresaddedvaluesx[i, "in vitro"]),
+                sector.index = cdmresaddedvaluesx$cn[i], track.index = 3)
     
-    circos.rect(cdmresaddedvalues[i, "x2"], y1 + (y2-y1)*0.55, cdmresaddedvalues[i, "x2"] - abs(cdmresaddedvalues[i, "value1"]), y2, 
-                col = col_funb(cdmresaddedvalues[i, "in cellulo"]), 
+    circos.rect(cdmresaddedvaluesx[i, "x2"], y1 + (y2-y1)*0.55, cdmresaddedvaluesx[i, "x2"] - abs(cdmresaddedvaluesx[i, "value1"]), y2, 
+                col = col_funb(cdmresaddedvaluesx[i, "in cellulo"]), 
                 
-                border = col_funb(cdmresaddedvalues[i, "in cellulo"]),
-                sector.index = cdmresaddedvalues$cn[i], track.index = 3)
+                border = col_funb(cdmresaddedvaluesx[i, "in cellulo"]),
+                sector.index = cdmresaddedvaluesx$cn[i], track.index = 3)
     
     
-    if((cdmresaddedvalues[i, "TotalCarbonChainLength"] == 0) & !is.na(cdmresaddedvalues[i, "in vitro"]) & (cdmresaddedvalues[i, "rn"] != "VA")){
+    if((cdmresaddedvaluesx[i, "TotalCarbonChainLength"] == 0) & !is.na(cdmresaddedvaluesx[i, "in vitro"]) & (cdmresaddedvaluesx[i, "rn"] != "VA")){
       
-      circos.rect(cdmresaddedvalues[i, "x1"], y1-(y2-y1)*0.2, cdmresaddedvalues[i, "x1"] - abs(cdmresaddedvalues[i, "value1"]), y1, 
+      circos.rect(cdmresaddedvaluesx[i, "x1"], y1-(y2-y1)*0.2, cdmresaddedvaluesx[i, "x1"] - abs(cdmresaddedvaluesx[i, "value1"]), y1, 
                   col = "black", 
                   
                   border = "black",
-                  sector.index = cdmresaddedvalues$rn[i], track.index = 3)
+                  sector.index = cdmresaddedvaluesx$rn[i], track.index = 3)
       
-      circos.rect(cdmresaddedvalues[i, "x2"], y1-(y2-y1)*0.2, cdmresaddedvalues[i, "x2"] - abs(cdmresaddedvalues[i, "value1"]), y1, 
+      circos.rect(cdmresaddedvaluesx[i, "x2"], y1-(y2-y1)*0.2, cdmresaddedvaluesx[i, "x2"] - abs(cdmresaddedvaluesx[i, "value1"]), y1, 
                   col = "black", 
                   
                   border = "black",
-                  sector.index = cdmresaddedvalues$cn[i], track.index = 3)
+                  sector.index = cdmresaddedvaluesx$cn[i], track.index = 3)
       
     }
     
     
     
-    if((cdmresaddedvalues[i, "TotalCarbonChainLength"] == 0) & !is.na(cdmresaddedvalues[i, "in cellulo"]) & (cdmresaddedvalues[i, "rn"] != "VA")){
+    if((cdmresaddedvaluesx[i, "TotalCarbonChainLength"] == 0) & !is.na(cdmresaddedvaluesx[i, "in cellulo"]) & (cdmresaddedvaluesx[i, "rn"] != "VA")){
       
-      circos.rect(cdmresaddedvalues[i, "x1"], (y2+0.2), cdmresaddedvalues[i, "x1"] - abs(cdmresaddedvalues[i, "value1"]), y2, 
+      circos.rect(cdmresaddedvaluesx[i, "x1"], (y2+0.2), cdmresaddedvaluesx[i, "x1"] - abs(cdmresaddedvaluesx[i, "value1"]), y2, 
                   col = "black", 
                   
                   border = "black",
-                  sector.index = cdmresaddedvalues$rn[i], track.index = 3)
+                  sector.index = cdmresaddedvaluesx$rn[i], track.index = 3)
       
-      circos.rect(cdmresaddedvalues[i, "x2"], (y2+0.2), cdmresaddedvalues[i, "x2"] - abs(cdmresaddedvalues[i, "value1"]), y2, 
+      circos.rect(cdmresaddedvaluesx[i, "x2"], (y2+0.2), cdmresaddedvaluesx[i, "x2"] - abs(cdmresaddedvaluesx[i, "value1"]), y2, 
                   col = "black", 
                   
                   border = "black",
-                  sector.index = cdmresaddedvalues$cn[i], track.index = 3)
+                  sector.index = cdmresaddedvaluesx$cn[i], track.index = 3)
       
     }
   }  
@@ -3979,82 +3988,82 @@ for(i in 1:length(FisherTestsForSubcellularColocalizations)){
 #. BarplotHeatmapTestSphingolipidTransporters06092021WithSidesAdded2CorrecteddSMZeroToNA10CorrectMetabolism5MoreAdvancedVersions4WithHighlighLinesWithStrongerCrosses.pdf (#) 
 # (Last page is further intermediate figure after integration in Adobe Illustrator: Final figure has LCN1 information removed, legends simplified, CERS information added to the top, and highlights of most important part focusses.)
 
+# LTPLipidConnectionsDataSubset and LTPLipidConnectionsDataAggregatedx creation does not need repeating: eliminated here, but updated for x-versionLTPLipidConnectionsDataSubset <- cbind(LTPLipidConnectionsDataSet[,c("LTPProtein", "LikelySubclass", "Screen", "Intensity")], CarbonChain = paste(LTPLipidConnectionsDataSet[,"TotalCarbonChainLength"],LTPLipidConnectionsDataSet[,"TotalCarbonChainUnsaturations"], sep = ":"))
+# Change to widen5 changes the order of the rows, so I set up a new series of variables here with x at the end. PC come e.g. below PC-O.
 
-LTPLipidConnectionsDataSubset <- cbind(LTPLipidConnectionsDataSet[,c("LTPProtein", "LikelySubclass", "Screen", "Intensity")], CarbonChain = paste(LTPLipidConnectionsDataSet[,"TotalCarbonChainLength"],LTPLipidConnectionsDataSet[,"TotalCarbonChainUnsaturations"], sep = ":"))
-
-library(reshape2)
-LTPLipidConnectionsDataAggregated <- dcast(LTPLipidConnectionsDataSubset, LTPProtein + LikelySubclass + Screen ~ CarbonChain, value.var="Intensity", fun.aggregate = function(x){sum(x, na.rm = TRUE)})
 
 SphingolipidSubclasses <- c("d*Cer", "dCer", "DHCer", "DHOH*Cer", "tCer", "d*CerP", "d*SM", "DHSM", "t*SM", "d*HexCer", "t*HexCer", "d*SHexCer", "t*Hex2Cer")
-LTPLipidConnectionsDataSphingolipids <- LTPLipidConnectionsDataAggregated[LTPLipidConnectionsDataAggregated$LikelySubclass %in% SphingolipidSubclasses,]
 
-LTPLipidConnectionsDataSphingolipids2 <- LTPLipidConnectionsDataSphingolipids[,c(rep(TRUE,3), colSums(LTPLipidConnectionsDataSphingolipids[,4:101]) != 0)]
+# Not exactly identical but has everything similar inside.
+LTPLipidConnectionsDataSphingolipidsx <- LTPLipidConnectionsDataAggregatedx[LTPLipidConnectionsDataAggregatedx$LikelySubclass %in% SphingolipidSubclasses,]
+
+LTPLipidConnectionsDataSphingolipids2x <- LTPLipidConnectionsDataSphingolipidsx[,c(rep(TRUE,3), colSums(LTPLipidConnectionsDataSphingolipidsx[,4:101]) != 0)]
 
 
-
-CellularSphingolipidDistributionInfo <- Col1ToRowNames(dcast(do.call("rbind", lapply(SphingolipidSubclasses[SphingolipidSubclasses %in% names(LipidSubclassesAddedToBackground170620214)], function(x){
+# Converts some NAs to Zeros, but is equivalent otherwise after the widen5 introduction
+CellularSphingolipidDistributionInfox <- Col1ToRowNames(widen5(inputdf = do.call("rbind", lapply(SphingolipidSubclasses[SphingolipidSubclasses %in% names(LipidSubclassesAddedToBackground170620214)], function(x){
   
   data.frame(CarbonChain = mgsub::mgsub(sapply(strsplit(rownames(LipidSubclassesAddedToBackground170620214[[x]]), "\\("), "[[", 2), c(")", "d", "\\*"), rep("",3)),
              Cellular = LipidSubclassesAddedToBackground170620214[[x]][,"Cellular"],
              
              Lipid = x)})),
-  Lipid ~ CarbonChain, value.var = "Cellular"))
+  ColumnsLong = "Lipid", ColumnWide = "CarbonChain", ColumnValue = "Cellular", AggregatingFunction = sum, FunctionOutputValueType = double(1), SortRows = FALSE))
 
-CellularSphingolipidDistributionInfo2 <- CellularSphingolipidDistributionInfo[rowSums(CellularSphingolipidDistributionInfo, na.rm = TRUE) > 0,
-                                                                              colSums(CellularSphingolipidDistributionInfo, na.rm = TRUE) > 0]
+CellularSphingolipidDistributionInfo2x <- CellularSphingolipidDistributionInfox[rowSums(CellularSphingolipidDistributionInfox, na.rm = TRUE) > 0,
+                                                                                colSums(CellularSphingolipidDistributionInfox, na.rm = TRUE) > 0]
 
-CellularSphingolipidDistributionInfo4 <- do.call("cbind", list(LTPProtein = "Cellular", 
-                                                               LikelySubclass = rownames(CellularSphingolipidDistributionInfo2),
-                                                               
-                                                               Screen = "Cellular",
-                                                               CellularSphingolipidDistributionInfo2))
+CellularSphingolipidDistributionInfo4x <- do.call("cbind", list(LTPProtein = "Cellular", 
+                                                                LikelySubclass = rownames(CellularSphingolipidDistributionInfo2x),
+                                                                
+                                                                Screen = "Cellular",
+                                                                CellularSphingolipidDistributionInfo2x))
 
-LTPLipidConnectionsDataSphingolipidsWithCellularAdded <- as.data.frame(t(Col1ToRowNames(merge(t(LTPLipidConnectionsDataSphingolipids2), t(CellularSphingolipidDistributionInfo4), by = 0, all = TRUE))))
-LTPLipidConnectionsDataSphingolipidsWithCellularMatrix <- as.matrix(LTPLipidConnectionsDataSphingolipidsWithCellularAdded[,1:22])
+LTPLipidConnectionsDataSphingolipidsWithCellularAddedxx <- as.data.frame(t(Col1ToRowNames(merge(t(LTPLipidConnectionsDataSphingolipids2x), t(CellularSphingolipidDistributionInfo4x), by = 0, all = TRUE))))
+LTPLipidConnectionsDataSphingolipidsWithCellularMatrixxx <- as.matrix(LTPLipidConnectionsDataSphingolipidsWithCellularAddedxx[,1:22])
 
-mode(LTPLipidConnectionsDataSphingolipidsWithCellularMatrix) <- "numeric"
-LTPLipidConnectionsDataSphingolipidsWithCellularMatrix[is.na(LTPLipidConnectionsDataSphingolipidsWithCellularMatrix)] <- 0
+mode(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixxx) <- "numeric"
+LTPLipidConnectionsDataSphingolipidsWithCellularMatrixxx[is.na(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixxx)] <- 0
 
-LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax <- do.call("rbind", lapply(1:dim(LTPLipidConnectionsDataSphingolipidsWithCellularMatrix)[1], 
-                                                                                          function(x){LTPLipidConnectionsDataSphingolipidsWithCellularMatrix[x,]*100/max(LTPLipidConnectionsDataSphingolipidsWithCellularMatrix[x,], na.rm = TRUE)}))
+LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMaxxx <- do.call("rbind", lapply(1:dim(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixxx)[1], 
+                                                                                            function(x){LTPLipidConnectionsDataSphingolipidsWithCellularMatrixxx[x,]*100/max(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixxx[x,], na.rm = TRUE)}))
 
-rownames(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax) <- apply(LTPLipidConnectionsDataSphingolipidsWithCellularAdded[,23:25], 1 , paste , collapse = "_" )
-LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2 <- LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax[c(19,14:18,20,7,21,9,8,11,10,12,13,22,2,1,6,5,3,4),]
+rownames(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMaxxx) <- apply(LTPLipidConnectionsDataSphingolipidsWithCellularAddedxx[,23:25], 1 , paste , collapse = "_" )
+LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2xx <- LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMaxxx[c(19,14:18,20,7,21,9,8,11,10,12,13,22,2,1,6,5,3,4),]
 
-OriginalRowsSphingoTrans <- do.call("rbind", strsplit(rownames(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2), split = "_"))
-NewRowsSphingoTrans <- unique(OriginalRowsSphingoTrans[OriginalRowsSphingoTrans[,3] != "Cellular", 1:2])
-
-
-EmptyLayer <- matrix(NA, 
-                     
-                     nrow = dim(NewRowsSphingoTrans)[1], 
-                     ncol = dim(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2)[2], 
-                     
-                     dimnames = list(paste(NewRowsSphingoTrans[,1],NewRowsSphingoTrans[,2],sep = "_"),
-                                     colnames(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2)))
-
-NewSphingoTransLayers <- list(InCellulo = EmptyLayer,
-                              InVitro = EmptyLayer,
-                              
-                              Cellular = EmptyLayer)
+OriginalRowsSphingoTransxx <- do.call("rbind", strsplit(rownames(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2xx), split = "_"))
+NewRowsSphingoTransxx <- unique(OriginalRowsSphingoTransxx[OriginalRowsSphingoTransxx[,3] != "Cellular", 1:2])
 
 
-for(j in which(OriginalRowsSphingoTrans[,3] == "in vivo")){
-  for(i in which(paste0(NewRowsSphingoTrans[,1],NewRowsSphingoTrans[,2]) == paste0(OriginalRowsSphingoTrans[j,1],OriginalRowsSphingoTrans[j,2]))){
+EmptyLayerxx <- matrix(NA, 
+                       
+                       nrow = dim(NewRowsSphingoTransxx)[1], 
+                       ncol = dim(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2xx)[2], 
+                       
+                       dimnames = list(paste(NewRowsSphingoTransxx[,1],NewRowsSphingoTransxx[,2],sep = "_"),
+                                       colnames(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2xx)))
+
+NewSphingoTransLayersxx <- list(InCellulo = EmptyLayerxx,
+                                InVitro = EmptyLayerxx,
+                                
+                                Cellular = EmptyLayerxx)
+
+
+for(j in which(OriginalRowsSphingoTransxx[,3] == "in vivo")){
+  for(i in which(paste0(NewRowsSphingoTransxx[,1],NewRowsSphingoTransxx[,2]) == paste0(OriginalRowsSphingoTransxx[j,1],OriginalRowsSphingoTransxx[j,2]))){
     
-    NewSphingoTransLayers$InCellulo[i,] <- ZerosToNAsConverter(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2[j,])
+    NewSphingoTransLayersxx$InCellulo[i,] <- ZerosToNAsConverter(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2xx[j,])
   }}
 
-for(j in which(OriginalRowsSphingoTrans[,3] == "in vitro")){
-  for(i in which(paste0(NewRowsSphingoTrans[,1],NewRowsSphingoTrans[,2]) == paste0(OriginalRowsSphingoTrans[j,1],OriginalRowsSphingoTrans[j,2]))){
+for(j in which(OriginalRowsSphingoTransxx[,3] == "in vitro")){
+  for(i in which(paste0(NewRowsSphingoTransxx[,1],NewRowsSphingoTransxx[,2]) == paste0(OriginalRowsSphingoTransxx[j,1],OriginalRowsSphingoTransxx[j,2]))){
     
-    NewSphingoTransLayers$InVitro[i,] <- ZerosToNAsConverter(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2[j,])
+    NewSphingoTransLayersxx$InVitro[i,] <- ZerosToNAsConverter(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2xx[j,])
   }}
 
-for(j in which(OriginalRowsSphingoTrans[,3] == "Cellular")){
-  for(i in which(NewRowsSphingoTrans[,1] == OriginalRowsSphingoTrans[j,1])){
+for(j in which(OriginalRowsSphingoTransxx[,3] == "Cellular")){
+  for(i in which(NewRowsSphingoTransxx[,1] == OriginalRowsSphingoTransxx[j,1])){
     
-    NewSphingoTransLayers$Cellular[i,] <- ZerosToNAsConverter(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2[j,])
+    NewSphingoTransLayersxx$Cellular[i,] <- ZerosToNAsConverter(LTPLipidConnectionsDataSphingolipidsWithCellularMatrixToRowMax2xx[j,])
   }}
 
 library(ComplexHeatmap)
@@ -4075,26 +4084,26 @@ AnnotationDataframeLeftLipidsLTPs2 <- rowAnnotation(df = TextDataframeLeftLipids
 pdf("./Output/BarplotHeatmapTestSphingolipidTransporters06092021WithSidesAdded2CorrecteddSMZeroToNA.pdf",
     width = unit(20, "mm"), height = unit(25, "mm"))
 
-Heatmap(NewSphingoTransLayers$InCellulo, name = LegendName, col = LegendColor, rect_gp = gpar(type = "none"), column_title = "", 
-        width = unit(WidthAdaptor*dim(NewSphingoTransLayers$InCellulo)[2]/min(dim(NewSphingoTransLayers$InCellulo)), "mm"), height = unit(HeightAdaptor*dim(NewSphingoTransLayers$InCellulo)[1]/min(dim(NewSphingoTransLayers$InCellulo)), "mm"),
+Heatmap(NewSphingoTransLayersxx$InCellulo, name = LegendName, col = LegendColor, rect_gp = gpar(type = "none"), column_title = "", 
+        width = unit(WidthAdaptor*dim(NewSphingoTransLayersxx$InCellulo)[2]/min(dim(NewSphingoTransLayersxx$InCellulo)), "mm"), height = unit(HeightAdaptor*dim(NewSphingoTransLayersxx$InCellulo)[1]/min(dim(NewSphingoTransLayersxx$InCellulo)), "mm"),
         
         
         cell_fun = function(j, i, x, y, width, height, fill) {
-
           
-          grid.rect(x = x, y = y, width = width, height = NewSphingoTransLayers$InCellulo[i,j]/100*height, gp = gpar(col = NA, fill = brewer.pal(9,"Blues")[5], lwd = 1), just = c("center","bottom"))
-          grid.rect(x = x, y = y, width = 0.5*width, height = NewSphingoTransLayers$InVitro[i,j]/100*height, gp = gpar(col = NA, fill = brewer.pal(9,"Oranges")[5], lwd = 1), just = c("center","bottom"))
           
-          grid.rect(x = x, y = y, width = width, height = NewSphingoTransLayers$Cellular[i,j]/100*height, gp = gpar(col = "LightGrey", fill = NA, lwd = 2), just = c("center","bottom"))
+          grid.rect(x = x, y = y, width = width, height = NewSphingoTransLayersxx$InCellulo[i,j]/100*height, gp = gpar(col = NA, fill = brewer.pal(9,"Blues")[5], lwd = 1), just = c("center","bottom"))
+          grid.rect(x = x, y = y, width = 0.5*width, height = NewSphingoTransLayersxx$InVitro[i,j]/100*height, gp = gpar(col = NA, fill = brewer.pal(9,"Oranges")[5], lwd = 1), just = c("center","bottom"))
+          
+          grid.rect(x = x, y = y, width = width, height = NewSphingoTransLayersxx$Cellular[i,j]/100*height, gp = gpar(col = "LightGrey", fill = NA, lwd = 2), just = c("center","bottom"))
         }, cluster_rows = FALSE, cluster_columns = FALSE, 
         
-
+        
         cluster_row_slices = FALSE, cluster_column_slices = FALSE,
         
         row_title = " ", row_title_gp = gpar(fontsize = 10),
         left_annotation = AnnotationDataframeLeftLipidsLTPs2,
         
-        row_labels = sapply(strsplit(rownames(NewSphingoTransLayers$InCellulo), "_"), "[[", 1),
+        row_labels = sapply(strsplit(rownames(NewSphingoTransLayersxx$InCellulo), "_"), "[[", 1),
         row_split = c(rep("A", 5), rep("B",1), rep("C",3), "D", rep("E",4))
         
 )
