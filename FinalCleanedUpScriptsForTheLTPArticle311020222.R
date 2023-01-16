@@ -340,8 +340,11 @@ PureVersionEnricData18062019 <- EnricData18062019[EnricData18062019$cls == "I" |
 CombinedDataWithPureClasses18062019 <- rbind(cbind(PureVersionAntonellaData18062019, ScreenType = "in vivo"), cbind(PureVersionEnricData18062019 , ScreenType = "in vitro"))
 write.table(CombinedDataWithPureClasses18062019, file="./Output/CombinedDataWithPureClasses18062019.csv", sep="\t", row.names = TRUE, quote = FALSE)
 
-library(tidyr)
-CombinedDataWithPureClasses180620192 <- unite(CombinedDataWithPureClasses18062019, "CompletelyUnique", c("protein","ionm","uid","mz","intensity"), sep = "_", remove = FALSE)
+# Updated to avoid use of needless extra packages, and increase robustness
+CombinedDataWithPureClasses180620192x <- cbind.data.frame(CompletelyUnique = as.character(do.call(paste, c(CombinedDataWithPureClasses18062019[,c("protein","ionm","uid","mz","intensity")], sep = "_"))), CombinedDataWithPureClasses18062019)
+
+CombinedDataWithPureClasses180620192x$CompletelyUnique <- as.character(CombinedDataWithPureClasses180620192x$CompletelyUnique)
+CombinedDataWithPureClasses180620192 <- CombinedDataWithPureClasses180620192x
 
 CombinedDataWithPureClasses180620194 <- cbind(CombinedDataWithPureClasses180620192, LipidGroup = sapply(CombinedDataWithPureClasses180620192$CompletelyUnique, function(x){paste(CombinedDataWithPureClasses180620192[CombinedDataWithPureClasses180620192$CompletelyUnique == x, "uhgroup"], collapse = "; ")}))
 PrePieceHeadgroupConversion <- cbind(unique(CombinedDataWithPureClasses180620194$uhgroup), c("PC(","PC(O-", "SM(t*", "SM(t*", "SM(t*", "PE(", "PS(", "PI(", "BMP(", "LPC(", "PG(", "HexCer(t*", "HexCer(t*", "HexCer(t*", "HexCer(d*", "HexCer(d*", "Hex2Cer(t*", "Hex2Cer(t*", "Hex2Cer(t*", "SM(d*", "SM(d*", "CerP(d*", "CerP(d*", NA, "VA", "Cer(d*", "Cer(d*", "DAG(", "PE(O-", "TAG(", "Cer(t*", "Cer(t*", "FA(", "LPE(", "LPG(", "FAL(", "SHexCer(d*", "SHexCer(d*", "LPE(O-", "PA(", "PGP(", "CL(", "PA(O-"))
@@ -755,31 +758,34 @@ dev.off()
 #. LipidsIntensityFrationsOfEven26012022WithLysolipidsCollapsed27012022CleanedUpVersionWithTwoColorSchemesOddAndNoReducedToEmpty1403202222binsc.pdf (#)
 
 #. LipidsIntensityFrationsOfEven26012022WithLysolipidsCollapsed27012022 #
-library(reshape2)
 
+
+# Function to clean up data. Updated with widen5 function.
 CovertToHeatmapMatrixn <- function(InputDataStartMatrix, CompactionMatrixForTotal, HeadgroupOrder, CarbOrder, IonMode){
-  reshapedstartofmatrix <- dcast(InputDataStartMatrix[InputDataStartMatrix$IonMode == IonMode,], LikelySubclass ~ TotalCarbonChainLength, value.var = "Intensity", fun.aggregate = sum)
   
-  reshapedstartofmatrix2 <- reshapedstartofmatrix[(reshapedstartofmatrix$LikelySubclass != "VE" & reshapedstartofmatrix$LikelySubclass != "VA" & reshapedstartofmatrix$LikelySubclass != "P40"), colnames(reshapedstartofmatrix) != "NaN"]
-  GenHead <- CompactionMatrixForTotal[match(reshapedstartofmatrix2$LikelySubclass, CompactionMatrixForTotal[,1]),2] # Changed CompactionMatrixForTotaln2 To CompactionMatrixForTotal #
+  reshapedstartofmatrixx <- widen5(inputdf = InputDataStartMatrix[InputDataStartMatrix$IonMode == IonMode,], ColumnsLong = "LikelySubclass", ColumnWide = "TotalCarbonChainLength", ColumnValue = "Intensity", AggregatingFunction = sum, FunctionOutputValueType = double(1), FillerValue = 0, RowNamesColumnsLong = FALSE)
+  reshapedstartofmatrix2x <- reshapedstartofmatrixx[(reshapedstartofmatrixx$LikelySubclass != "VE" & reshapedstartofmatrixx$LikelySubclass != "VA" & reshapedstartofmatrixx$LikelySubclass != "P40"), colnames(reshapedstartofmatrixx) != "NaN"]
   
-  reshapedstartofmatrix4 <- rowsum(reshapedstartofmatrix2[,-1], GenHead)
-  reshapedstartofmatrix4[,setdiff(CarbOrder, colnames(reshapedstartofmatrix4))] <- 0
   
-  reshapedstartofmatrix4[setdiff(HeadgroupOrder, rownames(reshapedstartofmatrix4)),] <- 0
-  return(reshapedstartofmatrix4[HeadgroupOrder, CarbOrder])
+  GenHeadx <- CompactionMatrixForTotal[match(reshapedstartofmatrix2x$LikelySubclass, CompactionMatrixForTotal[,1]),2] # Changed CompactionMatrixForTotaln2 To CompactionMatrixForTotal #
+  
+  reshapedstartofmatrix4x <- rowsum(reshapedstartofmatrix2x[,-1], GenHeadx)
+  reshapedstartofmatrix4x[,setdiff(CarbOrder, colnames(reshapedstartofmatrix4x))] <- 0
+  
+  reshapedstartofmatrix4x[setdiff(HeadgroupOrder, rownames(reshapedstartofmatrix4x)),] <- 0
+  return(reshapedstartofmatrix4x[HeadgroupOrder, CarbOrder])
   
 }
 
 
+# Simplified and eliminated need for external package, to increase robustness.
+# Also made the input cleaner by putting script snippet in function
 
-library("dplyr")
+# Local function to add a column with MinMaxRangeNorm to the dataframe (rownames have different mode (now: chr; before: numeric), but are otherwise the same as before)
+AddMinMaxNormColumn <- function(y){cbind.data.frame(y, MinMaxRangeNorm = sapply(1:dim(y)[1], function(x){MinMaxNormFuncn(y$Intensity[x],y$IonMode[x],y)}))}
 
-y <- PureAntonella32b # Changed from PureAntonella32 to PureAntonella32b #
-Normalization1OfPureAntonella32 <- mutate(y, MinMaxRangeNorm = sapply(1:dim(y)[1], function(x){MinMaxNormFuncn(y$Intensity[x],y$IonMode[x],y)}))
-
-y <- PureEnric32
-Normalization1OfPureEnric32 <- mutate(y, MinMaxRangeNorm = sapply(1:dim(y)[1], function(x){MinMaxNormFuncn(y$Intensity[x],y$IonMode[x],y)}))
+Normalization1OfPureAntonella32 <- AddMinMaxNormColumn(PureAntonella32b) # Changed from PureAntonella32 to PureAntonella32b 
+Normalization1OfPureEnric32 <- AddMinMaxNormColumn(PureEnric32)
 
 Normalization1OfPureAntonella32$LikelySubclass <- as.character(Normalization1OfPureAntonella32$LikelySubclass)
 Normalization1OfPureEnric32$LikelySubclass <- as.character(Normalization1OfPureEnric32$LikelySubclass)
@@ -1096,17 +1102,17 @@ LTPProteins <- unique(c(unique(PureAntonella32b$LTPProtein), unique(PureEnric32$
 HeadgroupOrderlnl <- c("d*Cer", "dCer", "DHCer", "DHOH*Cer", "tCer", "d*CerP", "d*HexCer", "t*HexCer", "t*Hex2Cer", "d*SHexCer", "d*SM", "DHSM", "t*SM", "FA", "FAL", "LPC",
                        "LPE", "LPE-O", "LPG", "DAG", "PA", "PC", "PC-O", "PE", "PE-O", "PI", "PS", "PG", "PG/BMP", "BMP", "TAG", "PGP", "CL", "VA")
 
+# Updated with the widen5 function.
 CovertToHeatmapMatrixlnl <- function(InputDataStartMatrixlnl, HeadgroupOrderlnl, LTPOrder, IonMode){ # CompactionMatrixForTotal, 
-  reshapedstartofmatrixlnl <- dcast(InputDataStartMatrixlnl[InputDataStartMatrixlnl$IonMode == IonMode,], LikelySubclass ~ LTPProtein, value.var = "Intensity", fun.aggregate = sum)
   
-  reshapedstartofmatrixlnl2 <- reshapedstartofmatrixlnl[reshapedstartofmatrixlnl$LikelySubclass != "P40", colnames(reshapedstartofmatrixlnl) != "NaN"]
+  reshapedstartofmatrixlnlx <- widen5(inputdf = InputDataStartMatrixlnl[InputDataStartMatrixlnl$IonMode == IonMode,], ColumnsLong = "LikelySubclass", ColumnWide = "LTPProtein", ColumnValue = "Intensity", AggregatingFunction = sum, FunctionOutputValueType = double(1), RowNamesColumnsLong = FALSE, FillerValue = 0)
+  reshapedstartofmatrixlnl2x <- reshapedstartofmatrixlnlx[reshapedstartofmatrixlnlx$LikelySubclass != "P40", colnames(reshapedstartofmatrixlnlx) != "NaN"]
   
+  reshapedstartofmatrixlnl4x <- Col1ToRowNames(reshapedstartofmatrixlnl2x)
+  reshapedstartofmatrixlnl4x[,setdiff(LTPOrder, colnames(reshapedstartofmatrixlnl4x))] <- 0
   
-  reshapedstartofmatrixlnl4 <- Col1ToRowNames(reshapedstartofmatrixlnl2)
-  reshapedstartofmatrixlnl4[,setdiff(LTPOrder, colnames(reshapedstartofmatrixlnl4))] <- 0
-  
-  reshapedstartofmatrixlnl4[setdiff(HeadgroupOrderlnl, rownames(reshapedstartofmatrixlnl4)),] <- 0
-  return(reshapedstartofmatrixlnl4[HeadgroupOrderlnl, LTPOrder])
+  reshapedstartofmatrixlnl4x[setdiff(HeadgroupOrderlnl, rownames(reshapedstartofmatrixlnl4x)),] <- 0
+  return(reshapedstartofmatrixlnl4x[HeadgroupOrderlnl, LTPOrder])
   
 }
 
@@ -1177,11 +1183,11 @@ MainDomainsOfTheLTPs5 <- as.data.frame(list(MainDomainsOfTheLTPs4,
                                             HPTLC = ifelse(MainDomainsOfTheLTPs4[,"LTPProtein"] %in% rownames(HPTLCSpecificitiesPerScreen2[[1]]),"Present","Absent"),
                                             LCMS = ifelse(MainDomainsOfTheLTPs4[,"LTPProtein"] %in% MainDomainsOfTheLTPs[,"LTPProtein"],"Present","Absent")))
 
-
 # Extraction of information from Uniprot
+# The original code used to extract the information is quoted out here below and a fixed dataset is provided, to protect from future changes to the package or database
 
-BiocManager::install("UniprotR")
-library(UniprotR) # Version 1.2.4
+# BiocManager::install("UniprotR")
+# library(UniprotR) # Version 1.2.4
 
 MainDomainsOfTheLTPs7 <- cbind(MainDomainsOfTheLTPs5, 
                                UniprotNames = c("Q86WG3", "Q7Z465", "P12271", "O76054", "Q9UDX3", "O43304", "B5MCN3", "P49638", "Q9BTX7", # "Q92503" removed
@@ -1192,20 +1198,20 @@ MainDomainsOfTheLTPs7 <- cbind(MainDomainsOfTheLTPs5,
                                                 "Q9BXW6", "Q9H1P3", "Q9H0X9", "Q9BZF2", "Q9BZF1", "Q96SU4", "Q9BXB5", "Q9BXB4", "Q6YN16", "P22307",
                                                 "Q9UJQ7", "Q9UKL6", "Q9Y365", "Q9Y5P4"))
 
-MainDomainsOfTheLTPs8 <- cbind(MainDomainsOfTheLTPs7, GetFamily_Domains(MainDomainsOfTheLTPs7$UniprotNames))
-# If issues with the GetFamily_Domains function: look at following commented out entries to work with same data.
+
+# MainDomainsOfTheLTPs8 <- cbind(MainDomainsOfTheLTPs7, GetFamily_Domains(MainDomainsOfTheLTPs7$UniprotNames))
 
 # Make sure that we have an exact saved RDS-image of this file in time to avoid issues with Uniprot
 # saveRDS(object = MainDomainsOfTheLTPs8, file = "./Output/BackUpOfMainDomainsOfTheLTPs8.rds")
 
 # Load saved RDS-image of this file (if needed, otherwise this can be skipped)
-# MainDomainsOfTheLTPs8FromTheStorage <- readRDS("./InputData/BackUpOfMainDomainsOfTheLTPs8.rds")
+MainDomainsOfTheLTPs8FromTheStorage <- readRDS("./InputData/BackUpOfMainDomainsOfTheLTPs8.rds")
 
 # Check that nothing went wrong during the conversion (if needed, otherwise this can be skipped)
 # identical(MainDomainsOfTheLTPs8FromTheStorage, MainDomainsOfTheLTPs8)
 
-# Reassign reloaded variable to the old one (if needed, otherwise this can be skipped) (watch out to certainly do previous step first)
-# MainDomainsOfTheLTPs8 <- MainDomainsOfTheLTPs8FromTheStorage
+# Reassign reloaded variable to the original one
+MainDomainsOfTheLTPs8 <- MainDomainsOfTheLTPs8FromTheStorage
 
 MainDomainsOfTheLTPs8LongVersionDomains <- do.call("rbind", lapply(1:dim(MainDomainsOfTheLTPs8)[1], function(i){do.call("cbind", list(as.character(MainDomainsOfTheLTPs8$LTPProtein[i]), "Domain", matrix(unlist(strsplit(as.character(MainDomainsOfTheLTPs8[i,"Domain..FT."]), split = "\\; ")), ncol = 3, byrow = TRUE)))}))
 MainDomainsOfTheLTPs8LongVersionDomains2 <- cbind(MainDomainsOfTheLTPs8LongVersionDomains, do.call("rbind",strsplit(gsub("DOMAIN ", "", MainDomainsOfTheLTPs8LongVersionDomains[,3]), "\\.\\.")))
@@ -1232,7 +1238,7 @@ SequenceAndDomainHighlightsLTPs[,3] <- as.numeric(as.character(SequenceAndDomain
 SequenceAndDomainHighlightsLTPs[,4] <- as.numeric(as.character(SequenceAndDomainHighlightsLTPs[,4]))
 
 SequenceAndDomainHighlightsLTPs2 <- SequenceAndDomainHighlightsLTPs[!is.na(SequenceAndDomainHighlightsLTPs$StartRegion),]
-library(reshape2)
+
 
 CastProteinDomainsOfLTPs <- ZerosToNAsConverter(Col1ToRowNames(widen5(inputdf = SequenceAndDomainHighlightsLTPs2, ColumnsLong = "LTPProtein", ColumnWide = "RegionName", ColumnValue = "StartRegion", AggregatingFunction = sum, FunctionOutputValueType = double(1))))
 CastProteinDomainsOfLTPs2 <- CastProteinDomainsOfLTPs
@@ -1314,9 +1320,6 @@ HPTLCSpecificitiesPerScreen2hdr <- HPTLCSpecificitiesPerScreen2
 
 colnames(HPTLCSpecificitiesPerScreen2hdr[[1]]) <- c("Cer*", "Sterol", "DAG", "PC", "PE", "PG", "PIPs", "PS")
 colnames(HPTLCSpecificitiesPerScreen2hdr[[2]]) <- c("Cer*", "Sterol", "DAG", "PC", "PE", "PG", "PIPs", "PS")
-
-
-library(reshape2)
 
 HPTLCSpecificitiesPerScreen2hdrm <- lapply(HPTLCSpecificitiesPerScreen2hdr, function(x){meltmatrix(t(as.matrix(5*x)))})
 HPTLCSpecificitiesPerScreen2hdrm2 <- lapply(HPTLCSpecificitiesPerScreen2hdrm, function(x){x[x$value != 0,]})
@@ -2053,9 +2056,6 @@ AggregatedInVitroMS4 <- aggregate(AggregatedInVitroMS2[, "NormInt"],
                                   FUN = function(x){max(x,na.rm=TRUE)})
 
 
-
-library(reshape2)
-
 HPTLCaggregated <- rbind(cbind(meltmatrix(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]])), ProteinDomain = NA, Screen = "in vivo", TotalCarbonChainLength = NA, TotalCarbonChainUnsaturations = NA),
                          cbind(meltmatrix(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]])), ProteinDomain = NA, Screen = "in vitro", TotalCarbonChainLength = NA, TotalCarbonChainUnsaturations = NA))
 
@@ -2523,9 +2523,6 @@ KoeberlinCorrelationsConsensusNames <- KoeberlinCorrelations2[,-1]
 
 rownames(KoeberlinCorrelationsConsensusNames) <- paste0(TypesOfLipidsKoeberlin4x[,8], "(", as.character(TypesOfLipidsKoeberlin4x[,2]), ":", as.character(TypesOfLipidsKoeberlin4x[,3]), ")")
 colnames(KoeberlinCorrelationsConsensusNames) <- rownames(KoeberlinCorrelationsConsensusNames)
-
-
-library(reshape2)
 
 KoeberlinCorrelationsConsensusNames2 <- KoeberlinCorrelationsConsensusNames
 KoeberlinCorrelationsConsensusNames2[upper.tri(KoeberlinCorrelationsConsensusNames2)] <- NA
@@ -4125,7 +4122,7 @@ rownames(OverexpressionHEKRatiosMatrixAll) <- OverexpressionHEK5[,1]
 OverexpressionHEKLogRatiosMatrix <- log10(OverexpressionHEKRatiosMatrixAll)
 
 OverexpressionHEKLogRatiosGeneral2 <- t(OverexpressionHEKLogRatiosMatrix[c("Cer", "CerP", "SM", "HexCer", "SHexCer", "diHexCer", "GM3", "DAG", "PA", "PA O-", "PC", "PC O-", "PE", "PE O-", "PS", "PI", "PI O-", "PG", "CL", "LPA", "LPC", "LPC O-", "LPE", "LPE O-", "LPS", "LPS O-", "LPI", "LPI O-", "LPG", "LPG O-", "CE", "Chol :"),c(1,4,7,2,5,8,3,6,9)])
-library("reshape2")
+
 
 OverexpressionHEKLogRatiosMelted <- meltmatrix(OverexpressionHEKLogRatiosGeneral2)
 colnames(OverexpressionHEKLogRatiosMelted) <- c("Sample", "Lipid", "Ratio")
