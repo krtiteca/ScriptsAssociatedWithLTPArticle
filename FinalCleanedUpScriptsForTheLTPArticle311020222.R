@@ -1229,7 +1229,7 @@ ListCompositionalBiasElements <- strsplit(MainDomainsOfTheLTPs8$Compositional.bi
 MainDomainsOfTheLTPs8LongVersionBias <- do.call("cbind", list(as.character(MainDomainsOfTheLTPs8[,1]), "CompBias", do.call("rbind", lapply(ListCompositionalBiasElements,function(x){c(strsplit(gsub("COMPBIAS ", "", x[1]), split = "\\.\\.")[[1]], gsub("  /note=", "", x[2], fixed = TRUE))}))))
 
 ListOfTheMotifParts <- strsplit(MainDomainsOfTheLTPs8$Motif, "\\;")
-MainDomainsOfTheLTPs8LongVersionMotifs <- do.call("cbind", list(as.character(MainDomainsOfTheLTPs8[,1]), "Motif", do.call("rbind", lapply(ListOfTheMotifParts, function(x){if(is.na(x)){NA}else{c(strsplit(gsub("MOTIF ", "", x[1]), split = "\\.\\.")[[1]], gsub("  /note=", "", x[2], fixed =TRUE))}}))))
+MainDomainsOfTheLTPs8LongVersionMotifs <- do.call("cbind", list(as.character(MainDomainsOfTheLTPs8[,1]), "Motif", do.call("rbind", lapply(ListOfTheMotifParts, function(x){if(is.na(x[1])){NA}else{c(strsplit(gsub("MOTIF ", "", x[1]), split = "\\.\\.")[[1]], gsub("  /note=", "", x[2], fixed =TRUE))}})))) # Changed is.na(x) to is.na(x[1]) to solve warning because of different input-lengths.
 
 SequenceAndDomainHighlightsLTPs <- as.data.frame(do.call("rbind", list(MainDomainsOfTheLTPs8LongVersionDomains4[,c(1:2,6:8)], MainDomainsOfTheLTPs8LongVersionCoils4[,c(1,2,6,7,5)], MainDomainsOfTheLTPs8LongVersionBias, MainDomainsOfTheLTPs8LongVersionMotifs)))
 colnames(SequenceAndDomainHighlightsLTPs) <- c("LTPProtein", "TypeRegion", "StartRegion", "StopRegion", "RegionName")
