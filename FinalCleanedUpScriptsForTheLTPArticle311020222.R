@@ -203,7 +203,7 @@ RbindMultipleDataframesFillNonmatches <- function(dflist, FillerValue = NA){
   do.call(rbind.data.frame,
           
           lapply(dflist,
-                 function(x){do.call("cbind.data.frame", c(x, sapply(setdiff(unique(unlist(lapply(dflist, names))), names(x)), function(y){FillerValue}), stringAsFactors = FALSE))}))}
+                 function(x){do.call("cbind.data.frame", c(x, sapply(setdiff(unique(unlist(lapply(dflist, names))), names(x)), function(y){FillerValue})))}))}
 
 
 #### Function to covert dataframes to a wider dataframe based on one column and with option to keep multiple columns intact & aggregate similar data
@@ -232,65 +232,65 @@ RbindMultipleDataframesFillNonmatches <- function(dflist, FillerValue = NA){
 # and if SortRows is TRUE the levels will be sorted, but if SortRows is FALSE the original order of the levels will be used.
 # FillerValue = filler value for filling cells that did not exist before, but were created by the conversion.
 
-widen <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE){
-  outputdf <- do.call("rbind.data.frame",
-                      
-                      lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))
-                      }else{as.character(unique(inputdf[, ColumnsLong]))}], # leaves out factor levels and orders it according to occurrence
-                      
-                      function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
-                                                                                 FUN = function(z){AggregatingFunction(z[,ColumnValue])},
-                                                                                 
-                                                                                 FUN.VALUE = FunctionOutputValueType,
-                                                                                 USE.NAMES = TRUE)))}))
-  
-  if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
-  return(outputdf)}
-
-widen2 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE, SortRows = TRUE){
-  outputdf <- do.call("rbind.data.frame",
-                      
-                      lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){if(SortRows){sort(do.call(paste, c(unique(inputdf[, ColumnsLong]), sep=".")))}else{do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))}
-                      }else{if(SortRows){sort(as.character(unique(inputdf[, ColumnsLong])))}else{as.character(unique(inputdf[, ColumnsLong]))}}], # both have option to be sorted or be in in order they original occur
-                      
-                      function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
-                                                                                 FUN = function(z){AggregatingFunction(z[,ColumnValue])},
-                                                                                 
-                                                                                 FUN.VALUE = FunctionOutputValueType,
-                                                                                 USE.NAMES = TRUE)))}))
-  
-  if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
-  return(outputdf)}
-
-widen4 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE, SortRows = TRUE, DropUnusedRowsLevels = TRUE){
-  if((length(ColumnsLong) == 1) && is.factor(inputdf[,ColumnsLong]) && (DropUnusedRowsLevels == FALSE)){
-    
-    outputdf <- do.call("rbind.data.frame",
-                        lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = FALSE)[if(SortRows){sort(levels(inputdf[, ColumnsLong]))}else{levels(inputdf[, ColumnsLong])}],
-                               
-                               function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
-                                                                                          FUN = function(z){AggregatingFunction(z[,ColumnValue])},
-                                                                                          
-                                                                                          FUN.VALUE = FunctionOutputValueType,
-                                                                                          USE.NAMES = TRUE)))}))
-    
-    outputdf[,ColumnsLong] <- rownames(outputdf)
-  }else{
-    
-    
-    outputdf <- do.call("rbind.data.frame",
-                        
-                        lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){if(SortRows){sort(do.call(paste, c(unique(inputdf[, ColumnsLong]), sep=".")))}else{do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))}
-                        }else{if(SortRows){sort(as.character(unique(inputdf[, ColumnsLong])))}else{as.character(unique(inputdf[, ColumnsLong]))}}], # both have option to be sorted or be in in order they original occur
-                        
-                        function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
-                                                                                   FUN = function(z){AggregatingFunction(z[,ColumnValue])},
-                                                                                   
-                                                                                   FUN.VALUE = FunctionOutputValueType,
-                                                                                   USE.NAMES = TRUE)))}))}
-  
-  if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
-  return(outputdf)}
+# widen <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE){
+#   outputdf <- do.call("rbind.data.frame",
+#                       
+#                       lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))
+#                       }else{as.character(unique(inputdf[, ColumnsLong]))}], # leaves out factor levels and orders it according to occurrence
+#                       
+#                       function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
+#                                                                                  FUN = function(z){AggregatingFunction(z[,ColumnValue])},
+#                                                                                  
+#                                                                                  FUN.VALUE = FunctionOutputValueType,
+#                                                                                  USE.NAMES = TRUE)))}))
+#   
+#   if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
+#   return(outputdf)}
+# 
+# widen2 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE, SortRows = TRUE){
+#   outputdf <- do.call("rbind.data.frame",
+#                       
+#                       lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){if(SortRows){sort(do.call(paste, c(unique(inputdf[, ColumnsLong]), sep=".")))}else{do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))}
+#                       }else{if(SortRows){sort(as.character(unique(inputdf[, ColumnsLong])))}else{as.character(unique(inputdf[, ColumnsLong]))}}], # both have option to be sorted or be in in order they original occur
+#                       
+#                       function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
+#                                                                                  FUN = function(z){AggregatingFunction(z[,ColumnValue])},
+#                                                                                  
+#                                                                                  FUN.VALUE = FunctionOutputValueType,
+#                                                                                  USE.NAMES = TRUE)))}))
+#   
+#   if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
+#   return(outputdf)}
+# 
+# widen4 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE, SortRows = TRUE, DropUnusedRowsLevels = TRUE){
+#   if((length(ColumnsLong) == 1) && is.factor(inputdf[,ColumnsLong]) && (DropUnusedRowsLevels == FALSE)){
+#     
+#     outputdf <- do.call("rbind.data.frame",
+#                         lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = FALSE)[if(SortRows){sort(levels(inputdf[, ColumnsLong]))}else{levels(inputdf[, ColumnsLong])}],
+#                                
+#                                function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
+#                                                                                           FUN = function(z){AggregatingFunction(z[,ColumnValue])},
+#                                                                                           
+#                                                                                           FUN.VALUE = FunctionOutputValueType,
+#                                                                                           USE.NAMES = TRUE)))}))
+#     
+#     outputdf[,ColumnsLong] <- rownames(outputdf)
+#   }else{
+#     
+#     
+#     outputdf <- do.call("rbind.data.frame",
+#                         
+#                         lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){if(SortRows){sort(do.call(paste, c(unique(inputdf[, ColumnsLong]), sep=".")))}else{do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))}
+#                         }else{if(SortRows){sort(as.character(unique(inputdf[, ColumnsLong])))}else{as.character(unique(inputdf[, ColumnsLong]))}}], # both have option to be sorted or be in in order they original occur
+#                         
+#                         function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
+#                                                                                    FUN = function(z){AggregatingFunction(z[,ColumnValue])},
+#                                                                                    
+#                                                                                    FUN.VALUE = FunctionOutputValueType,
+#                                                                                    USE.NAMES = TRUE)))}))}
+#   
+#   if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
+#   return(outputdf)}
 
 widen5 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE, SortRows = TRUE, DropUnusedRowsLevels = TRUE, FillerValue = NA){
   if((length(ColumnsLong) == 1) && is.factor(inputdf[,ColumnsLong]) && (DropUnusedRowsLevels == FALSE)){
@@ -908,7 +908,7 @@ DetailsOfOverexpressionHEK2Split[DetailsOfOverexpressionHEK2Split[,1] == "GM", 1
 DetailsOfOverexpressionHEK2Split[grep(";2", DetailsOfOverexpressionHEK2Split[,2]),2] <- gsub(";2", "", DetailsOfOverexpressionHEK2Split[grep(";2", DetailsOfOverexpressionHEK2Split[,2]),2])
 
 DetailsOfOverexpressionHEK2Split2 <- cbind(DetailsOfOverexpressionHEK2Split[,1:2], ControlMeans = rowMeans(DetailsOfOverexpressionHEK2Split[,c(4,10,16)])) 
-#! Maybe provide documents from this point on, instead of originals?
+
 
 LipidConversionsBL <- cbind(unique(DetailsOfOverexpressionHEK2Split2$LipidClass), c("LPA", "LPC", "LPC", "LPE", "LPE", "LPG", "LPG", "LPI", "LPI", "LPS", "LPS", "GM3", "Chol", "SM", "PC", "PC", "HexCer", "CE", "DAG", "Cer", "Hex2Cer", "PE", "PE", "PG", "PI", "PI", "PS", "SHexCer", "CerP", "CL", "PA", "PA"))
 DetailsOfOverexpressionHEK2Split2bl <- cbind(DetailsOfOverexpressionHEK2Split2, LipidConversionsBL[match(DetailsOfOverexpressionHEK2Split2$LipidClass, LipidConversionsBL[,1]),2])
@@ -1213,11 +1213,11 @@ MainDomainsOfTheLTPs8FromTheStorage <- readRDS("./InputData/BackUpOfMainDomainsO
 # Reassign reloaded variable to the original one
 MainDomainsOfTheLTPs8 <- MainDomainsOfTheLTPs8FromTheStorage
 
-MainDomainsOfTheLTPs8LongVersionDomains <- do.call("rbind", lapply(1:dim(MainDomainsOfTheLTPs8)[1], function(i){do.call("cbind", list(as.character(MainDomainsOfTheLTPs8$LTPProtein[i]), "Domain", matrix(unlist(strsplit(as.character(MainDomainsOfTheLTPs8[i,"Domain..FT."]), split = "\\; ")), ncol = 3, byrow = TRUE)))}))
-MainDomainsOfTheLTPs8LongVersionDomains2 <- cbind(MainDomainsOfTheLTPs8LongVersionDomains, do.call("rbind",strsplit(gsub("DOMAIN ", "", MainDomainsOfTheLTPs8LongVersionDomains[,3]), "\\.\\.")))
+EliminateThirds <- function(x){x[seq_along(x)%%3 != 0]}
+MainDomainsOfTheLTPs8LongVersionDomainsx <- do.call("rbind", lapply(1:dim(MainDomainsOfTheLTPs8)[1], function(i){do.call("cbind", list(as.character(MainDomainsOfTheLTPs8$LTPProtein[i]), "Domain", matrix(EliminateThirds(unlist(strsplit(as.character(MainDomainsOfTheLTPs8[i,"Domain..FT."]), split = "\\; "))), ncol = 2, byrow = TRUE)))})) # Optimized to x version, to avoid the warnings for differing lengths.
 
-MainDomainsOfTheLTPs8LongVersionDomains4 <- cbind(MainDomainsOfTheLTPs8LongVersionDomains2, RegionName = gsub(" /note=", "", MainDomainsOfTheLTPs8LongVersionDomains2[,4]))  
-
+MainDomainsOfTheLTPs8LongVersionDomains2x <- cbind(MainDomainsOfTheLTPs8LongVersionDomainsx, do.call("rbind",strsplit(gsub("DOMAIN ", "", MainDomainsOfTheLTPs8LongVersionDomainsx[,3]), "\\.\\.")))
+MainDomainsOfTheLTPs8LongVersionDomains4x <- cbind(MainDomainsOfTheLTPs8LongVersionDomains2x, RegionName = gsub(" /note=", "", MainDomainsOfTheLTPs8LongVersionDomains2x[,4]))  
 
 MainDomainsOfTheLTPs8LongVersionCoils <- do.call("rbind", lapply(1:dim(MainDomainsOfTheLTPs8)[1], function(i){do.call("cbind", list(as.character(MainDomainsOfTheLTPs8$LTPProtein[i]), "CC", matrix(unlist(strsplit(as.character(MainDomainsOfTheLTPs8[i,"Coiled.coil"]), split = "\\; ")),ncol = 2, byrow = TRUE)))}))
 AmountOfCoiledCoilsKnown <- sapply(strsplit(as.character(MainDomainsOfTheLTPs8[,"Coiled.coil"]), split = "\\; "), length)/2
@@ -1226,12 +1226,12 @@ MainDomainsOfTheLTPs8LongVersionCoils2 <- cbind(MainDomainsOfTheLTPs8LongVersion
 MainDomainsOfTheLTPs8LongVersionCoils4 <- cbind(MainDomainsOfTheLTPs8LongVersionCoils2, do.call("rbind", strsplit(gsub("COILED ", "", MainDomainsOfTheLTPs8LongVersionCoils2[,3]), split = "\\.\\.")))
 
 ListCompositionalBiasElements <- strsplit(MainDomainsOfTheLTPs8$Compositional.bias, "\\;")
-MainDomainsOfTheLTPs8LongVersionBias <- do.call("cbind", list(as.character(MainDomainsOfTheLTPs8[,1]), "CompBias", do.call("rbind", lapply(ListCompositionalBiasElements,function(x){c(strsplit(gsub("COMPBIAS ", "", x[1]), split = "\\.\\.")[[1]], gsub("  /note=", "", x[2], fixed = TRUE))}))))
+MainDomainsOfTheLTPs8LongVersionBias <- do.call("cbind", list(as.character(MainDomainsOfTheLTPs8[,1]), "CompBias", do.call("rbind", lapply(ListCompositionalBiasElements,function(x){if(is.na(x[1])){c(NA,NA,NA)}else{c(strsplit(gsub("COMPBIAS ", "", x[1]), split = "\\.\\.")[[1]], gsub("  /note=", "", x[2], fixed = TRUE))}})))) # NA handling was updated. 
 
 ListOfTheMotifParts <- strsplit(MainDomainsOfTheLTPs8$Motif, "\\;")
 MainDomainsOfTheLTPs8LongVersionMotifs <- do.call("cbind", list(as.character(MainDomainsOfTheLTPs8[,1]), "Motif", do.call("rbind", lapply(ListOfTheMotifParts, function(x){if(is.na(x[1])){NA}else{c(strsplit(gsub("MOTIF ", "", x[1]), split = "\\.\\.")[[1]], gsub("  /note=", "", x[2], fixed =TRUE))}})))) # Changed is.na(x) to is.na(x[1]) to solve warning because of different input-lengths.
 
-SequenceAndDomainHighlightsLTPs <- as.data.frame(do.call("rbind", list(MainDomainsOfTheLTPs8LongVersionDomains4[,c(1:2,6:8)], MainDomainsOfTheLTPs8LongVersionCoils4[,c(1,2,6,7,5)], MainDomainsOfTheLTPs8LongVersionBias, MainDomainsOfTheLTPs8LongVersionMotifs)))
+SequenceAndDomainHighlightsLTPs <- as.data.frame(do.call("rbind", list(MainDomainsOfTheLTPs8LongVersionDomains4x[,c(1:2,5:7)], MainDomainsOfTheLTPs8LongVersionCoils4[,c(1,2,6,7,5)], MainDomainsOfTheLTPs8LongVersionBias, MainDomainsOfTheLTPs8LongVersionMotifs)))
 colnames(SequenceAndDomainHighlightsLTPs) <- c("LTPProtein", "TypeRegion", "StartRegion", "StopRegion", "RegionName")
 
 SequenceAndDomainHighlightsLTPs[,3] <- as.numeric(as.character(SequenceAndDomainHighlightsLTPs[,3]))
