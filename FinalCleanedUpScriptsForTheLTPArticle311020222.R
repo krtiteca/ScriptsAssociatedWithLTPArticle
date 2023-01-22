@@ -3289,20 +3289,38 @@ dev.off()
 #. Panel5CWithTailoredScriptAndMoreDetailedVisualizationBinSize001NoSegmentStacking18032022.pdf # (Finally used version for inclusion in figure 5 based on this.)
 #. Panel5CWithGreenUnityDistributionAndBwWithNrd0Wd01422032022.pdf # (Not the basis of the final version.)
 
-MolPctOfMads <- Col1ToRowNames(read.csv(file = "./InputData/processed.molpct_generatedbyMads.csv", header = TRUE, sep = ",", as.is = TRUE))[,1:38] # Get rid of empty space at end columns
-ExperimentTypesOfMads <- sapply(strsplit(colnames(MolPctOfMads), "\\."), "[",1)
+# How the document of the average subcellular localizations of lipid species was generated based on previous data 
+# Now as input the further downstream document
+
+# MolPctOfMads <- Col1ToRowNames(read.csv(file = "./InputData/processed.molpct_generatedbyMads.csv", header = TRUE, sep = ",", as.is = TRUE))[,1:38] # Get rid of empty space at end columns
+# ExperimentTypesOfMads <- sapply(strsplit(colnames(MolPctOfMads), "\\."), "[",1)
+# 
+# 
+# AggregateMPOfMads <- sapply(unique(ExperimentTypesOfMads), function(x){rowMeans(MolPctOfMads[,ExperimentTypesOfMads == x], na.rm = TRUE)})
+# 
+# AggregateMPOfMads0 <- AggregateMPOfMads
+# AggregateMPOfMads0[is.na(AggregateMPOfMads0)] <- 0
+# 
+# 
+# AggregateMPOfMads0RTL <- setNames(split(AggregateMPOfMads0, row(AggregateMPOfMads0)), rownames(AggregateMPOfMads0))
+# 
+# AggregateMPOfMads0RTLMOC <- do.call("cbind", setNames(lapply(AggregateMPOfMads0RTL, function(y){unlist(lapply(AggregateMPOfMads0RTL, function(x){MOCFunction(y, x)}))}), rownames(AggregateMPOfMads0)))
 
 
-AggregateMPOfMads <- sapply(unique(ExperimentTypesOfMads), function(x){rowMeans(MolPctOfMads[,ExperimentTypesOfMads == x], na.rm = TRUE)})
+# Save the cleaned matrix of the averages of the subcellular lipid localization as a compact RDS-file
+# saveRDS(object = AggregateMPOfMads0RTLMOC, file = "C:/Users/Kevin/Documents/ScriptsAssociatedWithLTPArticle/InputData/SubcellularLocalizationAveragesLipids.rds")
 
-AggregateMPOfMads0 <- AggregateMPOfMads
-AggregateMPOfMads0[is.na(AggregateMPOfMads0)] <- 0
+# Load saved RDS-image of this file (if needed, otherwise this can be skipped)
+AggregateMPOfMads0RTLMOCx <- readRDS("C:/Users/Kevin/Documents/ScriptsAssociatedWithLTPArticle/InputData/SubcellularLocalizationAveragesLipids.rds")
 
+# Check that nothing went wrong during the conversion (if needed, otherwise this can be skipped)
+# identical(AggregateMPOfMads0RTLMOCx, AggregateMPOfMads0RTLMOC)
 
-AggregateMPOfMads0RTL <- setNames(split(AggregateMPOfMads0, row(AggregateMPOfMads0)), rownames(AggregateMPOfMads0))
+# Reassign reloaded cleaned-up document with averages of the subcellular localizations of the lipid species
+AggregateMPOfMads0RTLMOC <- AggregateMPOfMads0RTLMOCx
 
-AggregateMPOfMads0RTLMOC <- do.call("cbind", setNames(lapply(AggregateMPOfMads0RTL, function(y){unlist(lapply(AggregateMPOfMads0RTL, function(x){MOCFunction(y, x)}))}), rownames(AggregateMPOfMads0)))
-write.table(AggregateMPOfMads0RTLMOC, file="./Output/AggregateMPOfMads0RTLMOC.tsv", sep="\t", row.names = TRUE, col.names = TRUE, quote = FALSE)
+# Remove the original large file
+rm(AggregateMPOfMads0RTLMOCx)
 
 MadsLipids <- do.call("rbind", strsplit(gsub(";2","", rownames(AggregateMPOfMads0RTLMOC)), " "))
 MadsLipids <- cbind(MadsLipids, do.call("rbind", strsplit(MadsLipids[,2], ":")))
