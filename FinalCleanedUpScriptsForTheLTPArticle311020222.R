@@ -1984,7 +1984,7 @@ CSPIDCREx <- (colSums(NewPITransLayersCondensedRowEntriesx$InCellulo, na.rm = TR
 pdf(paste0("./Output/BarplotHeatmapPITransportersCondensedRowEntriesOnlyScreenColumnsAt", CutOffPresenceProcent,"ProcentCutoffAndAnnotationRows12102021.pdf"),
     width = unit(20, "mm"), height = unit(20, "mm"))
 
-Heatmap(NewPITransLayersCondensedRowEntriesx$InCellulo[,CSPIDCRE], name = LegendName, col = LegendColor, rect_gp = gpar(type = "none"), column_title = "", 
+Heatmap(NewPITransLayersCondensedRowEntriesx$InCellulo[,CSPIDCREx], name = LegendName, col = LegendColor, rect_gp = gpar(type = "none"), column_title = "", 
         width = unit(WidthAdaptor*dim(NewPITransLayersCondensedRowEntriesx$InCellulo[,CSPIDCREx])[2]/min(dim(NewPITransLayersCondensedRowEntriesx$InCellulo[,CSPIDCREx])), "mm"), height = unit(HeightAdaptor*dim(NewPITransLayersCondensedRowEntriesx$InCellulo[,CSPIDCREx])[1]/min(dim(NewPITransLayersCondensedRowEntriesx$InCellulo[,CSPIDCREx])), "mm"),
         
         
@@ -2149,6 +2149,9 @@ pdf("./Output/CircosExtendedWithSpecies051120217WithTracksSwitchedDecreasedTextS
 circos.clear()
 circos.par(start.degree = -70, clock.wise = FALSE, cell.padding = c(0,0,0,0))
 
+OSOW <- getOption("warn")
+options(warn = -1)
+
 testchord2x <- chordDiagram(AggregatedAllScreenDataNormalized4hdrx[,c(5,1,8)], annotationTrack = NULL, grid.col = LipidColorsForCircos4b, directional = -1, diffHeight = mm_h(0),
                             preAllocateTracks = list(list(track.height = 0.005),
                                                      
@@ -2182,7 +2185,7 @@ y2 <- ylim[2]
 cdmresaddedvaluesx <- cbind(testchord2x, AggregatedAllScreenDataNormalized4hdrx)
 colnames(cdmresaddedvaluesx)[colnames(cdmresaddedvaluesx) == "in vivo"] <- "in cellulo"
 
-for(i in seq_len(nrow(cdmresaddedvaluesx))) {
+suppressMessages(for(i in seq_len(nrow(cdmresaddedvaluesx))) {
   if(cdmresaddedvaluesx$value1[i] > 0) {
     
     circos.rect(cdmresaddedvaluesx[i, "x1"], y1, cdmresaddedvaluesx[i, "x1"] - abs(cdmresaddedvaluesx[i, "value1"]), y1 + (y2-y1)*0.45, 
@@ -2269,8 +2272,8 @@ for(i in seq_len(nrow(cdmresaddedvaluesx))) {
     }
   }  
   
-}
-
+}) # Messages suppressed because of on purpose plotting outside of sectors
+options(warn = OSOW)
 
 dev.off()
 # Previous figure: Basis for figure panel 4a, after some stylistic enhancements in Adobe Illustrator, such as changes (of orientation of) some labels and optimization of some of the colors
@@ -2323,7 +2326,7 @@ y2 <- ylim[2]
 
 i <- 10
 
-for(i in seq_len(nrow(cdm_res))) {
+suppressMessages(for(i in seq_len(nrow(cdm_res))) {
   if(cdm_res$value1[i] > 0) {
     
     circos.rect(cdm_res[i, "x1"], y1, cdm_res[i, "x1"] - abs(cdm_res[i, "value1"]), y1 + (y2-y1)*0.45, 
@@ -2411,7 +2414,7 @@ for(i in seq_len(nrow(cdm_res))) {
     
     
   }
-}
+}) # Messages suppressed because of on purpose plotting outside of sectors
 
 dev.off()
 # The previous figure is the alternative version of the circos focussed on only subclasses, instead of species, which was not used in the final figures of the article
@@ -2828,22 +2831,22 @@ MList <- lapply(1:dim(Coexp_Mander_NoTreshold_Rework210220192)[2],function(y){sa
 MMatrix <- do.call("cbind", MList)
 
 mode(MMatrix) <- "numeric"
-MMeans <- cbind(Coexp_Mander_NoTreshold_Rework21022019[,1:2], rowMeans(MMatrix, na.rm = TRUE))
+MMeansx <- cbind.data.frame(do.call("rbind", strsplit(rownames(Coexp_Mander_NoTreshold_Rework210220192), "_")), rowMeans(MMatrix, na.rm = TRUE)) # Updated to second version to keep script coherent & changed extraction accordingly and updated to x form to indicate the change.
 
-MMeans2 <- cbind(MMeans,cbind(sapply(MMeans[,1], function(x){x %in% SubsetOfLipidClassesSergio[,1]}),sapply(MMeans[,2], function(x){x %in% SubsetOfLipidClassesSergio[,1]})))
-LipidSubsetMMeans <- MMeans2[MMeans2[,4] & MMeans2[,5],]
+MMeans2x <- cbind(MMeansx,cbind(sapply(MMeansx[,1], function(x){x %in% SubsetOfLipidClassesSergio[,1]}),sapply(MMeansx[,2], function(x){x %in% SubsetOfLipidClassesSergio[,1]})))
+LipidSubsetMMeansx <- MMeans2x[MMeans2x[,4] & MMeans2x[,5],]
 
-LipidSubsetMMeans_2 <- do.call("cbind", list(LipidSubsetMMeans,
-                                             "From" = gsub(pattern = "([A-Z](?![0-9]))", replacement = "\\11", x = LipidSubsetMMeans[,1], perl = TRUE),
-                                             
-                                             "To" = gsub(pattern = "([A-Z](?![0-9]))", replacement = "\\11", x = LipidSubsetMMeans[,2], perl = TRUE)))
+LipidSubsetMMeans_2x <- do.call("cbind", list(LipidSubsetMMeansx,
+                                              "From" = gsub(pattern = "([A-Z](?![0-9]))", replacement = "\\11", x = LipidSubsetMMeansx[,1], perl = TRUE),
+                                              
+                                              "To" = gsub(pattern = "([A-Z](?![0-9]))", replacement = "\\11", x = LipidSubsetMMeansx[,2], perl = TRUE)))
 
 
-LipidSubsetMMeans_4 <- data.frame(LipidSubsetMMeans_2[,1:5], 
-                                  FromTo = paste(LipidSubsetMMeans_2[,"From"], LipidSubsetMMeans_2[,"To"], sep = "_"), 
-                                  
-                                  LipidSubsetMMeans_2[,6:7], 
-                                  stringsAsFactors = FALSE)
+LipidSubsetMMeans_4x <- data.frame(LipidSubsetMMeans_2x[,1:5], 
+                                   FromTo = paste(LipidSubsetMMeans_2x[,"From"], LipidSubsetMMeans_2x[,"To"], sep = "_"), 
+                                   
+                                   LipidSubsetMMeans_2x[,6:7], 
+                                   stringsAsFactors = FALSE)
 
 HeadGroupConversionMatrix <- do.call("cbind", list("HeadGroup" = c("PC", "LPC", "PE", "LPE", "PG", "LPG", "PG/BMP", "BMP", "PS", "PI", "FA", "PA", "TAG", "DAG", "VE", "VA"),
                                                    "C" = c(8, 8, 5, 5, 6, 6, 6, 6, 6, 9, 0, 3, 3, 3, 26, 20),
@@ -2855,7 +2858,7 @@ HeadGroupConversionMatrix <- do.call("cbind", list("HeadGroup" = c("PC", "LPC", 
                                                    "P" = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0)))
 
 
-LipidSubsetMMeans_4Subset <- data.frame(Cooccurrence = LipidSubsetMMeans_4[,3], LipidPairMatchingType = "All")
+LipidSubsetMMeans_4Subset <- data.frame(Cooccurrence = LipidSubsetMMeans_4x[,3], LipidPairMatchingType = "All") # Inflow in same previous system again: no x needed anymore.
 
 AggregatedLTPLipidPairsCombined_7wvi <- unique(rbind(cbind(PureAntonella32b[,c("LTPProtein", "Lipid", "LikelySubclass")], Screen = "A"), cbind(PureEnric32[,c("LTPProtein", "Lipid", "LikelySubclass")], Screen = "E")))
 colnames(AggregatedLTPLipidPairsCombined_7wvi) <- c("LTPProtein", "LipidSpecies", "LipidSubclass", "Screen")
@@ -2920,14 +2923,14 @@ colnames(AggregatedLTPLipidPairsCombined_8wvi2)[6:10] <- c("SubclassKoeberlinlik
 library(stringr)
 AggregatedLTPLipidPairsCombined_8wvi4 <- cbind(AggregatedLTPLipidPairsCombined_8wvi2, do.call("cbind", structure(lapply(ConnectorPieceConversionMatrix2[,1], function(x){str_count(AggregatedLTPLipidPairsCombined_8wvi2$Linkages, x)}), names = paste0(ConnectorPieceConversionMatrix2[,1],"Counts"))))
 
-Carb <- as.numeric(as.character(AggregatedLTPLipidPairsCombined_8wvi4[, "TotalCarb"]))
+Carb <- suppressWarnings(as.numeric(as.character(AggregatedLTPLipidPairsCombined_8wvi4[, "TotalCarb"]))) # NAs introduced on purpose (warnings therefor suppressed)
 MissingCarbByLinkage <- colSums(t(AggregatedLTPLipidPairsCombined_8wvi4[,paste0(ConnectorPieceConversionMatrix2[,1],"Counts")])*c(1,1,5,5,5,0))
 
 # C residuals fatty acids
 AggregatedLTPLipidPairsCombined_8wvi4c <- cbind(AggregatedLTPLipidPairsCombined_8wvi4, CResidualFattyAcids = (ifelse(!is.na(Carb), Carb, 0) - MissingCarbByLinkage))
 
 # H residuals fatty acids
-AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms <- cbind(AggregatedLTPLipidPairsCombined_8wvi4c, HResidualFattyAcids = 2*AggregatedLTPLipidPairsCombined_8wvi4c$CResidualFattyAcids + as.numeric(HTips2[match(as.character(AggregatedLTPLipidPairsCombined_8wvi4c$Headgroup), HTips2[,"HeadGroup"]), "HAmount"]) - 2*as.numeric(as.character(AggregatedLTPLipidPairsCombined_8wvi4c$TotalUnsat)))
+AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms <- cbind(AggregatedLTPLipidPairsCombined_8wvi4c, HResidualFattyAcids = 2*AggregatedLTPLipidPairsCombined_8wvi4c$CResidualFattyAcids + as.numeric(HTips2[match(as.character(AggregatedLTPLipidPairsCombined_8wvi4c$Headgroup), HTips2[,"HeadGroup"]), "HAmount"]) - 2*suppressWarnings(as.numeric(as.character(AggregatedLTPLipidPairsCombined_8wvi4c$TotalUnsat)))) # NAs introduction wantes: warnings suppressed.
 
 AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms[is.na(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms$HResidualFattyAcids), "HResidualFattyAcids"] <- 0
 
@@ -2950,22 +2953,22 @@ AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4 <- cbind(AggregatedLTPLipidPa
 LTPsScreens <- unique(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[,c("LTPProtein","Screen")])
 DataSet <- AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4
 
-ObservedPossibleChemicalCombinationsForLipidsOfLTPs <- do.call("rbind", lapply(1:dim(LTPsScreens)[1], function(y){
+ObservedPossibleChemicalCombinationsForLipidsOfLTPsx <- do.call("rbind", lapply(1:dim(LTPsScreens)[1], function(y){
   if(length(unique(as.character(DataSet[(DataSet$LTPProtein == LTPsScreens[y,]$LTPProtein) & (DataSet$Screen == LTPsScreens[y,]$Screen),"ChemicalFormulaWithOnes"]))) > 1){
     
-    cbind(LTPsScreens[y,], t(combn(unique(as.character(DataSet[(DataSet$LTPProtein == LTPsScreens[y,]$LTPProtein) & (DataSet$Screen == LTPsScreens[y,]$Screen),"ChemicalFormulaWithOnes"])), 2)))}}))
-
+    cbind(LTPsScreens[y,], t(combn(unique(as.character(DataSet[(DataSet$LTPProtein == LTPsScreens[y,]$LTPProtein) & (DataSet$Screen == LTPsScreens[y,]$Screen),"ChemicalFormulaWithOnes"])), 2)), row.names = NULL)}}))
+# Simplified rownames: x version
 
 AllPossibleChemicalCombinationsForLipidsOfLTPs <- t(combn(as.character(unique(DataSet$ChemicalFormulaWithOnes)),2)) 
 #All possible pairs: 30381 <=> observed pairs: 10256
 
-dim(ObservedPossibleChemicalCombinationsForLipidsOfLTPs[ObservedPossibleChemicalCombinationsForLipidsOfLTPs$Screen == "A",])[1] #2777
-dim(ObservedPossibleChemicalCombinationsForLipidsOfLTPs[ObservedPossibleChemicalCombinationsForLipidsOfLTPs$Screen == "E",])[1] #7479
+dim(ObservedPossibleChemicalCombinationsForLipidsOfLTPsx[ObservedPossibleChemicalCombinationsForLipidsOfLTPsx$Screen == "A",])[1] #2777
+dim(ObservedPossibleChemicalCombinationsForLipidsOfLTPsx[ObservedPossibleChemicalCombinationsForLipidsOfLTPsx$Screen == "E",])[1] #7479
 
-ObservedPossibleChemicalCombinationsForLipidsOfLTPs2 <- do.call("cbind", list(ObservedPossibleChemicalCombinationsForLipidsOfLTPs, 
-                                                                              ChemicalPairs1 = apply(ObservedPossibleChemicalCombinationsForLipidsOfLTPs[,3:4], 1, function(x){paste0(x,collapse = "_")}),
-                                                                              
-                                                                              ChemicalPairs2 = apply(ObservedPossibleChemicalCombinationsForLipidsOfLTPs[,4:3], 1, function(x){paste0(x,collapse = "_")})))
+ObservedPossibleChemicalCombinationsForLipidsOfLTPs2x <- do.call("cbind", list(ObservedPossibleChemicalCombinationsForLipidsOfLTPsx, 
+                                                                               ChemicalPairs1 = apply(ObservedPossibleChemicalCombinationsForLipidsOfLTPsx[,3:4], 1, function(x){paste0(x,collapse = "_")}),
+                                                                               
+                                                                               ChemicalPairs2 = apply(ObservedPossibleChemicalCombinationsForLipidsOfLTPsx[,4:3], 1, function(x){paste0(x,collapse = "_")})))
 
 
 AllPossibleChemicalCombinationsForLipidsOfLTPs2 <- do.call("cbind", list(AllPossibleChemicalCombinationsForLipidsOfLTPs, 
@@ -2992,13 +2995,13 @@ AllPossibleChemicalCombinationsForLipidsOfLTPs2e <- do.call("cbind", list(AllPos
                                                                           ChemicalPairs2 = apply(AllPossibleChemicalCombinationsForLipidsOfLTPse[,2:1], 1, function(x){paste0(x,collapse = "_")})))
 
 
-CooccurrenceOfChemicalPairsList <- lapply(list(ObservedPossibleChemicalCombinationsForLipidsOfLTPs2, 
-                                               as.data.frame(AllPossibleChemicalCombinationsForLipidsOfLTPs2), 
-                                               
-                                               as.data.frame(AllPossibleChemicalCombinationsForLipidsOfLTPs2a), 
-                                               as.data.frame(AllPossibleChemicalCombinationsForLipidsOfLTPs2e)), 
-                                          
-                                          function(y){cbind(y, Cooccurrence = LipidSubsetMMeans_4[match(as.character(y[,"ChemicalPairs1"]), as.character(LipidSubsetMMeans_4[,"FromTo"])),3])})
+CooccurrenceOfChemicalPairsListx <- lapply(list(ObservedPossibleChemicalCombinationsForLipidsOfLTPs2x, 
+                                                as.data.frame(AllPossibleChemicalCombinationsForLipidsOfLTPs2), 
+                                                
+                                                as.data.frame(AllPossibleChemicalCombinationsForLipidsOfLTPs2a), 
+                                                as.data.frame(AllPossibleChemicalCombinationsForLipidsOfLTPs2e)), 
+                                           
+                                           function(y){cbind(y, Cooccurrence = LipidSubsetMMeans_4x[match(as.character(y[,"ChemicalPairs1"]), as.character(LipidSubsetMMeans_4x[,"FromTo"])),3])})
 
 
 # Write to do in Excel #! Entered earlier to avoid repetition and looping
@@ -3008,84 +3011,84 @@ write.table(t(t(levels(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$LipidS
 SubclassesMatchingToConsensusSubclassesAndClasses <- read.csv(file = "./InputData/SubclassesForObservedLipidsConsensusSubclassesAndClasses02102020.txt", header = TRUE, sep = "\t", as.is = TRUE, quote = "")
 
 
-CooccurrenceOfChemicalPairsList2 <- list()
+CooccurrenceOfChemicalPairsList2x <- list()
 
-y <- CooccurrenceOfChemicalPairsList[[1]]
-CooccurrenceOfChemicalPairsList2[[1]] <- do.call("cbind", list(y,
-                                                               
-                                                               Subclass1 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(apply(y[,1:3], 1, function(x){paste0(x,collapse = "_")}),
-                                                                                                                                    apply(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[,c("LTPProtein", "Screen","ChemicalFormulaWithOnes")], 1, function(x){paste0(x,collapse = "_")})), "LipidSubclass"],
-                                                               
-                                                               Subclass2 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(apply(y[,c(1,2,4)], 1, function(x){paste0(x,collapse = "_")}),
-                                                                                                                                    apply(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[,c("LTPProtein", "Screen","ChemicalFormulaWithOnes")], 1, function(x){paste0(x,collapse = "_")})), "LipidSubclass"]
-                                                               
+y <- CooccurrenceOfChemicalPairsListx[[1]]
+CooccurrenceOfChemicalPairsList2x[[1]] <- do.call("cbind", list(y,
+                                                                
+                                                                Subclass1 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(apply(y[,1:3], 1, function(x){paste0(x,collapse = "_")}),
+                                                                                                                                     apply(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[,c("LTPProtein", "Screen","ChemicalFormulaWithOnes")], 1, function(x){paste0(x,collapse = "_")})), "LipidSubclass"],
+                                                                
+                                                                Subclass2 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(apply(y[,c(1,2,4)], 1, function(x){paste0(x,collapse = "_")}),
+                                                                                                                                     apply(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[,c("LTPProtein", "Screen","ChemicalFormulaWithOnes")], 1, function(x){paste0(x,collapse = "_")})), "LipidSubclass"]
+                                                                
 ))
 
 
 
-y <- CooccurrenceOfChemicalPairsList[[2]]
+y <- CooccurrenceOfChemicalPairsListx[[2]]
 
-CooccurrenceOfChemicalPairsList2[[2]] <- do.call("cbind", list(y,
-                                                               Subclass1 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V1), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"],
-                                                               
-                                                               Subclass2 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V2), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"],
-                                                               SubclassesMatchingToConsensusSubclassesAndClasses[match(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V1), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"], SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3],
-                                                               
-                                                               SubclassesMatchingToConsensusSubclassesAndClasses[match(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V2), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"], SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3]))
-
-
-
-y <- CooccurrenceOfChemicalPairsList[[3]]
-
-CooccurrenceOfChemicalPairsList2[[3]] <- do.call("cbind", list(y,
-                                                               Subclass1 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V1), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"],
-                                                               
-                                                               Subclass2 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V2), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"],
-                                                               SubclassesMatchingToConsensusSubclassesAndClasses[match(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V1), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"], SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3],
-                                                               
-                                                               SubclassesMatchingToConsensusSubclassesAndClasses[match(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V2), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"], SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3]))
+CooccurrenceOfChemicalPairsList2x[[2]] <- do.call("cbind", list(y,
+                                                                Subclass1 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V1), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"],
+                                                                
+                                                                Subclass2 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V2), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"],
+                                                                SubclassesMatchingToConsensusSubclassesAndClasses[match(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V1), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"], SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3],
+                                                                
+                                                                SubclassesMatchingToConsensusSubclassesAndClasses[match(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V2), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"], SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3]))
 
 
 
-y <- CooccurrenceOfChemicalPairsList[[4]]
+y <- CooccurrenceOfChemicalPairsListx[[3]]
 
-CooccurrenceOfChemicalPairsList2[[4]] <- do.call("cbind", list(y,
-                                                               Subclass1 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V1), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"],
-                                                               
-                                                               Subclass2 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V2), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"],
-                                                               SubclassesMatchingToConsensusSubclassesAndClasses[match(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V1), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"], SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3],
-                                                               
-                                                               SubclassesMatchingToConsensusSubclassesAndClasses[match(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V2), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"], SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3]))
+CooccurrenceOfChemicalPairsList2x[[3]] <- do.call("cbind", list(y,
+                                                                Subclass1 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V1), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"],
+                                                                
+                                                                Subclass2 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V2), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"],
+                                                                SubclassesMatchingToConsensusSubclassesAndClasses[match(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V1), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"], SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3],
+                                                                
+                                                                SubclassesMatchingToConsensusSubclassesAndClasses[match(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V2), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"], SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3]))
+
+
+
+y <- CooccurrenceOfChemicalPairsListx[[4]]
+
+CooccurrenceOfChemicalPairsList2x[[4]] <- do.call("cbind", list(y,
+                                                                Subclass1 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V1), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"],
+                                                                
+                                                                Subclass2 = AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V2), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"],
+                                                                SubclassesMatchingToConsensusSubclassesAndClasses[match(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V1), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"], SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3],
+                                                                
+                                                                SubclassesMatchingToConsensusSubclassesAndClasses[match(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[match(as.character(y$V2), as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$ChemicalFormulaWithOnes)), "LipidSubclass"], SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3]))
 
 
 for(i in 2:4){
-  CooccurrenceOfChemicalPairsList2[[i]] <- cbind(CooccurrenceOfChemicalPairsList2[[i]], LipidPairMatchingType = (CooccurrenceOfChemicalPairsList2[[i]][,8] == CooccurrenceOfChemicalPairsList2[[i]][,10]) + (CooccurrenceOfChemicalPairsList2[[i]][,9] == CooccurrenceOfChemicalPairsList2[[i]][,11]))
+  CooccurrenceOfChemicalPairsList2x[[i]] <- cbind(CooccurrenceOfChemicalPairsList2x[[i]], LipidPairMatchingType = (CooccurrenceOfChemicalPairsList2x[[i]][,8] == CooccurrenceOfChemicalPairsList2x[[i]][,10]) + (CooccurrenceOfChemicalPairsList2x[[i]][,9] == CooccurrenceOfChemicalPairsList2x[[i]][,11]))
   
 }
 
 
 
-CooccurrenceOfChemicalPairsList2[[1]] <- do.call("cbind", list(CooccurrenceOfChemicalPairsList2[[1]],
-                                                               
-                                                               SubclassesMatchingToConsensusSubclassesAndClasses[match(CooccurrenceOfChemicalPairsList2[[1]]$Subclass1, SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3],
-                                                               SubclassesMatchingToConsensusSubclassesAndClasses[match(CooccurrenceOfChemicalPairsList2[[1]]$Subclass2, SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3]))
+CooccurrenceOfChemicalPairsList2x[[1]] <- do.call("cbind", list(CooccurrenceOfChemicalPairsList2x[[1]],
+                                                                
+                                                                SubclassesMatchingToConsensusSubclassesAndClasses[match(CooccurrenceOfChemicalPairsList2x[[1]]$Subclass1, SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3],
+                                                                SubclassesMatchingToConsensusSubclassesAndClasses[match(CooccurrenceOfChemicalPairsList2x[[1]]$Subclass2, SubclassesMatchingToConsensusSubclassesAndClasses[,1]),2:3]))
 
-CooccurrenceOfChemicalPairsList2[[1]] <- cbind(CooccurrenceOfChemicalPairsList2[[1]], LipidPairMatchingType = (CooccurrenceOfChemicalPairsList2[[1]][,10] == CooccurrenceOfChemicalPairsList2[[1]][,12]) + (CooccurrenceOfChemicalPairsList2[[1]][,11] == CooccurrenceOfChemicalPairsList2[[1]][,13]))
-
-
-CooccurrenceOfChemicalPairsListExpandedWithAll <- CooccurrenceOfChemicalPairsList2[[1]]
-CooccurrenceOfChemicalPairsListExpandedWithAll$LipidPairMatchingType <- "All"
-
-CooccurrenceOfChemicalPairsListExpandedWithAll2 <- rbind(CooccurrenceOfChemicalPairsList2[[1]], CooccurrenceOfChemicalPairsListExpandedWithAll)
+CooccurrenceOfChemicalPairsList2x[[1]] <- cbind(CooccurrenceOfChemicalPairsList2x[[1]], LipidPairMatchingType = (CooccurrenceOfChemicalPairsList2x[[1]][,10] == CooccurrenceOfChemicalPairsList2x[[1]][,12]) + (CooccurrenceOfChemicalPairsList2x[[1]][,11] == CooccurrenceOfChemicalPairsList2x[[1]][,13]))
 
 
+CooccurrenceOfChemicalPairsListExpandedWithAllx <- CooccurrenceOfChemicalPairsList2x[[1]]
+CooccurrenceOfChemicalPairsListExpandedWithAllx$LipidPairMatchingType <- "All"
 
-PossibleCooccurrenceOfChemicalPairs <- rbind(cbind(CooccurrenceOfChemicalPairsList2[[3]], Screen = "A"), cbind(CooccurrenceOfChemicalPairsList2[[4]], Screen = "E"))
+CooccurrenceOfChemicalPairsListExpandedWithAll2x <- rbind(CooccurrenceOfChemicalPairsList2x[[1]], CooccurrenceOfChemicalPairsListExpandedWithAllx)
 
-PossibleCooccurrenceOfChemicalPairs2 <- PossibleCooccurrenceOfChemicalPairs
-PossibleCooccurrenceOfChemicalPairs2$LipidPairMatchingType <- "All"
 
-PossibleCooccurrenceOfChemicalPairs2 <- rbind(PossibleCooccurrenceOfChemicalPairs, PossibleCooccurrenceOfChemicalPairs2)
+
+PossibleCooccurrenceOfChemicalPairsx <- rbind(cbind(CooccurrenceOfChemicalPairsList2x[[3]], Screen = "A"), cbind(CooccurrenceOfChemicalPairsList2x[[4]], Screen = "E"))
+
+PossibleCooccurrenceOfChemicalPairs2x <- PossibleCooccurrenceOfChemicalPairsx
+PossibleCooccurrenceOfChemicalPairs2x$LipidPairMatchingType <- "All"
+
+PossibleCooccurrenceOfChemicalPairs2x <- rbind(PossibleCooccurrenceOfChemicalPairsx, PossibleCooccurrenceOfChemicalPairs2x)
 
 
 library(RColorBrewer)
@@ -3106,11 +3109,11 @@ ScreenColorsForFillingPot <- cbind(c("A","E"),c(brewer.pal(9,"Blues")[7], brewer
 
 for(SimilarityIndex in c("All", as.character(0:2))){
   
-  x1a <- na.omit(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2[(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Screen"] == "A") & (CooccurrenceOfChemicalPairsListExpandedWithAll2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
-  x1e <- na.omit(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2[(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Screen"] == "E") & (CooccurrenceOfChemicalPairsListExpandedWithAll2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
+  x1a <- na.omit(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2x[(CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"Screen"] == "A") & (CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
+  x1e <- na.omit(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2x[(CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"Screen"] == "E") & (CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
   
-  x1apot <- na.omit(as.numeric(PossibleCooccurrenceOfChemicalPairs2[(PossibleCooccurrenceOfChemicalPairs2[,"Screen"] == "A") & (PossibleCooccurrenceOfChemicalPairs2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
-  x1epot <- na.omit(as.numeric(PossibleCooccurrenceOfChemicalPairs2[(PossibleCooccurrenceOfChemicalPairs2[,"Screen"] == "E") & (PossibleCooccurrenceOfChemicalPairs2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
+  x1apot <- na.omit(as.numeric(PossibleCooccurrenceOfChemicalPairs2x[(PossibleCooccurrenceOfChemicalPairs2x[,"Screen"] == "A") & (PossibleCooccurrenceOfChemicalPairs2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
+  x1epot <- na.omit(as.numeric(PossibleCooccurrenceOfChemicalPairs2x[(PossibleCooccurrenceOfChemicalPairs2x[,"Screen"] == "E") & (PossibleCooccurrenceOfChemicalPairs2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
   
   x2 <- LipidSubsetMMeans_4Subset[LipidSubsetMMeans_4Subset[,"LipidPairMatchingType"] == SimilarityIndex, "Cooccurrence"]
   if(length(x2) > 0){
@@ -3187,11 +3190,11 @@ MaxList2TissuesColoc <- list()
 
 for(SimilarityIndex in c("All", as.character(0:2))){
   
-  x1a <- na.omit(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2[(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Screen"] == "A") & (CooccurrenceOfChemicalPairsListExpandedWithAll2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
-  x1e <- na.omit(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2[(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Screen"] == "E") & (CooccurrenceOfChemicalPairsListExpandedWithAll2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
+  x1a <- na.omit(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2x[(CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"Screen"] == "A") & (CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
+  x1e <- na.omit(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2x[(CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"Screen"] == "E") & (CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
   
-  x1apot <- na.omit(as.numeric(PossibleCooccurrenceOfChemicalPairs2[(PossibleCooccurrenceOfChemicalPairs2[,"Screen"] == "A") & (PossibleCooccurrenceOfChemicalPairs2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
-  x1epot <- na.omit(as.numeric(PossibleCooccurrenceOfChemicalPairs2[(PossibleCooccurrenceOfChemicalPairs2[,"Screen"] == "E") & (PossibleCooccurrenceOfChemicalPairs2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
+  x1apot <- na.omit(as.numeric(PossibleCooccurrenceOfChemicalPairs2x[(PossibleCooccurrenceOfChemicalPairs2x[,"Screen"] == "A") & (PossibleCooccurrenceOfChemicalPairs2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
+  x1epot <- na.omit(as.numeric(PossibleCooccurrenceOfChemicalPairs2x[(PossibleCooccurrenceOfChemicalPairs2x[,"Screen"] == "E") & (PossibleCooccurrenceOfChemicalPairs2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
   
   x2 <- LipidSubsetMMeans_4Subset[LipidSubsetMMeans_4Subset[,"LipidPairMatchingType"] == SimilarityIndex, "Cooccurrence"]
   if(length(x2) > 0){
@@ -3371,19 +3374,19 @@ InVitroReducedLinks <- unique(do.call("cbind", list(PureEnric32[,c("LTPProtein",
 InCelluloReducedLinksCouples <- do.call("rbind", lapply(unique(InCelluloReducedLinks[,1]), function(x){
   
   if(sum(InCelluloReducedLinks[,1] == x) > 1){
-    cbind(unique(InCelluloReducedLinks[InCelluloReducedLinks[,1] == x, 1:2]), t(combn(as.character(InCelluloReducedLinks[InCelluloReducedLinks[,1] == x, 3]), m = 2)))
+    cbind(unique(InCelluloReducedLinks[InCelluloReducedLinks[,1] == x, 1:2]), t(combn(as.character(InCelluloReducedLinks[InCelluloReducedLinks[,1] == x, 3]), m = 2)), row.names = NULL)
     
   }}))
-
+# Cleaned rownames allocation up.
 
 
 InVitroReducedLinksCouples <- do.call("rbind", lapply(unique(InVitroReducedLinks[,1]), function(x){
   
   if(sum(InVitroReducedLinks[,1] == x) > 1){
-    cbind(unique(InVitroReducedLinks[InVitroReducedLinks[,1] == x, 1:2]), t(combn(as.character(InVitroReducedLinks[InVitroReducedLinks[,1] == x, 3]), m = 2)))
+    cbind(unique(InVitroReducedLinks[InVitroReducedLinks[,1] == x, 1:2]), t(combn(as.character(InVitroReducedLinks[InVitroReducedLinks[,1] == x, 3]), m = 2)), row.names = NULL)
     
   }}))
-
+# Cleaned rownames allocation up.
 
 InCelluloReducedLinksCouples2 <- do.call("cbind", list(InCelluloReducedLinksCouples, paste(InCelluloReducedLinksCouples[,3], InCelluloReducedLinksCouples[,4], sep = "_"), paste(InCelluloReducedLinksCouples[,4], InCelluloReducedLinksCouples[,3], sep = "_")))
 colnames(InCelluloReducedLinksCouples2) <- c("LTPProtein", "Screen", "FromLipid", "ToLipid", "FromTo", "ToFrom")
@@ -3653,7 +3656,7 @@ axis(1)
 beanplot(as.numeric(UnitBean[,"correlation"]) ~ factor(UnitBean[,"MatchingNumber"], levels = c(as.character(2:0),"All")), ll = 0,
          
          alpha = 0.5, bw = "nrd0", 
-         col = c(NA,NA, NA,NA),
+         col = c(NA, "white", "white", NA), # updated from an NA-vector
          
          axes=F, log = "",
          horizontal = TRUE,  boxwex = 1,
@@ -3731,7 +3734,7 @@ beanplot(as.numeric(as.character(PossibleSubcellularLocalizationOverlapDatax[,"S
 beanplot(as.numeric(UnitBeanSubcellLoc[,"SubcellularColocalization"]) ~ factor(UnitBeanSubcellLoc[,"PairType"], levels = c("Species", "Sub-Class", "Class", "All")), ll = 0,
          
          bw = "nrd0", 
-         col = c(NA,NA, NA,NA),
+         col = c(NA, "white", "white", NA), # updated from an NA-vector
          
          axes=F, log = "",
          horizontal = TRUE,  boxwex = 1,
@@ -3758,7 +3761,7 @@ UnitBeanTissueLoc <- do.call("rbind.data.frame", lapply(c("Species", "Sub-Class"
 colnames(UnitBeanTissueLoc) <- c("Cooccurrence", "LipidPairMatchingType")
 
 pdf("./Output/Panel5BWithGreenUnityDistributionWithNrd0AndWd02322032022b.pdf")
-beanplot(as.numeric(as.character(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Cooccurrence"])) ~ factor(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Screen"], levels = c("E", "A")) * factor(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"LipidPairMatchingType"], levels = c(as.character(2:0), "All")), 
+beanplot(as.numeric(as.character(CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"Cooccurrence"])) ~ factor(CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"Screen"], levels = c("E", "A")) * factor(CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"LipidPairMatchingType"], levels = c(as.character(2:0), "All")), 
          
          main = "Co-transport: lipid hierarchy preference by co-occurrence in tissues", side = "both", xlab="Co-occurrence", ll = 0.04, wd = 0.23,
          col = list(brewer.pal(9,"Oranges")[4], c(brewer.pal(9,"Blues")[4], "black")), method = "overplot",
@@ -3773,7 +3776,7 @@ beanplot(as.numeric(as.character(CooccurrenceOfChemicalPairsListExpandedWithAll2
          overalline = "median")
 
 
-beanplot(as.numeric(as.character(PossibleCooccurrenceOfChemicalPairs2[,"Cooccurrence"])) ~ factor(PossibleCooccurrenceOfChemicalPairs2[,"Screen"], levels = c("E", "A")) * factor(PossibleCooccurrenceOfChemicalPairs2[,"LipidPairMatchingType"], levels = c(as.character(2:0), "All")), 
+beanplot(as.numeric(as.character(PossibleCooccurrenceOfChemicalPairs2x[,"Cooccurrence"])) ~ factor(PossibleCooccurrenceOfChemicalPairs2x[,"Screen"], levels = c("E", "A")) * factor(PossibleCooccurrenceOfChemicalPairs2x[,"LipidPairMatchingType"], levels = c(as.character(2:0), "All")), 
          
          alpha = 0.5, wd = 0.23,
          col = c(NA, "black", "black", "DarkGrey"), side = "both",
@@ -3812,7 +3815,7 @@ beanplot(as.numeric(as.character(LipidSubsetMMeans_4Subset[,"Cooccurrence"])) ~ 
 beanplot(as.numeric(UnitBeanSubcellLoc[,"SubcellularColocalization"]) ~ factor(UnitBeanSubcellLoc[,"PairType"], levels = c("Species", "Sub-Class", "Class", "All")), ll = 0,
          
          
-         col = c(NA,NA, NA,NA),
+         col = c(NA, "white", "white", NA), # updated from an NA-vector
          
          axes=F, log = "",
          horizontal = TRUE,  boxwex = 1,
@@ -3853,11 +3856,11 @@ StatList2ForCooccurrences <- list()
 
 SimilarityIndex <- "All"
 
-x1a <- RemoveNAsFromVector(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2[(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Screen"] == "A") & (CooccurrenceOfChemicalPairsListExpandedWithAll2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
-x1e <- RemoveNAsFromVector(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2[(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Screen"] == "E") & (CooccurrenceOfChemicalPairsListExpandedWithAll2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
+x1a <- RemoveNAsFromVector(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2x[(CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"Screen"] == "A") & (CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
+x1e <- RemoveNAsFromVector(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2x[(CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"Screen"] == "E") & (CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
 
-pdForx1a <- RemoveNAsFromVector(as.numeric(as.character(PossibleCooccurrenceOfChemicalPairs2[(PossibleCooccurrenceOfChemicalPairs2[,"Screen"] == "A") & (PossibleCooccurrenceOfChemicalPairs2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"])))
-pdForx1e <- RemoveNAsFromVector(as.numeric(as.character(PossibleCooccurrenceOfChemicalPairs2[(PossibleCooccurrenceOfChemicalPairs2[,"Screen"] == "E") & (PossibleCooccurrenceOfChemicalPairs2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"])))
+pdForx1a <- RemoveNAsFromVector(as.numeric(as.character(PossibleCooccurrenceOfChemicalPairs2x[(PossibleCooccurrenceOfChemicalPairs2x[,"Screen"] == "A") & (PossibleCooccurrenceOfChemicalPairs2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"])))
+pdForx1e <- RemoveNAsFromVector(as.numeric(as.character(PossibleCooccurrenceOfChemicalPairs2x[(PossibleCooccurrenceOfChemicalPairs2x[,"Screen"] == "E") & (PossibleCooccurrenceOfChemicalPairs2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"])))
 
 StatListForCooccurrences[[SimilarityIndex]] <- structure(rbind(FishersExactTestBelowAbove05(SubsetX = x1a, SupersetY = c(pdForx1a,pdForx1a)), FishersExactTestBelowAbove05(SubsetX = x1e, SupersetY = c(pdForx1e,pdForx1e))), 
                                                          dimnames = list(c("A","E"), c("NoNeg", "NoPos", "YesNeg", "YesPos", "LowConf", "HighConf", "OddsRatio", "pValue")))
@@ -3874,11 +3877,11 @@ Stat2FullAllForCooccurrencesCorrectedVersion <- structure(rbind(FishersExactTest
 
 for(SimilarityIndex in as.character(0:2)){
   
-  x1a <- RemoveNAsFromVector(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2[(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Screen"] == "A") & (CooccurrenceOfChemicalPairsListExpandedWithAll2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
-  x1e <- RemoveNAsFromVector(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2[(CooccurrenceOfChemicalPairsListExpandedWithAll2[,"Screen"] == "E") & (CooccurrenceOfChemicalPairsListExpandedWithAll2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
+  x1a <- RemoveNAsFromVector(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2x[(CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"Screen"] == "A") & (CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
+  x1e <- RemoveNAsFromVector(as.numeric(CooccurrenceOfChemicalPairsListExpandedWithAll2x[(CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"Screen"] == "E") & (CooccurrenceOfChemicalPairsListExpandedWithAll2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"]))
   
-  pdForx1a <- RemoveNAsFromVector(as.numeric(as.character(PossibleCooccurrenceOfChemicalPairs2[(PossibleCooccurrenceOfChemicalPairs2[,"Screen"] == "A") & (PossibleCooccurrenceOfChemicalPairs2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"])))
-  pdForx1e <- RemoveNAsFromVector(as.numeric(as.character(PossibleCooccurrenceOfChemicalPairs2[(PossibleCooccurrenceOfChemicalPairs2[,"Screen"] == "E") & (PossibleCooccurrenceOfChemicalPairs2[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"])))
+  pdForx1a <- RemoveNAsFromVector(as.numeric(as.character(PossibleCooccurrenceOfChemicalPairs2x[(PossibleCooccurrenceOfChemicalPairs2x[,"Screen"] == "A") & (PossibleCooccurrenceOfChemicalPairs2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"])))
+  pdForx1e <- RemoveNAsFromVector(as.numeric(as.character(PossibleCooccurrenceOfChemicalPairs2x[(PossibleCooccurrenceOfChemicalPairs2x[,"Screen"] == "E") & (PossibleCooccurrenceOfChemicalPairs2x[,"LipidPairMatchingType"] == SimilarityIndex),"Cooccurrence"])))
   
   StatListForCooccurrences[[SimilarityIndex]] <- structure(rbind(FishersExactTestBelowAbove05(SubsetX = x1a, SupersetY = c(pdForx1a,pdForx1a)), FishersExactTestBelowAbove05(SubsetX = x1e, SupersetY = c(pdForx1e,pdForx1e))), 
                                                            dimnames = list(c("A","E"), c("NoNeg", "NoPos", "YesNeg", "YesPos", "LowConf", "HighConf", "OddsRatio", "pValue")))
