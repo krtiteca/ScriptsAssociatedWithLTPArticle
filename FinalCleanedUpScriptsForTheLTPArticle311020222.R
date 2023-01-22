@@ -232,66 +232,6 @@ RbindMultipleDataframesFillNonmatches <- function(dflist, FillerValue = NA){
 # and if SortRows is TRUE the levels will be sorted, but if SortRows is FALSE the original order of the levels will be used.
 # FillerValue = filler value for filling cells that did not exist before, but were created by the conversion.
 
-# widen <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE){
-#   outputdf <- do.call("rbind.data.frame",
-#                       
-#                       lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))
-#                       }else{as.character(unique(inputdf[, ColumnsLong]))}], # leaves out factor levels and orders it according to occurrence
-#                       
-#                       function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
-#                                                                                  FUN = function(z){AggregatingFunction(z[,ColumnValue])},
-#                                                                                  
-#                                                                                  FUN.VALUE = FunctionOutputValueType,
-#                                                                                  USE.NAMES = TRUE)))}))
-#   
-#   if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
-#   return(outputdf)}
-# 
-# widen2 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE, SortRows = TRUE){
-#   outputdf <- do.call("rbind.data.frame",
-#                       
-#                       lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){if(SortRows){sort(do.call(paste, c(unique(inputdf[, ColumnsLong]), sep=".")))}else{do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))}
-#                       }else{if(SortRows){sort(as.character(unique(inputdf[, ColumnsLong])))}else{as.character(unique(inputdf[, ColumnsLong]))}}], # both have option to be sorted or be in in order they original occur
-#                       
-#                       function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
-#                                                                                  FUN = function(z){AggregatingFunction(z[,ColumnValue])},
-#                                                                                  
-#                                                                                  FUN.VALUE = FunctionOutputValueType,
-#                                                                                  USE.NAMES = TRUE)))}))
-#   
-#   if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
-#   return(outputdf)}
-# 
-# widen4 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE, SortRows = TRUE, DropUnusedRowsLevels = TRUE){
-#   if((length(ColumnsLong) == 1) && is.factor(inputdf[,ColumnsLong]) && (DropUnusedRowsLevels == FALSE)){
-#     
-#     outputdf <- do.call("rbind.data.frame",
-#                         lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = FALSE)[if(SortRows){sort(levels(inputdf[, ColumnsLong]))}else{levels(inputdf[, ColumnsLong])}],
-#                                
-#                                function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
-#                                                                                           FUN = function(z){AggregatingFunction(z[,ColumnValue])},
-#                                                                                           
-#                                                                                           FUN.VALUE = FunctionOutputValueType,
-#                                                                                           USE.NAMES = TRUE)))}))
-#     
-#     outputdf[,ColumnsLong] <- rownames(outputdf)
-#   }else{
-#     
-#     
-#     outputdf <- do.call("rbind.data.frame",
-#                         
-#                         lapply(split(inputdf, f = inputdf[, ColumnsLong], drop = TRUE)[if(length(ColumnsLong)>1){if(SortRows){sort(do.call(paste, c(unique(inputdf[, ColumnsLong]), sep=".")))}else{do.call(paste, c(unique(inputdf[, ColumnsLong]), sep="."))}
-#                         }else{if(SortRows){sort(as.character(unique(inputdf[, ColumnsLong])))}else{as.character(unique(inputdf[, ColumnsLong]))}}], # both have option to be sorted or be in in order they original occur
-#                         
-#                         function(y){cbind(y[1, ColumnsLong, drop = FALSE],t(vapply(split(y, f = y[, ColumnWide]),
-#                                                                                    FUN = function(z){AggregatingFunction(z[,ColumnValue])},
-#                                                                                    
-#                                                                                    FUN.VALUE = FunctionOutputValueType,
-#                                                                                    USE.NAMES = TRUE)))}))}
-#   
-#   if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
-#   return(outputdf)}
-
 widen5 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE, SortRows = TRUE, DropUnusedRowsLevels = TRUE, FillerValue = NA){
   if((length(ColumnsLong) == 1) && is.factor(inputdf[,ColumnsLong]) && (DropUnusedRowsLevels == FALSE)){
     
