@@ -2104,8 +2104,8 @@ all(unique(AggregatedAllScreenDataNormalized4[,5]) %in% names(LipidColorsForCirc
 
 # Actual circos visualization at species-level
 
-library(circlize)
-pdf("./Output/CircosExtendedWithSpecies051120217WithTracksSwitchedDecreasedTextSize0412WhiteRingRemovedSmallerScreenTracksWithoutInnerHalfringByDiffHeight0ColorSchemeUpdatedWithoutSomeTLCEntriesWithBlackOutsides7b.pdf")
+library(circlize) # CircosExtendedWithSpecies051120217WithTracksSwitchedDecreasedTextSize0412WhiteRingRemovedSmallerScreenTracksWithoutInnerHalfringByDiffHeight0ColorSchemeUpdatedWithoutSomeTLCEntriesWithBlackOutsides7b.pdf
+pdf("./Output/CEWS051120217WTSDTS0412WRRSSTWIHBDH0CSUWSTLCEWBO7b.pdf")
 
 circos.clear()
 circos.par(start.degree = -70, clock.wise = FALSE, cell.padding = c(0,0,0,0))
