@@ -55,10 +55,16 @@
 
 
 
+# Capture previous options and set new general options
+OriginalOptions <- options()
+
+options(stringsAsFactors = TRUE)
+options(warn = 0)
+
 ######## General functions
 #### Function to substitute rownames by first column and then remove the first column
 
-Col1ToRowNames <-function(x){
+Col1ToRowNames <- function(x){
   y <- x[,-1]
   
   rownames(y) <- x[,1]
@@ -1199,13 +1205,22 @@ OrderDecreasingPerMainDomain <- unlist(lapply(unique(MainDomainsOfTheLTPs4[,2]),
 MainDomainsOfTheLTPs4x <- as.data.frame(cbind(OrderDecreasingPerMainDomain, MainDomainsOfTheLTPs4[,2]))
 
 # Sort by type of domains and split in the types
-DomainTypes <- rbind(unique(SequenceAndDomainHighlightsLTPs2[,c(2,5)])[c(2,1,3,6,4,5,7:8,11:9,13,14,12),], cbind(TypeRegion = "MainDomain", RegionName = levels(MainDomainsOfTheLTPs4x[,2])[c(1:3, 9, 7, 4:6,8)]))
+# Explicitly defined in next code to avoid possible future changes (cleans rownames too) (original code is quoted out below) 
 
-DomainTypes2 <- as.matrix(DomainTypes)
-DomainTypes2[c(15,18),2] <- paste0(DomainTypes2[c(15,18),2],".1")
+DomainTypes2 <- as.matrix(cbind(TypeRegion = c(rep("Domain", 6), rep("CC", 2), rep("CompBias", 3), rep("Motif", 3), rep("MainDomain", 9)), 
+                                RegionName = c("GOLD", "CRAL-TRIO", "PRELI/MSF1", "START", "PH", "SCP2", "CC1", "CC2", "Ala/Gly-rich", "Poly-Leu", "Ser-rich", "FFAT", "Microbody targeting signal", "Nuclear localization signal", "CRAL-TRIO.1", "GLTP", "IP_trans", "START.1", "OSBP", "LBP_BPI_CETP", "lipocalin", "ML", "scp2")))
 
+# Original code for DomainTypes2
+# DomainTypes <- rbind(unique(SequenceAndDomainHighlightsLTPs2[,c(2,5)])[c(2,1,3,6,4,5,7:8,11:9,13,14,12),], cbind(TypeRegion = "MainDomain", RegionName = levels(MainDomainsOfTheLTPs4x[,2])[c(1:3, 9, 7, 4:6,8)]))
+# 
+# DomainTypes2 <- as.matrix(DomainTypes)
+# DomainTypes2[c(15,18),2] <- paste0(DomainTypes2[c(15,18),2],".1")
 
-ListDomainsOfTheLTPs <- lapply(levels(MainDomainsOfTheLTPs4x[,2])[c(1:3, 9, 7, 4:6,8)], function(x){MainDomainsOfTheLTPs4x[MainDomainsOfTheLTPs4x[,2] == x,]})
+# Also here explicit definition in characters introduced instead of numeric subsetting of levels, to protect from possible future changes (original code is quoted out below)
+ListDomainsOfTheLTPs <- lapply(c("CRAL-TRIO", "GLTP", "IP_trans", "START", "OSBP", "LBP_BPI_CETP", "lipocalin", "ML", "scp2"), function(x){MainDomainsOfTheLTPs4x[MainDomainsOfTheLTPs4x[,2] == x,]})
+
+# Original code
+# ListDomainsOfTheLTPs <- lapply(levels(MainDomainsOfTheLTPs4x[,2])[c(1:3, 9, 7, 4:6,8)], function(x){MainDomainsOfTheLTPs4x[MainDomainsOfTheLTPs4x[,2] == x,]})
 
 ListDomainsOfTheLTPs[[4]] <- ListDomainsOfTheLTPs[[4]][3:1,]
 ListDomainsOfTheLTPs[[7]][1:2,] <- ListDomainsOfTheLTPs[[7]][2:1,]
@@ -1595,7 +1610,10 @@ WidthAdaptor <- 160
 HeightAdaptor <- 160
 
 SplitByRowsVector <- factor(MainGroupsOfLipidsWithoutRedundantStars2[,"Group"], levels = unique(MainGroupsOfLipidsWithoutRedundantStars2[,"Group"]))
-SplitByColsVector <- factor(MainDomainsOfTheLTPs4xx[,2], levels = levels(MainDomainsOfTheLTPs4x[,2])[c(1:3, 9, 7, 4:6,8)])
+# SplitByColsVector <- factor(MainDomainsOfTheLTPs4xx[,2], levels = levels(MainDomainsOfTheLTPs4x[,2])[c(1:3, 9, 7, 4:6,8)]) # Original code
+
+# Updated code to avoid numerical subsetting of levels to avoid future changes (see above for the original code-line)
+SplitByColsVector <- factor(MainDomainsOfTheLTPs4xx[,2], levels = c("CRAL-TRIO", "GLTP", "IP_trans", "START", "OSBP", "LBP_BPI_CETP", "lipocalin", "ML", "scp2"))
 
 GraphNameslc <- "White circles with black borders for novelty (vs. consensus literature knowledge)(sphingolipids aggregated)"
 library(ComplexHeatmap)
@@ -1666,7 +1684,10 @@ LegendName <- "Legend"
 WidthAdaptor <- 160
 HeightAdaptor <- 160
 
-SplitByColsVector <- factor(MainDomainsOfTheLTPs4xx[,2], levels = levels(MainDomainsOfTheLTPs4x[,2])[c(1:3, 9, 7, 4:6,8)])
+# SplitByColsVector <- factor(MainDomainsOfTheLTPs4xx[,2], levels = levels(MainDomainsOfTheLTPs4x[,2])[c(1:3, 9, 7, 4:6,8)]) # Again updated to a version without levels subsetting to avoid future changes (original version on this line)
+SplitByColsVector <- factor(MainDomainsOfTheLTPs4xx[,2], levels = c("CRAL-TRIO", "GLTP", "IP_trans", "START", "OSBP", "LBP_BPI_CETP", "lipocalin", "ML", "scp2"))
+
+
 DomainsLTPsReorderedAfterSeriation <- colnames(DomainsByRowColumnAssociationsReordered5)[c(1:13,15,14,17,16,18:31)]
 
 ReorderedDomainsInputMatrix <- t(as.matrix(DomainsByRowColumnAssociationsReordered5[ReorderedLTPsByManualSeriation, DomainsLTPsReorderedAfterSeriation]))
@@ -2806,11 +2827,20 @@ colnames(AggregatedLTPLipidPairsCombined_7wvi) <- c("LTPProtein", "LipidSpecies"
 # Convertion: a: acyl; e: ether; d: d sphingosine; h: DH sphingosine; t: t sphingosine)
 # Alternative nomenclature: similar to Koeberlin but not exactly the same: lysolipids indicated by headgroup, so PC_a_C and not LPC_a_C
 
-ConversionMatrixForLipidsForFullDataAlternativeKoeberlinNomenclaturewvi <- cbind(as.character(levels(AggregatedLTPLipidPairsCombined_7wvi[,"LipidSubclass"])), c("BMP_aa_C", "CL_aaaa_C", "Cer_da_C", "CerP_da_C", "HexCer_da_C", "SHexCer_da_C", "SM_da_C", "DAG_aa_C", "Cer_da_C", "Cer_ha_C", "Cer_ta_C", "SM_ha_C",
-                                                                                                                                                                 "FA_a_C", "FA_e_C", "PC_a_C", "PE_a_C", "PE_e_C", "PG_a_C", "PA_aa_C", "PC_aa_C", "PC_ae_C", "PE_aa_C", "PE_ae_C", "PG_aa_C", "PG/BMP_aa_C", "PGP_aa_C", 
-                                                                                                                                                                 
-                                                                                                                                                                 "PI_aa_C",  "PS_aa_C", "Hex2Cer_ta_C", "HexCer_ta_C", "SM_ta_C", "TAG_aaa_C", "Cer_ta_C", "VA_nn_C"))
+ConversionMatrixForLipidsForFullDataAlternativeKoeberlinNomenclaturewvi <- cbind(c("BMP", "CL", "d*Cer", "d*CerP", "d*HexCer", "d*SHexCer", "d*SM", "DAG", "dCer", "DHCer", "DHOH*Cer", "DHSM", "FA", "FAL", "LPC", "LPE", "LPE-O", "LPG", 
+                                                                                   "PA", "PC", "PC-O", "PE", "PE-O", "PG", "PG/BMP", "PGP", "PI", "PS", "t*Hex2Cer", "t*HexCer", "t*SM", "TAG", "tCer", "VA"), 
+                                                                                 
+                                                                                 c("BMP_aa_C", "CL_aaaa_C", "Cer_da_C", "CerP_da_C", "HexCer_da_C", "SHexCer_da_C", "SM_da_C", "DAG_aa_C", "Cer_da_C", "Cer_ha_C", "Cer_ta_C", "SM_ha_C",
+                                                                                   "FA_a_C", "FA_e_C", "PC_a_C", "PE_a_C", "PE_e_C", "PG_a_C", "PA_aa_C", "PC_aa_C", "PC_ae_C", "PE_aa_C", "PE_ae_C", "PG_aa_C", "PG/BMP_aa_C", "PGP_aa_C", 
+                                                                                   
+                                                                                   "PI_aa_C",  "PS_aa_C", "Hex2Cer_ta_C", "HexCer_ta_C", "SM_ta_C", "TAG_aaa_C", "Cer_ta_C", "VA_nn_C"))
 
+
+# ConversionMatrixForLipidsForFullDataAlternativeKoeberlinNomenclaturewvi <- cbind(as.character(levels(AggregatedLTPLipidPairsCombined_7wvi[,"LipidSubclass"])), c("BMP_aa_C", "CL_aaaa_C", "Cer_da_C", "CerP_da_C", "HexCer_da_C", "SHexCer_da_C", "SM_da_C", "DAG_aa_C", "Cer_da_C", "Cer_ha_C", "Cer_ta_C", "SM_ha_C",
+#                                                                                                                                                                  "FA_a_C", "FA_e_C", "PC_a_C", "PE_a_C", "PE_e_C", "PG_a_C", "PA_aa_C", "PC_aa_C", "PC_ae_C", "PE_aa_C", "PE_ae_C", "PG_aa_C", "PG/BMP_aa_C", "PGP_aa_C", 
+#                                                                                                                                                                  
+#                                                                                                                                                                  "PI_aa_C",  "PS_aa_C", "Hex2Cer_ta_C", "HexCer_ta_C", "SM_ta_C", "TAG_aaa_C", "Cer_ta_C", "VA_nn_C"))
+# 
 
 AggregatedLTPLipidPairsCombined_8wvi <- cbind(AggregatedLTPLipidPairsCombined_7wvi, 
                                               LipidSpeciesAlternativeNomenclature = paste0(ConversionMatrixForLipidsForFullDataAlternativeKoeberlinNomenclaturewvi[match(AggregatedLTPLipidPairsCombined_7wvi$LipidSubclass, ConversionMatrixForLipidsForFullDataAlternativeKoeberlinNomenclaturewvi[,1]),2], 
@@ -3280,8 +3310,8 @@ AggregateMPOfMads0RTLMOC4 <- cbind(CovertedSubclasses = MadsLipidsSubclassesConv
 rm(AggregateMPOfMads0RTLMOC)
 rm(AggregateMPOfMads0RTLMOC2)
 
-gc()
-
+# Optional but advisable here because of size
+# gc()
 
 x <- AggregateMPOfMads0RTLMOC4[,-(1:5)]
 y <- which(lower.tri(x), arr.ind = TRUE)
@@ -4111,3 +4141,5 @@ text(500, -log10(0.05), labels = "p-value 0.05", pos = 3, cex = 0.8, col = "dark
 dev.off()
 # The above figure is the basis for Figure panel 6c, and was optimized further and integrated by Adobe Illustrator use.
 
+# Reset options to orginal ones from user
+options() <- OriginalOptions
