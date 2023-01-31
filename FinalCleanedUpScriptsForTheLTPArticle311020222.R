@@ -58,8 +58,8 @@
 # Capture previous options and set new general options
 OriginalOptions <- options()
 
-options(stringsAsFactors = TRUE)
 options(warn = 0)
+options(stringsAsFactors = TRUE)
 
 ######## General functions
 #### Function to substitute rownames by first column and then remove the first column
@@ -238,7 +238,10 @@ RbindMultipleDataframesFillNonmatches <- function(dflist, FillerValue = NA){
 # and if SortRows is TRUE the levels will be sorted, but if SortRows is FALSE the original order of the levels will be used.
 # FillerValue = filler value for filling cells that did not exist before, but were created by the conversion.
 
-widen5 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE, SortRows = TRUE, DropUnusedRowsLevels = TRUE, FillerValue = NA){
+# SortWide = logical indicating if the columns have to be reordered by having the ColumnsLong first followed by the sorted rest of the columns (TRUE) (the default).
+# If SortWide is FALSE the columns will be ordered in the order that the function encounters them.
+
+widen5 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFunction = length, FunctionOutputValueType = integer(1), RowNamesColumnsLong = TRUE, SortRows = TRUE, DropUnusedRowsLevels = TRUE, FillerValue = NA, SortWide = TRUE){
   if((length(ColumnsLong) == 1) && is.factor(inputdf[,ColumnsLong]) && (DropUnusedRowsLevels == FALSE)){
     
     outputdf <- RbindMultipleDataframesFillNonmatches(
@@ -266,7 +269,10 @@ widen5 <- function(inputdf, ColumnsLong, ColumnWide, ColumnValue, AggregatingFun
                                                                  USE.NAMES = TRUE)))}), FillerValue = FillerValue)}
   
   if(RowNamesColumnsLong == FALSE){rownames(outputdf) <- as.character(1:dim(outputdf)[1])}
+  if(SortWide == TRUE){outputdf <- outputdf[,c(ColumnsLong, sort(colnames(outputdf)[!(colnames(outputdf) %in% ColumnsLong)]))]}
+  
   return(outputdf)}
+
 
 # Function to take a rowsums if x is a dataframe and otherwise just return x itself.
 rowSumsDFS <- function(x){if(class(x) == "data.frame"){rowSums(x, na.rm = TRUE)}else{x}}
@@ -1111,14 +1117,14 @@ colnames(LTPMatrixTopInVitrommn) <- colnames(LTPMatrixPosInVitrommn)
 MeltedInVivoCombined <- rbind(meltmatrix(LTPMatrixTopInVivommn), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))
 MeltedInVitroCombined <- rbind(meltmatrix(LTPMatrixTopInVitrommn), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))
 
-CastInVivoCombined <- Col1ToRowNames(widen5(inputdf = MeltedInVivoCombined, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = sum, FunctionOutputValueType = double(1), SortRows = FALSE))
-CastInVitroCombined <- Col1ToRowNames(widen5(inputdf = MeltedInVitroCombined, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = sum, FunctionOutputValueType = double(1), SortRows = FALSE))
+CastInVivoCombined <- Col1ToRowNames(widen5(inputdf = MeltedInVivoCombined, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = sum, FunctionOutputValueType = double(1), SortRows = FALSE, FillerValue = 0))
+CastInVitroCombined <- Col1ToRowNames(widen5(inputdf = MeltedInVitroCombined, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = sum, FunctionOutputValueType = double(1), SortRows = FALSE, FillerValue = 0))
 
 # Make overview of LTP classes
 MainDomainsOfTheLTPs <- unique(rbind(PureAntonella32b[,1:2], PureEnric32[,1:2])) 
 
 MainDomainsOfTheLTPs2 <- cbind(LTPProtein = colnames(CastInVivoCombined), MainDomain = MainDomainsOfTheLTPs[match(colnames(CastInVivoCombined), MainDomainsOfTheLTPs[,1]),2])
-MainDomainsOfTheLTPs2[36:43,2] <- "OSBP"
+MainDomainsOfTheLTPs2[is.na(MainDomainsOfTheLTPs2[,"MainDomain"]),2] <- "OSBP" # Updated to protect from potential future changes
 
 MainDomainsOfTheLTPs4 <- MainDomainsOfTheLTPs2[order(MainDomainsOfTheLTPs2[,2], MainDomainsOfTheLTPs2[,1]),][c(1:29,32:37,30:31,38:40,43,41,42),]
 
@@ -1300,14 +1306,26 @@ HPTLCSpecificitiesPerScreen2hdrm4[[2]] <- HPTLCSpecificitiesPerScreen2hdrm2[[2]]
 MeltedInVivoCombinedslchdr <- rbind(meltmatrix(LTPMatrixTopInVivommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[1]])
 MeltedInVitroCombinedslchdr <- rbind(meltmatrix(LTPMatrixTopInVitrommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[2]])
 
-CastInVivoCombinedslchdr <- as.matrix(Col1ToRowNames(widen5(inputdf = MeltedInVivoCombinedslchdr, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = function(x){if(length(x)>0){max(x,na.rm = TRUE)}else{0}}, FunctionOutputValueType = double(1), SortRows = FALSE)))
-CastInVitroCombinedslchdr <- as.matrix(Col1ToRowNames(widen5(inputdf = MeltedInVitroCombinedslchdr, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = function(x){if(length(x)>0){max(x,na.rm = TRUE)}else{0}}, FunctionOutputValueType = double(1), SortRows = FALSE)))
+CastInVivoCombinedslchdr <- as.matrix(Col1ToRowNames(widen5(inputdf = MeltedInVivoCombinedslchdr, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = function(x){if(length(x)>0){max(x,na.rm = TRUE)}else{0}}, FunctionOutputValueType = double(1), SortRows = FALSE, FillerValue = 0)))
+CastInVitroCombinedslchdr <- as.matrix(Col1ToRowNames(widen5(inputdf = MeltedInVitroCombinedslchdr, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = function(x){if(length(x)>0){max(x,na.rm = TRUE)}else{0}}, FunctionOutputValueType = double(1), SortRows = FALSE, FillerValue = 0)))
 
 # Internal conversions simplified/eliminated by introduction of more advanced widen5 function instead of the original script snippet, and thus no missing colnames anymore
 
 
+# all(colnames(CastInVitroCombinedslchdr) %in% rownames(DomainsByRowColumnAssociationsReordered)) # TRUE
+# all(rownames(DomainsByRowColumnAssociationsReordered) %in% colnames(CastInVitroCombinedslchdr)) # FALSE (in a stringAsFactors = FALSE environment)
+
+# Make in vitro matrix matching with in cellulo matrix because it has some columns less in environments not following the initialized options (reintroduced code from the previous version)
+CastInVitroCombinedslchdr2 <- cbind(CastInVitroCombinedslchdr, matrix(data = 0, 
+                                                                      
+                                                                      nrow = nrow(CastInVitroCombinedslchdr),
+                                                                      ncol = length(rownames(DomainsByRowColumnAssociationsReordered)[!(rownames(DomainsByRowColumnAssociationsReordered) %in% colnames(CastInVitroCombinedslchdr))]),
+                                                                      
+                                                                      dimnames = list(rownames(CastInVitroCombinedslchdr),
+                                                                                      rownames(DomainsByRowColumnAssociationsReordered)[!(rownames(DomainsByRowColumnAssociationsReordered) %in% colnames(CastInVitroCombinedslchdr))])))
+
 InVivoDataSetTotalslchdr <- as.matrix(CastInVivoCombinedslchdr[, rownames(DomainsByRowColumnAssociationsReordered)])
-InVitroDataSetTotalslchdr <- as.matrix(CastInVitroCombinedslchdr[, rownames(DomainsByRowColumnAssociationsReordered)]) 
+InVitroDataSetTotalslchdr <- as.matrix(CastInVitroCombinedslchdr2[, rownames(DomainsByRowColumnAssociationsReordered)]) # Reintroduced back from previous code to get matching columns again.
 
 c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))[!unique(c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))) %in% rownames(InVivoDataSetTotalslchdr)]
 # character(0)
@@ -1780,11 +1798,11 @@ LipidSubclassesAddedToBackground170620214 <- setNames(lapply(unique(LipidSubclas
 
 LTPLipidConnectionsDataSubset <- cbind(LTPLipidConnectionsDataSet[,c("LTPProtein", "LikelySubclass", "Screen", "Intensity")], CarbonChain = paste(LTPLipidConnectionsDataSet[,"TotalCarbonChainLength"],LTPLipidConnectionsDataSet[,"TotalCarbonChainUnsaturations"], sep = ":"))
 
-# Change to widen5 changes the order of the rows, so I set up a new series of variables here with x at the end. PC come e.g. below PC-O.
-LTPLipidConnectionsDataAggregatedx <- widen5(inputdf = LTPLipidConnectionsDataSubset, ColumnsLong = c("LTPProtein", "LikelySubclass", "Screen"), ColumnWide = "CarbonChain", ColumnValue = "Intensity", AggregatingFunction = function(x){sum(x, na.rm = TRUE)}, RowNamesColumnsLong = FALSE)
+# Change to widen5 changes the order of the rows, so I set up a new series of variables here with x at the end. PC come e.g. below PC-O. The widen5 columns are more similarly ordered as before however.
+LTPLipidConnectionsDataAggregatedx <- widen5(inputdf = LTPLipidConnectionsDataSubset, ColumnsLong = c("LTPProtein", "LikelySubclass", "Screen"), ColumnWide = "CarbonChain", ColumnValue = "Intensity", AggregatingFunction = function(x){sum(x, na.rm = TRUE)}, RowNamesColumnsLong = FALSE, FillerValue = 0)
 
 PITransportersComobilizedPatternsx <- LTPLipidConnectionsDataAggregatedx[LTPLipidConnectionsDataAggregatedx[, "LTPProtein"] %in% unique(LTPLipidConnectionsDataAggregatedx[LTPLipidConnectionsDataAggregatedx$LikelySubclass == "PI", "LTPProtein"])[c(1,2,6,3,4,5)],]
-PITransportersComobilizedPatterns2x <- cbind(PITransportersComobilizedPatternsx[,1:3], PITransportersComobilizedPatternsx[,4:100][,colSums(PITransportersComobilizedPatternsx[,4:100]) != 0])
+PITransportersComobilizedPatterns2x <- cbind(PITransportersComobilizedPatternsx[,c("LTPProtein", "LikelySubclass", "Screen")], PITransportersComobilizedPatternsx[,!(colnames(PITransportersComobilizedPatternsx) %in% c("LTPProtein", "LikelySubclass", "Screen", "NaN:NaN"))][,colSums(PITransportersComobilizedPatternsx[,!(colnames(PITransportersComobilizedPatternsx) %in% c("LTPProtein", "LikelySubclass", "Screen", "NaN:NaN"))]) != 0])
 
 PITransportersComobilizedPatterns4x <- PITransportersComobilizedPatterns2x
 PITransportersComobilizedPatterns4x[,-(1:3)] <- PITransportersComobilizedPatterns4x[,-(1:3)]*100/do.call(pmax, PITransportersComobilizedPatterns4x[,-(1:3)])
@@ -2835,12 +2853,6 @@ ConversionMatrixForLipidsForFullDataAlternativeKoeberlinNomenclaturewvi <- cbind
                                                                                    
                                                                                    "PI_aa_C",  "PS_aa_C", "Hex2Cer_ta_C", "HexCer_ta_C", "SM_ta_C", "TAG_aaa_C", "Cer_ta_C", "VA_nn_C"))
 
-
-# ConversionMatrixForLipidsForFullDataAlternativeKoeberlinNomenclaturewvi <- cbind(as.character(levels(AggregatedLTPLipidPairsCombined_7wvi[,"LipidSubclass"])), c("BMP_aa_C", "CL_aaaa_C", "Cer_da_C", "CerP_da_C", "HexCer_da_C", "SHexCer_da_C", "SM_da_C", "DAG_aa_C", "Cer_da_C", "Cer_ha_C", "Cer_ta_C", "SM_ha_C",
-#                                                                                                                                                                  "FA_a_C", "FA_e_C", "PC_a_C", "PE_a_C", "PE_e_C", "PG_a_C", "PA_aa_C", "PC_aa_C", "PC_ae_C", "PE_aa_C", "PE_ae_C", "PG_aa_C", "PG/BMP_aa_C", "PGP_aa_C", 
-#                                                                                                                                                                  
-#                                                                                                                                                                  "PI_aa_C",  "PS_aa_C", "Hex2Cer_ta_C", "HexCer_ta_C", "SM_ta_C", "TAG_aaa_C", "Cer_ta_C", "VA_nn_C"))
-# 
 
 AggregatedLTPLipidPairsCombined_8wvi <- cbind(AggregatedLTPLipidPairsCombined_7wvi, 
                                               LipidSpeciesAlternativeNomenclature = paste0(ConversionMatrixForLipidsForFullDataAlternativeKoeberlinNomenclaturewvi[match(AggregatedLTPLipidPairsCombined_7wvi$LipidSubclass, ConversionMatrixForLipidsForFullDataAlternativeKoeberlinNomenclaturewvi[,1]),2], 
@@ -4121,7 +4133,7 @@ colnames(OverexpressionHEKLogRatiosMelted) <- c("Sample", "Lipid", "Ratio")
 
 OverexpressionHEKLogRatiosMelted2 <- cbind(OverexpressionHEKLogRatiosMelted, LTPType = sapply(strsplit(as.character(OverexpressionHEKLogRatiosMelted[,"Sample"]), split = "_"), "[[", 3))
 
-StatHEKLogRatiosMelted2 <- do.call("rbind",lapply(levels(OverexpressionHEKLogRatiosMelted2[,"Lipid"]), function(y){c(y,sapply(c("CERT","Sec14L1"), function(x){unlist(t.test(OverexpressionHEKLogRatiosMelted2[(OverexpressionHEKLogRatiosMelted2[,"LTPType"] == "control") & (OverexpressionHEKLogRatiosMelted2[,"Lipid"] == y),"Ratio"], OverexpressionHEKLogRatiosMelted2[(OverexpressionHEKLogRatiosMelted2[,"LTPType"] == x) & (OverexpressionHEKLogRatiosMelted2[,"Lipid"] == y),"Ratio"])[c(3,5,4)])}))}))
+StatHEKLogRatiosMelted2 <- do.call("rbind",lapply(unique(as.character(OverexpressionHEKLogRatiosMelted2[,"Lipid"])), function(y){c(y,sapply(c("CERT","Sec14L1"), function(x){unlist(t.test(OverexpressionHEKLogRatiosMelted2[(OverexpressionHEKLogRatiosMelted2[,"LTPType"] == "control") & (OverexpressionHEKLogRatiosMelted2[,"Lipid"] == y),"Ratio"], OverexpressionHEKLogRatiosMelted2[(OverexpressionHEKLogRatiosMelted2[,"LTPType"] == x) & (OverexpressionHEKLogRatiosMelted2[,"Lipid"] == y),"Ratio"])[c(3,5,4)])}))}))
 colnames(StatHEKLogRatiosMelted2) <- c("Lipid", "CERTp.value", "CERTControlMeanEstimate", "CERTProteinMeanEstimate", "CERTDiffConfidenceLow", "CERTDiffConfidenceHigh", "SEC14L1p.value", "SEC14L1ControlMeanEstimate", "SEC14L1ProteinMeanEstimate", "SEC14L1DiffConfidenceLow", "SEC14L1DiffConfidenceHigh")
 
 StatHEKLogRatiosMelted4 <- do.call("cbind", list(StatHEKLogRatiosMelted2, CERTPercentDifference = 100*10^(as.numeric(StatHEKLogRatiosMelted2[,4]) - as.numeric(StatHEKLogRatiosMelted2[,3]))-100, SEC14L1PercentDifference = 100*10^(as.numeric(StatHEKLogRatiosMelted2[,9]) - as.numeric(StatHEKLogRatiosMelted2[,8]))-100))  
