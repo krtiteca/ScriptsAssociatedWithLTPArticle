@@ -1211,16 +1211,16 @@ OrderDecreasingPerMainDomain <- unlist(lapply(unique(MainDomainsOfTheLTPs4[,2]),
 MainDomainsOfTheLTPs4x <- as.data.frame(cbind(OrderDecreasingPerMainDomain, MainDomainsOfTheLTPs4[,2]))
 
 # Sort by type of domains and split in the types
-# Explicitly defined in next code to avoid possible future changes (cleans rownames too) (original code is quoted out below) 
+# Explicitly defined in next code, saved and reloaded, to avoid possible future changes (cleans rownames too) (original code used for construction is quoted out below) 
 
-DomainTypes2 <- as.matrix(cbind(TypeRegion = c(rep("Domain", 6), rep("CC", 2), rep("CompBias", 3), rep("Motif", 3), rep("MainDomain", 9)), 
-                                RegionName = c("GOLD", "CRAL-TRIO", "PRELI/MSF1", "START", "PH", "SCP2", "CC1", "CC2", "Ala/Gly-rich", "Poly-Leu", "Ser-rich", "FFAT", "Microbody targeting signal", "Nuclear localization signal", "CRAL-TRIO.1", "GLTP", "IP_trans", "START.1", "OSBP", "LBP_BPI_CETP", "lipocalin", "ML", "scp2")))
+# DomainTypes2 <- as.matrix(cbind(TypeRegion = c(rep("Domain", 6), rep("CC", 2), rep("CompBias", 3), rep("Motif", 3), rep("MainDomain", 9)), 
+#                                 RegionName = c("GOLD", "CRAL-TRIO", "PRELI/MSF1", "START", "PH", "SCP2", "CC1", "CC2", "Ala/Gly-rich", "Poly-Leu", "Ser-rich", "FFAT", "Microbody targeting signal", "Nuclear localization signal", "CRAL-TRIO.1", "GLTP", "IP_trans", "START.1", "OSBP", "LBP_BPI_CETP", "lipocalin", "ML", "scp2")))
 
-# Original code for DomainTypes2
-# DomainTypes <- rbind(unique(SequenceAndDomainHighlightsLTPs2[,c(2,5)])[c(2,1,3,6,4,5,7:8,11:9,13,14,12),], cbind(TypeRegion = "MainDomain", RegionName = levels(MainDomainsOfTheLTPs4x[,2])[c(1:3, 9, 7, 4:6,8)]))
-# 
-# DomainTypes2 <- as.matrix(DomainTypes)
-# DomainTypes2[c(15,18),2] <- paste0(DomainTypes2[c(15,18),2],".1")
+# Write this table away to ensure that always the same can be read in
+# write.table(DomainTypes2, file="./Output/DomainTypes2.tsv", sep="\t", row.names = FALSE, quote = FALSE)
+
+# Import the domain types from input file
+DomainTypes2 <- as.matrix(read.csv(file = "./InputData/DomainTypes2.tsv", header = TRUE, sep = "\t", as.is = TRUE))
 
 # Also here explicit definition in characters introduced instead of numeric subsetting of levels, to protect from possible future changes (original code is quoted out below)
 ListDomainsOfTheLTPs <- lapply(c("CRAL-TRIO", "GLTP", "IP_trans", "START", "OSBP", "LBP_BPI_CETP", "lipocalin", "ML", "scp2"), function(x){MainDomainsOfTheLTPs4x[MainDomainsOfTheLTPs4x[,2] == x,]})

@@ -1,0 +1,24 @@
+TypeRegion	RegionName
+Domain	GOLD
+Domain	CRAL-TRIO
+Domain	PRELI/MSF1
+Domain	START
+Domain	PH
+Domain	SCP2
+CC	CC1
+CC	CC2
+CompBias	Ala/Gly-rich
+CompBias	Poly-Leu
+CompBias	Ser-rich
+Motif	FFAT
+Motif	Microbody targeting signal
+Motif	Nuclear localization signal
+MainDomain	CRAL-TRIO.1
+MainDomain	GLTP
+MainDomain	IP_trans
+MainDomain	START.1
+MainDomain	OSBP
+MainDomain	LBP_BPI_CETP
+MainDomain	lipocalin
+MainDomain	ML
+MainDomain	scp2
