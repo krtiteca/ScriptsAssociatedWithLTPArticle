@@ -3290,10 +3290,10 @@ dev.off()
 
 
 # Save the cleaned matrix of the averages of the subcellular lipid localization as a compact RDS-file
-# saveRDS(object = AggregateMPOfMads0RTLMOC, file = "C:/Users/Kevin/Documents/ScriptsAssociatedWithLTPArticle/InputData/SubcellularLocalizationAveragesLipids.rds")
+# saveRDS(object = AggregateMPOfMads0RTLMOC, file = "./InputData/SubcellularLocalizationAveragesLipids.rds")
 
 # Load saved RDS-image of this file (if needed, otherwise this can be skipped)
-AggregateMPOfMads0RTLMOCx <- readRDS("C:/Users/Kevin/Documents/ScriptsAssociatedWithLTPArticle/InputData/SubcellularLocalizationAveragesLipids.rds")
+AggregateMPOfMads0RTLMOCx <- readRDS("./InputData/SubcellularLocalizationAveragesLipids.rds")
 
 # Check that nothing went wrong during the conversion (if needed, otherwise this can be skipped)
 # identical(AggregateMPOfMads0RTLMOCx, AggregateMPOfMads0RTLMOC)
