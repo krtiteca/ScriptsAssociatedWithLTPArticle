@@ -2987,7 +2987,7 @@ CooccurrenceOfChemicalPairsListx <- lapply(list(ObservedPossibleChemicalCombinat
 
 
 # Write to do in Excel #! Entered earlier to avoid repetition and looping
-write.table(t(t(levels(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4$LipidSubclass))), file="./Output/SubclassesForObservedLipids02102020.csv", sep="\t", row.names = FALSE, quote = FALSE)
+write.table(t(t(unique(as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[,"LipidSubclass"])))), file="./Output/SubclassesForObservedLipids02102020.csv", sep="\t", row.names = FALSE, quote = FALSE)
 
 # Input again with the consensus subclasses and classes, BMP & PG/BMP seen as a type of PG #! Entered earlier to avoid repetition and looping
 SubclassesMatchingToConsensusSubclassesAndClasses <- read.csv(file = "./InputData/SubclassesForObservedLipidsConsensusSubclassesAndClasses02102020.txt", header = TRUE, sep = "\t", as.is = TRUE, quote = "")
@@ -4154,4 +4154,4 @@ dev.off()
 # The above figure is the basis for Figure panel 6c, and was optimized further and integrated by Adobe Illustrator use.
 
 # Reset options to orginal ones from user
-options() <- OriginalOptions
+options(OriginalOptions)
