@@ -1,11 +1,8 @@
 ################ Document with the clean-up and calculations for figures of LTP article
-# Note 1: The current version of the script is a reduced version derived from larger scripts, 
+# Note: The current version of the script is a reduced version derived from larger scripts, 
 # and only contains the parts focusing on the main lines of code for the analysis and visualization, 
 # as well as some side graphs and side checks. Hence, it might contain some historic intermediate variable assignments 
 # that seem unneccessary but that I kept in to maintain consistency.
-
-# Note 2: I am also still in the process of updating and double-checking some parts, and the input file for the figure
-# panel 5C is not included yet, because the level of abstraction that we will use is not fully clear yet.
 
 ## Legend for figure files and some other parts:
 # # Done 
@@ -20,20 +17,20 @@
 ######## MS-data input & clean-up
 
 ######## Supplementary material: quality tests
-#### Supplementary material: ECN test
-#### Supplementary material: adducts distribution
+#### Supplementary figure S2a: quality control by mean retention time vs. lipid carbon chain length and unsaturation
+#### Supplementary figure S2b: adducts distribution
 
 ######## Figure 2
 #### Fig.2a barchart
 #### Fig.2a donut-diagram
 #### Fig.2a circle-legend
-#### (Fig.2b side-histogram)
+#### Supplementary figure S2c with side-histogram
 #### Fig.2b circle heatmap visualization
 #### Fig.2c unsaturation-distribution
 
 ######## Figure 3
 #### Fig.3a
-#### Supplementary material: Protein domain based ordering of LTPs
+#### Supplementary figure S4: the protein domain based ordering of LTPs
 #### Fig.3b
 #### Fig.3c
 
@@ -45,9 +42,9 @@
 ######## Figure 5
 #### Panel 5A
 #### Panel 5B
-#### Panel 5C (Input file not included in InputData folder yet)
+#### Panel 5C
 #### (Alternatives for panels of figure 5)
-#### Supplementary material: results of Fisher exact tests
+#### Supplementary table S4: Results of Fisher exact tests
 
 ######## Figure 6
 #### Fig.6b
@@ -359,7 +356,7 @@ CombinedDataWithPureClasses1806201911 <- CombinedDataWithPureClasses1806201910[!
 CombinedDataWithPureClasses1806201913 <- CombinedDataWithPureClasses1806201911[!((CombinedDataWithPureClasses1806201911$LipidAmbiguity %in% c("PC-O; Lyso-PC", "Lyso-PC; PC-O", "Lyso-PE; PE-O")) & !is.na(CombinedDataWithPureClasses1806201911$CarbonsOfFattyAcidA)),]
 
 write.table(CombinedDataWithPureClasses1806201913, file="./Output/CleanConservativeDataWithoutFilters17072019.csv", sep="\t", row.names = FALSE, quote = FALSE)
-#! Where supplementary table X is derived from (still to update the name of this table according to final article structure)
+# Basis for Supplementary Table S1
 
 
 library(stringr)
@@ -955,7 +952,7 @@ LTPBackground1_2 <- read.csv(file = "./InputData/tableauOutput_20181023B_version
 # Translate lipids manually outside R
 write.table(LTPBackground1_2, file="./Output/LTPBackground1_217062021.tsv", sep="\t", row.names = FALSE, col.names = TRUE, quote = FALSE)
 
-# Import again #! Maybe subset for the info and provide this?
+# Import again 
 LipidSubclassesAddedToBackground17062021 <- read.csv(file = "./InputData/LipidSubclassesAddedToBackground17062021.txt", header = TRUE, sep = "\t", as.is = TRUE)
 
 LipidSubclassesAddedToBackground170620212 <- cbind(AdaptedLipids = paste0(LipidSubclassesAddedToBackground17062021[,1], 
@@ -1024,17 +1021,17 @@ dev.off()
 #. Panel3A09122021.pdf (#)
 #. HeatmapOfTheLTPLocationsWithoutLipidInformationWithoutDomainsAdded251120214hdrBlackTrianglesAddedlwd1ZOrderEnhancedAndLegendAdded2.pdf (#)
 
-#. (HeatmapOfTheLTPLocationsWithLipidInformationWithDomainsAdded11072020c.pdf # Domain and subcellular locations added: more extensive version that is not relevant for article, so not included) #!
+#. (HeatmapOfTheLTPLocationsWithLipidInformationWithDomainsAdded11072020c.pdf # Domain and subcellular locations added: more extensive version that is not relevant for article, so not included)
 #. HeatmapOfTheLTPLocationsWithoutLipidInformationWithoutDomainsAdded251120214hdrBlackTrianglesAddedlwd2 #
 
 
-#### HPTLC-data import as dataframe with factors in columns #! Will be further updated.
+#### HPTLC-data import as dataframe with factors in columns # Was in post-production of the figure updated by restricting some of these observations from the figures when uncertainties present.
 
 HPTLCDataInVivoAndInVitro <- read.csv(file = "./InputData/KnownHPTLCResultsScraped31032020.tsv", header = FALSE, sep = "\t", as.is = FALSE)
 colnames(HPTLCDataInVivoAndInVitro) <- c("LTPProtein", "Lipid", "Screen")
 
 
-#### HPTLC-data: first clean-up and formatting #! Will be further updated.
+#### HPTLC-data: first clean-up and formatting # Was in post-production of the figure updated by restricting some of these observations from the figures when uncertainties present.
 
 HPTLCDataInVivoAndInVitrob <- HPTLCDataInVivoAndInVitro[HPTLCDataInVivoAndInVitro[,1] != "SEC14L1",] # Removed because of a potential experimental issue
 HPTLCDataInVivoAndInVitrob$LTPProtein <- factor(HPTLCDataInVivoAndInVitrob$LTPProtein, levels = levels(HPTLCDataInVivoAndInVitrob$LTPProtein)[levels(HPTLCDataInVivoAndInVitrob$LTPProtein) != "SEC14L1"])
@@ -1276,7 +1273,7 @@ colnames(LTPMatrixTopInVitrommnslc) <- colnames(LTPMatrixPosInVitrommnslc)
 rownames(LTPMatrixTopInVivommnslc) <- rownames(LTPMatrixPosInVivommnslc)
 colnames(LTPMatrixTopInVivommnslc) <- colnames(LTPMatrixPosInVivommnslc)
 
-#### HPTLC-data: further clean-up and formatting #! Will be further updated.
+#### HPTLC-data: further clean-up and formatting # Was in post-production of the figure updated by restricting some of these observations from the figures when uncertainties present.
 HPTLCSpecificitiesPerScreen2hdr <- HPTLCSpecificitiesPerScreen2
 
 colnames(HPTLCSpecificitiesPerScreen2hdr[[1]]) <- c("Cer*", "Sterol", "DAG", "PC", "PE", "PG", "PIPs", "PS")
@@ -1301,8 +1298,8 @@ HPTLCSpecificitiesPerScreen2hdrm4[[2]] <- HPTLCSpecificitiesPerScreen2hdrm2[[2]]
       (as.character(HPTLCSpecificitiesPerScreen2hdrm2[[2]][x,2]) %in% colnames(LTPMatrixTopInVitrommnslc)) &&
       
       (LTPMatrixTopInVitrommnslc[as.character(HPTLCSpecificitiesPerScreen2hdrm2[[2]][x,1]), as.character(HPTLCSpecificitiesPerScreen2hdrm2[[2]][x,2])] != 0))
-}),] # Only leaves PS_OSBPL9: makes sense.
-
+}),] 
+    
 MeltedInVivoCombinedslchdr <- rbind(meltmatrix(LTPMatrixTopInVivommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[1]])
 MeltedInVitroCombinedslchdr <- rbind(meltmatrix(LTPMatrixTopInVitrommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[2]])
 
@@ -1414,8 +1411,8 @@ LipidClassLiteratureDataSet <- as.matrix(LiteratureConsensusLinksWideVersion4)[c
 LipidClassLiteratureDataSetslc <- LipidClassLiteratureDataSet[c(1,6,7,9:11,14:36),]
 rownames(LipidClassLiteratureDataSetslc) <- rownames(InVivoDataSetslc)
 
-# Correction on original heatmap: literature data for OSBPL2-PIPs known now & PC-O and PE-O should not be seen as known only because PC and PE are known #! I will double-check this again, that certainly nothing is known yet in literature about the ethers.
-# Also immediately correct the rownames
+# Correction on original heatmap: literature data for OSBPL2-PIPs known now & PC-O and PE-O should not be seen as known only because PC and PE are known
+# Was in post-production of the figure updated by restricting some of these observations from the figures when uncertainties present.
 
 LipidClassLiteratureDataSetslc4hdr <- LipidClassLiteratureDataSetslc
 rownames(LipidClassLiteratureDataSetslc) <- rownames(InVivoDataSetslc4hdr)
@@ -1688,7 +1685,7 @@ Heatmap(InVivoDataSetslc4hdr[,ReorderedLTPsByManualSeriation], name = LegendName
 dev.off()
 
 # Previous figure: Basis for Figure 3a, with several stylistic updates in Adobe Illustrator and the inclusion of a legend.
-
+# Was in post-production of the figure updated by restricting some of these observations from the figures when uncertainties present.
 
 
 #### Protein-domain-based ordering of LTPs
@@ -1747,7 +1744,7 @@ dev.off()
 #### Fig.3b
 #. LinearBarplotsForNoveltiesLTPLipidClassPairsUpdatedVersionsAfterGroupMeetingCommentsPercentagesMovedAxisExtendedTextUpdated140320223b2.pdf 
 
-# Largely manual. Adobe Illustator was used for most of visualization. #! I will double-check at the end if all output is still aligned here (because this is not automatically updated).
+# Largely manual. Adobe Illustator was used for most of visualization.
 
 
 #### Fig.3c
@@ -2861,7 +2858,7 @@ AggregatedLTPLipidPairsCombined_8wvi <- cbind(AggregatedLTPLipidPairsCombined_7w
 write.table(AggregatedLTPLipidPairsCombined_8wvi, file="./Output/LTPLipidConnectionsWithSphingolipidsIncludedAndNewestDataKevinTiteca24092020.csv", sep="\t", row.names = FALSE, quote = FALSE)
 
 
-# Corrected version of PI Headgroup #!
+# Corrected version of PI Headgroup
 
 HeadGroupConversionMatrixc <- HeadGroupConversionMatrix
 HeadGroupConversionMatrixc[HeadGroupConversionMatrixc[,"HeadGroup"] == "PI","H"] <- "17"
@@ -2986,10 +2983,10 @@ CooccurrenceOfChemicalPairsListx <- lapply(list(ObservedPossibleChemicalCombinat
                                            function(y){cbind(y, Cooccurrence = LipidSubsetMMeans_4x[match(as.character(y[,"ChemicalPairs1"]), as.character(LipidSubsetMMeans_4x[,"FromTo"])),3])})
 
 
-# Write to do in Excel #! Entered earlier to avoid repetition and looping
+# Write to do in Excel # (Entered earlier to avoid repetition and looping)
 write.table(t(t(unique(as.character(AggregatedLTPLipidPairsCombined_8wvi4WithAllAtoms4[,"LipidSubclass"])))), file="./Output/SubclassesForObservedLipids02102020.csv", sep="\t", row.names = FALSE, quote = FALSE)
 
-# Input again with the consensus subclasses and classes, BMP & PG/BMP seen as a type of PG #! Entered earlier to avoid repetition and looping
+# Input again with the consensus subclasses and classes, BMP & PG/BMP seen as a type of PG # (Entered earlier to avoid repetition and looping)
 SubclassesMatchingToConsensusSubclassesAndClasses <- read.csv(file = "./InputData/SubclassesForObservedLipidsConsensusSubclassesAndClasses02102020.txt", header = TRUE, sep = "\t", as.is = TRUE, quote = "")
 
 
@@ -3905,7 +3902,7 @@ write.table(structure(do.call("rbind", StatList2ForCooccurrencesCorrected[c("All
             file="./Output/FisherExactTestResultsWithEqualizedBackgroundForTheCooccurrencesCorrected18082022.csv", sep="\t", row.names = TRUE, quote = FALSE)
 
 # Subcellular Fisher Exact Tests # Finally used version of comparisons: only the median versions, for full reference (grey lines in graphs) and for what possible (colored lines in graphs) and not the others because applicable to all & even more strict, and double references used for comparible size in comparisons.
-# They are all named ...21022022.csv . #! I will still double-check the correct versions to make 100% sure.
+# They are all named ...21022022.csv . 
 
 StatListForSubcellularCooccurrences <- list()
 StatList2ForSubcellularCooccurrences <- list()
