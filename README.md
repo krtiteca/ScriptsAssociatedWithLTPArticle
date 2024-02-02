@@ -4,7 +4,7 @@ R scripts and data for LTP article: data clean-up & data analyses and visualizat
 Note: this is the part that follows after the mass spectrometry based lipid identification and filtering stage described in the lipyd repository.
 
 
-# System informaton
+## System informaton, and other context and instructions
 These analysis was originally performed in with "R version 3.5.0" on a "x86_64-w64-mingw32" platform.
 
 It has also been tested and the results have been double-checked with "R version 4.2.2" on a "x86_64-w64-mingw32/x64 (64-bit)" platform.
