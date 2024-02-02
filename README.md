@@ -5,7 +5,7 @@ Note: this is the part that follows after the mass spectrometry based lipid iden
 
 
 ## System informaton, and other context and instructions
-These analysis was originally performed in with "R version 3.5.0" on a "x86_64-w64-mingw32" platform.
+These analysis has originally been performed with "R version 3.5.0" on a "x86_64-w64-mingw32" platform.
 
 It has also been tested and the results have been double-checked with "R version 4.2.2" on a "x86_64-w64-mingw32/x64 (64-bit)" platform.
 No non-standard hardware is required to run the scripts in this specific repository.
