@@ -1,0 +1,757 @@
+LTP	lipid	lipid chains	LTP volume	lipid volume	 lipid SMILES	interaction type	screen
+ATCAY	PC(32:1)	Phosphatidylcholine (32:1)	1906	651.83	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCC)=O	new	in cellulo
+ATCAY	PC(34:1)	Phosphatidylcholine (34:1)	1906	679.1500000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+BNIPL	PC(O-32:1)	Phosphatidylcholine (O-32:1)	1758	642.0400000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COCCCCCCCCCCCCCCCC	new	in cellulo
+BPI	PC(17:1)	Phosphatidylcholine (17:1)	2623	446.92999999999967	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(C=C)=O)COC(CCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(19:1)	Phosphatidylcholine (19:1)	2623	474.24999999999955	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(C=C)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(30:0)	Phosphatidylcholine (30:0)	2623	623.5100000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(31:1)	Phosphatidylcholine (31:1)	2623	638.1700000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(32:0)	Phosphatidylcholine (32:0)	2623	650.8300000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(32:1)	Phosphatidylcholine (32:1) => (16:1/16:0)	2623	651.8300000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(32:2)	Phosphatidylcholine (32:2)	2623	652.8300000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C/CCCCCC)=O)COC(CCCCCCC/C=C/CCCCCC)=O	new	in cellulo
+BPI	PC(33:1)	Phosphatidylcholine (33:1)	2623	665.4900000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(34:1)	Phosphatidylcholine (34:1) => (18:1/16:0)	2623	679.1500000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C/CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(34:2)	Phosphatidylcholine (34:2) => (16:1/18:1)	2623	680.1500000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(/C=C\CCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(36:1)	Phosphatidylcholine (36:1)	2623	706.4700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(36:2)	Phosphatidylcholine (36:2) => (18:1/18:1)	2623	707.4700000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCC/C=C\C=C/CCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(36:3)	Phosphatidylcholine (36:3)	2623	708.4700000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCC/C=C\C/C=C\C/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(38:2)	Phosphatidylcholine (38:2)	2623	734.7900000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCC/C=C\C/C=C\CCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PC(O-32:1)	Phosphatidylcholine (O-32:1)	2623	642.0400000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCC)=O)CO/C=C\CCCCCCCCCCCCCCCCCC	new	in cellulo
+BPI	PC(O-34:1)	Phosphatidylcholine (O-34:1)	2623	669.3600000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COCCCCCCCCCCCCCCCCCC	new	in cellulo
+BPI	PC(O-34:2)	Phosphatidylcholine (O-34:2)	2623	670.3600000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)CO/C=C\CCCCCCCCCCCCCC	new	in cellulo
+BPI	PC(O-36:2)	Phosphatidylcholine (O-36:2)	2623	697.6800000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCC)=O)CO/C=C\CCCCCC/C=C\CCCCCCCC	new	in cellulo
+BPI	PE(32:1)	Phosphatidylethanolamine (32:1) => (16:1/16:0)	2623	610.8500000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PE(34:1)	Phosphatidylethanolamine (34:1) => (18:1/16:0)	2623	638.1700000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PE(34:2)	Phosphatidylethanolamine (34:2) => (16:1/18:1)	2623	639.1700000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in cellulo
+BPI	PE(36:2)	Phosphatidylethanolamine (36:2) => (18:1/18:1)	2623	666.4900000000005	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C/CCCCCCCC)=O)COC(CCCCCCC/C=C/CCCCCCCC)=O	new	in cellulo
+BPI	PE(38:4)	Phosphatidylethanolamine (38:4) => (18:0/20:4)	2623	695.8100000000007	[C@](COP(=O)(O)OCCN)([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PI(34:1)	Phosphatidylinositol (34:1) => (16:0/18:1)	2623	722.6600000000005	[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in cellulo
+BPI	PI(34:1)	Phosphatidylinositol (34:1) => (18:1/16:0)	2623	722.6600000000005	[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in cellulo
+BPI	PI(36:1)	Phosphatidylinositol (36:1) => (18:1/18:0)	2623	749.9800000000007	[C@]([H])(OC(CCCCCCCCCCCCCCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in cellulo
+BPI	PI(36:2)	Phosphatidylinositol (36:2) => (18:1/18:1)	2623	750.9800000000008	[C@]([H])(OC(CCCCCCCCCCC/C=C\C/C=C\CCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PI(38:4)	Phosphatidylinositol (38:4) => (18:0/20:4)	2623	780.3000000000013	[C@]([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCCCCCCCCCCCC)=O	new	in cellulo
+BPI	PS(34:1)	Phosphatidylserine (34:1) => (18:1/16:0)	2623	670.4100000000004	C(O)(=O)[C@@]([H])(N)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in cellulo
+BPI	PS(34:1)	Phosphatidylserine (34:1) => (16:0/18:1)	2623	670.4100000000004	C(O)(=O)[C@@]([H])(N)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in cellulo
+BPI	PS(36:1)	Phosphatidylserine (36:1) => (18:1/18:0)	2623	697.7300000000006	C(O)(=O)[C@@]([H])(N)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in cellulo
+BPIFB2	BMP(36:2)	Bismonoacylglycerolphosphate (36:2) => (18:1/18:1)	2016	688.5500000000006	O(P(OC[C@](OC(CCCCCCC/C=C\CCCCCCCC)=O)([H])CO)(O)=O)C[C@@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)CO	new	in cellulo
+BPIFB2	PC(17:1)	Phosphatidylcholine (17:1)	2016	446.92999999999967	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(C=C)=O)COC(CCCCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(30:0)	Phosphatidylcholine (30:0)	2016	623.5100000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(30:1)	Phosphatidylcholine (30:1)	2016	624.5100000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(31:1)	Phosphatidylcholine (31:1)	2016	638.1700000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(32:1)	Phosphatidylcholine (32:1) => (18:1/14:0)	2016	651.8300000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(32:2)	Phosphatidylcholine (32:2)	2016	652.8300000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C/CCCCCC)=O)COC(CCCCCCC/C=C/CCCCCC)=O	new	in cellulo
+BPIFB2	PC(33:1)	Phosphatidylcholine (33:1)	2016	665.4900000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(34:1)	Phosphatidylcholine (34:1) => (18:1/16:0)	2016	679.1500000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C/CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(34:2)	Phosphatidylcholine (34:2) => (18:1/16:1)	2016	680.1500000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(/C=C\CCCCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(34:3)	Phosphatidylcholine (34:3)	2016	681.1500000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCC/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(35:1)	Phosphatidylcholine (35:1)	2016	692.810000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCCCCCC)=O)COC(CCCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(35:2)	Phosphatidylcholine (35:2)	2016	693.8100000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(36:1)	Phosphatidylcholine (36:1)	2016	706.4700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(36:2)	Phosphatidylcholine (36:2)	2016	707.4700000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCC/C=C\C=C/CCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(36:3)	Phosphatidylcholine (36:3)	2016	708.4700000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCCCCCCCCCCCCC)=O	new	in cellulo
+BPIFB2	PC(O-30:0)/LPC(30:0)	"Lysophosphatidylcholine (30:0); Phosphatidylcholine (O-30:0)"	2016	613.7200000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCC)=O)COCCCCCCCCCCCCCCC	new	in cellulo
+BPIFB2	PC(O-32:0)	Phosphatidylcholine (O-32:0)	2016	641.0400000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)COCCCCCCCCCCCCCCCCCC	new	in cellulo
+BPIFB2	PC(O-32:1)	Phosphatidylcholine (O-32:1)	2016	642.0400000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COCCCCCCCCCCCCCCCC	new	in cellulo
+BPIFB2	PC(O-32:2)	Phosphatidylcholine (O-32:2)	2016	643.0400000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)CO/C=C\CCCCCCCC/C=C\CCCCCC	new	in cellulo
+BPIFB2	PC(O-34:1)	Phosphatidylcholine (O-34:1)	2016	669.3600000000008	[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)(COP(=O)([O-])OCC[N+](C)(C)C)COCCCCCCCCCCCCCCCC	new	in cellulo
+BPIFB2	PC(O-34:2)	Phosphatidylcholine (O-34:2)	2016	670.3600000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)CO/C=C\CCCCCCCCCCCCCC	new	in cellulo
+BPIFB2	PC(O-36:2)	Phosphatidylcholine (O-36:2)	2016	697.6800000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCC)=O)CO/C=C\CCCCCC/C=C\CCCCCCCC	new	in cellulo
+BPIFB2	PG/BMP(36:2)	"Phosphatidylglycerol (36:2); Bismonoacylglycerolphosphate (36:2) => (18:1/18:1)"	2016	688.5500000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in cellulo
+CERT	Cer(d*32:1)	Ceramide (d*32:1)	2707	479.5899999999996	OC[C@]([H])(NC(=O)CCCCCCCCCCCCC)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+CERT	Cer(d*33:1)	Ceramide (d*33:1)	2707	493.24999999999966	[C@](CO)([H])(NC(CCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+CERT	Cer(d*34:1)	Ceramide (d*34:1)	2707	506.90999999999974	[C@](CO)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+CERT	Cer(d*34:2)	Ceramide (d*34:2)	2707	507.90999999999974	[C@](CO)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCC/C=C\CCC	known	in cellulo
+CERT	Cer(d32:1)	Ceramide (d32:1) => (d18:1/14:0)	2707	479.5899999999996	OC[C@]([H])(NC(=O)CCCCCCCCCCCCC)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+CERT	Cer(d33:1)	Ceramide (d33:1) => (d17:1/16:0)	2707	493.24999999999966	[C@](CO)([H])(NC(CCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+CERT	Cer(d34:1)	Ceramide (d34:1) => (d18:1/16:0)	2707	506.90999999999974	[C@](CO)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+CERT	Cer(d34:2)	Ceramide (d34:2) => (d18:2/16:0)	2707	507.90999999999974	[C@](CO)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCC/C=C\CCC	known	in cellulo
+CERT	Cer(d36:1)	Ceramide (d36:1) => (d18:1/18:0)	2707	534.2299999999998	[C@](CO)([H])(NC(CCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCC	known	in cellulo
+CERT	Cer(DH46:0-OH)/Cer(t46:0)	"Ceramide (t46:0); Ceramide (DH46:0-OH)"	2707	651.3000000000004	[C@](CO)([H])(NC(C(O)CCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)CCCCCCCCCCCCCCCCC	known	in cellulo
+CERT	Cer(DH46:0)	Ceramide (DH46:0) => (DH22:0/24:0)	2707	651.3000000000004	[C@](CO)([H])(NC(C(O)CCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)CCCCCCCCCCCCCCCCC	known	in cellulo
+CERT	Cer(DH48:0-OH)/Cer(t48:0)	"Ceramide (t48:0); Ceramide (DH48:0-OH)"	2707	669.8300000000007	[C@](CO)([H])(NC(CCCCCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)CCCCCCCCCCCCCCCCC	known	in cellulo
+CERT	Cer(DH48:0)	Ceramide (DH48:0) => (DH24:0/24:0)	2707	678.6200000000006	[C@](CO)([H])(NC(C(O)CCCCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)CCCCCCCCCCCCCCCCC	known	in cellulo
+CERT	Cer(t48:0)	Ceramide (t48:0) => (t22:0/26:0)	2707	705.9400000000009	OC[C@]([H])(NC(=O)CCCCCCCCCCCCCCCCCCCCCCCCCCCCC)[C@]([H])(O)[C@H](O)CCCCCCCCCCCCCC	known	in cellulo
+CERT	PC(32:1)	Phosphatidylcholine (32:1)	2707	651.8300000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCC)=O	new	in cellulo
+CERT	PC(34:1)	Phosphatidylcholine (34:1)	2707	679.1500000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C/CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+CERT	TAG(46:3)	Triacylglycerol (46:3) => (16:1/16:1/14:1)	2707	733.0000000000008	C(OC(=O)CCCCCCCC/C=C\C/C=C\C/C=C\CCCCC)[C@]([H])(OC(CCCCCCCCCCC)=O)COC(CCCCCCCCCCC)=O	new	in cellulo
+CERT	TAG(47:2)	Triacylglycerol (47:2) => (16:1/16:1/15:0)	2707	745.660000000001	C(OC(=O)CCCCCCCCCCC/C=C\C/C=C\CCCCC)[C@]([H])(OC(CCCCCCCCCCCC)=O)COC(CCCCCCCCCCC)=O	new	in cellulo
+CERT	TAG(48:3)	Triacylglycerol (48:3) => (16:1/16:1/16:1)	2707	760.3200000000007	C(OC(=O)CCCCCCCC/C=C\C/C=C\C/C=C\CCCCC)[C@]([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCCCC)=O	new	in cellulo
+CERT	TAG(50:2)	Triacylglycerol (50:2)	2707	786.6400000000012	C(OC(=O)CCCCCCCCCCC/C=C\C/C=C\CCCCC)[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCC)=O	new	in cellulo
+CERT	TAG(53:2)	Triacylglycerol (53:2)	2707	827.6200000000015	C(OC(=O)CCCCCCCCCCC/C=C\C/C=C\CCCCC)[C@]([H])(OC(CCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCC)=O	new	in cellulo
+CRABP2	FA(17:1)	heptadecenoate => (17:1)	1435	256.7199999999999	C(CCCCCCCC/C=C/CCCCCC)(=O)O	new	in vitro
+FABP1	FA(16:1)	hexadecenoate => (16:1)	1715	243.05999999999995	C(=C/CCCCCCCC)/CCCCCC(=O)O	known	in vitro
+FABP1	FA(17:1)	heptadecenoate => (17:1)	1715	256.7199999999999	C(CCCCCCCC/C=C/CCCCCC)(=O)O	known	in vitro
+FABP1	FA(18:1)	octadecenoate => (18:1)	1715	270.3799999999999	C(CCCCCCCCCCC/C=C/CCCC)(=O)O	known	in vitro
+FABP1	FA(18:2)	octadecadienoate => (18:2)	1715	271.37999999999994	C(CCCC/C=C/CCCC/C=C/CCCCC)(=O)O	known	in vitro
+FABP1	FA(19:1)	nonadecenoate => (19:1)	1715	284.03999999999985	C(CCCCCCCC/C=C/CCCCCCCC)(=O)O	known	in vitro
+FABP1	FA(20:3)	eicosatrienoate => (20:3)	1715	299.6999999999997	C(CCCCC/C=C/C/C=C/C/C=C/CCCCCC)(=O)O	known	in vitro
+FABP1	FA(20:4)	eicosatetraenoate => (20:4)	1715	300.6999999999998	C(O)(=O)CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC	known	in vitro
+FABP1	FA(22:5)	docosapentaenoate => (22:5)	1715	329.0199999999997	C(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCCC)(=O)O	known	in vitro
+FABP1	LPE(16:0)	Lysophosphatidylethanolamine (16:0) => (16:0)	1715	381.49999999999966	[C@](COP(=O)(O)OCCN)([H])(O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+FABP1	LPE(16:1)	Lysophosphatidylethanolamine (16:1) => (16:1)	1715	382.4999999999996	C(OP(OCCN)(O)=O)[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCC)CO	new	in vitro
+FABP1	LPE(17:1)	Lysophosphatidylethanolamine (17:1) => (17:1)	1715	396.15999999999957	[C@](COP(=O)(O)OCCN)([H])(O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+FABP1	LPE(18:1)	Lysophosphatidylethanolamine (18:1) => (18:1)	1715	409.81999999999954	C(OP(OCCN)(O)=O)[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)CO	new	in vitro
+FABP1	LPG(16:1)	Lysophosphatidylglycerol (16:1) => (16:1)	1715	404.55999999999955	[H][C@](O)(CO)COP(OC[C@]([H])(O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+FABP1	LPG(18:1)	Lysophosphatidylglycerol (18:1)	1715	431.8799999999994	[H][C@](O)(CO)COP(OC[C@]([H])(O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+FABP1	PC(O-18:1)/LPC(18:1)	"Lysophosphatidylcholine (18:1);Phosphatidylcholine (O-18:1)"	1715	441.00999999999954	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(O)COCCCCCCCC/C=C\CCCCCCCC	new	in vitro
+FABP1	PE(30:1)	Phosphatidylethanolamine (30:1) => (14:0/16:1)	1715	583.5300000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCC)=O	new	in vitro
+FABP1	PE(32:2)	Phosphatidylethanolamine (32:2) => (16:1/16:1)	1715	611.8500000000001	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+FABP1	PE(33:2)	Phosphatidylethanolamine (33:2) => (17:1/16:1)	1715	625.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+FABP1	PG(32:1)	Phosphatidylglycerol (32:1) => (16:1/16:0)	1715	632.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+FABP1	PG(33:1)	Phosphatidylglycerol (33:1) => (16:0/17:1)	1715	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+FABP1	PG(33:1)	Phosphatidylglycerol (33:1) => (17:1/16:0)	1715	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+FABP1	PG(34:1)	Phosphatidylglycerol (34:1) => (18:1/16:0)	1715	660.2300000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+FABP1	PG(34:2)	Phosphatidylglycerol (34:2) => (18:1/16:1)	1715	661.2300000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+FABP1	PG(34:2)	Phosphatidylglycerol (34:2) => (16:1/18:1)	1715	661.2300000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+FABP1	PG(35:2)	Phosphatidylglycerol (35:2) => (18:1/17:1)	1715	674.8900000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+FABP1	PG(35:2)	Phosphatidylglycerol (35:2) => (17:1/18:1)	1715	674.8900000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+FABP1	PG(36:2)	Phosphatidylglycerol (36:2) => (18:1/18:1)	1715	688.5500000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+FABP5	FA(16:1)	hexadecenoate => (16:1)	1506	243.05999999999995	C(=C/CCCCCCCC)/CCCCCC(=O)O	known	in vitro
+FABP5	FA(17:1)	heptadecenoate => (17:1)	1506	256.7199999999999	C(CCCCCCCC/C=C/CCCCCC)(=O)O	known	in vitro
+FABP5	FA(18:1)	octadecenoate => (18:1)	1506	270.3799999999999	C(CCCCCCCCCCC/C=C/CCCC)(=O)O	known	in vitro
+FABP5	FA(18:2)	octadecadienoate => (18:2)	1506	271.37999999999994	C(CCCC/C=C/CCCC/C=C/CCCCC)(=O)O	known	in vitro
+FABP5	FA(19:1)	nonadecenoate => (19:1)	1506	284.03999999999985	C(CCCCCCCC/C=C/CCCCCCCC)(=O)O	known	in vitro
+FABP5	FA(20:3)	eicosatrienoate => (20:3)	1506	299.6999999999997	C(CCCCC/C=C/C/C=C/C/C=C/CCCCCC)(=O)O	known	in vitro
+FABP5	FA(20:4)	eicosatetraenoate => (20:4)	1506	300.6999999999998	C(O)(=O)CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC	known	in vitro
+FABP5	FA(20:5)	eicosapentaenoate => (20:5)	1506	301.6999999999999	C(CCC/C=C\C/C=C\C/C=C/C/C=C\C/C=C/CC)(=O)O	known	in vitro
+FABP5	FA(22:4)	docosatetraenoate => (22:4)	1506	300.6999999999998	C(O)(=O)CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC	known	in vitro
+FABP5	FA(22:5)	docosapentaenoate => (22:5)	1506	329.0199999999997	C(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCCC)(=O)O	known	in vitro
+FABP7	FA(16:1)	hexadecenoate => (16:1)	1547	243.05999999999995	C(=C/CCCCCCCC)/CCCCCC(=O)O	known	in vitro
+FABP7	FA(17:1)	heptadecenoate => (17:1)	1547	256.7199999999999	C(CCCCCCCC/C=C/CCCCCC)(=O)O	known	in vitro
+FABP7	FA(18:1)	octadecenoate => (18:1)	1547	270.3799999999999	C(CCCCCCCCCCC/C=C/CCCC)(=O)O	known	in vitro
+FABP7	FA(18:2)	octadecadienoate => (18:2)	1547	271.37999999999994	C(CCCC/C=C/CCCC/C=C/CCCCC)(=O)O	known	in vitro
+FABP7	FA(19:1)	nonadecenoate => (19:1)	1547	284.03999999999985	C(CCCCCCCC/C=C/CCCCCCCC)(=O)O	known	in vitro
+FABP7	FA(20:4)	eicosatetraenoate => (20:4)	1547	300.6999999999998	C(O)(=O)CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC	known	in vitro
+FABP7	FA(20:5)	eicosapentaenoate => (20:5)	1547	301.6999999999999	C(CCC/C=C\C/C=C\C/C=C/C/C=C\C/C=C/CC)(=O)O	known	in vitro
+FABP7	FA(22:5)	docosapentaenoate => (22:5)	1547	329.0199999999997	C(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCCC)(=O)O	known	in vitro
+GLTP	FA(18:3)	octadecatrienoate => (18:3)	1802	272.37999999999994	C(=C/C/C=C\C/C=C\CCCCC)/CCCCC(=O)O	new	in vitro
+GLTP	FA(22:3)	docosatrienoate => (22:3)	1802	327.01999999999964	C(CCCCCCCC/C=C\C/C=C\C/C=C\CCCCC)(=O)O	new	in vitro
+GLTP	FA(22:4)	docosatetraenoate => (22:4)	1802	300.6999999999998	C(O)(=O)CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC	new	in vitro
+GLTP	FAL(18:3)	octadecatrienol => (18:3)	1802	272.37999999999994	C(=C/C/C=C\C/C=C\CCCCC)/CCCCC(=O)O	new	in vitro
+GLTP	Hex2Cer(t*40:2)	Dihexosyl ceramide (t*40:2)	1802	831.8500000000012	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O[C@H]2[C@H](O)[C@@H](O)[C@@H](O)[C@@H](CO)O2)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCC	new	in cellulo
+GLTP	Hex2Cer(t*42:2)	Dihexosyl ceramide (t*42:2)	1802	859.1700000000013	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O[C@H]2[C@H](O)[C@@H](O)[C@@H](O)[C@@H](CO)O2)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in cellulo
+GLTP	HexCer(d*34:1)	Hexosyl ceramide (d*34:1)	1802	627.9000000000004	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTP	HexCer(d*36:1)	Hexosyl ceramide (d*36:1)	1802	655.2200000000006	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCC	known	in cellulo
+GLTP	HexCer(d*36:2)	Hexosyl ceramide (d*36:2)	1802	656.2200000000004	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/C=C/CCCCCCC	known	in cellulo
+GLTP	HexCer(d*40:1)	Hexosyl ceramide (d*40:1)	1802	709.8600000000008	[C@](CO[C@@H]1O[C@H](CO)[C@H](O)[C@H](O)[C@H]1O)([H])(NC(CCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTP	HexCer(d*40:2)	Hexosyl ceramide (d*40:2)	1802	710.8600000000005	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/C=C/CCCCCCCCC	known	in cellulo
+GLTP	HexCer(d*41:1)	Hexosyl ceramide (d*41:1)	1802	723.5200000000009	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTP	HexCer(d*42:1)	Hexosyl ceramide (d*42:1)	1802	737.1800000000007	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTP	HexCer(d*42:1)	"Hexosyl ceramide (d42:1) => (d18:1/24:0);Hexosyl ceramide (DH42:1) => (DH18:1/24:0)"	1802	737.1800000000007	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in vitro
+GLTP	HexCer(d*42:2)	Hexosyl ceramide (d*42:2)	1802	738.1800000000009	[C@](CO[C@@H]1O[C@H](CO)[C@H](O)[C@H](O)[C@H]1O)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTP	HexCer(d*42:2)	"Hexosyl ceramide (d42:2) => (d18:1/24:1);Hexosyl ceramide (DH42:2) => (DH18:1/24:1)"	1802	738.1800000000009	[C@](CO[C@@H]1O[C@H](CO)[C@H](O)[C@H](O)[C@H]1O)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in vitro
+GLTP	HexCer(d*42:3)	Hexosyl ceramide (d*42:3)	1802	747.9700000000005	C([C@H](NC([C@H](O)CCCCCCCCCCCCCCCCCCCCCC)=O)[C@H](O)/C=C/CC/C=C/C=C/CCCCCCC)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1	known	in cellulo
+GLTP	HexCer(t*34:1)	Hexosyl ceramide (t*34:1)	1802	627.9000000000004	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCC	known	in cellulo
+GLTP	HexCer(t*34:2)	Hexosyl ceramide (t*34:2)	1802	628.9000000000004	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CC/C=C(\C)/CCCCCCCC	known	in cellulo
+GLTP	HexCer(t*36:2)	Hexosyl ceramide (t*36:2)	1802	656.2200000000004	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/C=C/CCCCCCC	known	in cellulo
+GLTP	HexCer(t*40:1)	"Hexosyl ceramide (t40:1);Hexosyl ceramide (d40:1-OH)"	1802	709.8600000000008	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in vitro
+GLTP	HexCer(t*40:1)	Hexosyl ceramide (t*40:1)	1802	709.8600000000008	[C@](CO[C@@H]1O[C@H](CO)[C@H](O)[C@H](O)[C@H]1O)([H])(NC(CCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTP	HexCer(t*40:2)	"Hexosyl ceramide (t40:2);Hexosyl ceramide (d40:2-OH)"	1802	710.8600000000005	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/C=C/CCCCCCCCC	known	in vitro
+GLTP	HexCer(t*40:2)	Hexosyl ceramide (t*40:2)	1802	710.8600000000007	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCC/C=C\CCC	known	in cellulo
+GLTP	HexCer(t*41:1)	Hexosyl ceramide (t*41:1)	1802	723.5200000000009	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTP	HexCer(t*41:2)	Hexosyl ceramide (t*41:2)	1802	733.3100000000009	C([C@H](NC([C@H](O)CCCCCCCCCCCCCCCCCCCC)=O)[C@H](O)/C=C/CC/C=C(\C)/CCCCCCCCC)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1	known	in cellulo
+GLTP	HexCer(t*42:1)	Hexosyl ceramide (t*42:1)	1802	737.1800000000007	CCCCCCCCCCC/C=C/C[C@@]([H])(O)[C@@]([H])(NC(=O)CCCCCCCCCCCCCCCCCCCCCCCC)CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1	known	in cellulo
+GLTP	HexCer(t*42:1)	"Hexosyl ceramide (t42:1);Hexosyl ceramide (d42:1-OH)"	1802	737.1800000000007	[C@](CO[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in vitro
+GLTP	HexCer(t*42:2)	Hexosyl ceramide (t*42:2)	1802	738.1800000000009	[C@](CO[C@@H]1O[C@H](CO)[C@H](O)[C@H](O)[C@H]1O)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTP	HexCer(t*42:2)	"Hexosyl ceramide (t42:2);Hexosyl ceramide (d42:2-OH)"	1802	738.1800000000009	[C@](CO[C@@H]1O[C@H](CO)[C@H](O)[C@H](O)[C@H]1O)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in vitro
+GLTP	HexCer(t*42:3)	Hexosyl ceramide (t*42:3)	1802	747.9700000000005	C([C@H](NC([C@H](O)CCCCCCCCCCCCCCCCCCCCCC)=O)[C@H](O)/C=C/CC/C=C/C=C/CCCCCCC)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)O1	known	in cellulo
+GLTP	HexCer(t*44:2)	"Hexosyl ceramide (t44:2);Hexosyl ceramide (d44:2-OH)"	1802	765.500000000001	[C@](CO[C@@H]1O[C@H](CO)[C@H](O)[C@H](O)[C@H]1O)([H])(NC(CCCCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in vitro
+GLTP	LPE(17:1)	Lysophosphatidylethanolamine (17:1) => (17:1)	1802	396.15999999999957	[C@](COP(=O)(O)OCCN)([H])(O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+GLTP	LPE(O-18:1)	Lysophosphatidylethanolamine (O-18:1)	1802	400.02999999999963	[C@](COP(=O)(O)OCCN)([H])(O)COCCCCCCCC/C=C\CCCCCCCC	new	in vitro
+GLTP	LPG(18:1)	Lysophosphatidylglycerol (18:1)	1802	431.8799999999994	[H][C@](O)(CO)COP(OC[C@]([H])(O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+GLTP	PE(O-16:0)/LPE(16:0)	"Phosphatidylethanolamine (O-16:0);Lysophosphatidylethanolamine (16:0)"	1802	371.70999999999975	[C@](COP(=O)(O)OCCN)([H])(O)COCCCCCCCCCCCCCCCC	new	in vitro
+GLTP	PE(O-16:1)/LPE(16:1)	"Lysophosphatidylethanolamine (16:1);Phosphatidylethanolamine (O-16:1)"	1802	382.4999999999996	[C@](COP(=O)(O)OCCN)([H])(O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+GLTP	SHexCer(d*42:1)	"Sulfohexosyl ceramide (d42:1);Sulfohexosyl ceramide (DH42:1)"	1802	782.060000000001	[C@](CO[C@H]1[C@H](O)[C@@H](OS(=O)(O)=O)[C@@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in vitro
+GLTP	SHexCer(d*42:2)	"Sulfohexosyl ceramide (d42:2);Sulfohexosyl ceramide (DH42:2)"	1802	783.060000000001	[C@](CO[C@H]1[C@H](O)[C@@H](OS(=O)(O)=O)[C@@H](O)[C@@H](CO)O1)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in vitro
+GLTPD1	CerP(d*32:1)	Ceramide phosphate (d*32:1)	2005	523.97	[C@](COP(=O)(O)O)([H])(NC(CCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTPD1	CerP(d*32:2)	Ceramide phosphate (d*32:2)	2005	524.9699999999997	[C@](COP(=O)(O)O)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/C=C/CCCCCCCCC	known	in cellulo
+GLTPD1	CerP(d*33:1)	Ceramide phosphate (d*33:1)	2005	537.6300000000001	[C@](COP(=O)(O)O)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCC	known	in cellulo
+GLTPD1	CerP(d*34:1)	Ceramide phosphate (d*34:1)	2005	551.2900000000002	[C@](COP(=O)(O)O)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTPD1	CerP(d*34:2)	Ceramide phosphate (d*34:2)	2005	552.2900000000001	[C@](COP(=O)(O)O)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/C=C/CCCCCCCCCCC	known	in cellulo
+GLTPD1	CerP(d*36:1)	Ceramide phosphate (d*36:1)	2005	578.6100000000004	[C@](COP(=O)(O)O)([H])(NC(CCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTPD1	CerP(d*36:2)	Ceramide phosphate (d*36:2)	2005	579.6100000000001	[C@](COP(=O)(O)O)([H])(NC(CCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/C=C/CCCCCCCCCCC	known	in cellulo
+GLTPD1	CerP(d*40:1)	Ceramide phosphate (d*40:1)	2005	633.2500000000006	[C@](COP(=O)(O)O)([H])(NC(CCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTPD1	CerP(d*42:2)	Ceramide phosphate (d*42:2)	2005	661.5700000000006	[C@](COP(=O)(O)O)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	known	in cellulo
+GLTPD1	CerP(d*42:3)	Ceramide phosphate (d*42:3)	2005	662.5700000000007	[C@](COP(=O)(O)O)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/C=C/CCCCCCCCCCC	known	in cellulo
+GLTPD1	PG/BMP(30:1)	"Bismonoacylglycerolphosphate (30:1);Phosphatidylglycerol (30:1) => (16:1/14:0)"	2005	605.5900000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+GLTPD1	PG/BMP(32:2)	"Bismonoacylglycerolphosphate (32:2);Phosphatidylglycerol (32:2) => (16:1/16:1)"	2005	633.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+GLTPD1	SM(d*32:1)	Sphingomyelin (d*32:1)	2005	601.4500000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in cellulo
+GLTPD1	SM(d*33:1)	Sphingomyelin (d*33:1)	2005	615.1100000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCC	new	in cellulo
+GLTPD1	SM(d*33:1)	"Sphingomyelin (d33:1);Sphingomyelin (DH33:1)"	2005	615.1100000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCC	new	in vitro
+GLTPD1	SM(d*34:1)	Sphingomyelin (d*34:1)	2005	628.7700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCC	new	in cellulo
+GLTPD1	SM(d*34:1)	"Sphingomyelin (d34:1);Sphingomyelin (DH34:1)"	2005	628.7700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in vitro
+GLTPD1	SM(d*34:2)	"Sphingomyelin (d34:2);Sphingomyelin (DH34:2)"	2005	629.7700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCC/C=C\CCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in vitro
+GLTPD1	SM(d*34:2)	Sphingomyelin (d*34:2)	2005	629.7700000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCC/C=C\CCC	new	in cellulo
+GLTPD1	SM(d*35:1)	"Sphingomyelin (d35:1);Sphingomyelin (DH35:1)"	2005	642.4300000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCCC	new	in vitro
+GLTPD1	SM(d*36:1)	"Sphingomyelin (d36:1);Sphingomyelin (DH36:1)"	2005	656.0900000000007	O(P(=O)(OC[C@]([H])(NC(=O)CCCCCCCCCCCCCCCCC)[C@]([H])(O)/C=C/CCCCCCCCCCCCC)[O-])CC[N+](C)(C)C	new	in vitro
+GLTPD1	SM(d*36:1)	Sphingomyelin (d*36:1)	2005	656.0900000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCC	new	in cellulo
+GLTPD1	SM(d*36:2)	Sphingomyelin (d*36:2)	2005	657.0900000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCC/C=C\CCC	new	in cellulo
+GLTPD1	SM(d*36:2)	"Sphingomyelin (d36:2);Sphingomyelin (DH36:2)"	2005	657.0900000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCC/C=C\C/C=C\CCCCC)=O)[C@]([H])(O)CCCCCCCCCCCCCCC	new	in vitro
+GLTPD1	SM(d*38:1)	Sphingomyelin (d*38:1)	2005	683.4100000000008	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCC	new	in cellulo
+GLTPD1	SM(d*38:1)	"Sphingomyelin (d38:1);Sphingomyelin (DH38:1)"	2005	683.4100000000008	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in vitro
+GLTPD1	SM(d*39:1)	"Sphingomyelin (d39:1);Sphingomyelin (DH39:1)"	2005	697.0700000000008	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in vitro
+GLTPD1	SM(d*40:1)	Sphingomyelin (d*40:1)	2005	710.7300000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in cellulo
+GLTPD1	SM(d*40:1)	"Sphingomyelin (d40:1);Sphingomyelin (DH40:1)"	2005	710.7300000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in vitro
+GLTPD1	SM(d*40:2)	Sphingomyelin (d*40:2)	2005	711.730000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in cellulo
+GLTPD1	SM(d*40:2)	"Sphingomyelin (d40:2);Sphingomyelin (DH40:2)"	2005	711.7300000000008	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCC	new	in vitro
+GLTPD1	SM(d*41:2)	Sphingomyelin (d*41:2)	2005	725.3900000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCC/C=C\CCC	new	in cellulo
+GLTPD1	SM(d*41:2)	"Sphingomyelin (d41:2);Sphingomyelin (DH41:2)"	2005	725.3900000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCC	new	in vitro
+GLTPD1	SM(d*42:1)	Sphingomyelin (d*42:1)	2005	738.0500000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in cellulo
+GLTPD1	SM(d*42:1)	"Sphingomyelin (d42:1);Sphingomyelin (DH42:1)"	2005	738.0500000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in vitro
+GLTPD1	SM(d*42:2)	Sphingomyelin (d*42:2)	2005	739.050000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in cellulo
+GLTPD1	SM(d*42:2)	"Sphingomyelin (d42:2);Sphingomyelin (DH42:2)"	2005	739.050000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCCCC	new	in vitro
+GLTPD1	SM(d*42:3)	Sphingomyelin (d*42:3)	2005	740.0500000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCC/C=C\CCC	new	in cellulo
+GLTPD1	SM(d*42:3)	"Sphingomyelin (d42:3);Sphingomyelin (DH42:3)"	2005	740.0500000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCC/C=C\CCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCC/C=C\CCC	new	in vitro
+GLTPD1	SM(DH34:0)	Sphingomyelin (DH34:0)	2005	627.7700000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCC)=O)[C@]([H])(O)CCCCCCCCCCCCCCCCC	new	in cellulo
+GLTPD1	SM(DH34:0)	Sphingomyelin (DH34:0)	2005	627.7700000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCC)=O)[C@]([H])(O)CCCCCCCCCCCCCCCCC	new	in vitro
+GLTPD1	SM(t*34:2)	Sphingomyelin (t*34:2)	2005	629.7700000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/C=C/CCCCCCCCC	new	in cellulo
+GM2A	PC(31:1)	Phosphatidylcholine (31:1) => (16:1/15:0)	5525	638.1700000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCC)=O	known	in cellulo
+GM2A	PC(33:1)	Phosphatidylcholine (33:1)	5525	665.4900000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	known	in cellulo
+GM2A	PC(40:2)	Phosphatidylcholine (40:2)	5525	762.1100000000012	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in cellulo
+GM2A	PC(O-36:5)	Phosphatidylcholine (O-36:5)	5525	700.6800000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COCCCCCCCC/C=C\CCCCCC	new	in cellulo
+GM2A	PC(O-37:7)	Phosphatidylcholine (O-37:7)	5525	716.340000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COCCCCCCCC/C=C\C/C=C\C/C=C\C	new	in cellulo
+GM2A	PC(O-38:3)	Phosphatidylcholine (O-38:3)	5525	726.0000000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O)COCCCCCCCCCCCCCCCCCC	new	in cellulo
+GM2A	PE(34:1)	Phosphatidylethanolamine (34:1) => (18:1/16:0)	5525	638.1700000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+GM2A	PE(34:2)	Phosphatidylethanolamine (34:2) => (16:1/18:1)	5525	639.1700000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in cellulo
+GM2A	PG/BMP(38:3)	"Phosphatidylglycerol (38:3); Bismonoacylglycerolphosphate (38:3) => (20:2/18:1)"	5525	716.8700000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCC/C=C\C/C=C\CCCCC)=O)(=O)O	new	in cellulo
+GM2A	PI(34:1)	Phosphatidylinositol (34:1) =>(18:1/16:0)	5525	722.6600000000008	[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+HSDL2	FA(22:3)	docosatrienoate => (22:3)	2674	327.01999999999964	C(CCCCCCCC/C=C\C/C=C\C/C=C\CCCCC)(=O)O	new	in vitro
+HSDL2	PG(32:1)	Phosphatidylglycerol (32:1) => (16:1/16:0)	2674	632.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+HSDL2	TAG(32:0)	Triacylglycerol (32:0) => (12:0/12:0/8:0)	2674	648.0399999999998	C(OC(=O)CCCCCCC)[C@]([H])(OC(CCCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCC)=O	new	in vitro
+HSDL2	TAG(54:2)	Triacylglycerol (54:2) => (18:1/18:1/18:0)	2674	841.2800000000016	C(OC(=O)CCCCCCCCCCC/C=C\C/C=C\CCCCC)[C@]([H])(OC(CCCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCC)=O	new	in vitro
+HSDL2	TAG(56:5)	Triacylglycerol (56:5)	2674	871.6000000000013	C(OC(=O)CCCCC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)[C@]([H])(OC(CCCCCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCC)=O	new	in vitro
+LCN1	PC(30:0)	Phosphatidylcholine (30:0)	2047	623.5100000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	known	in cellulo
+LCN1	PC(30:1)	Phosphatidylcholine (30:1)	2047	624.5100000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in cellulo
+LCN1	PC(30:2)	Phosphatidylcholine (30:2)	2047	625.5100000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCC)=O	known	in cellulo
+LCN1	PC(31:0)	Phosphatidylcholine (31:0)	2047	637.1700000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCC)=O	known	in cellulo
+LCN1	PC(31:1)	Phosphatidylcholine (31:1)	2047	638.17	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCCCCCCCCCCC)=O	known	in cellulo
+LCN1	PC(32:1)	Phosphatidylcholine (32:1) => (16:1/16:0)	2047	651.8300000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in cellulo
+LCN1	PC(32:2)	Phosphatidylcholine (32:2)	2047	652.8300000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in cellulo
+LCN1	PC(33:1)	Phosphatidylcholine (33:1)	2047	665.4900000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	known	in cellulo
+LCN1	PC(33:2)	Phosphatidylcholine (33:2)	2047	666.4900000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCCC)=O	known	in cellulo
+LCN1	PC(34:1)	Phosphatidylcholine (34:1) => (18:1/16:0)	2047	679.1500000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C/CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in cellulo
+LCN1	PC(34:2)	Phosphatidylcholine (34:2) => (16:1/18:1)	2047	680.1500000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCC/C=C\CCCCCC)=O	known	in cellulo
+LCN1	PC(34:3)	Phosphatidylcholine (34:3)	2047	681.1500000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+LCN1	PC(36:1)	Phosphatidylcholine (36:1)	2047	706.4700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	known	in cellulo
+LCN1	PC(36:2)	Phosphatidylcholine (36:2)	2047	707.4700000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCCCC/C=C\C/C=C\CCCCC)=O	known	in cellulo
+LCN1	PC(36:4)	Phosphatidylcholine (36:4)	2047	709.4700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCCCCC/C=C\CCCCCC)=O	known	in cellulo
+LCN1	PC(38:5)	Phosphatidylcholine (38:5)	2047	737.7900000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+LCN1	PC(38:6)	Phosphatidylcholine (38:6)	2047	738.7900000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O	known	in cellulo
+LCN1	PC(40:7)	Phosphatidylcholine (40:7)	2047	767.1100000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCCCCC/C=C\C/C=C\C/C=C\CC)=O	known	in cellulo
+LCN1	PC(O-32:1)	Phosphatidylcholine (O-32:1)	2047	642.0400000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COCCCCCCCCCCCCCC	new	in cellulo
+LCN1	PC(O-32:2)	Phosphatidylcholine (O-32:2)	2047	643.0400000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COCCCCCCCCCCCCCC	new	in cellulo
+LCN1	PC(O-34:1)	Phosphatidylcholine (O-34:1)	2047	669.3600000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)CO/C=C\CCCCCCCCCCCCCCCCCC	new	in cellulo
+LCN1	PC(O-34:2)	Phosphatidylcholine (O-34:2)	2047	670.3600000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)CO/C=C\CCCCCCCCCCCCCCCC	new	in cellulo
+LCN1	PC(O-36:2)	Phosphatidylcholine (O-36:2)	2047	697.6800000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COCCCCCCCCCCCCCCCCCC	new	in cellulo
+LCN1	PC(O-38:5)/LPC(38:5)	"Lysophosphatidylcholine (38:5); Phosphatidylcholine (O-38:5)"	2047	728.0000000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COCCCCCCCCCCCCCCCC	new	in cellulo
+LCN1	PC(O-38:6)	Phosphatidylcholine (O-38:6)	2047	729.0000000000008	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)CO/C=C\CCCCCCCCCCCCCCCC	new	in cellulo
+LCN1	PC(O-38:7)	Phosphatidylcholine (O-38:7)	2047	730.0000000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)CO/C=C\CCCCCCCCCCCCCC	new	in cellulo
+LCN1	SM(d*34:1)	Sphingomyelin (d*34:1)	2047	628.7700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(NC(CCCCCCCCCCCCCCCCC)=O)[C@]([H])(O)/C=C/CCCCCCCCCCC	new	in cellulo
+LCN15	PG(32:2)	Phosphatidylglycerol (32:2) => (16:1/16:1)	807	633.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+LCN15	PG/BMP(32:1)	"Phosphatidylglycerol (32:1);Bismonoacylglycerolphosphate (32:1) => (16:1/16:0)"	807	632.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+LCN15	PG/BMP(33:1)	"Phosphatidylglycerol (33:1);Bismonoacylglycerolphosphate (33:1) => (17:1/16:0)"	807	646.5700000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+LCN15	PG/BMP(34:2)	"Phosphatidylglycerol (34:2);Bismonoacylglycerolphosphate (34:2) => (16:1/18:1)"	807	661.2300000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+LCN15	PG/BMP(35:2)	"Bismonoacylglycerolphosphate (35:2);Phosphatidylglycerol (35:2) => (17:1/18:1)"	807	674.8900000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+OSBPL5	PE(33:1)	Phosphatidylethanolamine (33:1) => (17:1/16:0)	3940	624.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+OSBPL5	PE(34:2)	Phosphatidylethanolamine (34:2) => (16:1/18:1)	3940	639.1700000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+OSBPL5	PE(36:2)	Phosphatidylethanolamine (36:2)  => (18:1/18:1)	3940	666.4900000000005	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C/CCCCCCCC)=O)COC(CCCCCCC/C=C/CCCCCCCC)=O	new	in vitro
+OSBPL9	PS(34:1)	Phosphatidylserine (34:1) => (18:1/16:0)	3770	670.4100000000007	C(O)(=O)[C@@]([H])(N)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in cellulo
+OSBPL9	PS(34:1)	Phosphatidylserine (34:1) => (16:0/18:1)	3770	670.4100000000007	C(O)(=O)[C@@]([H])(N)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in cellulo
+OSBPL9	PS(36:1)	Phosphatidylserine (36:1) => (18:1/18:0)	3770	697.7300000000008	C(O)(=O)[C@@]([H])(N)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O)(=O)O	new	in cellulo
+OSBPL9	PS(36:1)	Phosphatidylserine (36:1) => (18:0/18:1)	3770	697.7300000000008	C(O)(=O)[C@@]([H])(N)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O)(=O)O	new	in cellulo
+OSBPL9	PS(36:2)	Phosphatidylserine (36:2) => (18:1/18:1)	3770	698.7300000000007	C(O)(=O)[C@@]([H])(N)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in cellulo
+PITPNA	PC(30:0)	Phosphatidylcholine (30:0)	4320	623.5100000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCC)=O	known	in vitro
+PITPNA	PC(30:1)	Phosphatidylcholine (30:1)	4320	624.5100000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in cellulo
+PITPNA	PC(32:0)	Phosphatidylcholine (32:0)	4320	650.8300000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNA	PC(32:1)	Phosphatidylcholine (32:1) =>(16:1/16:0)	4320	651.8300000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNA	PC(32:2)	Phosphatidylcholine (32:2)	4320	652.8300000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+PITPNA	PC(33:1)	Phosphatidylcholine (33:1)	4320	665.4900000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	known	in cellulo
+PITPNA	PC(33:1)	Phosphatidylcholine (33:1)	4320	665.4900000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCC)=O	known	in vitro
+PITPNA	PC(34:0)	Phosphatidylcholine (34:0)	4320	678.1500000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCCCC)=O	known	in vitro
+PITPNA	PC(34:1)	Phosphatidylcholine (34:1) => (18:1/16:0)	4320	679.1500000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNA	PC(34:2)	Phosphatidylcholine (34:2) => (18:2/16:0)	4320	680.1500000000008	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNA	PC(34:3)	Phosphatidylcholine (34:3)	4320	681.1500000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCC/C=C\C/C=C\C/C=C\CCCCCCCC)=O	known	in vitro
+PITPNA	PC(35:1)	Phosphatidylcholine (35:1)	4320	692.810000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNA	PC(36:1)	Phosphatidylcholine (36:1) => (18:1/18:0)	4320	706.4700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNA	PC(36:2)	Phosphatidylcholine (36:2) => (18:1/18:1)	4320	707.4700000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNA	PC(36:3)	Phosphatidylcholine (36:3) =>(18:2/18:1)	4320	708.4700000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCC/C=C\C/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in vitro
+PITPNA	PC(36:4)	Phosphatidylcholine (36:4) => (20:4/16:0)	4320	709.4700000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNA	PC(36:5)	Phosphatidylcholine (36:5)	4320	710.47	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNA	PC(38:3)	Phosphatidylcholine (38:3) => (20:3/18:0)	4320	735.7900000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+PITPNA	PC(38:4)	Phosphatidylcholine (38:4) => (20:4/18:0)	4320	736.7900000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+PITPNA	PC(38:5)	Phosphatidylcholine (38:5)	4320	737.7900000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCCCC)=O)COC(CCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O	known	in vitro
+PITPNA	PI(36:2)	Phosphatidylinositol (36:2) => (18:2/18:0)	4320	750.9800000000006	[C@]([H])(OC(CCCCCCCCCCCCCCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCC/C=C\C/C=C\CCCCC)=O	known	in vitro
+PITPNA	PI(38:4)	Phosphatidylinositol (38:4) => (18:0/20:4)	4320	780.3000000000013	[C@]([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNB	PC(30:0)	Phosphatidylcholine (30:0)	4099	623.5100000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	known	in cellulo
+PITPNB	PC(32:0)	Phosphatidylcholine (32:0)	4099	650.8300000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNB	PC(32:1)	Phosphatidylcholine (32:1)	4099	651.8300000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCC/C=C\CCCCCC)=O	known	in cellulo
+PITPNB	PC(34:1)	Phosphatidylcholine (34:1)	4099	679.1500000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCC/C=C\CCCCCCCC)=O	known	in cellulo
+PITPNB	PC(34:1)	Phosphatidylcholine (34:1)	4099	679.1500000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCC)=O)COC(CCCCCCCCC/C=C\CCCCCCCCCC)=O	known	in vitro
+PITPNB	PC(34:2)	Phosphatidylcholine (34:2)	4099	680.1500000000008	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCC)=O	known	in cellulo
+PITPNB	PC(34:3)	Phosphatidylcholine (34:3)	4099	681.1500000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+PITPNB	PC(35:1)	Phosphatidylcholine (35:1)	4099	692.8100000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNB	PC(35:2)	Phosphatidylcholine (35:2)	4099	693.8100000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCCC)=O	known	in vitro
+PITPNB	PC(36:1)	Phosphatidylcholine (36:1)	4099	706.4700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	known	in vitro
+PITPNB	PC(36:2)	Phosphatidylcholine (36:2)	4099	707.4700000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCCCC/C=C\CCCCCCCCCC)=O	known	in vitro
+PITPNB	PC(37:4)	Phosphatidylcholine (37:4)	4099	723.1300000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCC)=O	known	in vitro
+PITPNB	PC(38:3)	Phosphatidylcholine (38:3)	4099	735.7900000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCC/C=C\C/C=C\CCCCC)=O	known	in vitro
+PITPNB	PC(38:4)	Phosphatidylcholine (38:4)	4099	736.7900000000012	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCCCC)=O)COC(CCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O	known	in vitro
+PITPNB	PC(40:4)	Phosphatidylcholine (40:4)	4099	764.1100000000014	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNB	PG(30:0)	Phosphatidylglycerol (30:0) => (14:0/16:0)	4099	604.5900000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PG(33:1)	Phosphatidylglycerol (33:1) => (16:0/17:1)	4099	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PG(33:1)	Phosphatidylglycerol (33:1) => (17:1/16:0)	4099	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PG(34:1)	Phosphatidylglycerol (34:1) => (18:1/16:0)	4099	660.2300000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PG(34:2)	Phosphatidylglycerol (34:2) => (16:1/18:1)	4099	661.2300000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PG(34:2)	Phosphatidylglycerol (34:2) => (18:1/16:1)	4099	661.2300000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PG(34:3)	Phosphatidylglycerol (34:3) => (18:2/16:1)	4099	662.2300000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PG(35:2)	Phosphatidylglycerol (35:2) => (18:1/17:1)	4099	674.8900000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PG(36:1)	Phosphatidylglycerol (36:1) => (18:1/18:0)	4099	687.5500000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PG(36:2)	Phosphatidylglycerol (36:2) => (18:1/18:1)	4099	688.5500000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCC)=O)(=O)O	new	in vitro
+PITPNB	PG(36:3)	Phosphatidylglycerol (36:3) => (18:2/18:1)	4099	689.5500000000008	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PG(37:2)	Phosphatidylglycerol (37:2) => (18:1/19:1)	4099	702.2100000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PG(37:2)	Phosphatidylglycerol (37:2) => (19:1/18:1)	4099	702.2100000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PG/BMP(33:2)	"Bismonoacylglycerolphosphate (33:2);Phosphatidylglycerol (33:2) => (17:1/16:1)"	4099	647.5700000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+PITPNB	PI(38:4)	Phosphatidylinositol (38:4) => (18:0/20:4)	4099	780.3000000000013	[C@]([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNC1	PA(30:1)	Phosphatidate (30:1) => (14:0/16:1)	3519	547.0300000000003	[C@](COP(=O)(O)O)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+PITPNC1	PA(32:1)	Phosphatidate (32:1) => (16:1/16:0)	3519	574.3500000000001	[C@](COP(=O)(O)O)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+PITPNC1	PA(32:1)	Phosphatidate (32:1)  => (16:0/16:1)	3519	574.3500000000001	[C@](COP(=O)(O)O)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+PITPNC1	PA(32:2)	Phosphatidate (32:2) => (16:1/16:1)	3519	575.3500000000003	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+PITPNC1	PA(33:1)	Phosphatidate (33:1) => (17:1/16:0)	3519	588.0100000000002	[C@](COP(=O)(O)O)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	known	in vitro
+PITPNC1	PA(34:1)	Phosphatidate (34:1) => (16:0/18:1)	3519	601.6700000000003	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNC1	PA(34:2)	Phosphatidate (34:2) => (16:1/18:1)	3519	602.6700000000002	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+PITPNC1	PA(34:2)	Phosphatidate (34:2) => (18:1/16:1)	3519	602.6700000000002	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+PITPNC1	PA(35:1)	Phosphatidate (35:1) => (16:0/19:1)	3519	615.3300000000004	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+PITPNC1	PA(35:2)	Phosphatidate (35:2) => (18:1/17:1)	3519	616.3300000000003	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	known	in vitro
+PITPNC1	PA(36:2)	Phosphatidate (36:2) => (18:1/18:1)	3519	629.9900000000004	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in vitro
+PITPNC1	PA(37:2)	Phosphatidate (37:2) => (18:1/19:1)	3519	643.6500000000004	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O	known	in vitro
+PITPNC1	PI(38:4)	Phosphatidylinositol (38:4)  => (18:0/20:4)	3519	780.3000000000013	[C@]([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCCCCCCCCCCCC)=O	known	in vitro
+PMP2	FA(16:1)	hexadecenoate => (16:1)	1575	243.05999999999995	C(=C/CCCCCCCC)/CCCCCC(=O)O	known	in vitro
+PMP2	FA(17:1)	heptadecenoate  => (17:1)	1575	256.7199999999999	C(CCCCCCCC/C=C/CCCCCC)(=O)O	known	in vitro
+PMP2	FA(18:1)	octadecenoate => (18:1)	1575	270.3799999999999	C(CCCCCCCCCCC/C=C/CCCC)(=O)O	known	in vitro
+PMP2	FA(18:2)	octadecadienoate => (18:1)	1575	271.37999999999994	C(CCCC/C=C/CCCC/C=C/CCCCC)(=O)O	known	in vitro
+PMP2	FA(19:1)	nonadecenoate => (19:1)	1575	284.03999999999985	C(CCCCCCCC/C=C/CCCCCCCC)(=O)O	known	in vitro
+PMP2	FA(20:3)	eicosatrienoate => (20:3)	1575	299.6999999999997	C(CCCCC/C=C/C/C=C/C/C=C/CCCCCC)(=O)O	known	in vitro
+PMP2	FA(20:4)	eicosatetraenoate => (20:4)	1575	300.6999999999998	C(O)(=O)CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC	known	in vitro
+PMP2	FA(20:5)	eicosapentaenoate => (20:5)	1575	301.6999999999999	C(CCC/C=C\C/C=C\C/C=C/C/C=C\C/C=C/CC)(=O)O	known	in vitro
+PMP2	FA(22:5)	docosapentaenoate => (22:5)	1575	329.0199999999997	C(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCCC)(=O)O	known	in vitro
+RBP1	VA	Retinol	1298	286.98999999999984	CC1=C(C(CCC1)(C)C)/C=C/C(=C/C=C/C(=C/CO)/C)/C	known	in cellulo
+RBP4	VA	Retinol	1071	286.98999999999984	CC1=C(C(CCC1)(C)C)/C=C/C(=C/C=C/C(=C/CO)/C)/C	known	in cellulo
+RBP5	FA(16:1)	hexadecenoate => (16:1)	1548	243.05999999999995	C(=C/CCCCCCCC)/CCCCCC(=O)O	new	in vitro
+RLBP1	CL(64:2)	Cardiolipin (64:2) => (16:1/16:0//16:1/16:0)	2195	1249.1900000000035	P(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)COC(=O)CCCCCCCCCCCCCCC)(O)=O)=O	new	in vitro
+RLBP1	CL(66:2)	Cardiolipin (66:2) => (16:0/16:1//16:0/18:1)	2195	1220.8700000000033	P(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCCCCCCCCCC)COC(=O)CCCCCCCCCCCCCCC)(O)=O)=O	new	in vitro
+RLBP1	CL(66:3)	Cardiolipin (66:3) => (16:1/16:0//16:1/18:1)	2195	1249.1900000000035	P(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)COC(=O)CCCCCCCCCCCCCCC)(O)=O)=O	new	in vitro
+RLBP1	CL(67:2)	Cardiolipin (67:2) =>  (16:0/17:1//16:0/18:1)	2195	1249.1900000000035	P(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)COC(=O)CCCCCCCCCCCCCCC)(O)=O)=O	new	in vitro
+RLBP1	CL(67:3)	Cardiolipin (67:3) => (32:1/35:2)	2195	1249.1900000000035	P(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)COC(=O)CCCCCCCCCCCCCCC)(O)=O)=O	new	in vitro
+RLBP1	CL(68:3)	Cardiolipin (68:3) => (16:0/16:1//18:1/18:1)	2195	1249.1900000000035	P(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)COC(=O)CCCCCCCCCCCCCCC)(O)=O)=O	new	in vitro
+RLBP1	CL(68:4)	Cardiolipin (68:4) => (16:1/18:1//16:1/18:1)	2195	1250.1900000000032	P(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCCCCCCCCCC)COC(=O)CCCCCCC/C=C\C/C=C\CCCCC)(O)=O)=O	new	in vitro
+RLBP1	CL(69:3)	Cardiolipin (69:3) => (33:1/36:2)	2195	1249.1900000000035	P(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)COC(=O)CCCCCCCCCCCCCCC)(O)=O)=O	new	in vitro
+RLBP1	CL(70:3)	Cardiolipin (70:3) => (18:1/16:0//18:1/18:1)	2195	1276.5100000000034	P(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)COC(=O)CCCCCCCCCCCCCCC)(O)=O)=O	new	in vitro
+RLBP1	CL(70:4)	Cardiolipin (70:4) => (18:1/16:1//18:1/18:1)	2195	1277.510000000003	P(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)COC(=O)CCCCCCC/C=C\C/C=C\CCCCC)(O)=O)=O	new	in vitro
+RLBP1	FA(18:1)	octadecenoate => (18:1)	2195	270.3799999999999	C(CCCCCCCCCCC/C=C/CCCC)(=O)O	new	in vitro
+RLBP1	PA(30:1)	Phosphatidate (30:1) => (14:0/16:1)	2195	547.0300000000003	[C@](COP(=O)(O)O)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+RLBP1	PA(32:1)	Phosphatidate (32:1) => (16:0/16:1)	2195	574.3500000000001	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+RLBP1	PA(32:2)	Phosphatidate (32:2) => (16:1/16:1)	2195	575.3500000000003	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+RLBP1	PA(33:2)	Phosphatidate (33:2) => (16:1/17:1)	2195	589.0100000000001	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+RLBP1	PA(34:1)	Phosphatidate (34:1) => (16:0/18:1)	2195	601.6700000000003	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+RLBP1	PA(34:2)	Phosphatidate (34:2) => (18:1/16:1)	2195	602.6700000000002	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+RLBP1	PA(35:2)	Phosphatidate (35:2) => (18:1/17:1)	2195	616.3300000000003	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+RLBP1	PA(36:2)	Phosphatidate (36:2) => (18:1/18:1)	2195	629.9900000000004	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+RLBP1	PC(34:1)	Phosphatidylcholine (34:1)	2195	679.1500000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+RLBP1	PC(36:2)	Phosphatidylcholine (36:2) => (18:1/18:1)	2195	707.4700000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+RLBP1	PC(38:3)	Phosphatidylcholine (38:3)	2195	735.7900000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\C/C=C\CC)=O	new	in vitro
+RLBP1	PE(28:0)	Phosphatidylethanolamine (28:0) => (14:0/14:0)	2195	555.2099999999999	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCC)=O	new	in vitro
+RLBP1	PE(28:1)	Phosphatidylethanolamine (28:1) => (12:0/16:1)	2195	556.21	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCC)=O	new	in vitro
+RLBP1	PE(28:1)	Phosphatidylethanolamine (28:1) => (16:1/12:0)	2195	556.21	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCC)=O	new	in vitro
+RLBP1	PE(30:0)	Phosphatidylethanolamine (30:0) => (14:0/16:0)	2195	582.5300000000001	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+RLBP1	PE(30:1)	Phosphatidylethanolamine (30:1) => (14:0/16:1)	2195	583.53	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+RLBP1	PE(30:1)	Phosphatidylethanolamine (30:1) => (16:1/14:0)	2195	583.53	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+RLBP1	PE(30:2)	Phosphatidylethanolamine (30:2) => (16:1/14:1)	2195	584.53	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+RLBP1	PE(30:2)	Phosphatidylethanolamine (30:2) => (14:1/16:1)	2195	584.53	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+RLBP1	PE(31:1)	Phosphatidylethanolamine (31:1) => (14:0/17:1)	2195	597.1900000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCCCC)=O	new	in vitro
+RLBP1	PE(31:1)	Phosphatidylethanolamine (31:1) => (17:1/14:0)	2195	597.1900000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCCCC)=O	new	in vitro
+RLBP1	PE(32:0)	Phosphatidylethanolamine (32:0) => (16:0/16:0)	2195	609.8500000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+RLBP1	PE(32:2)	Phosphatidylethanolamine (32:2) => (16:1/16:1)	2195	611.8500000000001	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCC/C=C\CCCC)=O)COC(CCCCCCCCC/C=C\CCCC)=O	new	in vitro
+RLBP1	PE(33:1)	Phosphatidylethanolamine (33:1) => (16:0/17:1)	2195	624.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+RLBP1	PE(33:1)	Phosphatidylethanolamine (33:1) => (17:1/16:0)	2195	624.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+RLBP1	PE(33:2)	Phosphatidylethanolamine (33:2) => (16:1/17:1)	2195	625.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+RLBP1	PE(34:1)	Phosphatidylethanolamine (34:1) => (16:0/18:1)	2195	638.1700000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+RLBP1	PE(34:1)	Phosphatidylethanolamine (34:1) => (18:1/16:0)	2195	638.1700000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+RLBP1	PE(34:2)	Phosphatidylethanolamine (34:2) => (16:1/18:1)	2195	639.1700000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+RLBP1	PE(35:1)	Phosphatidylethanolamine (35:1) => (16:0/19:1)	2195	651.8300000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O	new	in vitro
+RLBP1	PE(35:1)	Phosphatidylethanolamine (35:1) => (19:1/16:0)	2195	651.8300000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O	new	in vitro
+RLBP1	PE(35:2)	Phosphatidylethanolamine (35:2) => (18:1/17:1)	2195	652.8300000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+RLBP1	PE(35:2)	Phosphatidylethanolamine (35:2) => (17:1/18:1)	2195	652.8300000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+RLBP1	PE(36:1)	Phosphatidylethanolamine (36:1)	2195	665.4900000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCC/C=C\CCCCCCCCCC)=O	new	in vitro
+RLBP1	PE(36:2)	Phosphatidylethanolamine (36:2) => (18:1/18:1)	2195	666.4900000000005	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+RLBP1	PE(37:2)	Phosphatidylethanolamine (37:2) => (18:1/19:1)	2195	680.1500000000005	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+RLBP1	PE(37:2)	Phosphatidylethanolamine (37:2) => (19:1/18:1)	2195	680.1500000000005	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+RLBP1	PE(38:2)	Phosphatidylethanolamine (38:2) => (20:1/18:1)	2195	693.8100000000006	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+RLBP1	PG(28:0)	Phosphatidylglycerol (28:0) => (14:0/14:0)	2195	577.2700000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(28:1)	Phosphatidylglycerol (28:1) => (12:0/16:1)	2195	578.2700000000002	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(28:1)	Phosphatidylglycerol (28:1) => (16:1/12:0)	2195	578.2700000000002	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(30:0)	Phosphatidylglycerol (30:0) => (14:0/16:0)	2195	604.5900000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(30:1)	Phosphatidylglycerol (30:1) => (14:0/16:1)	2195	605.5900000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(30:2)	Phosphatidylglycerol (30:2) => (16:1/14:1)	2195	606.5900000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(31:1)	Phosphatidylglycerol (31:1) => (14:0/17:1)	2195	619.2500000000002	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(31:1)	Phosphatidylglycerol (31:1) => (17:1/14:0)	2195	619.2500000000002	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(32:1)	Phosphatidylglycerol (32:1) => (16:0/16:1)	2195	632.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(32:1)	Phosphatidylglycerol (32:1) => (16:1/16:0)	2195	632.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(32:2)	Phosphatidylglycerol (32:2) => (16:1/16:1)	2195	633.9100000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(33:1)	Phosphatidylglycerol (33:1) => (16:0/17:1)	2195	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(33:1)	Phosphatidylglycerol (33:1) => (17:1/16:0)	2195	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(33:2)	Phosphatidylglycerol (33:2) => (16:1/17:1)	2195	647.5700000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(34:1)	Phosphatidylglycerol (34:1) => (18:1/16:0)	2195	660.2300000000006	[C@]([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)(COP(=O)(O)OC[C@@]([H])(O)CO)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+RLBP1	PG(34:2)	Phosphatidylglycerol (34:2) => (16:1/18:1)	2195	661.2300000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(35:1)	Phosphatidylglycerol (35:1) => (16:0/19:1)	2195	673.8900000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(35:1)	Phosphatidylglycerol (35:1) => (19:1/16:0)	2195	673.8900000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(35:2)	Phosphatidylglycerol (35:2) => (18:1/17:1)	2195	674.8900000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(35:2)	Phosphatidylglycerol (35:2) => (17:1/18:1)	2195	674.8900000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(36:2)	Phosphatidylglycerol (36:2) => (18:1/18:1)	2195	688.5500000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(36:3)	Phosphatidylglycerol (36:3) => (18:2/18:1)	2195	689.5500000000008	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG(36:3)	Phosphatidylglycerol (36:3) => (18:1/18:2)	2195	689.5500000000008	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG/BMP(34:3)	"Phosphatidylglycerol (34:3);Bismonoacylglycerolphosphate (34:3) => (16:1/18:2)"	2195	662.2300000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG/BMP(37:1)	"Bismonoacylglycerolphosphate (37:1);Phosphatidylglycerol (37:1) => (19:1/18:0)"	2195	701.2100000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG/BMP(37:2)	"Bismonoacylglycerolphosphate (37:2);Phosphatidylglycerol (37:2) => (19:1/18:1)"	2195	702.2100000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PG/BMP(38:2)	"Phosphatidylglycerol (38:2);Bismonoacylglycerolphosphate (38:2) => (19:1/19:1)"	2195	715.8700000000008	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PGP(32:1)	Phosphatidylglycerophosphate (32:1) => (16:1/16:0)	2195	632.9100000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+RLBP1	PGP(34:2)	Phosphatidylglycerophosphate (34:2) => (16:1/18:1)	2195	652.4400000000004	[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)(COP(=O)(O)OC[C@@]([H])(O)CO)CO/C=C\CCCCCCC/C=C\CCCCC	new	in vitro
+RLBP1	PGP(34:2)	Phosphatidylglycerophosphate (34:2) => (18:1/16:1)	2195	652.4400000000004	[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)(COP(=O)(O)OC[C@@]([H])(O)CO)CO/C=C\CCCCCCC/C=C\CCCCC	new	in vitro
+RLBP1	PGP(36:2)	Phosphatidylglycerophosphate (36:2) => (18:1/18:1)	2195	679.7600000000006	[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)(COP(=O)(O)OC[C@@]([H])(O)CO)CO/C=C\CCCCCCCCC/C=C\CCCCC	new	in vitro
+SCP2	LPG(17:1)	Lysophosphatidylglycerol (17:1) => (17:1)	1191	418.2199999999995	[H][C@](O)(CO)COP(OC[C@]([H])(O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+SCP2	LPG(18:1)	Lysophosphatidylglycerol (18:1) => (18:1)	1191	431.8799999999994	[H][C@](O)(CO)COP(OC[C@]([H])(O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+SCP2	PE(32:2)	Phosphatidylethanolamine (32:2) => (16:1/16:1)	1191	611.8500000000001	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+SCP2	PE(33:2)	Phosphatidylethanolamine (33:2) => (17:1/16:1)	1191	625.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+SCP2	PG(30:1)	Phosphatidylglycerol (30:1) => (14:0/16:1)	1191	605.5900000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+SCP2	PG(32:1)	Phosphatidylglycerol (32:1) => (16:1/16:0)	1191	632.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+SCP2	PG(32:2)	Phosphatidylglycerol (32:2) => (16:1/16:1)	1191	633.9100000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCC)=O)(=O)O	new	in vitro
+SCP2	PG/BMP(30:1)	"Bismonoacylglycerolphosphate (30:1);Phosphatidylglycerol (30:1) => (16:1/14:0)"	1191	605.5900000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+SCP2	PG/BMP(33:1)	"Bismonoacylglycerolphosphate (33:1);Phosphatidylglycerol (33:1) => (17:1/16:0)"	1191	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+SCP2	PG/BMP(34:2)	"Phosphatidylglycerol (34:2);Bismonoacylglycerolphosphate (34:2) => (16:1/18:1)"	1191	661.2300000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+SCP2D1	FA(18:1)	octadecenoate => (18:1)	910	270.3799999999999	C(CCCCCCCCCCC/C=C/CCCC)(=O)O	new	in vitro
+SCP2D1	FA(20:4)	eicosatetraenoate => (20:4)	910	300.6999999999998	C(O)(=O)CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC	new	in vitro
+SCP2D1	LPC(18:0)	Lysophosphatidylcholine (18:0) => (18:0)	910	449.7999999999994	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(O)COC(CCCCCCCCCCCCCCCCC)=O	new	in vitro
+SCP2D1	LPC(18:1)	Lysophosphatidylcholine (18:1) => (18:1)	910	450.7999999999994	C(COP(=O)([O-])OCC[N+](C)(C)C)([H])(O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+SCP2D1	LPC(18:2)	Lysophosphatidylcholine (18:2)	910	451.7999999999997	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(O)COC(/C=C/C=C/CCCCCCCCCCCCC)=O	new	in vitro
+SCP2D1	LPC(20:4)	Lysophosphatidylcholine (20:4)	910	481.11999999999944	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(O)COC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	new	in vitro
+SCP2D1	LPC(22:5)	Lysophosphatidylcholine (22:5)	910	509.4399999999998	C(OP(OCC[N+](C)(C)C)(=O)[O-])[C@]([H])(O)COC(=O)CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCCC	new	in vitro
+SCP2D1	LPE(17:1)	Lysophosphatidylethanolamine (17:1) => (17:1)	910	396.15999999999957	[C@](COP(=O)(O)OCCN)([H])(O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+SCP2D1	LPE(18:0)	Lysophosphatidylethanolamine (18:0) => (18:0)	910	408.81999999999954	[C@](COP(=O)(O)OCCN)([H])(O)COC(CCCCCCCCCCCCCCCCC)=O	new	in vitro
+SCP2D1	LPE(18:1)	Lysophosphatidylethanolamine (18:1) => (18:1)	910	409.81999999999954	[C@](COP(=O)(O)OCCN)([H])(O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+SCP2D1	LPE(19:1)	Lysophosphatidylethanolamine (19:1) => (19:1)	910	423.47999999999945	[C@](COP(=O)(O)OCCN)([H])(O)COC(CCCCCCC/C=C\CCCCCCCCC)=O	new	in vitro
+SCP2D1	LPG(17:1)	Lysophosphatidylglycerol (17:1) => (17:1)	910	418.2199999999995	[H][C@](O)(CO)COP(OC[C@]([H])(O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+SCP2D1	LPG(18:1)	Lysophosphatidylglycerol (18:1) => (18:1)	910	431.8799999999994	[H][C@](O)(CO)COP(OC[C@]([H])(O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+SCP2D1	LPG(19:1)	Lysophosphatidylglycerol (19:1) => (19:1)	910	445.5399999999994	[H][C@](O)(CO)COP(OC[C@]([H])(O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in vitro
+SCP2D1	PC(O-20:3)/LPC(20:3)	"Lysophosphatidylcholine (20:3);Phosphatidylcholine (O-20:3)"	910	470.3299999999995	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(O)COCCCCCCC/C=C\C/C=C\C/C=C\CCCCC	new	in vitro
+SCP2D1	PE(32:1)	Phosphatidylethanolamine (32:1) => (16:1/16:0)	910	610.8500000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+SCP2D1	PE(33:1)	Phosphatidylethanolamine (33:1) =>(17:1/16:0)	910	624.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+SCP2D1	PE(34:2)	Phosphatidylethanolamine (34:2) => (16:1/18:1)	910	639.1700000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+SCP2D1	PE(35:2)	Phosphatidylethanolamine (35:2) => (17:1/18:1)	910	652.8300000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+SCP2D1	PE(36:2)	Phosphatidylethanolamine (36:2) => (18:1/18:1)	910	666.4900000000005	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+SCP2D1	PE(O-16:1)/LPE(16:1)	"Lysophosphatidylethanolamine (16:1);Phosphatidylethanolamine (O-16:1)"	910	382.4999999999996	C(OP(OCCN)(O)=O)[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCC)CO	new	in vitro
+SCP2D1	PE(O-18:1)/LPE(18:1)	"Lysophosphatidylethanolamine (18:1);Phosphatidylethanolamine (O-18:1)"	910	400.02999999999963	[C@](COP(=O)(O)OCCN)([H])(O)COCCCCCCCC/C=C\CCCCCCCC	new	in vitro
+SCP2D1	PG/BMP(32:1)	"Phosphatidylglycerol (32:1);Bismonoacylglycerolphosphate (32:1) => (16:1/16:0)"	910	632.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+SCP2D1	PG/BMP(33:1)	"Bismonoacylglycerolphosphate (33:1);Phosphatidylglycerol (33:1) => (17:1/16:0)"	910	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+SCP2D1	PG/BMP(34:1)	"Phosphatidylglycerol (34:1);Bismonoacylglycerolphosphate (34:1) => (18:1/16:0)"	910	660.2300000000006	[C@]([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)(COP(=O)(O)OC[C@@]([H])(O)CO)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+SCP2D1	PG/BMP(34:2)	"Phosphatidylglycerol (34:2);Bismonoacylglycerolphosphate (34:2) => (16:1/18:1)"	910	661.2300000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+SCP2D1	PG/BMP(35:1)	"Phosphatidylglycerol (35:1);Bismonoacylglycerolphosphate (35:1) => (19:1/16:0)"	910	673.8900000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+SCP2D1	PG/BMP(36:2)	"Bismonoacylglycerolphosphate (36:2);Phosphatidylglycerol (36:2) => (18:1/18:1)"	910	688.5500000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+SEC14L2	DAG(32:1)	Diacylglycerol (32:1) => (16:0/16:1)	2699	529.9699999999997	OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+SEC14L2	DAG(34:2)	Diacylglycerol (34:2) => (18:1/16:1)	2699	558.29	OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+SEC14L2	PI(34:1)	Phosphatidylinositol (34:1) => (16:0/18:1)	2699	722.6600000000008	[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCCCCCCCCCC)=O	known	in cellulo
+SEC14L2	PI(36:1)	Phosphatidylinositol (36:1) => (18:1/18:0)	2699	749.9800000000007	[C@]([H])(OC(CCCCCCCCCCCCCCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in cellulo
+SEC14L2	PI(36:2)	Phosphatidylinositol (36:2) => (18:1/18:1)	2699	750.9800000000006	[C@]([H])(OC(CCCCCCCCC/C=C\CCCCCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in cellulo
+SEC14L2	PI(38:2)	Phosphatidylinositol (38:2) => (18:0/20:2)	2699	778.3000000000008	[C@]([H])(OC(CCCCCCCCCCCCCCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCCCC/C=C\C/C=C\CCCCC)=O	known	in cellulo
+SEC14L2	PI(38:2)	Phosphatidylinositol (38:2) => (20:2/18:0)	2699	778.3000000000008	[C@]([H])(OC(CCCCCCCCCCCCCCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCCCC/C=C\C/C=C\CCCCC)=O	known	in cellulo
+SEC14L2	PI(38:3)	Phosphatidylinositol (38:3) => (20:3/18:0)	2699	779.3000000000006	[C@]([H])(OC(CCCCCCCCCCCCCCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+SEC14L2	PI(38:4)	Phosphatidylinositol (38:4)	2699	780.3000000000013	[C@]([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCCCCCCCCCCCCCCCC)=O	known	in cellulo
+SEC14L2	PI(38:5)	Phosphatidylinositol (38:5) => (18:1/20:4)	2699	781.3000000000005	[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)(COP(=O)(O)O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@@H](O)[C@H]1O)COC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+SEC14L4	FA(16:1)	hexadecenoate => (16:1)	2402	243.05999999999995	C(=C/CCCCCCCC)/CCCCCC(=O)O	new	in vitro
+SEC14L4	FA(17:1)	heptadecenoate => (17:1)	2402	256.7199999999999	C(CCCCCCCC/C=C/CCCCCC)(=O)O	new	in vitro
+SEC14L4	FA(18:1)	octadecenoate => (18:1)	2402	270.3799999999999	C(CCCCCCCCCCC/C=C/CCCC)(=O)O	new	in vitro
+SEC14L5	LPE(17:1)	Lysophosphatidylethanolamine (17:1) => (17:1)	1780	396.15999999999957	[C@](COP(=O)(O)OCCN)([H])(O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+SEC14L5	PE(31:1)	Phosphatidylethanolamine (31:1) => (17:1/14:0)	1780	597.1900000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCCCC)=O	new	in vitro
+SEC14L6	PC(30:0)	Phosphatidylcholine (30:0)	2369	623.5100000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	new	in cellulo
+SEC14L6	PC(32:0)	Phosphatidylcholine (32:0)	2369	650.8300000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	new	in cellulo
+SEC14L6	PC(32:1)	Phosphatidylcholine (32:1)	2369	651.8300000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCC/C=C\CCCCCC)=O	new	in cellulo
+SEC14L6	PC(32:2)	Phosphatidylcholine (32:2)	2369	652.8300000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in cellulo
+SEC14L6	PC(33:1)	Phosphatidylcholine (33:1)	2369	665.4900000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	new	in cellulo
+SEC14L6	PC(34:1)	Phosphatidylcholine (34:1)	2369	679.1500000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCC/C=C\CCCCCCCC)=O	new	in cellulo
+SEC14L6	PC(36:1)	Phosphatidylcholine (36:1)	2369	706.4700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in cellulo
+SEC14L6	PC(36:3)	Phosphatidylcholine (36:3)	2369	708.4700000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCC)=O	new	in cellulo
+SEC14L6	PC(O-30:0)/LPC(30:0)	"Lysophosphatidylcholine (30:0); Phosphatidylcholine (O-30:0)"	2369	613.7200000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCC)=O)COCCCCCCCCCCCCCCC	new	in cellulo
+SEC14L6	PC(O-32:0)	Phosphatidylcholine (O-32:0)	2369	641.0400000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCC)=O)COCCCCCCCCCCCCCCCCCCCC	new	in cellulo
+SEC14L6	PC(O-32:1)	Phosphatidylcholine (O-32:1)	2369	642.0400000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COCCCCCCCCCCCCCC	new	in cellulo
+SEC14L6	PC(O-34:1)	Phosphatidylcholine (O-34:1)	2369	669.3600000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)CO/C=C\CCCCCCCCCCCCCCCCCC	new	in cellulo
+SEC14L6	PC(O-34:2)	Phosphatidylcholine (O-34:2)	2369	670.3600000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)CO/C=C\CCCCCCCCCCCCCCCCCC	new	in cellulo
+SEC14L6	PE(34:1)	Phosphatidylethanolamine (34:1) => (18:1/16:0)	2369	638.1700000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in cellulo
+STARD10	PC(30:1)	Phosphatidylcholine (30:1)	2693	624.5100000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCC)=O	known	in cellulo
+STARD10	PC(32:1)	Phosphatidylcholine (32:1)	2693	651.8300000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCC)=O	known	in cellulo
+STARD10	PC(32:2)	Phosphatidylcholine (32:2)	2693	652.8300000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCC)=O	known	in cellulo
+STARD10	PC(33:2)	Phosphatidylcholine (33:2)	2693	666.4900000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCC)=O	known	in cellulo
+STARD10	PC(34:1)	Phosphatidylcholine (34:1) => (18:1/16:0)	2693	679.1500000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C/CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in cellulo
+STARD10	PC(34:2)	Phosphatidylcholine (34:2)	2693	680.1500000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O	known	in cellulo
+STARD10	PC(34:3)	Phosphatidylcholine (34:3)	2693	681.1500000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCC)=O	known	in cellulo
+STARD10	PC(35:2)	Phosphatidylcholine (35:2)	2693	693.8100000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in cellulo
+STARD10	PC(36:2)	Phosphatidylcholine (36:2) => (18:1/18:1)	2693	707.4700000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCC)=O	known	in cellulo
+STARD10	PC(36:2)	Phosphatidylcholine (36:2) => (18:1/18:1)	2693	707.4700000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCCCCCC/C=C\CCCCCCCC)=O	known	in vitro
+STARD10	PC(36:3)	Phosphatidylcholine (36:3)	2693	708.4700000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\C/C=C\CC)=O	known	in cellulo
+STARD10	PC(36:3)	Phosphatidylcholine (36:3)	2693	708.4700000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCCCCCCCCCCCCC)=O	known	in vitro
+STARD10	PC(36:4)	Phosphatidylcholine (36:4)	2693	709.4700000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in cellulo
+STARD10	PC(38:2)	Phosphatidylcholine (38:2)	2693	734.7900000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCC)=O	known	in cellulo
+STARD10	PC(38:4)	Phosphatidylcholine (38:4)	2693	736.7900000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+STARD10	PC(38:5)	Phosphatidylcholine (38:5)	2693	737.7900000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O	known	in cellulo
+STARD10	PC(38:6)	Phosphatidylcholine (38:6)	2693	738.7900000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+STARD10	PC(38:7)	Phosphatidylcholine (38:7)	2693	739.790000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O	known	in cellulo
+STARD10	PC(40:7)	Phosphatidylcholine (40:7)	2693	767.1100000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+STARD10	PC(O-32:1)	Phosphatidylcholine (O-32:1)	2693	642.0400000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COCCCCCCCCCCCCCCCC	new	in cellulo
+STARD10	PC(O-34:1)	Phosphatidylcholine (O-34:1)	2693	669.3600000000008	[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)(COP(=O)([O-])OCC[N+](C)(C)C)COCCCCCCCCCCCCCCCC	new	in cellulo
+STARD10	PC(O-34:2)	Phosphatidylcholine (O-34:2)	2693	670.3600000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)CO/C=C\CCCCCCCCCCCCCC	new	in cellulo
+STARD10	PC(O-36:2)	Phosphatidylcholine (O-36:2)	2693	697.6800000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCC)=O)CO/C=C\CCCCCC/C=C\CCCCCCCC	new	in cellulo
+STARD10	PC(O-36:4)/LPC(36:4)	"Phosphatidylcholine (O-36:4); Lysophosphatidylcholine (36:4)"	2693	699.6800000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COCCCCCCCCCCCCCCCCCC	new	in cellulo
+STARD10	PC(O-38:5)/LPC(38:5)	"Lysophosphatidylcholine (38:5); Phosphatidylcholine (O-38:5)"	2693	728.0000000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COCCCCCCCCCCCCCCCC	new	in cellulo
+STARD10	PC(O-40:7)	Phosphatidylcholine (O-40:7)	2693	757.3200000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)CO/C=C\CCCCCCCCCCCCCCCC	new	in cellulo
+STARD10	PE(28:1)	Phosphatidylethanolamine (28:1) => (16:1/12:0)	2693	556.21	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCC)=O	known	in vitro
+STARD10	PE(30:1)	Phosphatidylethanolamine (30:1) => (14:0/16:1)	2693	583.53	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+STARD10	PE(30:1)	Phosphatidylethanolamine (30:1) => (16:1/14:0)	2693	583.53	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+STARD10	PE(30:2)	Phosphatidylethanolamine (30:2) => (16:1/14:1)	2693	584.53	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+STARD10	PE(30:2)	Phosphatidylethanolamine (30:2) => (14:1/16:1)	2693	584.53	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+STARD10	PE(31:1)	Phosphatidylethanolamine (31:1) => (14:0/17:1)	2693	597.1900000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCCCC)=O	known	in vitro
+STARD10	PE(31:1)	Phosphatidylethanolamine (31:1) => (17:1/14:0)	2693	597.1900000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCCCC)=O	known	in vitro
+STARD10	PE(32:1)	Phosphatidylethanolamine (32:1) => (16:1/16:0)	2693	610.8500000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+STARD10	PE(32:2)	Phosphatidylethanolamine (32:2) => (16:1/16:1)	2693	611.8500000000001	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+STARD10	PE(33:1)	Phosphatidylethanolamine (33:1) => (16:0/17:1)	2693	624.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	known	in vitro
+STARD10	PE(33:1)	Phosphatidylethanolamine (33:1) => (17:1/16:0)	2693	624.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	known	in vitro
+STARD10	PE(33:2)	Phosphatidylethanolamine (33:2) => (16:1/17:1)	2693	625.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	known	in vitro
+STARD10	PE(34:1)	Phosphatidylethanolamine (34:1) => (16:0/18:1)	2693	638.1700000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in vitro
+STARD10	PE(34:1)	Phosphatidylethanolamine (34:1) => (18:1/16:0)	2693	638.1700000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+STARD10	PE(34:2)	Phosphatidylethanolamine (34:2) => (16:1/18:1)	2693	639.1700000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in vitro
+STARD10	PE(34:3)	Phosphatidylethanolamine (34:3) => (18:2/16:1)	2693	640.1700000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD10	PE(34:3)	Phosphatidylethanolamine (34:3) => (16:1/18:2)	2693	640.1700000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD10	PE(35:1)	Phosphatidylethanolamine (35:1) => (16:0/19:1)	2693	651.8300000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O	known	in vitro
+STARD10	PE(35:1)	Phosphatidylethanolamine (35:1) => (19:1/16:0)	2693	651.8300000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O	known	in vitro
+STARD10	PE(35:2)	Phosphatidylethanolamine (35:2) => (18:1/17:1)	2693	652.8300000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	known	in vitro
+STARD10	PE(35:2)	Phosphatidylethanolamine (35:2) => (17:1/18:1)	2693	652.8300000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in vitro
+STARD10	PE(36:1)	Phosphatidylethanolamine (36:1) => (18:1/18:0)	2693	665.4900000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCC/C=C\CCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	known	in vitro
+STARD10	PE(36:2)	Phosphatidylethanolamine (36:2) => (18:1/18:1)	2693	666.4900000000005	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in vitro
+STARD10	PE(36:3)	Phosphatidylethanolamine (36:3) => (18:2/18:1)	2693	667.4900000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD10	PE(36:3)	Phosphatidylethanolamine (36:3) => (18:1/18:2)	2693	667.4900000000006	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in vitro
+STARD10	PE(37:2)	Phosphatidylethanolamine (37:2) => (18:1/19:1)	2693	680.1500000000005	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in vitro
+STARD10	PE(37:2)	Phosphatidylethanolamine (37:2) => (19:1/18:1)	2693	680.1500000000005	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O	known	in vitro
+STARD10	PE(38:2)	Phosphatidylethanolamine (38:2) => (20:1/18:1)	2693	693.8100000000006	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in vitro
+STARD10	PE(O-38:6)	Phosphatidylethanolamine (O-38:6)	2693	688.0200000000006	[C@](COP(=O)(O)OCCN)([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)CO/C=C\CCCCCCCCCCCCCCCC	new	in cellulo
+STARD10	PE(O-40:8)	Phosphatidylethanolamine (O-40:8)	2693	717.3400000000007	[C@](COP(=O)(O)OCCN)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)CO/C=C\CCCCCC/C=C\CCCCCCCC	new	in cellulo
+STARD10	PG(30:1)	Phosphatidylglycerol (30:1) => (14:0/16:1)	2693	605.5900000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(30:1)	Phosphatidylglycerol (30:1) => (16:1/14:0)	2693	605.5900000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(30:2)	Phosphatidylglycerol (30:2) => (16:1/14:1)	2693	606.5900000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCC)=O)(=O)O	new	in vitro
+STARD10	PG(32:1)	Phosphatidylglycerol (32:1) => (16:1/16:0)	2693	632.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(32:2)	Phosphatidylglycerol (32:2) => (16:1/16:1)	2693	633.9100000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCC)=O)COC(CCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(32:2)	Phosphatidylglycerol (32:2) => (16:2/16:0)	2693	633.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(33:1)	Phosphatidylglycerol (33:1) => (16:0/17:1)	2693	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(33:1)	Phosphatidylglycerol (33:1) => (17:1/16:0)	2693	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(33:2)	Phosphatidylglycerol (33:2) => (16:1/17:1)	2693	647.5700000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(34:1)	Phosphatidylglycerol (34:1) =>(16:0/18:1)	2693	660.2300000000006	[C@]([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)(COP(=O)(O)OC[C@@]([H])(O)CO)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+STARD10	PG(34:1)	Phosphatidylglycerol (34:1) => (18:1/16:0)	2693	660.2300000000006	[C@]([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)(COP(=O)(O)OC[C@@]([H])(O)CO)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+STARD10	PG(34:2)	Phosphatidylglycerol (34:2) => (16:1/18:1)	2693	661.2300000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(34:2)	Phosphatidylglycerol (34:2) => (18:2/16:0)	2693	661.2300000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(34:3)	Phosphatidylglycerol (34:3) => (18:2/16:1)	2693	662.2300000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(35:1)	Phosphatidylglycerol (35:1) => (16:0/19:1)	2693	673.8900000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(35:1)	Phosphatidylglycerol (35:1) => (19:1/16:0)	2693	673.8900000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(35:2)	Phosphatidylglycerol (35:2) => (18:1/17:1)	2693	674.8900000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(36:1)	Phosphatidylglycerol (36:1) => (18:1/18:0)	2693	687.5500000000008	[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)(COP(=O)(O)OC[C@@]([H])(O)CO)COC(CCCCCCCCCCCCCCCCC)=O	new	in vitro
+STARD10	PG(36:2)	Phosphatidylglycerol (36:2) => (18:1/18:1)	2693	688.5500000000002	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCC/C=C\CCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCC)=O)(=O)O	new	in vitro
+STARD10	PG(36:3)	Phosphatidylglycerol (36:3) => (18:2/18:1)	2693	689.5500000000008	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(37:2)	Phosphatidylglycerol (37:2) => (18:1/19:1)	2693	702.2100000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(37:2)	Phosphatidylglycerol (37:2) => (19:1/18:1)	2693	702.2100000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG(38:2)	Phosphatidylglycerol (38:2) => (20:1/18:1)	2693	715.8700000000008	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG/BMP(28:1)	"Phosphatidylglycerol (28:1);Bismonoacylglycerolphosphate (28:1) => (16:1/12:0)"	2693	578.2700000000002	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG/BMP(32:1)	"Phosphatidylglycerol (32:1);Bismonoacylglycerolphosphate (32:1)"	2693	632.9100000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG/BMP(32:2)	"Bismonoacylglycerolphosphate (32:2);Phosphatidylglycerol (32:2)"	2693	633.9100000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCC)=O)COC(CCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG/BMP(32:3)	"Phosphatidylglycerol (32:3);Bismonoacylglycerolphosphate (32:3) => (16:2/16:1)"	2693	634.9100000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCC)=O)(=O)O	new	in vitro
+STARD10	PG/BMP(34:1)	"Phosphatidylglycerol (34:1);Bismonoacylglycerolphosphate (34:1)"	2693	660.2300000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCC)=O)(=O)O	new	in vitro
+STARD2	PC(30:0)	Phosphatidylcholine (30:0)	3492	623.5100000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	known	in cellulo
+STARD2	PC(30:1)	Phosphatidylcholine (30:1)	3492	624.5100000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in cellulo
+STARD2	PC(31:0)	Phosphatidylcholine (31:0)	3492	637.1700000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in cellulo
+STARD2	PC(31:1)	Phosphatidylcholine (31:1)	3492	638.1700000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCC)=O	known	in cellulo
+STARD2	PC(32:0)	Phosphatidylcholine (32:0)	3492	650.8300000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCC)=O	known	in vitro
+STARD2	PC(32:1)	Phosphatidylcholine (32:1) => (16:1/16:0)	3492	651.8300000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in cellulo
+STARD2	PC(32:1)	Phosphatidylcholine (32:1) => (16:1/16:0)	3492	651.8300000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+STARD2	PC(32:2)	Phosphatidylcholine (32:2)	3492	652.8300000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	known	in vitro
+STARD2	PC(32:2)	: Phosphatidylcholine (32:2) => (16:1/16:1)	3492	652.8300000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCC)=O	known	in cellulo
+STARD2	PC(33:1)	Phosphatidylcholine (33:1)	3492	665.4900000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O	known	in cellulo
+STARD2	PC(33:1)	Phosphatidylcholine (33:1) => (17:1/16:0)	3492	665.4900000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	known	in vitro
+STARD2	PC(34:1)	Phosphatidylcholine (34:1) => (18:1/16:0)	3492	679.1500000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C/CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in cellulo
+STARD2	PC(34:1)	Phosphatidylcholine (34:1) =>(18:1/16:0)	3492	679.1500000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C/CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+STARD2	PC(34:2)	Phosphatidylcholine (34:2) => (18:1/16:1)	3492	680.1500000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(/C=C\CCCCCCCCCCCCC)=O	known	in cellulo
+STARD2	PC(34:2)	Phosphatidylcholine (34:2) =>(18:2/16:0)	3492	680.1500000000008	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+STARD2	PC(34:3)	Phosphatidylcholine (34:3)	3492	681.1500000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+STARD2	PC(34:3)	Phosphatidylcholine (34:3)	3492	681.1500000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCC/C=C\C/C=C\C/C=C\CCCCCCCC)=O	known	in vitro
+STARD2	PC(34:4)	Phosphatidylcholine (34:4)	3492	682.1500000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD2	PC(35:1)	Phosphatidylcholine (35:1)	3492	692.8100000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCCCCCCCCCCCCCCC)=O	known	in cellulo
+STARD2	PC(35:1)	Phosphatidylcholine (35:1) => (18:1/17:0)	3492	692.810000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in vitro
+STARD2	PC(35:2)	Phosphatidylcholine (35:2) => (18:2/17:0)	3492	693.8100000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD2	PC(35:4)	Phosphatidylcholine (35:4)	3492	695.810000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCC/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	known	in vitro
+STARD2	PC(36:1)	Phosphatidylcholine (36:1)	3492	706.4700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	known	in cellulo
+STARD2	PC(36:1)	Phosphatidylcholine (36:1) =>(18:1/18:0)	3492	706.4700000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	known	in vitro
+STARD2	PC(36:2)	Phosphatidylcholine (36:2) => (18:1/18:1)	3492	707.4700000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCC)=O	known	in cellulo
+STARD2	PC(36:2)	Phosphatidylcholine (36:2) => (18:1/18:1)	3492	707.4700000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in vitro
+STARD2	PC(36:3)	Phosphatidylcholine (36:3)	3492	708.4700000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCC)=O	known	in cellulo
+STARD2	PC(36:3)	Phosphatidylcholine (36:3) =>(18:2/18:1)	3492	708.4700000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCC/C=C\CCCCCC)=O	known	in vitro
+STARD2	PC(36:4)	Phosphatidylcholine (36:4)	3492	709.470000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+STARD2	PC(36:4)	Phosphatidylcholine (36:4) =>(20:4/16:0)	3492	709.4700000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+STARD2	PC(36:4)	Phosphatidylcholine (36:4) => (18:2/18:2)	3492	709.470000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O	known	in vitro
+STARD2	PC(36:5)	Phosphatidylcholine (36:5)	3492	710.4700000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	known	in cellulo
+STARD2	PC(36:5)	Phosphatidylcholine (36:5) => (20:4/16:1)	3492	710.4700000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O	known	in vitro
+STARD2	PC(36:6)	Phosphatidylcholine (36:6)	3492	711.470000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCCC/C=C\C/C=C\CCCCC)=O	known	in cellulo
+STARD2	PC(37:4)	Phosphatidylcholine (37:4) => (20:4/17:0)	3492	723.1300000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCC)=O)COC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD2	PC(37:5)	Phosphatidylcholine (37:5)	3492	724.1300000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCC)=O)COC(CCC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O	known	in vitro
+STARD2	PC(38:2)	Phosphatidylcholine (38:2)	3492	734.7900000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\CCCC)=O)COC(CCCCCCCCCCCCCCCCCCCC)=O	known	in vitro
+STARD2	PC(38:3)	Phosphatidylcholine (38:3)	3492	735.7900000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	known	in cellulo
+STARD2	PC(38:3)	Phosphatidylcholine (38:3) => (20:3/18:0)	3492	735.7900000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD2	PC(38:4)	Phosphatidylcholine (38:4)	3492	736.7900000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+STARD2	PC(38:4)	Phosphatidylcholine (38:4) =>(20:4/18:0)	3492	736.7900000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD2	PC(38:4)	Phosphatidylcholine (38:4) => (22:4/16:0)	3492	736.7900000000012	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD2	PC(38:5)	Phosphatidylcholine (38:5)	3492	737.7900000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+STARD2	PC(38:5)	Phosphatidylcholine (38:5) =>(22:5/16:0)	3492	737.7900000000013	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+STARD2	PC(38:6)	Phosphatidylcholine (38:6)	3492	738.7900000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+STARD2	PC(38:6)	Phosphatidylcholine (38:6) => (16:0/22:6)	3492	738.7900000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCCCCCCCCCCC)=O	known	in vitro
+STARD2	PC(38:6)	Phosphatidylcholine (38:6) => (20:4/18:2)	3492	738.7900000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD2	PC(38:7)	Phosphatidylcholine (38:7)	3492	739.790000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O	known	in cellulo
+STARD2	PC(38:7)	Phosphatidylcholine (38:7)	3492	739.790000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD2	PC(39:4)	Phosphatidylcholine (39:4) => (22:4/17:0)	3492	750.4500000000013	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCC)=O)COC(CCCCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD2	PC(39:5)	Phosphatidylcholine (39:5) => (22:5/17:0)	3492	751.4500000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCCCCCCCCCCCC)=O	known	in vitro
+STARD2	PC(39:6)	Phosphatidylcholine (39:6)	3492	752.4500000000012	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCC)=O)COC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O	known	in vitro
+STARD2	PC(40:4)	Phosphatidylcholine (40:4)	3492	764.1100000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCCCCC/C=C\CCCCCCCCCC)=O	known	in vitro
+STARD2	PC(40:5)	Phosphatidylcholine (40:5) =>(22:5/18:0)	3492	765.1100000000008	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCCCCCCCCCCCCC)=O	known	in vitro
+STARD2	PC(40:5)	Phosphatidylcholine (40:5) => (22:5/18:0)	3492	765.1100000000008	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCCCCCCCCCCCCC)=O	known	in vitro
+STARD2	PC(40:6)	Phosphatidylcholine (40:6)	3492	766.1100000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C=C/C=C\C=C/C=C\C=C\CC)=O)COC(CCCCCCCCCCCCCCCCC)=O	known	in cellulo
+STARD2	PC(40:6)	Phosphatidylcholine (40:6) => (18:0/22:6)	3492	766.1100000000013	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O	known	in vitro
+STARD2	PC(40:6)	Phosphatidylcholine (40:6) => (22:5/18:1)	3492	766.1100000000008	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCCCCC/C=C\CCCCCC)=O	known	in vitro
+STARD2	PC(40:7)	Phosphatidylcholine (40:7)	3492	767.1100000000012	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCC/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCCCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	known	in cellulo
+STARD2	PC(40:7)	Phosphatidylcholine (40:7) => (18:1/22:6)	3492	767.1100000000014	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O	known	in vitro
+STARD2	PC(40:8)	Phosphatidylcholine (40:8)	3492	768.1100000000008	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COC(CCCCCC/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD2	PC(42:10)	Phosphatidylcholine (42:10)	3492	797.4300000000013	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD2	PC(42:8)	Phosphatidylcholine (42:8)	3492	795.430000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O	known	in vitro
+STARD2	PC(O-32:1)	Phosphatidylcholine (O-32:1)	3492	642.0400000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCC)=O)CO/C=C\CCCCCCCCCCCCCC	new	in vitro
+STARD2	PC(O-32:1)	Phosphatidylcholine (O-32:1)	3492	642.0400000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COCCCCCCCCCCCCCCCC	new	in cellulo
+STARD2	PC(O-32:2)	Phosphatidylcholine (O-32:2)	3492	643.0400000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)CO/C=C\CCCCCCCC/C=C\CCCCCC	new	in cellulo
+STARD2	PC(O-32:3)	Phosphatidylcholine (O-32:3)	3492	644.0400000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\C/C=C\CC)=O)COCCCCCCCCCCCCCC	new	in vitro
+STARD2	PC(O-33:3)	Phosphatidylcholine (O-33:3)	3492	657.7000000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\CCCC)=O)CO/C=C\CCCCCCCCCCCCCC	new	in vitro
+STARD2	PC(O-34:1)	Phosphatidylcholine (O-34:1)	3492	669.3600000000008	[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)(COP(=O)([O-])OCC[N+](C)(C)C)COCCCCCCCCCCCCCCCC	new	in cellulo
+STARD2	PC(O-34:1)	Phosphatidylcholine (O-34:1)	3492	669.3600000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COCCCCCCCCCCCCCCCCCC	new	in vitro
+STARD2	PC(O-34:2)	Phosphatidylcholine (O-34:2)	3492	670.3600000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)CO/C=C\CCCCCCCCCCCCCC	new	in vitro
+STARD2	PC(O-34:2)	Phosphatidylcholine (O-34:2)	3492	670.3600000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCC)=O)CO/C=C\CCCCCCCCCCCCCCCCCC	new	in cellulo
+STARD2	PC(O-34:3)	Phosphatidylcholine (O-34:3)	3492	671.3600000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)CO/C=C\CCCCCC/C=C\CCCCCCCC	new	in vitro
+STARD2	PC(O-34:4)/LPC(34:4)	"Phosphatidylcholine (O-34:4);Lysophosphatidylcholine (34:4)"	3492	682.1500000000004	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)COC(CC/C=C\C/C=C\C/C=C\C/C=C\CCCCCC)=O	new	in vitro
+STARD2	PC(O-34:5)/LPC(34:5)	"Lysophosphatidylcholine (34:5);Phosphatidylcholine (O-34:5)"	3492	673.3600000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\C/C=C\CC)=O)COCCCCC/C=C\C/C=C\CCCCCC	new	in vitro
+STARD2	PC(O-35:5)	Phosphatidylcholine (O-35:5)	3492	696.8100000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCC)=O)COC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCC)=O	new	in vitro
+STARD2	PC(O-36:1)	Phosphatidylcholine (O-36:1)	3492	696.680000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\CCCCCCCCCC)=O)COCCCCCCCCCCCCCCCC	new	in cellulo
+STARD2	PC(O-36:2)	Phosphatidylcholine (O-36:2)	3492	697.6800000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCC/C=C\CCCCCC)=O)CO/C=C\CCCCCCCCCCCCCCCC	new	in cellulo
+STARD2	PC(O-36:2)	Phosphatidylcholine (O-36:2)	3492	697.6800000000005	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCCCCCCCCCCC)=O)CO/C=C\CCCCCCCC/C=C\CCCCCC	new	in vitro
+STARD2	PC(O-36:3)	Phosphatidylcholine (O-36:3)	3492	698.6800000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COCCCCCCCC/C=C\CCCCCCCC	new	in vitro
+STARD2	PC(O-36:4)/LPC(36:4)	"Phosphatidylcholine (O-36:4); Lysophosphatidylcholine (36:4)"	3492	699.6800000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COCCCCCCCCCCCCCCCCCC	new	in cellulo
+STARD2	PC(O-36:4)/LPC(36:4)	"Lysophosphatidylcholine (36:4);Phosphatidylcholine (O-36:4)"	3492	699.6800000000007	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COCCCCCCCCCCCCCCCCCC	new	in vitro
+STARD2	PC(O-36:5)/LPC(36:5)	"Phosphatidylcholine (O-36:5);Lysophosphatidylcholine (36:5)"	3492	700.6800000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COCCCCCCCC/C=C\CCCCCC	new	in vitro
+STARD2	PC(O-36:5)/LPC(36:5)	"Phosphatidylcholine (O-36:5); Lysophosphatidylcholine (36:5)"	3492	700.6800000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COCCCCCCCC/C=C\CCCCCC	new	in cellulo
+STARD2	PC(O-36:6)/LPC(36:6)	"Phosphatidylcholine (O-36:6);Lysophosphatidylcholine (36:6)"	3492	701.6800000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COCCCCCCC/C=C\C/C=C\CCCCCC	new	in vitro
+STARD2	PC(O-37:4)	Phosphatidylcholine (O-37:4)	3492	713.3400000000006	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COCCCCCCCCCCCCCCCCC	new	in vitro
+STARD2	PC(O-37:6)	Phosphatidylcholine (O-37:6)	3492	715.3400000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCC/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COCCCCCCC/C=C\C/C=C\CCCCCCC	new	in vitro
+STARD2	PC(O-37:7)	Phosphatidylcholine (O-37:7)	3492	673.3600000000002	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCC/C=C\C/C=C\C/C=C\CC)=O)COCCCCC/C=C\C/C=C\CCCCCC	new	in vitro
+STARD2	PC(O-38:5)/LPC(38:5)	"Lysophosphatidylcholine (38:5); Phosphatidylcholine (O-38:5)"	3492	728.0000000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COCCCCCCCCCCCCCCCC	new	in cellulo
+STARD2	PC(O-38:5)/LPC(38:5)	"Lysophosphatidylcholine (38:5);Phosphatidylcholine (O-38:5)"	3492	728.0000000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCCC)=O)COCCCCCCCCCCCCCCCC	new	in vitro
+STARD2	PC(O-38:6)	Phosphatidylcholine (O-38:6)	3492	729.000000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)COCCCCCCCCCCCCCCCC	new	in cellulo
+STARD2	PC(O-38:7)	Phosphatidylcholine (O-38:7)	3492	730.0000000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)CO/C=C\CCCCCCCCCCCCCC	new	in cellulo
+STARD2	PC(O-38:7)	Phosphatidylcholine (O-38:7)	3492	730.0000000000009	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)CO/C=C\CCCCCCCCCCCCCC	new	in vitro
+STARD2	PC(O-38:8)	Phosphatidylcholine (O-38:8)	3492	683.6400000000003	C1CC2C3C4CCC4C3C2CC1CCCCCC(=O)OC[C@@](OCCCCCCCCC1CC2C3C4CCC4C3C2CC1)(COP(=O)([O-])OCC[N+](C)(C)C)[H]	new	in vitro
+STARD2	PC(O-40:6)	Phosphatidylcholine (O-40:6)	3492	756.320000000001	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)CO/C=C\CCCCCCCCCCCCCCCCCC	new	in cellulo
+STARD2	PC(O-40:7)	Phosphatidylcholine (O-40:7)	3492	757.3200000000011	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CC)=O)CO/C=C\CCCCCCCCCCCCCCCC	new	in cellulo
+TTPA	PA(32:1)	Phosphatidate (32:1) => (16:0/16:1)	2261	574.3500000000001	[C@](COP(=O)(O)O)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+TTPA	PA(34:2)	Phosphatidate (34:2) => (18:1/16:1)	2261	602.6700000000002	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+TTPA	PG(30:1)	Phosphatidylglycerol (30:1)  => (14:0/16:1)	2261	605.5900000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPA	PG(30:1)	Phosphatidylglycerol (30:1) => (16:1/14:0)	2261	605.5900000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPA	PG(32:2)	Phosphatidylglycerol (32:2) => (16:1/16:1)	2261	633.9100000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPA	PG(35:2)	Phosphatidylglycerol (35:2) => (18:1/17:1)	2261	674.8900000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+TTPA	PG(35:2)	Phosphatidylglycerol (35:2) => (17:1/18:1)	2261	674.8900000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+TTPA	PG/BMP(32:1)	"Phosphatidylglycerol (32:1);Bismonoacylglycerolphosphate (32:1) => (16:1/16:0)"	2261	632.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+TTPA	PG/BMP(32:2)	"Bismonoacylglycerolphosphate (32:2);Phosphatidylglycerol (32:2) => (16:1/16:1)"	2261	633.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+TTPA	PG/BMP(33:1)	"Bismonoacylglycerolphosphate (33:1);Phosphatidylglycerol (33:1) => (17:1/16:0)"	2261	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+TTPA	PG/BMP(33:2)	"Bismonoacylglycerolphosphate (33:2);Phosphatidylglycerol (33:2) => (16:1/17:1)"	2261	647.5700000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+TTPA	PG/BMP(34:2)	"Phosphatidylglycerol (34:2);Bismonoacylglycerolphosphate (34:2) => (16:1/18:1)"	2261	661.2300000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	CL(67:2)	Cardiolipin (67:2) => (16:0/18:1//16:0/17:1)	1907	1249.1900000000035	P(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)COC(=O)CCCCCCCCCCCCCCC)(O)=O)=O	new	in vitro
+TTPAL	CL(68:3)	Cardiolipin (68:3)	1907	1249.1900000000035	P(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)COC(=O)CCCCCCC/C=C\C/C=C\CCCCC)(O)=O)=O	new	in vitro
+TTPAL	CL(69:3)	Cardiolipin (69:3)	1907	1249.1900000000035	P(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)COC(=O)CCCCCCCCCCCCCCC)(O)=O)=O	new	in vitro
+TTPAL	CL(70:3)	Cardiolipin (70:3) => (18:1/18:1/18:1/16:0)	1907	1276.5100000000034	P(OC[C@]([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(O)(OC[C@](O)([H])COP(OC[C@]([H])(OC(=O)CCCCCCC/C=C\C/C=C\CCCCC)COC(=O)CCCCCCC/C=C\CCCCCCCC)(O)=O)=O	new	in vitro
+TTPAL	FA(18:1)	octadecenoate => (18:1)	1907	270.3799999999999	C(CCCCCCCCCCC/C=C/CCCC)(=O)O	new	in vitro
+TTPAL	LPE(16:0)	Lysophosphatidylethanolamine (16:0) => (16:0)	1907	381.49999999999966	[C@](COP(=O)(O)OCCN)([H])(O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	LPE(17:1)	Lysophosphatidylethanolamine (17:1) => (17:1)	1907	396.15999999999957	[C@](COP(=O)(O)OCCN)([H])(O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+TTPAL	LPE(18:1)	Lysophosphatidylethanolamine (18:1) => (18:1)	1907	409.81999999999954	C(OP(OCCN)(O)=O)[C@]([H])(OC(=O)CCCCCCC/C=C\CCCCCCCC)CO	new	in vitro
+TTPAL	LPG(18:1)	Lysophosphatidylglycerol (18:1) => (18:1)	1907	431.8799999999994	[H][C@](O)(CO)COP(OC[C@]([H])(O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PA(32:1)	Phosphatidate (32:1) => (16:0/16:1)	1907	574.3500000000001	[C@](COP(=O)(O)O)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+TTPAL	PA(33:1)	Phosphatidate (33:1) => (16:0/17:1)	1907	588.0100000000002	[C@](COP(=O)(O)O)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+TTPAL	PA(34:1)	Phosphatidate (34:1) => (16:0/18:1)	1907	601.6700000000003	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PA(34:2)	Phosphatidate (34:2) => (18:1/16:1)	1907	602.6700000000002	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+TTPAL	PA(35:2)	Phosphatidate (35:2) => (18:1/17:1)	1907	616.3300000000003	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+TTPAL	PA(36:2)	Phosphatidate (36:2) => (18:1/18:1)	1907	629.9900000000004	[C@](COP(=O)(O)O)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+TTPAL	PC(36:2)	Phosphatidylcholine (36:2)	1907	707.4700000000003	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(OC(CCCCCCCC/C=C\C=C/CCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PC(O-18:1)/LPC(18:1)	"Phosphatidylcholine (O-18:1);Lysophosphatidylcholine (18:1)"	1907	441.00999999999954	[C@](COP(=O)([O-])OCC[N+](C)(C)C)([H])(O)COCCCCCCCC/C=C\CCCCCCCC	new	in vitro
+TTPAL	PE(28:0)	Phosphatidylethanolamine (28:0) => (14:0/14:0)	1907	555.2099999999999	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PE(28:1)	Phosphatidylethanolamine (28:1) => (16:1/12:0)	1907	556.21	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+TTPAL	PE(30:0)	Phosphatidylethanolamine (30:0) => (14:0/16:0)	1907	582.5300000000001	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PE(30:1)	Phosphatidylethanolamine (30:1) => (14:0/16:1)	1907	583.53	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+TTPAL	PE(30:1)	Phosphatidylethanolamine (30:1) => (16:1/14:0)	1907	583.53	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+TTPAL	PE(30:2)	Phosphatidylethanolamine (30:2) => (16:1/14:1)	1907	584.53	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+TTPAL	PE(31:1)	Phosphatidylethanolamine (31:1) => (14:0/17:1)	1907	597.1900000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PE(31:1)	Phosphatidylethanolamine (31:1) => (17:1/14:0)	1907	597.1900000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PE(32:0)	Phosphatidylethanolamine (32:0) => (16:0/16:0)	1907	609.8500000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PE(32:1)	Phosphatidylethanolamine (32:1) => (16:1/16:0)	1907	610.8500000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PE(32:1)	Phosphatidylethanolamine (34:1) => (16:0/16:1)	1907	610.8500000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PE(32:2)	Phosphatidylethanolamine (32:2) => (16:1/16:1)	1907	611.8500000000001	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCC/C=C\CCCC)=O)COC(CCCCCCCCC/C=C\CCCC)=O	new	in vitro
+TTPAL	PE(33:1)	Phosphatidylethanolamine (33:1) => (16:0/17:1)	1907	624.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+TTPAL	PE(33:1)	Phosphatidylethanolamine (33:1) => (17:1/16:0)	1907	624.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+TTPAL	PE(33:2)	Phosphatidylethanolamine (33:2) => (16:1/17:1)	1907	625.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+TTPAL	PE(33:2)	Phosphatidylethanolamine (33:2) => (17:1/16:1)	1907	625.5100000000002	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+TTPAL	PE(34:1)	Phosphatidylethanolamine (34:1) => (16:0/18:1)	1907	638.1700000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PE(34:1)	Phosphatidylethanolamine (34:1) => (18:1/16:0)	1907	638.1700000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PE(34:2)	Phosphatidylethanolamine (34:2) => (16:1/18:1)	1907	639.1700000000003	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O	new	in vitro
+TTPAL	PE(35:1)	Phosphatidylethanolamine (35:1) => (16:0/19:1)	1907	651.8300000000005	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PE(35:2)	Phosphatidylethanolamine (35:2) => (18:1/17:1)	1907	652.8300000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+TTPAL	PE(35:2)	Phosphatidylethanolamine (35:2) => (17:1/18:1)	1907	652.8300000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O	new	in vitro
+TTPAL	PE(36:1)	Phosphatidylethanolamine (36:1) => (18:1/18:0)	1907	665.4900000000004	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCC/C=C\CCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PE(36:2)	Phosphatidylethanolamine (36:2) => (18:1/18:1)	1907	666.4900000000005	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C/CCCCCCCC)=O)COC(CCCCCCC/C=C/CCCCCCCC)=O	new	in vitro
+TTPAL	PE(36:3)	Phosphatidylethanolamine (36:3) => (18:1/18:2)	1907	667.4900000000006	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+TTPAL	PE(37:2)	Phosphatidylethanolamine (37:2) => (18:1/19:1)	1907	680.1500000000005	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O	new	in vitro
+TTPAL	PE(38:2)	Phosphatidylethanolamine (38:2) => (19:1/19:1)	1907	693.8100000000006	[C@](COP(=O)(O)OCCN)([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O	new	in vitro
+TTPAL	PG(28:0)	Phosphatidylglycerol (28:0) => (14:0/14:0)	1907	577.2700000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(28:1)	Phosphatidylglycerol (28:1) => (12:0/16:1)	1907	578.2700000000002	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(28:1)	Phosphatidylglycerol (28:1) => (16:1/12:0)	1907	578.2700000000002	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(29:1)	Phosphatidylglycerol (29:1) => (12:0/17:1)	1907	591.9300000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(30:0)	Phosphatidylglycerol (30:0) => (14:0/16:0)	1907	604.5900000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(30:1)	Phosphatidylglycerol (30:1) => (16:0/14:1)	1907	605.5900000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(30:1)	Phosphatidylglycerol (30:1) => (14:0/16:1)	1907	605.5900000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(30:1)	Phosphatidylglycerol (30:1) => (14:1/16:0)	1907	605.5900000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(30:2)	Phosphatidylglycerol (30:2) => (14:1/16:1)	1907	606.5900000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(31:1)	Phosphatidylglycerol (31:1) => (14:0/17:1)	1907	619.2500000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(31:1)	Phosphatidylglycerol (31:1) => (17:1/14:0)	1907	619.2500000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(32:0)	Phosphatidylglycerol (32:0) => (16:0/16:0)	1907	631.9100000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCC)=O)COC(CCCCCCCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(32:1)	Phosphatidylglycerol (32:1) => (16:1/16:0)	1907	632.9100000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(32:2)	Phosphatidylglycerol (32:2) => (16:1/16:1)	1907	633.9100000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(33:1)	Phosphatidylglycerol (33:1) => (16:0/17:1)	1907	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(33:1)	Phosphatidylglycerol (33:1) => (17:1/16:0)	1907	646.5700000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(33:2)	Phosphatidylglycerol (33:2) => (16:1/17:1)	1907	647.5700000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(34:1)	Phosphatidylglycerol (34:1) => (18:1/16:0)	1907	660.2300000000006	[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)(COP(=O)(O)OCC(O)CO)COC(CCCCCCCCCCCCCCC)=O	new	in vitro
+TTPAL	PG(34:2)	Phosphatidylglycerol (34:2) => (16:1/18:1)	1907	661.2300000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(34:2)	Phosphatidylglycerol (34:2) => (18:1/16:1)	1907	661.2300000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(35:1)	Phosphatidylglycerol (35:1) => (16:0/19:1)	1907	673.8900000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(35:1)	Phosphatidylglycerol (35:1) => (19:1/16:0)	1907	673.8900000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(35:2)	Phosphatidylglycerol (35:2) => (18:1/17:1)	1907	674.8900000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(35:2)	Phosphatidylglycerol (35:2) => (17:1/18:1)	1907	674.8900000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(36:1)	Phosphatidylglycerol (36:1) => (18:1/18:0)	1907	687.5500000000005	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(36:2)	Phosphatidylglycerol (36:2) => (18:1/18:1)	1907	688.5500000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(36:3)	Phosphatidylglycerol (36:3) => (18:2/18:1)	1907	689.5500000000008	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(36:3)	Phosphatidylglycerol (36:3) => (18:1/18:2)	1907	689.5500000000008	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\C/C=C\CCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(37:1)	Phosphatidylglycerol (37:1) => (19:1/18:0)	1907	701.2100000000006	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(37:2)	Phosphatidylglycerol (37:2) => (18:1/19:1)	1907	702.2100000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG(37:2)	Phosphatidylglycerol (37:2) => (19:1/18:1)	1907	702.2100000000007	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG/BMP(29:1)	"Phosphatidylglycerol (29:1);Bismonoacylglycerolphosphate (29:1) => (17:1/12:0)"	1907	591.9300000000003	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCC)=O)COC(CCCCCCCCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG/BMP(30:1)	"Bismonoacylglycerolphosphate (30:1);Phosphatidylglycerol (30:1) => (14:1/16:0)"	1907	605.5900000000001	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCCCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCC)=O)(=O)O	new	in vitro
+TTPAL	PG/BMP(34:3)	"Bismonoacylglycerolphosphate (34:3);Phosphatidylglycerol (34:3) => (16:1/18:2)"	1907	662.2300000000004	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCC)=O)COC(CCCCCCC/C=C\C/C=C\CCCCC)=O)(=O)O	new	in vitro
+TTPAL	PG/BMP(38:2)	"Bismonoacylglycerolphosphate (38:2);Phosphatidylglycerol (38:2) => (19:1/19:1)"	1907	715.8700000000008	[H][C@](O)(CO)COP(OC[C@]([H])(OC(CCCCCCC/C=C\CCCCCCCCC)=O)COC(CCCCCCC/C=C\CCCCCCCCC)=O)(=O)O	new	in vitro
