@@ -59,10 +59,10 @@
 #### Extended Data Figs.5c: Observations of very long saturated DHCer and tCer in METASPACE
 
 ####### Additional entries
-#### Ext. Data Table X1/7B #!
-#### Ext. Data Table X2/7C #!
+#### Ext. Data Table 7B
+#### Ext. Data Table 7C
 #### Fig.2b
-#### Ext. Data Table 7D #!
+#### Ext. Data Table 7D
 #### Ext. Data Table 10A
 #### Liposome layer for Fig.6c
 #### Liposome layer for Fig.6a
@@ -4228,7 +4228,7 @@ min(LipidDataOfFull, na.rm = TRUE)
 LipidDataOfFullx <- LipidDataOfFull
 LipidDataOfFullx[is.na(LipidDataOfFullx)] <- 0
 
-# Extended Data Table X1 with the abundances of lipid species upon overexpression of each LTP (3 induced and 3 non-induced for each LTP)
+# Extended Data Table 7B with the abundances of lipid species upon overexpression of each LTP (3 induced and 3 non-induced for each LTP)
 write.table(LipidDataOfFullx, file = "./Output/SupplentaryTable6CBasis21052025.tsv", sep = "\t", quote = FALSE, row.names = TRUE, col.names = TRUE)
 
 # 10^-8 as imputation value (see above)
@@ -4318,7 +4318,7 @@ LogRatioDifferenceTTestsForLipidSpeciesb <- cbind(LogRatioDifferenceTTestsForLip
 # Export file in reduced format
 write.table(LogRatioDifferenceTTestsForLipidSpeciesb[,c("LTPProtein", "Lipid", "PercentDifference", "LogRatio", "p.value")], file = "./Output/469777_SupplementaryTable6B_v1.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
 
-# Export the file again to form the basis of Ext. Data Table X2 but now expanded with the condensed lipid subclass names and updated names for LTPs (STARD11 will be switched to CERT naming also afterwards) # Maybe place later: is ok.
+# Export the file again to form the basis of Ext. Data Table 7C but now expanded with the condensed lipid subclass names and updated names for LTPs (STARD11 will be switched to CERT naming also afterwards) # Maybe place later: is ok.
 write.table(LogRatioDifferenceTTestsForLipidSpeciesbwls[,c("NewLTPs", "Lipid", "ConvertedOELipidName", "LogRatio", "p.value")], file = "./Output/469777_SupplementaryTable7C_v4.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE) 
 
 
