@@ -81,8 +81,11 @@
 #### Basis for Extended Data Table 11
 #### Extended Data Table 10B
 #### Extended Data Table 7A
-#### Extended Data Table 8
 #### Extended Data Fig.5a
+#### Extended Data Table 8
+#### Extended Data Figure 2c
+#### Extended Data Figure 2b
+
 
 
 # Capture previous options and set new general options
@@ -1153,8 +1156,8 @@ colnames(LTPMatrixTopInVivommn) <- colnames(LTPMatrixPosInVivommn)
 rownames(LTPMatrixTopInVitrommn) <- rownames(LTPMatrixPosInVitrommn)
 colnames(LTPMatrixTopInVitrommn) <- colnames(LTPMatrixPosInVitrommn)
 
-MeltedInVivoCombined <- rbind(meltmatrix(LTPMatrixTopInVivommn), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))
-MeltedInVitroCombined <- rbind(meltmatrix(LTPMatrixTopInVitrommn), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))
+MeltedInVivoCombined <- rbind(meltmatrix(LTPMatrixTopInVivommn), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))  # Updated to eliminate need for package dependency
+MeltedInVitroCombined <- rbind(meltmatrix(LTPMatrixTopInVitrommn), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))  # Updated to eliminate need for package dependency
 
 CastInVivoCombined <- Col1ToRowNames(widen5(inputdf = MeltedInVivoCombined, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = sum, FunctionOutputValueType = double(1), SortRows = FALSE, FillerValue = 0))
 CastInVitroCombined <- Col1ToRowNames(widen5(inputdf = MeltedInVitroCombined, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = sum, FunctionOutputValueType = double(1), SortRows = FALSE, FillerValue = 0))
@@ -1321,7 +1324,7 @@ HPTLCSpecificitiesPerScreen2hdr <- HPTLCSpecificitiesPerScreen2
 colnames(HPTLCSpecificitiesPerScreen2hdr[[1]]) <- c("Cer*", "Sterol", "DAG", "PC", "PE", "PG", "PIPs", "PS")
 colnames(HPTLCSpecificitiesPerScreen2hdr[[2]]) <- c("Cer*", "Sterol", "DAG", "PC", "PE", "PG", "PIPs", "PS")
 
-HPTLCSpecificitiesPerScreen2hdrm <- lapply(HPTLCSpecificitiesPerScreen2hdr, function(x){meltmatrix(t(as.matrix(5*x)))})
+HPTLCSpecificitiesPerScreen2hdrm <- lapply(HPTLCSpecificitiesPerScreen2hdr, function(x){meltmatrix(t(as.matrix(5*x)))})  # Updated to eliminate need for package dependency
 HPTLCSpecificitiesPerScreen2hdrm2 <- lapply(HPTLCSpecificitiesPerScreen2hdrm, function(x){x[x$value != 0,]})
 
 HPTLCSpecificitiesPerScreen2hdrm4 <- list()
@@ -1342,8 +1345,8 @@ HPTLCSpecificitiesPerScreen2hdrm4[[2]] <- HPTLCSpecificitiesPerScreen2hdrm2[[2]]
       (LTPMatrixTopInVitrommnslc[as.character(HPTLCSpecificitiesPerScreen2hdrm2[[2]][x,1]), as.character(HPTLCSpecificitiesPerScreen2hdrm2[[2]][x,2])] != 0))
 }),] 
 
-MeltedInVivoCombinedslchdr <- rbind(meltmatrix(LTPMatrixTopInVivommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[1]])
-MeltedInVitroCombinedslchdr <- rbind(meltmatrix(LTPMatrixTopInVitrommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[2]])
+MeltedInVivoCombinedslchdr <- rbind(meltmatrix(LTPMatrixTopInVivommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[1]])  # Updated to eliminate need for package dependency
+MeltedInVitroCombinedslchdr <- rbind(meltmatrix(LTPMatrixTopInVitrommnslc), HPTLCSpecificitiesPerScreen2hdrm4[[2]])  # Updated to eliminate need for package dependency
 
 CastInVivoCombinedslchdr <- as.matrix(Col1ToRowNames(widen5(inputdf = MeltedInVivoCombinedslchdr, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = function(x){if(length(x)>0){max(x,na.rm = TRUE)}else{0}}, FunctionOutputValueType = double(1), SortRows = FALSE, FillerValue = 0)))
 CastInVitroCombinedslchdr <- as.matrix(Col1ToRowNames(widen5(inputdf = MeltedInVitroCombinedslchdr, ColumnsLong = "Var1", ColumnWide = "Var2", ColumnValue = "value", AggregatingFunction = function(x){if(length(x)>0){max(x,na.rm = TRUE)}else{0}}, FunctionOutputValueType = double(1), SortRows = FALSE, FillerValue = 0)))
@@ -1372,8 +1375,8 @@ c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))[!uniq
 MissingLipidEntriesInVitro <- c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))[!unique(c(rownames(InVivoDataSetTotalslchdr), rownames(InVitroDataSetTotalslchdr))) %in% rownames(InVitroDataSetTotalslchdr)]
 # "Sterol" "PIPs"
 
-MeltedInVivoCombinedslc <- rbind(meltmatrix(LTPMatrixTopInVivommnslc), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))
-MeltedInVitroCombinedslc <- rbind(meltmatrix(LTPMatrixTopInVitrommnslc), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))
+MeltedInVivoCombinedslc <- rbind(meltmatrix(LTPMatrixTopInVivommnslc), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]]))))  # Updated to eliminate need for package dependency
+MeltedInVitroCombinedslc <- rbind(meltmatrix(LTPMatrixTopInVitrommnslc), meltmatrix(t(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]]))))  # Updated to eliminate need for package dependency
 
 # Again reduction in script size by use of widen5 and internally defined function to handle infinites
 # Should also handle possible warnings for introduction of infinites
@@ -2068,8 +2071,8 @@ AggregatedInVitroMS4 <- aggregate(AggregatedInVitroMS2[, "NormInt"],
                                   FUN = function(x){max(x,na.rm=TRUE)})
 
 
-HPTLCaggregated <- rbind(cbind(meltmatrix(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]])), ProteinDomain = NA, Screen = "in vivo", TotalCarbonChainLength = NA, TotalCarbonChainUnsaturations = NA),
-                         cbind(meltmatrix(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]])), ProteinDomain = NA, Screen = "in vitro", TotalCarbonChainLength = NA, TotalCarbonChainUnsaturations = NA))
+HPTLCaggregated <- rbind(cbind(meltmatrix(as.matrix(5*HPTLCSpecificitiesPerScreen2[[1]])), ProteinDomain = NA, Screen = "in vivo", TotalCarbonChainLength = NA, TotalCarbonChainUnsaturations = NA),  # Updated to eliminate need for package dependency
+                         cbind(meltmatrix(as.matrix(5*HPTLCSpecificitiesPerScreen2[[2]])), ProteinDomain = NA, Screen = "in vitro", TotalCarbonChainLength = NA, TotalCarbonChainUnsaturations = NA))  # Updated to eliminate need for package dependency
 
 HPTLCaggregated <- HPTLCaggregated[HPTLCaggregated[,"value"] != 0,]
 HPTLCaggregated[,2] <- gsub("\\*","", HPTLCaggregated[,2])
@@ -2542,7 +2545,7 @@ colnames(KoeberlinCorrelationsConsensusNames) <- rownames(KoeberlinCorrelationsC
 KoeberlinCorrelationsConsensusNames2 <- KoeberlinCorrelationsConsensusNames
 KoeberlinCorrelationsConsensusNames2[upper.tri(KoeberlinCorrelationsConsensusNames2)] <- NA
 
-KoeberlinCorrelationsConsensusNames2Long <- meltmatrix(as.matrix(Col1ToRowNames(cbind(rownames(KoeberlinCorrelationsConsensusNames2), KoeberlinCorrelationsConsensusNames2))))
+KoeberlinCorrelationsConsensusNames2Long <- meltmatrix(as.matrix(Col1ToRowNames(cbind(rownames(KoeberlinCorrelationsConsensusNames2), KoeberlinCorrelationsConsensusNames2))))  # Updated to eliminate need for package dependency
 KoeberlinCorrelationsConsensusNames2LongReducedVersion <- KoeberlinCorrelationsConsensusNames2Long[!is.na(KoeberlinCorrelationsConsensusNames2Long$value),]
 
 colnames(KoeberlinCorrelationsConsensusNames2LongReducedVersion) <- c("lipidA", "lipidB", "correlation")
@@ -4163,7 +4166,7 @@ OverexpressionHEKLogRatiosMatrix <- log10(OverexpressionHEKRatiosMatrixAll)
 OverexpressionHEKLogRatiosGeneral2 <- t(OverexpressionHEKLogRatiosMatrix[c("Cer", "CerP", "SM", "HexCer", "SHexCer", "diHexCer", "GM3", "DAG", "PA", "PA O-", "PC", "PC O-", "PE", "PE O-", "PS", "PI", "PI O-", "PG", "CL", "LPA", "LPC", "LPC O-", "LPE", "LPE O-", "LPS", "LPS O-", "LPI", "LPI O-", "LPG", "LPG O-", "CE", "Chol :"),c(1,4,7,2,5,8,3,6,9)])
 
 
-OverexpressionHEKLogRatiosMelted <- meltmatrix(OverexpressionHEKLogRatiosGeneral2)
+OverexpressionHEKLogRatiosMelted <- meltmatrix(OverexpressionHEKLogRatiosGeneral2)  # Updated to eliminate need for package dependency
 colnames(OverexpressionHEKLogRatiosMelted) <- c("Sample", "Lipid", "Ratio")
 
 
@@ -4582,65 +4585,101 @@ SpeciesMatches <- do.call("cbind", list(SpeciesMatches,
 SpeciesMatches <- cbind(SpeciesMatches, TotalChainlengths = gsub("O-|d|t","", SpeciesMatches[,"OnlyChains"]))
 SpeciesMatches <- cbind(SpeciesMatches, ShortFull = paste0(SpeciesMatches[,"SubClass"], "(", SpeciesMatches[,"TotalChainlengths"], ":", SpeciesMatches[,"TotalUnsat"], ")") )
 
-# Information on the adduct needed
-library(reshape2) #! Package dependency that is removable
 
-InVitroVesicleLipidomes4 <- list()
+# Information on the adduct needed
+
+InVitroVesicleLipidomes4qqqq <- list() # Updated version (qqqq) to function without package dependencies
 InVitroVesicleLipidomes5 <- list()
 
-InVitroVesicleLipidomes4[["LiverPos"]] <- melt(InVitroVesicleLipidomes2[["LiverPos"]][, c("index", "m.z", "RT.range", "LIVER_N50_pos.m.z", "LIVER_N50_pos.RT.mean", "LIVER_N50_pos.Normalized.Area", "RT.mean", "X.M.H..", "X.M.Na..", "X.M.NH4..")],
-                                               id.vars=c("index", "m.z", "RT.range", "LIVER_N50_pos.m.z", "LIVER_N50_pos.RT.mean", "LIVER_N50_pos.Normalized.Area", "RT.mean"),
-                                               
-                                               variable.name="Adduct",
-                                               value.name="Lipids")
+InVitroVesicleLipidomes4qqqq[["LiverPos"]] <- reshape(InVitroVesicleLipidomes2[["LiverPos"]][,c("index", "m.z", "RT.range", "LIVER_N50_pos.m.z", "LIVER_N50_pos.RT.mean", "LIVER_N50_pos.Normalized.Area", "RT.mean", "X.M.H..", "X.M.Na..", "X.M.NH4..")],
+                                                      direction = "long",
+                                                      
+                                                      idvar = c("index", "m.z", "RT.range", "LIVER_N50_pos.m.z", "LIVER_N50_pos.RT.mean", "LIVER_N50_pos.Normalized.Area", "RT.mean"),
+                                                      varying = 8:10,
+                                                      
+                                                      timevar = "Adduct",
+                                                      v.names = "Lipids",
+                                                      
+                                                      times = c("X.M.H..", "X.M.Na..", "X.M.NH4.."))
 
-InVitroVesicleLipidomes4[["BrainPos"]] <- melt(InVitroVesicleLipidomes2[["BrainPos"]][, c("index", "m.z", "RT.range", "BRAIN_N50_pos.m.z", "BRAIN_N50_pos.RT.mean", "BRAIN_N50_pos.Normalized.Area", "RT.mean", "X.M.H..", "X.M.Na..", "X.M.NH4..")],
-                                               id.vars=c("index", "m.z", "RT.range", "BRAIN_N50_pos.m.z", "BRAIN_N50_pos.RT.mean", "BRAIN_N50_pos.Normalized.Area", "RT.mean"),
-                                               
-                                               variable.name="Adduct",
-                                               value.name="Lipids")
 
-InVitroVesicleLipidomes4[["LiverNeg"]] <- melt(InVitroVesicleLipidomes2[["LiverNeg"]][, c("index", "m.z", "RT.range", "LIVER_N50_neg.m.z", "LIVER_N50_neg.RT.mean", "LIVER_N50_neg.Normalized.Area", "RT.mean", "X.M.H..", "X.M.HCOO..")],
-                                               id.vars=c("index", "m.z", "RT.range", "LIVER_N50_neg.m.z", "LIVER_N50_neg.RT.mean", "LIVER_N50_neg.Normalized.Area", "RT.mean"),
-                                               
-                                               variable.name="Adduct",
-                                               value.name="Lipids")
+rownames(InVitroVesicleLipidomes4qqqq[["LiverPos"]]) <- 1:dim(InVitroVesicleLipidomes4qqqq[["LiverPos"]])[1]
+InVitroVesicleLipidomes4qqqq[["LiverPos"]] <- InVitroVesicleLipidomes4qqqq[["LiverPos"]][InVitroVesicleLipidomes4qqqq[["LiverPos"]][,"Lipids"] != "[]",]
 
-InVitroVesicleLipidomes4[["BrainNeg"]] <- melt(InVitroVesicleLipidomes2[["BrainNeg"]][, c("index", "m.z", "RT.range", "BRAIN_N50_neg.m.z", "BRAIN_N50_neg.RT.mean", "BRAIN_N50_neg.Normalized.Area", "RT.mean", "X.M.H..", "X.M.HCOO..")],
-                                               id.vars=c("index", "m.z", "RT.range", "BRAIN_N50_neg.m.z", "BRAIN_N50_neg.RT.mean", "BRAIN_N50_neg.Normalized.Area", "RT.mean"),
-                                               
-                                               variable.name="Adduct",
-                                               value.name="Lipids")
+InVitroVesicleLipidomes4qqqq[["BrainPos"]] <- reshape(InVitroVesicleLipidomes2[["BrainPos"]][, c("index", "m.z", "RT.range", "BRAIN_N50_pos.m.z", "BRAIN_N50_pos.RT.mean", "BRAIN_N50_pos.Normalized.Area", "RT.mean", "X.M.H..", "X.M.Na..", "X.M.NH4..")],
+                                                      direction = "long",
+                                                      
+                                                      idvar = c("index", "m.z", "RT.range", "BRAIN_N50_pos.m.z", "BRAIN_N50_pos.RT.mean", "BRAIN_N50_pos.Normalized.Area", "RT.mean"),
+                                                      varying = 8:10,
+                                                      
+                                                      timevar = "Adduct",
+                                                      v.names = "Lipids",
+                                                      
+                                                      times = c("X.M.H..", "X.M.Na..", "X.M.NH4.."))
 
-InVitroVesicleLipidomes4[["LiverPos"]] <- cbind(InVitroVesicleLipidomes4[["LiverPos"]], CleanedLipids = gsub("'\n '", "__", gsub("' '", "__", gsub("\\[\\]", "", gsub("'\\]","",gsub("\\['","", InVitroVesicleLipidomes4[["LiverPos"]][,"Lipids"]))))))
-InVitroVesicleLipidomes4[["LiverPos"]] <- InVitroVesicleLipidomes4[["LiverPos"]][InVitroVesicleLipidomes4[["LiverPos"]][,"CleanedLipids"] != "",]
 
-InVitroVesicleLipidomes4[["BrainPos"]] <- cbind(InVitroVesicleLipidomes4[["BrainPos"]], CleanedLipids = gsub("'\n '", "__", gsub("' '", "__", gsub("\\[\\]", "", gsub("'\\]","",gsub("\\['","", InVitroVesicleLipidomes4[["BrainPos"]][,"Lipids"]))))))
-InVitroVesicleLipidomes4[["BrainPos"]] <- InVitroVesicleLipidomes4[["BrainPos"]][InVitroVesicleLipidomes4[["BrainPos"]][,"CleanedLipids"] != "",]
+rownames(InVitroVesicleLipidomes4qqqq[["BrainPos"]]) <- 1:dim(InVitroVesicleLipidomes4qqqq[["BrainPos"]])[1]
+InVitroVesicleLipidomes4qqqq[["BrainPos"]] <- InVitroVesicleLipidomes4qqqq[["BrainPos"]][InVitroVesicleLipidomes4qqqq[["BrainPos"]][,"Lipids"] != "[]",]
 
-InVitroVesicleLipidomes4[["LiverNeg"]] <- cbind(InVitroVesicleLipidomes4[["LiverNeg"]], CleanedLipids = gsub("'\n '", "__", gsub("' '", "__", gsub("\\[\\]", "", gsub("'\\]","",gsub("\\['","", InVitroVesicleLipidomes4[["LiverNeg"]][,"Lipids"]))))))
-InVitroVesicleLipidomes4[["LiverNeg"]] <- InVitroVesicleLipidomes4[["LiverNeg"]][InVitroVesicleLipidomes4[["LiverNeg"]][,"CleanedLipids"] != "",]
+InVitroVesicleLipidomes4qqqq[["LiverNeg"]] <- reshape(InVitroVesicleLipidomes2[["LiverNeg"]][, c("index", "m.z", "RT.range", "LIVER_N50_neg.m.z", "LIVER_N50_neg.RT.mean", "LIVER_N50_neg.Normalized.Area", "RT.mean", "X.M.H..", "X.M.HCOO..")],
+                                                      direction = "long",
+                                                      
+                                                      idvar = c("index", "m.z", "RT.range", "LIVER_N50_neg.m.z", "LIVER_N50_neg.RT.mean", "LIVER_N50_neg.Normalized.Area", "RT.mean"),
+                                                      varying = 8:9,
+                                                      
+                                                      timevar = "Adduct",
+                                                      v.names = "Lipids",
+                                                      
+                                                      times = c("X.M.H..", "X.M.HCOO.."))
 
-InVitroVesicleLipidomes4[["BrainNeg"]] <- cbind(InVitroVesicleLipidomes4[["BrainNeg"]], CleanedLipids = gsub("'\n '", "__", gsub("' '", "__", gsub("\\[\\]", "", gsub("'\\]","",gsub("\\['","", InVitroVesicleLipidomes4[["BrainNeg"]][,"Lipids"]))))))
-InVitroVesicleLipidomes4[["BrainNeg"]] <- InVitroVesicleLipidomes4[["BrainNeg"]][InVitroVesicleLipidomes4[["BrainNeg"]][,"CleanedLipids"] != "",]
 
-InVitroVesicleLipidomes4[["LiverPos"]][,"Adduct"] <- as.character(InVitroVesicleLipidomes4[["LiverPos"]][,"Adduct"])
-InVitroVesicleLipidomes4[["BrainPos"]][,"Adduct"] <- as.character(InVitroVesicleLipidomes4[["BrainPos"]][,"Adduct"])
+rownames(InVitroVesicleLipidomes4qqqq[["LiverNeg"]]) <- 1:dim(InVitroVesicleLipidomes4qqqq[["LiverNeg"]])[1]
+InVitroVesicleLipidomes4qqqq[["LiverNeg"]] <- InVitroVesicleLipidomes4qqqq[["LiverNeg"]][InVitroVesicleLipidomes4qqqq[["LiverNeg"]][,"Lipids"] != "[]",]
 
-InVitroVesicleLipidomes4[["LiverNeg"]][,"Adduct"] <- as.character(InVitroVesicleLipidomes4[["LiverNeg"]][,"Adduct"])
-InVitroVesicleLipidomes4[["BrainNeg"]][,"Adduct"] <- as.character(InVitroVesicleLipidomes4[["BrainNeg"]][,"Adduct"])
+InVitroVesicleLipidomes4qqqq[["BrainNeg"]] <- reshape(InVitroVesicleLipidomes2[["BrainNeg"]][, c("index", "m.z", "RT.range", "BRAIN_N50_neg.m.z", "BRAIN_N50_neg.RT.mean", "BRAIN_N50_neg.Normalized.Area", "RT.mean", "X.M.H..", "X.M.HCOO..")],
+                                                      direction = "long",
+                                                      
+                                                      idvar = c("index", "m.z", "RT.range", "BRAIN_N50_neg.m.z", "BRAIN_N50_neg.RT.mean", "BRAIN_N50_neg.Normalized.Area", "RT.mean"),
+                                                      varying = 8:9,
+                                                      
+                                                      timevar = "Adduct",
+                                                      v.names = "Lipids",
+                                                      
+                                                      times = c("X.M.H..", "X.M.HCOO.."))
 
-InVitroVesicleLipidomes5[["LiverPos"]] <- do.call("rbind.data.frame", lapply(1:dim(InVitroVesicleLipidomes4[["LiverPos"]])[1], function(y){
-  do.call("rbind", lapply(unlist(strsplit(InVitroVesicleLipidomes4[["LiverPos"]][y,"CleanedLipids"], "__")), function(x){unlist(c(InVitroVesicleLipidomes4[["LiverPos"]][y,], CleanedFurther = x))}))}))
 
-InVitroVesicleLipidomes5[["BrainPos"]] <- do.call("rbind.data.frame", lapply(1:dim(InVitroVesicleLipidomes4[["BrainPos"]])[1], function(y){
-  do.call("rbind", lapply(unlist(strsplit(InVitroVesicleLipidomes4[["BrainPos"]][y,"CleanedLipids"], "__")), function(x){unlist(c(InVitroVesicleLipidomes4[["BrainPos"]][y,], CleanedFurther = x))}))}))
+rownames(InVitroVesicleLipidomes4qqqq[["BrainNeg"]]) <- 1:dim(InVitroVesicleLipidomes4qqqq[["BrainNeg"]])[1]
+InVitroVesicleLipidomes4qqqq[["BrainNeg"]] <- InVitroVesicleLipidomes4qqqq[["BrainNeg"]][InVitroVesicleLipidomes4qqqq[["BrainNeg"]][,"Lipids"] != "[]",]
 
-InVitroVesicleLipidomes5[["LiverNeg"]] <- do.call("rbind.data.frame", lapply(1:dim(InVitroVesicleLipidomes4[["LiverNeg"]])[1], function(y){
-  do.call("rbind", lapply(unlist(strsplit(InVitroVesicleLipidomes4[["LiverNeg"]][y,"CleanedLipids"], "__")), function(x){unlist(c(InVitroVesicleLipidomes4[["LiverNeg"]][y,], CleanedFurther = x))}))}))
+InVitroVesicleLipidomes4qqqq[["LiverPos"]] <- cbind(InVitroVesicleLipidomes4qqqq[["LiverPos"]], CleanedLipids = gsub("'\n '", "__", gsub("' '", "__", gsub("\\[\\]", "", gsub("'\\]","",gsub("\\['","", InVitroVesicleLipidomes4qqqq[["LiverPos"]][,"Lipids"]))))))
+InVitroVesicleLipidomes4qqqq[["LiverPos"]] <- InVitroVesicleLipidomes4qqqq[["LiverPos"]][InVitroVesicleLipidomes4qqqq[["LiverPos"]][,"CleanedLipids"] != "",]
 
-InVitroVesicleLipidomes5[["BrainNeg"]] <- do.call("rbind.data.frame", lapply(1:dim(InVitroVesicleLipidomes4[["BrainNeg"]])[1], function(y){
-  do.call("rbind", lapply(unlist(strsplit(InVitroVesicleLipidomes4[["BrainNeg"]][y,"CleanedLipids"], "__")), function(x){unlist(c(InVitroVesicleLipidomes4[["BrainNeg"]][y,], CleanedFurther = x))}))}))
+InVitroVesicleLipidomes4qqqq[["BrainPos"]] <- cbind(InVitroVesicleLipidomes4qqqq[["BrainPos"]], CleanedLipids = gsub("'\n '", "__", gsub("' '", "__", gsub("\\[\\]", "", gsub("'\\]","",gsub("\\['","", InVitroVesicleLipidomes4qqqq[["BrainPos"]][,"Lipids"]))))))
+InVitroVesicleLipidomes4qqqq[["BrainPos"]] <- InVitroVesicleLipidomes4qqqq[["BrainPos"]][InVitroVesicleLipidomes4qqqq[["BrainPos"]][,"CleanedLipids"] != "",]
+
+InVitroVesicleLipidomes4qqqq[["LiverNeg"]] <- cbind(InVitroVesicleLipidomes4qqqq[["LiverNeg"]], CleanedLipids = gsub("'\n '", "__", gsub("' '", "__", gsub("\\[\\]", "", gsub("'\\]","",gsub("\\['","", InVitroVesicleLipidomes4qqqq[["LiverNeg"]][,"Lipids"]))))))
+InVitroVesicleLipidomes4qqqq[["LiverNeg"]] <- InVitroVesicleLipidomes4qqqq[["LiverNeg"]][InVitroVesicleLipidomes4qqqq[["LiverNeg"]][,"CleanedLipids"] != "",]
+
+InVitroVesicleLipidomes4qqqq[["BrainNeg"]] <- cbind(InVitroVesicleLipidomes4qqqq[["BrainNeg"]], CleanedLipids = gsub("'\n '", "__", gsub("' '", "__", gsub("\\[\\]", "", gsub("'\\]","",gsub("\\['","", InVitroVesicleLipidomes4qqqq[["BrainNeg"]][,"Lipids"]))))))
+InVitroVesicleLipidomes4qqqq[["BrainNeg"]] <- InVitroVesicleLipidomes4qqqq[["BrainNeg"]][InVitroVesicleLipidomes4qqqq[["BrainNeg"]][,"CleanedLipids"] != "",]
+
+InVitroVesicleLipidomes4qqqq[["LiverPos"]][,"Adduct"] <- as.character(InVitroVesicleLipidomes4qqqq[["LiverPos"]][,"Adduct"])
+InVitroVesicleLipidomes4qqqq[["BrainPos"]][,"Adduct"] <- as.character(InVitroVesicleLipidomes4qqqq[["BrainPos"]][,"Adduct"])
+
+InVitroVesicleLipidomes4qqqq[["LiverNeg"]][,"Adduct"] <- as.character(InVitroVesicleLipidomes4qqqq[["LiverNeg"]][,"Adduct"])
+InVitroVesicleLipidomes4qqqq[["BrainNeg"]][,"Adduct"] <- as.character(InVitroVesicleLipidomes4qqqq[["BrainNeg"]][,"Adduct"])
+
+InVitroVesicleLipidomes5[["LiverPos"]] <- do.call("rbind.data.frame", lapply(1:dim(InVitroVesicleLipidomes4qqqq[["LiverPos"]])[1], function(y){
+  do.call("rbind", lapply(unlist(strsplit(InVitroVesicleLipidomes4qqqq[["LiverPos"]][y,"CleanedLipids"], "__")), function(x){unlist(c(InVitroVesicleLipidomes4qqqq[["LiverPos"]][y,], CleanedFurther = x))}))}))
+
+InVitroVesicleLipidomes5[["BrainPos"]] <- do.call("rbind.data.frame", lapply(1:dim(InVitroVesicleLipidomes4qqqq[["BrainPos"]])[1], function(y){
+  do.call("rbind", lapply(unlist(strsplit(InVitroVesicleLipidomes4qqqq[["BrainPos"]][y,"CleanedLipids"], "__")), function(x){unlist(c(InVitroVesicleLipidomes4qqqq[["BrainPos"]][y,], CleanedFurther = x))}))}))
+
+InVitroVesicleLipidomes5[["LiverNeg"]] <- do.call("rbind.data.frame", lapply(1:dim(InVitroVesicleLipidomes4qqqq[["LiverNeg"]])[1], function(y){
+  do.call("rbind", lapply(unlist(strsplit(InVitroVesicleLipidomes4qqqq[["LiverNeg"]][y,"CleanedLipids"], "__")), function(x){unlist(c(InVitroVesicleLipidomes4qqqq[["LiverNeg"]][y,], CleanedFurther = x))}))}))
+
+InVitroVesicleLipidomes5[["BrainNeg"]] <- do.call("rbind.data.frame", lapply(1:dim(InVitroVesicleLipidomes4qqqq[["BrainNeg"]])[1], function(y){
+  do.call("rbind", lapply(unlist(strsplit(InVitroVesicleLipidomes4qqqq[["BrainNeg"]][y,"CleanedLipids"], "__")), function(x){unlist(c(InVitroVesicleLipidomes4qqqq[["BrainNeg"]][y,], CleanedFurther = x))}))}))
 
 InVitroVesicleLipidomes5[["LiverPos"]] <- cbind.data.frame(InVitroVesicleLipidomes5[["LiverPos"]], SpeciesMatches[match(InVitroVesicleLipidomes5[["LiverPos"]][,"CleanedFurther"],
                                                                                                                         SpeciesMatches[,"FullSpecies"]), c("ShortFull", "SubClass", "TotalChainlengths", "TotalUnsat")])
@@ -4846,7 +4885,7 @@ AggregatedVesicleLipidomesSubclassesx <- lapply(AggregatedVesicleLipidomesSubcla
 saveRDS(AggregatedVesicleLipidomesSubclassesx, file="./Output/AggregatedVesicleLipidomesSubclassesx.RData")
 AggregatedVesicleLipidomesSubclassesx <- readRDS("./Output/AggregatedVesicleLipidomesSubclassesx.RData")
 
-AggregatedVesicleLipidomesSubclassesMatricesx <- lapply(AggregatedVesicleLipidomesSubclassesx, function(y){if(dim(y)[1] == 1){matrix(y$x, dimnames = list(y$Source,y$LipidChains))}else{as.matrix(NAsToZerosConverter(Col1ToRowNames(dcast(data = y[,c("Source","LipidChains", "x")], formula = y[,"Source"] ~ y[,"LipidChains"], value.var= "x"))))}}) # Done again on other computer
+AggregatedVesicleLipidomesSubclassesMatricesx <- lapply(AggregatedVesicleLipidomesSubclassesx, function(y){if(dim(y)[1] == 1){matrix(y$x, dimnames = list(y$Source,y$LipidChains))}else{as.matrix(NAsToZerosConverter(Col1ToRowNames(reshape(data = y[,c("Source","LipidChains", "x")], idvar = y[,"Source"], timevar = y[,"LipidChains"], v.names = "x", direction = "wide"))))}}) # Dependencies removed. If this would not function: install reshape2 package and run: lapply(AggregatedVesicleLipidomesSubclassesx, function(y){if(dim(y)[1] == 1){matrix(y$x, dimnames = list(y$Source,y$LipidChains))}else{as.matrix(NAsToZerosConverter(Col1ToRowNames(dcast(data = y[,c("Source","LipidChains", "x")], formula = y[,"Source"] ~ y[,"LipidChains"], value.var= "x"))))}})
 PercentagesVesicleLipidomesSubclassesMatricesOfCombinedTissuesx <- lapply(AggregatedVesicleLipidomesSubclassesMatricesx, function(y){colSums(y)*100/max(colSums(y))})
 
 # Only columns above 5% for mobilized data relevant here
@@ -5083,8 +5122,8 @@ dev.off()
 # The previous second figure was used as basis for the lower part of Fig.5b_a, after integration with the rest in Adobe Illustrator.
 # The figure legend for Fig.5 is also derivable from this second figure, as from other related figures.
 
-library(reshape2) #! Package dependency that is removable
-NoveltyHits <- melt(LipidClassLiteratureDataSetslc4hdr)
+
+NoveltyHits <- meltmatrix(LipidClassLiteratureDataSetslc4hdr)  # Updated to eliminate need for package dependency
 
 NoveltyHits2 <- NoveltyHits[NoveltyHits[,3],1:2] # Double-checked manually too: all good.
 colnames(NoveltyHits2) <- c("NovelLipid", "LTP")
@@ -5164,17 +5203,14 @@ LipidNamesScreenConverter2 <- cbind(ScreenNamesOfLipids = sort(rownames(InVivoDa
                                                                "PA", "PC", "PC-O", "PE", "PE-O", "PG", "PG", "PGP", "PI", "PIPs", "PS", "SM*", "ST",
                                                                "t*Hex2Cer", "TAG", "VA"))
 
-library(reshape2) #! Package dependency that is removable
-
-
 LipidClassLiteratureDataSetslc4hdrCHConvertedToSterolName <- LipidClassLiteratureDataSetslc4hdr
 rownames(LipidClassLiteratureDataSetslc4hdrCHConvertedToSterolName)[rownames(LipidClassLiteratureDataSetslc4hdrCHConvertedToSterolName) == "CH"] <- "Sterol"
 
-CombinedViewOfScreens <- merge(merge(melt(InVivoDataSetslc4hdr[,!(colnames(InVivoDataSetslc4hdr) %in% c("OSBPL7", "OSBPL8", "OSBPL10", "OSBPL11"))]), 
-                                     melt(InVitroDataSetslc4hdr[,!(colnames(InVitroDataSetslc4hdr) %in% c("OSBPL7", "OSBPL8", "OSBPL10", "OSBPL11"))]),
+CombinedViewOfScreens <- merge(merge(meltmatrix(InVivoDataSetslc4hdr[,!(colnames(InVivoDataSetslc4hdr) %in% c("OSBPL7", "OSBPL8", "OSBPL10", "OSBPL11"))]),  # Updated to eliminate need for package dependency
+                                     meltmatrix(InVitroDataSetslc4hdr[,!(colnames(InVitroDataSetslc4hdr) %in% c("OSBPL7", "OSBPL8", "OSBPL10", "OSBPL11"))]),  # Updated to eliminate need for package dependency
                                      
                                      by = c("Var1","Var2")), 
-                               melt(LipidClassLiteratureDataSetslc4hdrCHConvertedToSterolName[,!(colnames(LipidClassLiteratureDataSetslc4hdrCHConvertedToSterolName) %in% c("OSBPL7", "OSBPL8", "OSBPL10", "OSBPL11"))]), 
+                               meltmatrix(LipidClassLiteratureDataSetslc4hdrCHConvertedToSterolName[,!(colnames(LipidClassLiteratureDataSetslc4hdrCHConvertedToSterolName) %in% c("OSBPL7", "OSBPL8", "OSBPL10", "OSBPL11"))]),  # Updated to eliminate need for package dependency
                                
                                by = c("Var1","Var2"))
 colnames(CombinedViewOfScreens) <- c("Lipid","LTPProtein", "InCellulo", "InVitro", "Novelty")
@@ -5803,8 +5839,8 @@ sum(LaterSubsetOfOverlap$MatchesNarrowSignificantOEs) # 20
 LipidClassLiteratureDataSetslc4hdrwan <- LipidClassLiteratureDataSetslc4hdr
 rownames(LipidClassLiteratureDataSetslc4hdrwan) <- rownames(InVivoDataSetslc4hdr)
 
-library(reshape2) #! Package dependency that is removable
-OverviewOfLTPLipidSubclassesAndNovelties <- do.call("cbind", lapply(list(InVivoDataSetslc4hdr, InVitroDataSetslc4hdr, LipidClassLiteratureDataSetslc4hdrwan), melt))
+
+OverviewOfLTPLipidSubclassesAndNovelties <- do.call("cbind", lapply(list(InVivoDataSetslc4hdr, InVitroDataSetslc4hdr, LipidClassLiteratureDataSetslc4hdrwan), meltmatrix)) # Updated so it does not need package dependencies.
 
 OverviewOfLTPLipidSubclassesAndNovelties2 <- OverviewOfLTPLipidSubclassesAndNovelties[!(is.na(OverviewOfLTPLipidSubclassesAndNovelties[,3]) & is.na(OverviewOfLTPLipidSubclassesAndNovelties[,6])),c(1:3,6,9)]
 colnames(OverviewOfLTPLipidSubclassesAndNovelties2) <- c("LipidSubclass", "LTPProtein", "InCellulo", "InVitro", "NovelPair")
@@ -6052,7 +6088,7 @@ OverviewLTPLipidSubclassNoveltiesOverMaxSpace4 <- cbind(OverviewLTPLipidSubclass
 })))
 write.table(OverviewLTPLipidSubclassNoveltiesOverMaxSpace4, file = "./Output/469777_SupplementaryTable8DataConnections.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
 
-# Previous table output is basis for the Extended Data Table 8.
+# Previous table output is a basis for the Extended Data Table 8, after the further expansions herafter (see further in script).
 
 
 
@@ -6079,7 +6115,7 @@ rownames(OverexpressionHELARatiosMatrixAll) <- OverexpressionHELA5[,1]
 OverexpressionHELALogRatiosMatrix <- log10(OverexpressionHELARatiosMatrixAll)
 OverexpressionHELALogRatiosGeneral2 <- t(OverexpressionHELALogRatiosMatrix[c("Cer", "CerP", "SM", "HexCer", "diHexCer", "triHexCer", "GM3", "DAG", "PA", "PA O-", "PC", "PC O-", "PE", "PE O-", "PS", "PI", "PG", "CL", "LPA", "LPC", "LPC O-", "LPE", "LPE O-", "LPS", "LPI", "LPG", "CE", "Chol :"),c(1,4,7,2,5,8,3,6,9)])
 
-OverexpressionHELALogRatiosMelted <- melt(OverexpressionHELALogRatiosGeneral2)
+OverexpressionHELALogRatiosMelted <- meltmatrix(OverexpressionHELALogRatiosGeneral2) # Updated to eliminate need for package dependency
 colnames(OverexpressionHELALogRatiosMelted) <- c("Sample", "Lipid", "Ratio")
 
 
@@ -6089,6 +6125,7 @@ StatHELALogRatiosMelted2 <- do.call("rbind",lapply(levels(OverexpressionHELALogR
 colnames(StatHELALogRatiosMelted2) <- c("Lipid", "CERTp.value", "CERTControlMeanEstimate", "CERTProteinMeanEstimate", "CERTDiffConfidenceLow", "CERTDiffConfidenceHigh", "SEC14L1p.value", "SEC14L1ControlMeanEstimate", "SEC14L1ProteinMeanEstimate", "SEC14L1DiffConfidenceLow", "SEC14L1DiffConfidenceHigh")
 
 StatHELALogRatiosMelted4 <- do.call("cbind", list(StatHELALogRatiosMelted2, CERTPercentDifference = 100*10^(as.numeric(StatHELALogRatiosMelted2[,4]) - as.numeric(StatHELALogRatiosMelted2[,3]))-100, SEC14L1PercentDifference = 100*10^(as.numeric(StatHELALogRatiosMelted2[,9]) - as.numeric(StatHELALogRatiosMelted2[,8]))-100))  
+
 
 
 pdf("./Output/CERTAndSEC14L1LipidChangesHELAWelchsTtest150820192.pdf")
@@ -6113,6 +6150,123 @@ text(500, -log10(0.05), labels = "p-value 0.05", pos = 3, cex = 0.8, col = "dark
 
 dev.off()
 # Basis for HeLa figure for CERT from Extended Data Fig.5a.
+
+
+# Add up or down in Extended Data Table 8
+
+SubsetOfLipidSpeciesChanges <- LogRatioDifferenceTTestsForLipidSpeciesbwls[LogRatioDifferenceTTestsForLipidSpeciesbwls$p.value <= 0.05/1989, c("NewLTPs", "ConvertedOELipidName", "LogRatio")]
+SubsetOfLipidSpeciesChanges2 <- cbind(SubsetOfLipidSpeciesChanges, ChangeDirection = ifelse(SubsetOfLipidSpeciesChanges$LogRatio >= 0, "Up", "Down"))
+
+SubsetOfLipidSpeciesChanges4 <- unique(SubsetOfLipidSpeciesChanges2[,c("NewLTPs", "ConvertedOELipidName", "ChangeDirection")])
+
+
+UniqueSubsetLipidSpeciesChanges4 <- unique(SubsetOfLipidSpeciesChanges4[, c("NewLTPs", "ConvertedOELipidName")])
+UniqueSubsetLipidSpeciesChanges5 <- as.matrix(cbind(UniqueSubsetLipidSpeciesChanges4, ChangeDirection = do.call("rbind", lapply(1:dim(UniqueSubsetLipidSpeciesChanges4)[1], function(x){paste(as.character(SubsetOfLipidSpeciesChanges4[(SubsetOfLipidSpeciesChanges4[,"NewLTPs"] == UniqueSubsetLipidSpeciesChanges4[x,"NewLTPs"]) & (SubsetOfLipidSpeciesChanges4[,"ConvertedOELipidName"] == UniqueSubsetLipidSpeciesChanges4[x,"ConvertedOELipidName"]), "ChangeDirection"]), collapse = " and ")}))))
+
+UniqueSubsetLipidSpeciesChanges5[UniqueSubsetLipidSpeciesChanges5[, "ChangeDirection"] == "Down and Up", "ChangeDirection"] <- "Up and Down"
+UniqueSubsetLipidSpeciesChanges5[UniqueSubsetLipidSpeciesChanges5 == "STARD11"] <- "CERT"
+
+
+OverviewLTPLipidSubclassNoveltiesOverMaxSpace4xx <- cbind(OverviewLTPLipidSubclassNoveltiesOverMaxSpace2, do.call("rbind", lapply(1:dim(OverviewLTPLipidSubclassNoveltiesOverMaxSpace2)[1], function(x){
+  
+  if(!any((AllLTPLipidSubclassCombosInOE[,"NewLTPs"] == as.character(OverviewLTPLipidSubclassNoveltiesOverMaxSpace2[x, "LTPProtein"])) &
+          (AllLTPLipidSubclassCombosInOE[,"ConvertedOELipidName"] == as.character(OverviewLTPLipidSubclassNoveltiesOverMaxSpace2[x, "HigherLevelLipidSubclass"])))){
+    
+    "NA"
+  }else{
+    
+    if(!any((UniqueSubsetLipidSpeciesChanges5[,"NewLTPs"] == as.character(OverviewLTPLipidSubclassNoveltiesOverMaxSpace2[x, "LTPProtein"])) &
+            (UniqueSubsetLipidSpeciesChanges5[,"ConvertedOELipidName"] == as.character(OverviewLTPLipidSubclassNoveltiesOverMaxSpace2[x, "HigherLevelLipidSubclass"])))){
+      
+      "not significant"
+    }else{
+      
+      paste0("significant: ", UniqueSubsetLipidSpeciesChanges5[(UniqueSubsetLipidSpeciesChanges5[,"NewLTPs"] == as.character(OverviewLTPLipidSubclassNoveltiesOverMaxSpace2[x, "LTPProtein"])) &
+                                                                 (UniqueSubsetLipidSpeciesChanges5[,"ConvertedOELipidName"] == as.character(OverviewLTPLipidSubclassNoveltiesOverMaxSpace2[x, "HigherLevelLipidSubclass"])), "ChangeDirection"])
+      
+    }  
+  }
+  
+})))
+colnames(OverviewLTPLipidSubclassNoveltiesOverMaxSpace4xx)[7] <- "SignificantChangeUponOverexpression"
+
+write.table(OverviewLTPLipidSubclassNoveltiesOverMaxSpace4xx, file = "./Output/469777_SupplementaryTable8DataConnections_v5.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
+# The above table was used as the basis for the last updated version of Extended Data Table 8.
+
+
+# Analyses and figures with mapping of in cellulo and in vitro pairs on the structural data
+
+# Make extended data figure to compare in cellulo and in vitro for their overlap with the volume ratio data
+# Similar to figure panel 1c
+
+# Make unique data.frame with focus on relevant rows and unique entries without information on adducts and such
+CombinedDataOfScreens4s <- unique(CombinedDataOfScreens4[, c("LTPProtein", "Lipid", "ProteinDomain", "Screen", "LipidToPocketPercentage")])
+
+# Ordered LTPs according to pocket volume (from large to small, based on the previous calculations for Fig. 1b and 1c)
+LTPOrderOnPocketVolume <- rev(c("LCN15", "SCP2D1", "RBP4", "SCP2", "RBP1", "CRABP2", "FABP5", "FABP7", "RBP5", "PMP2", "FABP1", "BNIPL", "SEC14L5", "GLTP", "ATCAY", "TTPAL", "GLTPD1", "BPIFB2", "LCN1", "RLBP1", "TTPA", "SEC14L6", "SEC14L4", "BPI", "HSDL2", "STARD10", "SEC14L2", "CERT", "STARD2", "PITPNC1", "OSBPL9", "OSBPL5", "PITPNB", "PITPNA", "GM2A"))
+
+# Check if we are working with exactly same set of LTPs
+all(sort(unique(CombinedDataOfScreens4s$LTPProtein)) == sort(LTPOrderOnPocketVolume)) # TRUE
+
+
+# Reshuffle levels of data.frame for correct plotting on the rows
+
+CombinedDataOfScreens4s4 <- CombinedDataOfScreens4s
+CombinedDataOfScreens4s4$LTPProtein <- factor(CombinedDataOfScreens4s4$LTPProtein, levels = LTPOrderOnPocketVolume)
+
+pdf("./Output/ExtendedDataLikePanel1bOnlyTopLayerButForScreens19082025.pdf", width = 5, height = 7, useDingbats = FALSE)
+plot(CombinedDataOfScreens4s4$LipidToPocketPercentage, CombinedDataOfScreens4s4$LTPProtein, xlim=c(0,100), xlab = "Lipid volume / pocket volume", ylab = "LTPs Ordered", col = c("blue", "orange")[CombinedDataOfScreens4s4$Screen])
+
+dev.off()
+# The above output figure was combined with previous output in Adobe Illustrator to create Extended Data Fig. 2c Similar design to Fig. 1c.
+
+# Similar to figure panel 1b (called Extended Data Fig. 2b)
+# Statistical test of subgroups: data without lipocalin (LCN15) and SCP2 (SCP2D1 and SCP2), or without the full lipocalin & SCP2 families?
+
+# Not LCN15 and SCP2 (SCP2D1 and SCP2)
+CombinedDataOfScreens4s4WithoutOutlierProteins <- CombinedDataOfScreens4s4[!(CombinedDataOfScreens4s4[,"LTPProtein"] %in% c("LCN15", "SCP2D1", "SCP2")),]
+
+t.test(CombinedDataOfScreens4s4WithoutOutlierProteins[CombinedDataOfScreens4s4WithoutOutlierProteins[,"Screen"] == "in cellulo", "LipidToPocketPercentage"],
+       CombinedDataOfScreens4s4WithoutOutlierProteins[CombinedDataOfScreens4s4WithoutOutlierProteins[,"Screen"] == "in vitro", "LipidToPocketPercentage"])
+
+# p-value = 0.06343
+# Work further with it for the boxplot visualizations as highest priority (for Extended Data Figure 2b)
+
+# Not lipocalin and SCP2 families
+CombinedDataOfScreens4s4WithoutOutlierFamilies <- CombinedDataOfScreens4s4[!(CombinedDataOfScreens4s4[,"ProteinDomain"] %in% c("lipocalin", "scp2")),]
+
+t.test(CombinedDataOfScreens4s4WithoutOutlierFamilies[CombinedDataOfScreens4s4WithoutOutlierFamilies[,"Screen"] == "in cellulo", "LipidToPocketPercentage"],
+       CombinedDataOfScreens4s4WithoutOutlierFamilies[CombinedDataOfScreens4s4WithoutOutlierFamilies[,"Screen"] == "in vitro", "LipidToPocketPercentage"])
+
+# p-value = 0.8748
+# (p-value = 0.8814 (if it would be var.equal = TRUE))
+
+# Boxplots
+SubsetsListOfVolumeRatios <- list(CombinedDataOfScreens4s4, CombinedDataOfScreens4s4WithoutOutlierProteins, CombinedDataOfScreens4s4WithoutOutlierFamilies)
+
+SubsetVolumeRatiosNames <- c("All data", "No LCN15, SCP2D1 and SCP2", "No lipocalins and SCP-family")
+
+
+pdf("./Output/ExtendedDataLikePanel1bOnlyBasicLayoutButForScreens19082025.pdf", useDingbats = FALSE)
+for(i in 1:3){
+  
+  boxplot(
+    LipidToPocketPercentage ~ Screen,
+    
+    data = SubsetsListOfVolumeRatios[[i]],
+    horizontal = TRUE,
+    
+    main = SubsetVolumeRatiosNames[i],
+    xlab = "Lipid volume / pocket volume",
+    
+    ylab = "Screen",
+    ylim = c(0, 100)
+    
+  )
+}
+
+dev.off()
+# The above iteration 2 was used as basis for the Extended Data Figure 2b similar to Fig. 1b, so without LCN15, SCP2D1 and SCP2. 
 
 # Reset options to orginal ones from user
 options(OriginalOptions)
