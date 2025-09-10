@@ -2,7 +2,7 @@
 # Note: The current version of the script is a reduced version derived from larger scripts, 
 # and only contains the parts focusing on the main lines of code for the analysis and visualization, 
 # as well as some side graphs and side checks. Hence, it might contain some historic intermediate variable assignments 
-# that seem unneccessary but that I kept in to maintain consistency.
+# that seem unnecessary but that I kept in to maintain consistency.
 
 ## Legend for figure files and some other parts:
 # # Done 
