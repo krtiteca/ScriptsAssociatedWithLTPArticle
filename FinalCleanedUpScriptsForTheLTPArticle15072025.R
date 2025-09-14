@@ -78,14 +78,14 @@
 #### Extended Data Table 5A
 #### Extended Data Table 5B
 #### Extended Data Table 5C
-#### Basis for Extended Data Table 11
 #### Extended Data Table 10B
 #### Extended Data Table 7A
+#### Extended Data Table 11
 #### Extended Data Fig.5a
+#### Extended Data Table 7C
 #### Extended Data Table 8
 #### Extended Data Figure 2c
 #### Extended Data Figure 2b
-
 
 
 # Capture previous options and set new general options
@@ -3340,8 +3340,8 @@ AggregateMPOfMads0RTLMOCx <- readRDS("./InputData/SubcellularLocalizationAverage
 # Reassign reloaded cleaned-up document with averages of the subcellular localizations of the lipid species
 AggregateMPOfMads0RTLMOC <- AggregateMPOfMads0RTLMOCx
 
-# Remove the original large file
-rm(AggregateMPOfMads0RTLMOCx)
+# Remove the original large file if too large for you system
+# rm(AggregateMPOfMads0RTLMOCx)
 
 MadsLipids <- do.call("rbind", strsplit(gsub(";2","", rownames(AggregateMPOfMads0RTLMOC)), " "))
 MadsLipids <- cbind(MadsLipids, do.call("rbind", strsplit(MadsLipids[,2], ":")))
@@ -3589,7 +3589,7 @@ for(SimilarityIndex in c("All", "Class", "Sub-Class", "Species")){
 }
 dev.off()
 
-# All of the figures in the second set of figure pages in the previous document were combined into Panel 4c and further esthetically enhanced and integrated with the other parts of Figure 4 in Adobe Illustrator.
+# All of the figures in the second set of figure pages in the previous document were combined into Panel 4c and further aesthetically enhanced and integrated with the other parts of Figure 4 in Adobe Illustrator.
 # For the statistical significances the results of the Fisher exact tests on the difference in the medians was used (see further), and also added in Adobe Illustrator.
 
 #### Similar figures for panels from figure 4, but with Nrd0 and with unity lines to enable internal comparisons, y-axes, and correct fitting with eachother during integration of figures in Adobe Illustrator.
@@ -3943,7 +3943,7 @@ write.table(structure(do.call("rbind", StatListForCooccurrences[c("AllAll", "All
 write.table(structure(do.call("rbind", StatList2ForCooccurrencesCorrected[c("AllAll", "All", as.character(0:2))]), dimnames = list(paste0(rep(c("A","E"),5), unlist(lapply(c("AllAll", "All", as.character(0:2)), function(x){rep(x, 2)}))), c("NoNeg", "NoPos", "YesNeg", "YesPos", "LowConf", "HighConf", "OddsRatio", "pValue"))),
             file="./Output/FisherExactTestResultsWithEqualizedBackgroundForTheCooccurrencesCorrected18082022.csv", sep="\t", row.names = TRUE, quote = FALSE)
 
-# Subcellular Fisher Exact Tests # Finally used version of comparisons: only the median versions, for full reference (grey lines in graphs) and for what possible (colored lines in graphs) and not the others because applicable to all & even more strict, and double references used for comparible size in comparisons.
+# Sub-cellular Fisher Exact Tests # Finally used version of comparisons: only the median versions, for full reference (grey lines in graphs) and for what possible (colored lines in graphs) and not the others because applicable to all & even more strict, and double references used for comparable size in comparisons.
 # They are all named ...21022022.csv . 
 
 StatListForSubcellularCooccurrences <- list()
@@ -4295,10 +4295,10 @@ PairedTTestResultsForSpecies <- do.call("rbind", lapply(unique(SampleMetaDataFul
   setNames(c(1,0,0,0,0), c("p.value", "estimate.mean of the differences", "conf.int1", "conf.int2", "PercentDifference")) 
   
 }else{
-  c(unlist(t.test(LipidDataOfFullxi[z,(SampleMetaDataFull[,1] == x) & (SampleMetaDataFull[,2] == "induced")], LipidDataOfFullxi[z,(SampleMetaDataFull[,1] == x) & (SampleMetaDataFull[,2] == "noninduced")], paired = TRUE)[c(3,5,4)]), PercentDifference = mean(LipidDataOfFullxi[z,(SampleMetaDataFull[,1] == x) & (SampleMetaDataFull[,2] == "induced")])*100/mean(LipidDataOfFullxi[z,(SampleMetaDataFull[,1] == x) & (SampleMetaDataFull[,2] == "noninduced")])-100)  
+  setNames(c(unlist(t.test(LipidDataOfFullxi[z,(SampleMetaDataFull[,1] == x) & (SampleMetaDataFull[,2] == "induced")], LipidDataOfFullxi[z,(SampleMetaDataFull[,1] == x) & (SampleMetaDataFull[,2] == "noninduced")], paired = TRUE)[c(3,5,4)]), PercentDifference = mean(LipidDataOfFullxi[z,(SampleMetaDataFull[,1] == x) & (SampleMetaDataFull[,2] == "induced")])*100/mean(LipidDataOfFullxi[z,(SampleMetaDataFull[,1] == x) & (SampleMetaDataFull[,2] == "noninduced")])-100), c("p.value", "estimate.mean of the differences", "conf.int1", "conf.int2", "PercentDifference"))  
   
 }})), 
-Lipid = rownames(LipidDataOfFullxi), LTPProtein = x))}))[,c(1:4,6:7,5)] # Updated so differences are calculated as x-y and the difference.
+Lipid = rownames(LipidDataOfFullxi), LTPProtein = x))}))[,c(1:4,6:7,5)] # Updated so differences are calculated as x-y and the difference. # Also updated the name-setting when false to make it explicit to avoid mismatches between column names.
 
 # Write t-tests for to a file
 write.table(PairedTTestResultsForSpecies, file = "./Output/PairedTTestResultsSpecies18062024.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
@@ -4320,9 +4320,6 @@ LogRatioDifferenceTTestsForLipidSpeciesb <- cbind(LogRatioDifferenceTTestsForLip
 
 # Export file in reduced format
 write.table(LogRatioDifferenceTTestsForLipidSpeciesb[,c("LTPProtein", "Lipid", "PercentDifference", "LogRatio", "p.value")], file = "./Output/469777_SupplementaryTable6B_v1.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
-
-# Export the file again to form the basis of Ext. Data Table 7C but now expanded with the condensed lipid subclass names and updated names for LTPs (STARD11 will be switched to CERT naming also afterwards) # Maybe place later: is ok.
-write.table(LogRatioDifferenceTTestsForLipidSpeciesbwls[,c("NewLTPs", "Lipid", "ConvertedOELipidName", "LogRatio", "p.value")], file = "./Output/469777_SupplementaryTable7C_v4.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE) 
 
 
 pdf("./Output/Panel2bBeforeEstheticOptimizationOn3.2By3.2Dim24042025bWithoutAnyDingbats.pdf", width = 3.2, height = 3.2, useDingbats = FALSE)
@@ -4702,14 +4699,14 @@ InVitroVesicleLipidomes5[["BrainNeg"]][, c("index", "m.z", "BRAIN_N50_neg.m.z", 
 # Determine retention time minima and maxima per subclass in the mobilization-data (for data filtering)
 PureMobilizationDataCombined <- rbind(PureAntonella32b, PureEnric32)
 
-OverviewRTsMobilizedLipids <- merge(merge(aggregate(PureMobilizationDataCombined$MinimumOfRetentionTime, by = list(PureMobilizationDataCombined$LikelySubclass), FUN = function(x){min(x,na.rm = TRUE)}),
+OverviewRTsMobilizedLipids <- suppressWarnings(merge(merge(aggregate(PureMobilizationDataCombined$MinimumOfRetentionTime, by = list(PureMobilizationDataCombined$LikelySubclass), FUN = function(x){min(x,na.rm = TRUE)}),
                                           aggregate(PureMobilizationDataCombined$MaximumOfRetentionTime, by = list(PureMobilizationDataCombined$LikelySubclass), FUN = function(x){max(x,na.rm = TRUE)}), by = "Group.1", all = TRUE),
                                     
                                     merge(merge(aggregate(PureMobilizationDataCombined$TotalCarbonChainLength, by = list(PureMobilizationDataCombined$LikelySubclass), FUN = function(x){min(x,na.rm = TRUE)}),
                                                 aggregate(PureMobilizationDataCombined$TotalCarbonChainLength, by = list(PureMobilizationDataCombined$LikelySubclass), FUN = function(x){max(x,na.rm = TRUE)}), by = "Group.1", all = TRUE),
                                           
                                           merge(aggregate(PureMobilizationDataCombined$TotalCarbonChainUnsaturations, by = list(PureMobilizationDataCombined$LikelySubclass), FUN = function(x){min(x,na.rm = TRUE)}),
-                                                aggregate(PureMobilizationDataCombined$TotalCarbonChainUnsaturations, by = list(PureMobilizationDataCombined$LikelySubclass), FUN = function(x){max(x,na.rm = TRUE)}), by = "Group.1", all = TRUE), by = "Group.1", all = TRUE), by = "Group.1", all = TRUE)
+                                                aggregate(PureMobilizationDataCombined$TotalCarbonChainUnsaturations, by = list(PureMobilizationDataCombined$LikelySubclass), FUN = function(x){max(x,na.rm = TRUE)}), by = "Group.1", all = TRUE), by = "Group.1", all = TRUE), by = "Group.1", all = TRUE)) # Warnings for (-)Inf suppressed, because we know they will occur for VA entries. 
 
 colnames(OverviewRTsMobilizedLipids) <- c("SubClass", "MinOfRT", "MaxOfRT", "MinOfChainLength", "MaxOfChainLength", "MinUnsat", "MaxUnsat")
 OverviewRTsMobilizedLipids <- cbind(RTAmbiguousClasses = c("PG/BMP", "CL", "d*Cer", "d*CerP", "d*HexCer", "d*SHexCer", "d*SM", "DAG", "d*Cer", "d*Cer", "t*Cer", "d*SM", "FA", "FA", "LPC", "LPE", "LPE", "LPG", "PA", "PC", "PC", "PE", "PE", "PG/BMP", "PG/BMP", "PGP", "PI", "PS", "t*Hex2Cer", "t*HexCer", "t*SM", "TAG", "t*Cer", "VA"), OverviewRTsMobilizedLipids)
@@ -4816,9 +4813,6 @@ InVitroVesicleLipidomesCleaner2 <- cbind(InVitroVesicleLipidomesCleaner2, Combin
 MaxCombinedScoreExtractor <- function(y){y[y[,"CombinedScore"] == max(y[,"CombinedScore"]),]}
 ListOfHighScoringLines <- lapply(unique(InVitroVesicleLipidomesCleaner2$TotalIndex), function(x){MaxCombinedScoreExtractor(InVitroVesicleLipidomesCleaner2[InVitroVesicleLipidomesCleaner2$TotalIndex == x,])})
 
-
-lapply(ListOfHighScoringLines[sapply(ListOfHighScoringLines, function(x){dim(x)[1]}) > 1], function(x){sort(x$SubClass)}) 
-
 InVitroVesicleLipidomesCleaner4 <- do.call("rbind", ListOfHighScoringLines)
 write.table(InVitroVesicleLipidomesCleaner4, file = "./Output/InVitroVesicleLipidomesCleaner429062024.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
 
@@ -4849,11 +4843,14 @@ RemainingAmbiguousLipidIdentificationsCorrections2$ShortFull <- RemainingAmbiguo
 NonAmbiguousaLipidIdentifications <- do.call("rbind", ListOfHighScoringLines[sapply(ListOfHighScoringLines, function(x){dim(x)[1]}) == 1])
 write.table(NonAmbiguousaLipidIdentifications, file = "./Output/NonAmbiguousaLipidIdentifications03072024.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
 
+# Remove Lipids column to enable the matching between the datasets
+NonAmbiguousaLipidIdentificationspx <- NonAmbiguousaLipidIdentifications[,colnames(NonAmbiguousaLipidIdentifications) != "Lipids"]
+
 # Extension of non-ambiguous set with the corrected entries
-NonAmbiguousaLipidIdentificationsx <- rbind(NonAmbiguousaLipidIdentifications, RemainingAmbiguousLipidIdentificationsCorrections2[,colnames(NonAmbiguousaLipidIdentifications)])
+NonAmbiguousaLipidIdentificationsx <- rbind(NonAmbiguousaLipidIdentificationspx, RemainingAmbiguousLipidIdentificationsCorrections2[,colnames(NonAmbiguousaLipidIdentificationspx)])
 
 # Limits of chain length ranges
-LimitsOnChainLengthRanges <- cbind.data.frame(unique(NonAmbiguousaLipidIdentifications$SubClass), do.call("rbind.data.frame", list(c(26,50), c(38,76), c(26,50), c(26,50), c(26,50), c(26,50), c(26,50), c(26,50),c(38,76), c(26,50), c(26,50), c(26,50), c(26,50), c(26,50), c(26,50), c(0,25), c(0,25), c(0,25), c(26,50), c(26,50), c(26,50), c(26,50), c(0,25), c(26,50), c(26,50), c(26,50), c(0,25), c(26,50), c(0,25))))
+LimitsOnChainLengthRanges <- cbind.data.frame(unique(NonAmbiguousaLipidIdentificationspx$SubClass), do.call("rbind.data.frame", list(c(26,50), c(38,76), c(26,50), c(26,50), c(26,50), c(26,50), c(26,50), c(26,50),c(38,76), c(26,50), c(26,50), c(26,50), c(26,50), c(26,50), c(26,50), c(0,25), c(0,25), c(0,25), c(26,50), c(26,50), c(26,50), c(26,50), c(0,25), c(26,50), c(26,50), c(26,50), c(0,25), c(26,50), c(0,25))))
 
 colnames(LimitsOnChainLengthRanges) <- c("SubClass", "ChainlengthMin", "ChainlengthMax")
 LimitsOnChainLengthRanges <- rbind(LimitsOnChainLengthRanges, c("PG/BMP",26,50))
@@ -4885,7 +4882,7 @@ AggregatedVesicleLipidomesSubclassesx <- lapply(AggregatedVesicleLipidomesSubcla
 saveRDS(AggregatedVesicleLipidomesSubclassesx, file="./Output/AggregatedVesicleLipidomesSubclassesx.RData")
 AggregatedVesicleLipidomesSubclassesx <- readRDS("./Output/AggregatedVesicleLipidomesSubclassesx.RData")
 
-AggregatedVesicleLipidomesSubclassesMatricesx <- lapply(AggregatedVesicleLipidomesSubclassesx, function(y){if(dim(y)[1] == 1){matrix(y$x, dimnames = list(y$Source,y$LipidChains))}else{as.matrix(NAsToZerosConverter(Col1ToRowNames(reshape(data = y[,c("Source","LipidChains", "x")], idvar = y[,"Source"], timevar = y[,"LipidChains"], v.names = "x", direction = "wide"))))}}) # Dependencies removed. If this would not function: install reshape2 package and run: lapply(AggregatedVesicleLipidomesSubclassesx, function(y){if(dim(y)[1] == 1){matrix(y$x, dimnames = list(y$Source,y$LipidChains))}else{as.matrix(NAsToZerosConverter(Col1ToRowNames(dcast(data = y[,c("Source","LipidChains", "x")], formula = y[,"Source"] ~ y[,"LipidChains"], value.var= "x"))))}})
+AggregatedVesicleLipidomesSubclassesMatricesx <- lapply(lapply(AggregatedVesicleLipidomesSubclassesx, function(y){if(dim(y)[1] == 1){matrix(y$x, dimnames = list(y$Source,y$LipidChains))}else{as.matrix(NAsToZerosConverter(Col1ToRowNames(reshape(data = y[,c("Source","LipidChains", "x")], idvar = "Source", timevar = "LipidChains", v.names = "x", direction = "wide"))))}}), function(q){colnames(q) <- gsub("x.", "", colnames(q)); return(q)}) # Cleaned up to make it compatible with the reshape function, instead of having to rely on extra package dependencies.
 PercentagesVesicleLipidomesSubclassesMatricesOfCombinedTissuesx <- lapply(AggregatedVesicleLipidomesSubclassesMatricesx, function(y){colSums(y)*100/max(colSums(y))})
 
 # Only columns above 5% for mobilized data relevant here
@@ -4901,7 +4898,7 @@ for(y in c("PI", "PC", "PA")){
 
   
   }
-dev.off() # The above about is used in the construction of the vesicle layer for Fig.6c
+dev.off() # The above is used in the construction of the vesicle layer for Fig.6c
 
 # Similar visualization for sphingolipids for Fig.6a
 # Later we removed tSM: Is empty after selection and not needed in final visualization.
@@ -4918,7 +4915,7 @@ for(y in HeadgroupSelectionForSphingolipids){
   barplot(SubselectedListOfSphingolipidsResultsMobilizedRangex[[y]], las = 2, main = paste0("Vesicle lipidomes: tissues combined & subset focus: ", names(SubselectedListOfSphingolipidsResultsMobilizedRangex[y])), col = "NA", ylab = "Fraction of max. intensity", xlab = "Total carbon chain length and unsaturation of lipids")
 }
 
-dev.off() # The above about is used in the construction of the vesicle layer for Fig.6a
+dev.off() # The above is used in the construction of the vesicle layer for Fig.6a
 
 
 
@@ -4978,23 +4975,26 @@ dev.off()
 # Write subcellular localizations file # This file is the basis for Extended Data Table 9A.
 write.table(AggregateMPOfMads0RTLMOCx, file = "./Output/SubcellularLocalizationAveragesLipids30102024.tsv", sep = "\t", quote = FALSE, row.names = TRUE, col.names = TRUE)
 
-ComparisonOfEffectsSetbackWithInterAverage <- apply(do.call("cbind", lapply(list(TestMatrixa2[c(12:19,21),], TestMatrixb[c(12:19,21),], TestMatrixe2[c(12:19,21),], AggregatedMatrixOfVesiclesLipidomes4[7:13,]), 
+# You can clean up this larger file if you want to spare some space in your system
+rm(AggregateMPOfMads0RTLMOCx)
+
+ComparisonOfEffectsSetbackWithInterAverage <- apply(do.call("cbind", lapply(list(TestMatrixa2[c(12:19,21),], TestMatrixb[c(12:19,21),], TestMatrixe2[c(12:19,21),], AggregatedMatrixOfVesiclesLipidomes4x[7:13,]), # AggregatedMatrixOfVesiclesLipidomes4 replaced by AggregatedMatrixOfVesiclesLipidomes4x, because equivalent in the used range and less extensive script like this.
                                                                             function(x){log10(colSums(10^x)/dim(x)[1])})), 2, DivMaxToPercent)
 
-ComparisonOfEffectsSetback <- apply(do.call("cbind", lapply(list(TestMatrixa2[c(12:19,21),], TestMatrixb[c(12:19,21),], TestMatrixe2[c(12:19,21),], AggregatedMatrixOfVesiclesLipidomes4[7:13,]), 
+ComparisonOfEffectsSetback <- apply(do.call("cbind", lapply(list(TestMatrixa2[c(12:19,21),], TestMatrixb[c(12:19,21),], TestMatrixe2[c(12:19,21),], AggregatedMatrixOfVesiclesLipidomes4x[7:13,]), # AggregatedMatrixOfVesiclesLipidomes4 replaced by AggregatedMatrixOfVesiclesLipidomes4x, because equivalent in the used range and less extensive script like this.
                                                             function(x){log10(colSums(10^x))})), 2, DivMaxToPercent)
 
-ComparisonOfEffectsColsumsWithInterAverage <- apply(do.call("cbind", lapply(list(TestMatrixa2[c(12:19,21),], TestMatrixb[c(12:19,21),], TestMatrixe2[c(12:19,21),], AggregatedMatrixOfVesiclesLipidomes4[7:13,]), 
+ComparisonOfEffectsColsumsWithInterAverage <- apply(do.call("cbind", lapply(list(TestMatrixa2[c(12:19,21),], TestMatrixb[c(12:19,21),], TestMatrixe2[c(12:19,21),], AggregatedMatrixOfVesiclesLipidomes4x[7:13,]), # AggregatedMatrixOfVesiclesLipidomes4 replaced by AggregatedMatrixOfVesiclesLipidomes4x, because equivalent in the used range and less extensive script like this.
                                                                             function(x){colSums(x)/dim(x)[1]})), 2, DivMaxToPercent)
 
-ComparisonOfEffectsColsums <- apply(do.call("cbind", lapply(list(TestMatrixa2[c(12:19,21),], TestMatrixb[c(12:19,21),], TestMatrixe2[c(12:19,21),], AggregatedMatrixOfVesiclesLipidomes4[7:13,]), 
+ComparisonOfEffectsColsums <- apply(do.call("cbind", lapply(list(TestMatrixa2[c(12:19,21),], TestMatrixb[c(12:19,21),], TestMatrixe2[c(12:19,21),], AggregatedMatrixOfVesiclesLipidomes4x[7:13,]), # AggregatedMatrixOfVesiclesLipidomes4 replaced by AggregatedMatrixOfVesiclesLipidomes4x, because equivalent in the used range and less extensive script like this.
                                                             function(x){colSums(x)})), 2, DivMaxToPercent)
 
 CombinedGPL <- do.call("cbind", list(InCellulo = DivMaxToPercent(colSums(TestMatrixa2[c(12:19,21),])/length(c(12:19,21))),
                                      Cellular = DivMaxToPercent(colSums(TestMatrixb[c(12:19,21),])/length(c(12:19,21))),
                                      
                                      InVitro = DivMaxToPercent(colSums(TestMatrixe2[c(12:19,21),])/length(c(12:19,21))),
-                                     Liposomes = DivMaxToPercent(colSums(AggregatedMatrixOfVesiclesLipidomes4[7:13,])/length(7:13))))
+                                     Liposomes = DivMaxToPercent(colSums(AggregatedMatrixOfVesiclesLipidomes4x[7:13,])/length(7:13)))) # AggregatedMatrixOfVesiclesLipidomes4 replaced by AggregatedMatrixOfVesiclesLipidomes4x, because equivalent in the used range and less extensive script like this.
 
 InputFocusChainLengths <- cbind(CombinedGPL[as.character(27:51),], t(t(LTPMobilizedGPL2sMaxNormCombinedVersionoes[4,as.character(27:51)])))
 colnames(InputFocusChainLengths) <- c("InCellulo", "Cellular", "InVitro", "Liposomes", "SignificantChangesUponOE")
@@ -5333,13 +5333,13 @@ LogRatioDifferenceTTestsForLipidSpeciesbwlschu <- cbind(LogRatioDifferenceTTests
                                                                                                                                                                sum(as.numeric(sapply(y, function(x){strsplit(strsplit(x, split = ";")[[1]][1], split = ":")[[1]][2]}))))})))
 
 colnames(LogRatioDifferenceTTestsForLipidSpeciesbwlschu)[13:14] <- c("TotalChainlength", "TotalUnsaturation")
-apply(PureMobilizationDataCombined[,c("LTPProtein", "LikelySubclass", "TotalCarbonChainLength", "TotalCarbonChainUnsaturations")] , 1 , paste0 , collapse = "_", sep = "")
+# apply(PureMobilizationDataCombined[,c("LTPProtein", "LikelySubclass", "TotalCarbonChainLength", "TotalCarbonChainUnsaturations")] , 1 , paste0 , collapse = "_", sep = "")
 
 y <- paste(PureMobilizationDataCombined[,"LTPProtein"], PureMobilizationDataCombined[,"LikelySubclass"], as.numeric(PureMobilizationDataCombined[,"TotalCarbonChainLength"]), as.numeric(PureMobilizationDataCombined[,"TotalCarbonChainUnsaturations"]), sep = "_")
 x <- paste(as.character(LogRatioDifferenceTTestsForLipidSpeciesbwlschu[,"NewLTPs"]), as.character(LogRatioDifferenceTTestsForLipidSpeciesbwlschu[,"LipidSubclass"]), as.numeric(LogRatioDifferenceTTestsForLipidSpeciesbwlschu[,"TotalChainlength"]), as.numeric(LogRatioDifferenceTTestsForLipidSpeciesbwlschu[,"TotalUnsaturation"]), sep = "_")
 
 
-MappingSpeciesScreensOE <- lapply(1:length(y), function(t){if(any(x %in% y[t])){cbind(PureMobilizationDataCombined[t,], LogRatioDifferenceTTestsForLipidSpeciesbwlschu[x %in% y[t],])}})
+MappingSpeciesScreensOE <- lapply(1:length(y), function(t){if(any(x %in% y[t])){cbind(PureMobilizationDataCombined[t,], LogRatioDifferenceTTestsForLipidSpeciesbwlschu[x %in% y[t],], row.names = NULL)}})
 
 sum(sapply(MappingSpeciesScreensOE, is.null)) # 270
 length(MappingSpeciesScreensOE) # 1137
@@ -5354,7 +5354,7 @@ SubclassMatcher[c(1, 9:12, 25, 33),2] <- c("PG", "d*Cer", "d*Cer", "t*Cer", "d*S
 y2 <- paste(PureMobilizationDataCombined[,"LTPProtein"], SubclassMatcher[match(PureMobilizationDataCombined[,"LikelySubclass"], SubclassMatcher[,1]),2], as.numeric(PureMobilizationDataCombined[,"TotalCarbonChainLength"]), as.numeric(PureMobilizationDataCombined[,"TotalCarbonChainUnsaturations"]), sep = "_")
 
 # Redo previous with y2 with corrected sub-classes
-MappingSpeciesScreensOE2 <- lapply(1:length(y2), function(t){if(any(x %in% y2[t])){cbind(PureMobilizationDataCombined[t,], LogRatioDifferenceTTestsForLipidSpeciesbwlschu[x %in% y2[t],])}})
+MappingSpeciesScreensOE2 <- lapply(1:length(y2), function(t){if(any(x %in% y2[t])){cbind(PureMobilizationDataCombined[t,], LogRatioDifferenceTTestsForLipidSpeciesbwlschu[x %in% y2[t],], row.names = NULL)}})
 
 sum(sapply(MappingSpeciesScreensOE2, is.null)) # 226
 length(MappingSpeciesScreensOE2) # 1137
@@ -5669,7 +5669,7 @@ ListOfInputMatricesOverlapVsOverexpressionForSubClasses <- list(CorrectionOnSamp
                                                                                                                                                                CombinedViewOfScreens2$LTPProteinInOEData &
                                                                                                                                                                
                                                                                                                                                                CombinedViewOfScreens2$MatchesBroadSignificantOEs))))
-colSums(ScreenMatchingOEOverview[,c("NovelMatchedInOE", "NovelUnmatchedInOE", "KnownMatchedInOE", "KnownUnmatchedInOE")])
+colSums(ScreenMatchingOEOverview[,c("NovelMatchedInOE", "NovelUnmatchedInOE", "KnownMatchedInOE", "KnownUnmatchedInOE")]) # c(36, 41, 10, 15)
 
 ListOfInputMatricesOverlapVsOverexpressionForSubClasses2 <- list(CorrectionOnSampleSize = cbind(OE = c(No = dim(unique(LogRatioDifferenceTTestsForLipidSpeciesbwls[, c("NewLTPs", "ConvertedOELipidName")]))[1] - dim(BroadSubsetPairsUponOverexpression2)[1],
                                                                                                        Yes = dim(BroadSubsetPairsUponOverexpression2)[1]),
@@ -5873,7 +5873,7 @@ WidthAdaptor <- 160
 HeightAdaptor <- 160
 
 # PI-entries and specific LTPs subset of all parts of the list
-SubsetPITransLayersCondensedRowEntries <- lapply(NewPITransLayersCondensedRowEntries, function(x){x[(sapply(strsplit(rownames(x), "_"), "[[", 2) == "PI") & (sapply(strsplit(rownames(x), "_"), "[[", 1) %in% c("PITPNA", "PITPNB", "PITPNC1", "SEC14L2")),]})
+SubsetPITransLayersCondensedRowEntries <- lapply(NewPITransLayersCondensedRowEntriesx, function(x){x[(sapply(strsplit(rownames(x), "_"), "[[", 2) == "PI") & (sapply(strsplit(rownames(x), "_"), "[[", 1) %in% c("PITPNA", "PITPNB", "PITPNC1", "SEC14L2")),]}) # NewPITransLayersCondensedRowEntriesx is newer version but fully equivalent here.
 
 CutOffPresenceProcent2 <- 0
 SelectedColumnsForPIs <- colnames(SubsetPITransLayersCondensedRowEntries$InCellulo)[(colSums(SubsetPITransLayersCondensedRowEntries$InCellulo, na.rm = TRUE) > CutOffPresenceProcent2)|(colSums(SubsetPITransLayersCondensedRowEntries$InVitro, na.rm = TRUE) > CutOffPresenceProcent2)]
@@ -5893,11 +5893,11 @@ rownames(LiposomesSubsetForPI) <- rownames(SubsetPITransLayersCondensedRowEntrie
 SubsetPITransLayersCondensedRowEntries2$Liposomes <- LiposomesSubsetForPI
 
 
-TextDataframeWithLTPAnnotation2 <- data.frame(LTP = factor(sapply(strsplit(rownames(SubsetPITransLayersCondensedRowEntries2$InCellulo), "_"), "[[", 1), levels = unique(sapply(strsplit(rownames(SubsetPITransLayersCondensedRowEntries2$InCellulo), "_"), "[[", 1))))
-AnnotationDataframeWithLTPAnnotation2 <- rowAnnotation(df = TextDataframeWithLTPAnnotation2, col = list(LTP = c("SEC14L2" = "#7E549F", "PITPNA" = "#FFCB3E", "PITPNB" = "#E0B01C", "PITPNC1" = "#A47C00")))
-
 library(ComplexHeatmap)
 library(RColorBrewer)
+
+TextDataframeWithLTPAnnotation2 <- data.frame(LTP = factor(sapply(strsplit(rownames(SubsetPITransLayersCondensedRowEntries2$InCellulo), "_"), "[[", 1), levels = unique(sapply(strsplit(rownames(SubsetPITransLayersCondensedRowEntries2$InCellulo), "_"), "[[", 1))))
+AnnotationDataframeWithLTPAnnotation2 <- rowAnnotation(df = TextDataframeWithLTPAnnotation2, col = list(LTP = c("SEC14L2" = "#7E549F", "PITPNA" = "#FFCB3E", "PITPNB" = "#E0B01C", "PITPNC1" = "#A47C00")))
 
 pdf("./Output/RemakeOfPISpecificSubsetOfLTPsForPanelsInFigure5NowTo6_12052025.pdf",
     width = unit(20, "mm"), height = unit(20, "mm")) # Additional part for figure 6c
@@ -5927,7 +5927,7 @@ Heatmap(SubsetPITransLayersCondensedRowEntries2$InCellulo, name = LegendName, co
 dev.off() # Used as additional part for Fig.6c (combined in Adobe Illustrator)
 
 # Get data from the final file for PC with STARD2 and STARD10
-PCSubsetForSTARD2STARD10 <- lapply(c("in vivo", "in vitro"), function(x){LTPLipidConnectionsDataAggregated[(LTPLipidConnectionsDataAggregated$LTPProtein %in% c("STARD2","STARD10")) & (LTPLipidConnectionsDataAggregated$LikelySubclass == "PC") & (LTPLipidConnectionsDataAggregated$Screen == x),]})
+PCSubsetForSTARD2STARD10 <- lapply(c("in vivo", "in vitro"), function(x){LTPLipidConnectionsDataAggregatedx[(LTPLipidConnectionsDataAggregatedx$LTPProtein %in% c("STARD2","STARD10")) & (LTPLipidConnectionsDataAggregatedx$LikelySubclass == "PC") & (LTPLipidConnectionsDataAggregatedx$Screen == x),]}) # LTPLipidConnectionsDataAggregated was updated to LTPLipidConnectionsDataAggregatedx, which is highly similar but with changed order of the rows. Done to make the script more compact.
 
 PCSubsetForSTARD2STARD10b <- setNames(lapply(PCSubsetForSTARD2STARD10, function(x){as.matrix(as.data.frame(x[,-(1:3)])*100/do.call(pmax,as.data.frame(x[,-(1:3)])))}), nm = c("InCellulo", "InVitro"))
 PCSubsetForSTARD2STARD10c <- lapply(PCSubsetForSTARD2STARD10b, function(x){rownames(x) <- c("STARD10", "STARD2"); return(x)})
@@ -5948,10 +5948,7 @@ CellularBackgroundForPC4[is.na(CellularBackgroundForPC4)] <- 0
 
 
 CellularSubsetForPC <- do.call("rbind", lapply(rownames(PCSubsetForSTARD2STARD10d$InCellulo), function(x){CellularBackgroundForPC4}))
-rownames(LiposomesSubsetForPC) <- rownames(PCSubsetForSTARD2STARD10d$InCellulo)
-
-PCSubsetForSTARD2STARD10d$Cellular <- CellularSubsetForPC
-
+PCSubsetForSTARD2STARD10d$Cellular <- CellularSubsetForPC # Several lines deleted for making script more compact.
 
 LiposomesSubsetForPC <- do.call("rbind", lapply(rownames(PCSubsetForSTARD2STARD10d$InCellulo), function(x){PercentagesVesicleLipidomesSubclassesMatricesOfCombinedTissuesx[["PC"]][SelectedColumnsForPCs]}))
 rownames(LiposomesSubsetForPC) <- rownames(PCSubsetForSTARD2STARD10d$InCellulo)
@@ -6010,11 +6007,8 @@ write.table(InCelluloInVitroNoveltySupplTable7Basis2[[1]], file = "./Output/6977
 write.table(InCelluloInVitroNoveltySupplTable7Basis2[[2]], file = "./Output/69777_SupplentaryTable7B_InVitro.tsv", sep = "\t", quote = FALSE, row.names = TRUE, col.names = TRUE)
 write.table(InCelluloInVitroNoveltySupplTable7Basis2[[3]], file = "./Output/69777_SupplentaryTable7C_PairNovelty.tsv", sep = "\t", quote = FALSE, row.names = TRUE, col.names = TRUE)
 
-# THe above files form the basis for Extended Data Tables 5A, 5B and 5C.
+# The above files form the basis for Extended Data Tables 5A, 5B and 5C.
 
-
-write.table(OverexpressionHELA[c(1:2, 441:470),c(1:5,8:11,14:17)], file = "./Output/69777_SupplementaryTable11HeLaSubset.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
-# The above table forms the basis for the Extended Data Table 11.
 
 
 DetailsOfOverexpressionHEK2Split2 <- cbind(DetailsOfOverexpressionHEK2Split[,1:2], ControlMeans = rowMeans(DetailsOfOverexpressionHEK2Split[,c(4,10,16)])) 
@@ -6046,23 +6040,17 @@ write.table(StructuralVolumesLipidSpeciesLTPs4xx, file = "./Output/469777_Supple
 CombinedDataOfScreens <- CleanedExtendedDataTable1Basis2 # Cleaner version with novelties
 CombinedDataOfScreens[CombinedDataOfScreens == "STARD11"] <- "CERT"
 
-CombinedDataOfScreens2 <- cbind(CombinedDataOfScreens, do.call("rbind", lapply(1:dim(CombinedDataOfScreens)[1], function(x){
-  StructuralVolumesLipidSpeciesLTPs4[(StructuralVolumesLipidSpeciesLTPs4[,"Protein.Name"] %in% CombinedDataOfScreens[x,"LTPProtein"]) & (StructuralVolumesLipidSpeciesLTPs4[,"Lipid"] %in% CombinedDataOfScreens[x,"Lipid"]),3:5]
-  
-})))
-
-
 CombinedDataOfScreens2xx <- cbind(CombinedDataOfScreens, do.call("rbind", lapply(1:dim(CombinedDataOfScreens)[1], function(x){
   StructuralVolumesLipidSpeciesLTPs4xx[(StructuralVolumesLipidSpeciesLTPs4xx[,"Protein.Name"] %in% CombinedDataOfScreens[x,"LTPProtein"]) & (StructuralVolumesLipidSpeciesLTPs4xx[,"Lipid"] %in% CombinedDataOfScreens[x,"Lipid"]),3:5]
   
 }))) 
-all(CombinedDataOfScreens2xx == CombinedDataOfScreens2) # Check: TRUE
 
-CombinedDataOfScreens2 <- CombinedDataOfScreens2xx # Can stream through like this because equivalent
+
+CombinedDataOfScreens2 <- CombinedDataOfScreens2xx
 MaxKnownLipidToPocket <- max(CombinedDataOfScreens2[CombinedDataOfScreens2$NovelLinkLTPLipidSubclass == 0,"LipidToPocketPercentage"]) # 42.48058
 
 CombinedDataOfScreens4 <- cbind(CombinedDataOfScreens2, AboveMaxOfKnown = CombinedDataOfScreens2[, "LipidToPocketPercentage"] > MaxKnownLipidToPocket)
-CombinedDataOfScreens4[,c("LTPProtein", "Screen", "LikelySubclass","NovelLinkLTPLipidSubclass", "LipidToPocketPercentage")]
+
 
 OverviewLTPLipidSubclassNoveltiesOverMaxSpace <- aggregate(CombinedDataOfScreens4$AboveMaxOfKnown, by = CombinedDataOfScreens4[,c("LTPProtein", "LikelySubclass", "Screen", "NovelLinkLTPLipidSubclass")], FUN = function(x){mean(x)*100})
 colnames(OverviewLTPLipidSubclassNoveltiesOverMaxSpace) <- c("LTPProtein", "LipidSubclass", "Screen", "NovelLinkLTPLipidSubclass", "PercentageOfLipidSpeciesAboveKnownStructuralLimit")
@@ -6106,6 +6094,9 @@ OverexpressionHELA5 <- cbind.data.frame(OverexpressionHELA4[,1], apply(Overexpre
 OverexpressionHELA5[,1] <- as.character(OverexpressionHELA5[,1])
 
 
+write.table(OverexpressionHELA[c(1:2, 441:470),c(1:5,8:11,14:17)], file = "./Output/69777_SupplementaryTable11HeLaSubset.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
+# The above table forms the basis for the Extended Data Table 11.
+
 OverexpressionHELARatiosMatrixAll <- do.call("cbind", lapply(1:9, function(x){(OverexpressionHELA5[,(2*x+1)] + 0.00001)/(OverexpressionHELA5[,(2*x)] + 0.00001)}))
 colnames(OverexpressionHELARatiosMatrixAll) <- paste0(colnames(OverexpressionHELA5)[sapply(1:9,function(x){(2*x+1)})], "_ratio")
 
@@ -6121,7 +6112,7 @@ colnames(OverexpressionHELALogRatiosMelted) <- c("Sample", "Lipid", "Ratio")
 
 OverexpressionHELALogRatiosMelted2 <- cbind(OverexpressionHELALogRatiosMelted, LTPType = sapply(strsplit(as.character(OverexpressionHELALogRatiosMelted[,"Sample"]), split = "_"), "[[", 3))
 
-StatHELALogRatiosMelted2 <- do.call("rbind",lapply(levels(OverexpressionHELALogRatiosMelted2[,"Lipid"]), function(y){c(y,sapply(c("CERT","Sec14L1"), function(x){unlist(t.test(OverexpressionHELALogRatiosMelted2[(OverexpressionHELALogRatiosMelted2[,"LTPType"] == "control") & (OverexpressionHELALogRatiosMelted2[,"Lipid"] == y),"Ratio"], OverexpressionHELALogRatiosMelted2[(OverexpressionHELALogRatiosMelted2[,"LTPType"] == x) & (OverexpressionHELALogRatiosMelted2[,"Lipid"] == y),"Ratio"])[c(3,5,4)])}))}))
+StatHELALogRatiosMelted2 <- do.call("rbind",lapply(unique(OverexpressionHELALogRatiosMelted2[,"Lipid"]), function(y){c(y,sapply(c("CERT","Sec14L1"), function(x){unlist(t.test(OverexpressionHELALogRatiosMelted2[(OverexpressionHELALogRatiosMelted2[,"LTPType"] == "control") & (OverexpressionHELALogRatiosMelted2[,"Lipid"] == y),"Ratio"], OverexpressionHELALogRatiosMelted2[(OverexpressionHELALogRatiosMelted2[,"LTPType"] == x) & (OverexpressionHELALogRatiosMelted2[,"Lipid"] == y),"Ratio"])[c(3,5,4)])}))})) #!
 colnames(StatHELALogRatiosMelted2) <- c("Lipid", "CERTp.value", "CERTControlMeanEstimate", "CERTProteinMeanEstimate", "CERTDiffConfidenceLow", "CERTDiffConfidenceHigh", "SEC14L1p.value", "SEC14L1ControlMeanEstimate", "SEC14L1ProteinMeanEstimate", "SEC14L1DiffConfidenceLow", "SEC14L1DiffConfidenceHigh")
 
 StatHELALogRatiosMelted4 <- do.call("cbind", list(StatHELALogRatiosMelted2, CERTPercentDifference = 100*10^(as.numeric(StatHELALogRatiosMelted2[,4]) - as.numeric(StatHELALogRatiosMelted2[,3]))-100, SEC14L1PercentDifference = 100*10^(as.numeric(StatHELALogRatiosMelted2[,9]) - as.numeric(StatHELALogRatiosMelted2[,8]))-100))  
@@ -6150,6 +6141,9 @@ text(500, -log10(0.05), labels = "p-value 0.05", pos = 3, cex = 0.8, col = "dark
 
 dev.off()
 # Basis for HeLa figure for CERT from Extended Data Fig.5a.
+
+# Export the file again to form the basis of Ext. Data Table 7C but now expanded with the condensed lipid subclass names and updated names for LTPs (STARD11 will be switched to CERT naming also afterwards) # This line has been placed much later now than in the previous script versions, to safeguard consistency.
+write.table(LogRatioDifferenceTTestsForLipidSpeciesbwls[,c("NewLTPs", "Lipid", "ConvertedOELipidName", "LogRatio", "p.value")], file = "./Output/469777_SupplementaryTable7C_v4.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE) 
 
 
 # Add up or down in Extended Data Table 8
